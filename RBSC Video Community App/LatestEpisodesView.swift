@@ -18,9 +18,11 @@ struct LatestEpisodesView: View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(episodes, id: \.self.title) { episode in
-                        NavigationLink {
-                            Text(episode.title)
-                        } label: {
+                        Button(action: {
+                            let youtubeToken = episode.tokens.first(where: { $0.type == "youtube" })!.token
+                            let url = URL(string: "youtube://watch/\(youtubeToken)")!
+                            UIApplication.shared.open(url)
+                        }) {
                             VStack {
                                 AsyncImage(url: URL(string: episode.thumbnail.first!.url)) { phase in
                                     if let image = phase.image {

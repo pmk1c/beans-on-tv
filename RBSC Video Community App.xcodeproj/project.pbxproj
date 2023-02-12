@@ -15,6 +15,7 @@
 		CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14528F29990AE600858968 /* BohnenEpisodes.swift */; };
 		CB14529229990B2000858968 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529129990B2000858968 /* Episode.swift */; };
 		CB14529429990D4400858968 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529329990D4400858968 /* Thumbnail.swift */; };
+		CB1452962999147900858968 /* EpisodeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452952999147900858968 /* EpisodeToken.swift */; };
 		CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */; };
 		CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* PlayerView.swift */; };
 		CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3829855DEA008DF276 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		CB14528F29990AE600858968 /* BohnenEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BohnenEpisodes.swift; sourceTree = "<group>"; };
 		CB14529129990B2000858968 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CB14529329990D4400858968 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		CB1452952999147900858968 /* EpisodeToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeToken.swift; sourceTree = "<group>"; };
 		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
 		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				CB1452892998F9C600858968 /* LatestEpisodesView.swift */,
 				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
 				CB14529129990B2000858968 /* Episode.swift */,
+				CB1452952999147900858968 /* EpisodeToken.swift */,
 				CB14529329990D4400858968 /* Thumbnail.swift */,
 				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
 				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
@@ -283,6 +286,7 @@
 			files = (
 				CB14528C299906EA00858968 /* PaginatedBohnenEpisodes.swift in Sources */,
 				CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */,
+				CB1452962999147900858968 /* EpisodeToken.swift in Sources */,
 				CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */,
 				CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */,
 				CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */,
