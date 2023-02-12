@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CBCDDD3529855DE8008DF276 /* RBSC_Video_Community_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSC_Video_Community_AppApp.swift */; };
-		CBCDDD3729855DE8008DF276 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* ContentView.swift */; };
+		CB03A4822997CDD30026E7BA /* CodeTokenExchangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */; };
+		CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */; };
+		CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A485299826E10026E7BA /* CodeTokenExchange.swift */; };
+		CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452892998F9C600858968 /* LatestEpisodesView.swift */; };
+		CB14528C299906EA00858968 /* PaginatedBohnenEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */; };
+		CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14528F29990AE600858968 /* BohnenEpisodes.swift */; };
+		CB14529229990B2000858968 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529129990B2000858968 /* Episode.swift */; };
+		CB14529429990D4400858968 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529329990D4400858968 /* Thumbnail.swift */; };
+		CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */; };
+		CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* PlayerView.swift */; };
 		CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3829855DEA008DF276 /* Assets.xcassets */; };
 		CBCDDD3C29855DEA008DF276 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3B29855DEA008DF276 /* Preview Assets.xcassets */; };
 		CBCDDD4629855DEB008DF276 /* RBSC_Video_Community_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD4529855DEB008DF276 /* RBSC_Video_Community_AppTests.swift */; };
@@ -34,9 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchangeController.swift; sourceTree = "<group>"; };
+		CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchangeView.swift; sourceTree = "<group>"; };
+		CB03A485299826E10026E7BA /* CodeTokenExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchange.swift; sourceTree = "<group>"; };
+		CB1452892998F9C600858968 /* LatestEpisodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesView.swift; sourceTree = "<group>"; };
+		CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedBohnenEpisodes.swift; sourceTree = "<group>"; };
+		CB14528F29990AE600858968 /* BohnenEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BohnenEpisodes.swift; sourceTree = "<group>"; };
+		CB14529129990B2000858968 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		CB14529329990D4400858968 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBCDDD3429855DE8008DF276 /* RBSC_Video_Community_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSC_Video_Community_AppApp.swift; sourceTree = "<group>"; };
-		CBCDDD3629855DE8008DF276 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
+		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		CBCDDD3829855DEA008DF276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCDDD3B29855DEA008DF276 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CBCDDD4129855DEB008DF276 /* RBSC Video Community AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RBSC Video Community AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,8 +110,16 @@
 		CBCDDD3329855DE8008DF276 /* RBSC Video Community App */ = {
 			isa = PBXGroup;
 			children = (
-				CBCDDD3429855DE8008DF276 /* RBSC_Video_Community_AppApp.swift */,
-				CBCDDD3629855DE8008DF276 /* ContentView.swift */,
+				CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */,
+				CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */,
+				CBCDDD3629855DE8008DF276 /* PlayerView.swift */,
+				CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */,
+				CB1452892998F9C600858968 /* LatestEpisodesView.swift */,
+				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
+				CB14529129990B2000858968 /* Episode.swift */,
+				CB14529329990D4400858968 /* Thumbnail.swift */,
+				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
+				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
 				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
 				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 			);
@@ -257,8 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBCDDD3729855DE8008DF276 /* ContentView.swift in Sources */,
-				CBCDDD3529855DE8008DF276 /* RBSC_Video_Community_AppApp.swift in Sources */,
+				CB14528C299906EA00858968 /* PaginatedBohnenEpisodes.swift in Sources */,
+				CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */,
+				CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */,
+				CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */,
+				CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */,
+				CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */,
+				CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */,
+				CB14529229990B2000858968 /* Episode.swift in Sources */,
+				CB14529429990D4400858968 /* Thumbnail.swift in Sources */,
+				CB03A4822997CDD30026E7BA /* CodeTokenExchangeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
