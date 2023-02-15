@@ -10,8 +10,8 @@ struct PlayerView: View {
        var body: some View {
            switch(videoTokenResult) {
            case .success(let videoToken):
-               var player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
-               VideoPlayer(player: player)
+               let player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
+               VideoPlayer(player: player).ignoresSafeArea()
            case .failure(let error):
                Text(error.localizedDescription)
            case nil:
