@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB03A4822997CDD30026E7BA /* CodeTokenExchangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */; };
 		CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */; };
 		CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A485299826E10026E7BA /* CodeTokenExchange.swift */; };
 		CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452892998F9C600858968 /* LatestEpisodesView.swift */; };
@@ -16,6 +15,14 @@
 		CB14529229990B2000858968 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529129990B2000858968 /* Episode.swift */; };
 		CB14529429990D4400858968 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529329990D4400858968 /* Thumbnail.swift */; };
 		CB1452962999147900858968 /* EpisodeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452952999147900858968 /* EpisodeToken.swift */; };
+		CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */; };
+		CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */; };
+		CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9EF299D7F1C000FC009 /* LoginView.swift */; };
+		CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F3299D8078000FC009 /* AuthLocal.swift */; };
+		CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */; };
+		CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F7299D80EC000FC009 /* Token.swift */; };
+		CBA0D9FB299D8DE7000FC009 /* VideoToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9FA299D8DE7000FC009 /* VideoToken.swift */; };
+		CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9FC299D8E34000FC009 /* VideoTokenResponse.swift */; };
 		CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */; };
 		CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* PlayerView.swift */; };
 		CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3829855DEA008DF276 /* Assets.xcassets */; };
@@ -43,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchangeController.swift; sourceTree = "<group>"; };
 		CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchangeView.swift; sourceTree = "<group>"; };
 		CB03A485299826E10026E7BA /* CodeTokenExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchange.swift; sourceTree = "<group>"; };
 		CB1452892998F9C600858968 /* LatestEpisodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesView.swift; sourceTree = "<group>"; };
@@ -52,6 +58,14 @@
 		CB14529129990B2000858968 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CB14529329990D4400858968 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		CB1452952999147900858968 /* EpisodeToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeToken.swift; sourceTree = "<group>"; };
+		CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesViewModel.swift; sourceTree = "<group>"; };
+		CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesGridView.swift; sourceTree = "<group>"; };
+		CBA0D9EF299D7F1C000FC009 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CBA0D9F3299D8078000FC009 /* AuthLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocal.swift; sourceTree = "<group>"; };
+		CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocalToken.swift; sourceTree = "<group>"; };
+		CBA0D9F7299D80EC000FC009 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		CBA0D9FA299D8DE7000FC009 /* VideoToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoToken.swift; sourceTree = "<group>"; };
+		CBA0D9FC299D8E34000FC009 /* VideoTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTokenResponse.swift; sourceTree = "<group>"; };
 		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
 		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -89,6 +103,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CBA0D9F1299D7F41000FC009 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */,
+				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
+				CBA0D9EF299D7F1C000FC009 /* LoginView.swift */,
+				CBA0D9F3299D8078000FC009 /* AuthLocal.swift */,
+				CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */,
+				CBA0D9F7299D80EC000FC009 /* Token.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		CBA0D9F2299D7F68000FC009 /* LatestEpisodes */ = {
+			isa = PBXGroup;
+			children = (
+				CB1452892998F9C600858968 /* LatestEpisodesView.swift */,
+				CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */,
+				CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */,
+				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
+				CB14529129990B2000858968 /* Episode.swift */,
+				CB1452952999147900858968 /* EpisodeToken.swift */,
+				CB14529329990D4400858968 /* Thumbnail.swift */,
+				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
+			);
+			path = LatestEpisodes;
+			sourceTree = "<group>";
+		};
+		CBA0D9F9299D8DD1000FC009 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CBCDDD3629855DE8008DF276 /* PlayerView.swift */,
+				CBA0D9FA299D8DE7000FC009 /* VideoToken.swift */,
+				CBA0D9FC299D8E34000FC009 /* VideoTokenResponse.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		CBCDDD2829855DE8008DF276 = {
 			isa = PBXGroup;
 			children = (
@@ -112,17 +164,10 @@
 		CBCDDD3329855DE8008DF276 /* RBSC Video Community App */ = {
 			isa = PBXGroup;
 			children = (
-				CB03A4812997CDD30026E7BA /* CodeTokenExchangeController.swift */,
+				CBA0D9F9299D8DD1000FC009 /* Player */,
+				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
+				CBA0D9F1299D7F41000FC009 /* Auth */,
 				CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */,
-				CBCDDD3629855DE8008DF276 /* PlayerView.swift */,
-				CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */,
-				CB1452892998F9C600858968 /* LatestEpisodesView.swift */,
-				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
-				CB14529129990B2000858968 /* Episode.swift */,
-				CB1452952999147900858968 /* EpisodeToken.swift */,
-				CB14529329990D4400858968 /* Thumbnail.swift */,
-				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
-				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
 				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
 				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 			);
@@ -285,16 +330,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB14528C299906EA00858968 /* PaginatedBohnenEpisodes.swift in Sources */,
+				CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */,
 				CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */,
+				CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */,
+				CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */,
+				CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */,
 				CB1452962999147900858968 /* EpisodeToken.swift in Sources */,
 				CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */,
+				CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */,
 				CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */,
 				CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */,
+				CBA0D9FB299D8DE7000FC009 /* VideoToken.swift in Sources */,
 				CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */,
+				CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */,
 				CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */,
 				CB14529229990B2000858968 /* Episode.swift in Sources */,
+				CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */,
 				CB14529429990D4400858968 /* Thumbnail.swift in Sources */,
-				CB03A4822997CDD30026E7BA /* CodeTokenExchangeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,9 +505,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RBSC Video Community App/Preview Content\"";
-				DEVELOPMENT_TEAM = GG9LVNGJXG;
+				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,7 +517,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.bmind.RBSC-Video-Community-App";
+				PRODUCT_BUNDLE_IDENTIFIER = de.bmind.rbscvca;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -479,9 +533,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RBSC Video Community App/Preview Content\"";
-				DEVELOPMENT_TEAM = GG9LVNGJXG;
+				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -489,7 +545,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.bmind.RBSC-Video-Community-App";
+				PRODUCT_BUNDLE_IDENTIFIER = de.bmind.rbscvca;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

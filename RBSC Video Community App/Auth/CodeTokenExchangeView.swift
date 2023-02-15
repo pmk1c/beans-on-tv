@@ -9,7 +9,7 @@ struct CodeTokenExchangeView: View {
         case .success(let codeTokenExchange):
             switch fetchTokenResult {
                 case .success(_):
-                    LatestEpisodesView()
+                LatestEpisodesView(token: Token(token: ""))
             case .failure(let error):
                 Text(error.localizedDescription)
             case nil:
