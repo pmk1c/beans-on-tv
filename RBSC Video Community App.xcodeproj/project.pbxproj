@@ -15,8 +15,10 @@
 		CB14529229990B2000858968 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529129990B2000858968 /* Episode.swift */; };
 		CB14529429990D4400858968 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529329990D4400858968 /* Thumbnail.swift */; };
 		CB1452962999147900858968 /* EpisodeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452952999147900858968 /* EpisodeToken.swift */; };
+		CB571D0D29A02FB700C13A9B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB571D0C29A02FB700C13A9B /* LoginViewModel.swift */; };
 		CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */; };
 		CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */; };
+		CB6A6D65299FBA38002A010D /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A6D64299FBA38002A010D /* TokenStorage.swift */; };
 		CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9EF299D7F1C000FC009 /* LoginView.swift */; };
 		CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F3299D8078000FC009 /* AuthLocal.swift */; };
 		CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */; };
@@ -58,8 +60,10 @@
 		CB14529129990B2000858968 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CB14529329990D4400858968 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		CB1452952999147900858968 /* EpisodeToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeToken.swift; sourceTree = "<group>"; };
+		CB571D0C29A02FB700C13A9B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesViewModel.swift; sourceTree = "<group>"; };
 		CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesGridView.swift; sourceTree = "<group>"; };
+		CB6A6D64299FBA38002A010D /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		CBA0D9EF299D7F1C000FC009 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CBA0D9F3299D8078000FC009 /* AuthLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocal.swift; sourceTree = "<group>"; };
 		CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocalToken.swift; sourceTree = "<group>"; };
@@ -103,15 +107,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB6A6D61299FB9CD002A010D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				CB6A6D62299FB9DA002A010D /* TokenStorage */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		CB6A6D62299FB9DA002A010D /* TokenStorage */ = {
+			isa = PBXGroup;
+			children = (
+				CBA0D9F7299D80EC000FC009 /* Token.swift */,
+				CB6A6D64299FBA38002A010D /* TokenStorage.swift */,
+			);
+			path = TokenStorage;
+			sourceTree = "<group>";
+		};
 		CBA0D9F1299D7F41000FC009 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */,
 				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
 				CBA0D9EF299D7F1C000FC009 /* LoginView.swift */,
+				CB571D0C29A02FB700C13A9B /* LoginViewModel.swift */,
 				CBA0D9F3299D8078000FC009 /* AuthLocal.swift */,
 				CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */,
-				CBA0D9F7299D80EC000FC009 /* Token.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -144,6 +165,7 @@
 		CBCDDD2829855DE8008DF276 = {
 			isa = PBXGroup;
 			children = (
+				CB6A6D61299FB9CD002A010D /* Libraries */,
 				CBCDDD3329855DE8008DF276 /* RBSC Video Community App */,
 				CBCDDD4429855DEB008DF276 /* RBSC Video Community AppTests */,
 				CBCDDD4E29855DEB008DF276 /* RBSC Video Community AppUITests */,
@@ -335,10 +357,12 @@
 				CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */,
 				CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */,
 				CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */,
+				CB6A6D65299FBA38002A010D /* TokenStorage.swift in Sources */,
 				CB1452962999147900858968 /* EpisodeToken.swift in Sources */,
 				CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */,
 				CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */,
 				CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */,
+				CB571D0D29A02FB700C13A9B /* LoginViewModel.swift in Sources */,
 				CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */,
 				CBA0D9FB299D8DE7000FC009 /* VideoToken.swift in Sources */,
 				CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */,

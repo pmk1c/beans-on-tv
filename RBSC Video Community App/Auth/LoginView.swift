@@ -1,51 +1,26 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var secondFactorToken: String = ""
-    @State private var loginResult: Result<Token, Error>?
+    @StateObject private var vm = LoginViewModel()
     
     var body: some View {
-        switch loginResult {
-        case .success(let token):
-            LatestEpisodesView(token: token)
-        case .failure(let error):
-            Text(error.localizedDescription)
-        case nil:
+        if (vm.token != nil) {
+            LatestEpisodesView(token: vm.token!)
+        } else if (vm.error != nil) {
+            Text(vm.error!.localizedDescription)
+        } else {
             Form {
                 Section(header: Text("Anmelden")) {
-                    TextField("E-Mail", text: $email).keyboardType(.emailAddress).autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    
-                    SecureField("Passwort", text: $password).autocapitalization(.none).disableAutocorrection(true)
-                    TextField("Sicherheitscode", text: $secondFactorToken).keyboardType(.numberPad).autocapitalization(.none)
-                        .disableAutocorrection(true).onSubmit { Task {
-                                try await self.login()
-                            }
+                    TextField("E-Mail", text: $vm.email).keyboardType(.emailAddress).textContentType(.emailAddress)
+                    SecureField("Passwort", text: $vm.password).autocapitalization(.none).textContentType(.password)
+                    TextField("Sicherheitscode", text: $vm.secondFactorToken).keyboardType(.numberPad).textContentType(.oneTimeCode).onSubmit {
+                        Task {
+                            try await vm.login()
                         }
+                    }
                 }
             }
         }
-    }
-    
-    func login() async throws {
-        let url = URL(string: "https://api.rocketbeans.tv/v1/auth/local")!
-        var request = URLRequest(url: url)
-        
-        let dict: [String: Any] = [
-          "email": email,
-          "password": password,
-          "secondFactorToken": secondFactorToken,
-        ]
-        let data = try! JSONSerialization.data(withJSONObject: dict, options: [])
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let (result, _) = try await URLSession.shared.upload(for: request, from: data)
-        let authLocal: AuthLocal = try! JSONDecoder().decode(AuthLocal.self, from: result)
-        
-        self.loginResult = Result.success(authLocal.data.token)
     }
 }
 
