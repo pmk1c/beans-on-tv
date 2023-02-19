@@ -12,7 +12,13 @@ struct PlayerView: View {
            switch(videoTokenResult) {
            case .success(let videoToken):
                let player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
-               VideoPlayer(player: player).ignoresSafeArea()
+               VideoPlayer(player: player)
+               .ignoresSafeArea()
+               .onAppear {
+                   player.play()
+               }.onDisappear() {
+                   player.pause()
+               }
            case .failure(let error):
                Text(error.localizedDescription)
            case nil:
