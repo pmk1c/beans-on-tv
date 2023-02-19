@@ -28,6 +28,7 @@
 		CBA3AFAE29A1499F0023172F /* SecureStorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */; };
 		CBA3AFB229A1514F0023172F /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB129A1514F0023172F /* RuntimeError.swift */; };
 		CBA3AFB629A244720023172F /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB529A244720023172F /* Dictionary.swift */; };
+		CBA3AFB829A24C6F0023172F /* EpisodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */; };
 		CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */; };
 		CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* PlayerView.swift */; };
 		CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3829855DEA008DF276 /* Assets.xcassets */; };
@@ -76,6 +77,7 @@
 		CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageError.swift; sourceTree = "<group>"; };
 		CBA3AFB129A1514F0023172F /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		CBA3AFB529A244720023172F /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCard.swift; sourceTree = "<group>"; };
 		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
 		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				CB1452952999147900858968 /* EpisodeToken.swift */,
 				CB14529329990D4400858968 /* Thumbnail.swift */,
 				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
+				CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */,
 			);
 			path = LatestEpisodes;
 			sourceTree = "<group>";
@@ -254,6 +257,8 @@
 			dependencies = (
 			);
 			name = "RBSC Video Community App";
+			packageProductDependencies = (
+			);
 			productName = "RBSC Video Community App";
 			productReference = CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */;
 			productType = "com.apple.product-type.application";
@@ -326,6 +331,8 @@
 				Base,
 			);
 			mainGroup = CBCDDD2829855DE8008DF276;
+			packageReferences = (
+			);
 			productRefGroup = CBCDDD3229855DE8008DF276 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -375,6 +382,7 @@
 				CBA3AFAC29A1445F0023172F /* AuthTokenBloc.swift in Sources */,
 				CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */,
 				CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */,
+				CBA3AFB829A24C6F0023172F /* EpisodeCard.swift in Sources */,
 				CB6A6D65299FBA38002A010D /* SecureStorage.swift in Sources */,
 				CB1452962999147900858968 /* EpisodeToken.swift in Sources */,
 				CBA3AFB229A1514F0023172F /* RuntimeError.swift in Sources */,

@@ -8,7 +8,7 @@ struct LatestEpisodesView: View {
     var body: some View {
         switch(viewModel.state) {
         case .idle:
-            Color.clear.onAppear { Task { await viewModel.load() } }
+            ProgressView().task { await viewModel.load() }
         case .loading:
             ProgressView()
         case .loaded(let episodes):
