@@ -3,9 +3,9 @@ import AVKit
 
 struct PlayerView: View {
     var episode: Episode
-    var token: Token
     
     @State var videoTokenResult: Result<String, Error>?
+    @EnvironmentObject var authTokenBloc: AuthTokenBloc
        
        var body: some View {
            switch(videoTokenResult) {
@@ -24,10 +24,14 @@ struct PlayerView: View {
        }
     
     func fetchVideoToken() async throws {
+        guard case let .authenticated(accessToken, _) = authTokenBloc.state else {
+            throw RuntimeError("You need to be authenticated to reach this code!")
+        }
+        
         let episodeToken = (episode.tokens.first { $0.type == "rbsc" })!.token
         let url = URL(string: "https://api.rocketbeans.tv/v1/rbsc/video/token/\(episodeToken)")!
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
         
         let (result, _) = try await URLSession.shared.data(for: request)
         let videoTokenResponse: VideoTokenResponse = try! JSONDecoder().decode(VideoTokenResponse.self, from: result)

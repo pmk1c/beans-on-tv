@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct LatestEpisodesView: View {
-    var token: Token
-    
     @StateObject private var viewModel = LatestEpisodesViewModel()
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -15,7 +13,7 @@ struct LatestEpisodesView: View {
             ProgressView()
         case .loaded(let episodes):
             Text("Neueste Videos").font(.title)
-            EpisodesGridView(token: token, episodes: episodes)
+            EpisodesGridView(episodes: episodes)
         case .failed(let error):
             Text(error.localizedDescription)
         }
