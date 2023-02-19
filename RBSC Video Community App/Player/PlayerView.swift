@@ -4,6 +4,7 @@ import AVKit
 struct PlayerView: View {
     var episode: Episode
     
+    @Environment(\.openURL) private var openURL
     @State var videoTokenResult: Result<String, Error>?
     @EnvironmentObject var authTokenBloc: AuthTokenBloc
        
@@ -28,7 +29,14 @@ struct PlayerView: View {
             throw RuntimeError("You need to be authenticated to reach this code!")
         }
         
-        let episodeToken = (episode.tokens.first { $0.type == "rbsc" })!.token
+        guard let episodeToken = (episode.tokens.first { $0.type == "rbsc" })?.token else {
+            if let youTubeId = episode.tokens.first(where: { $0.type == "youtube" })?.token,
+            let url = URL(string: "youtube://watch/\(youTubeId)") {
+                openURL(url)
+            }
+            return
+        }
+        
         let url = URL(string: "https://api.rocketbeans.tv/v1/rbsc/video/token/\(episodeToken)")!
         var request = URLRequest(url: url)
         request.setValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
