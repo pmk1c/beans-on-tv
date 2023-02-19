@@ -6,13 +6,11 @@ struct EpisodesGridView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(episodes, id: \.self.title) { episode in
-                        EpisodeCard(episode: episode)
-                    }
-                }.padding(16)
+        LazyVGrid(columns: columns) {
+            ForEach(episodes, id: \.self.title) { episode in
+                EpisodeCard(episode: episode)
             }
+        }
     }
 }
 

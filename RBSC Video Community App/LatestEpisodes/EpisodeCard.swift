@@ -17,7 +17,7 @@ struct EpisodeCard: View {
                     }
                 }
             }.buttonStyle(.card).focused($focused)
-            Text(episode.title).lineLimit(1).font(.caption).padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)).opacity(focused ? 1 : 0)
+            Text(episode.title).lineLimit(1).padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)).opacity(focused ? 1 : 0).font(.custom("Rubik-Light_Medium", size: 24))
         }
     }
 }

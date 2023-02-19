@@ -8,12 +8,14 @@ struct LatestEpisodesView: View {
     var body: some View {
         switch(viewModel.state) {
         case .idle:
-            ProgressView().task { await viewModel.load() }
+            ProgressView().onAppear {  Task { await viewModel.load() } }
         case .loading:
             ProgressView()
         case .loaded(let episodes):
-            Text("Neueste Videos").font(.title)
-            EpisodesGridView(episodes: episodes)
+            ScrollView {
+                Text("Neueste Videos").font(.custom("Rubik-Light_Bold", size: 48)).shadow(color: .black, radius: 0.5, x: 2, y: 2).frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
+                EpisodesGridView(episodes: episodes).padding(.horizontal, 16)
+            }
         case .failed(let error):
             Text(error.localizedDescription)
         }

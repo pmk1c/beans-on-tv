@@ -29,6 +29,7 @@
 		CBA3AFB229A1514F0023172F /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB129A1514F0023172F /* RuntimeError.swift */; };
 		CBA3AFB629A244720023172F /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB529A244720023172F /* Dictionary.swift */; };
 		CBA3AFB829A24C6F0023172F /* EpisodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */; };
+		CBA3AFCB29A2BBDF0023172F /* Rubik.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA3AFC729A2B20B0023172F /* Rubik.ttf */; };
 		CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */; };
 		CBCDDD3729855DE8008DF276 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDDD3629855DE8008DF276 /* PlayerView.swift */; };
 		CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCDDD3829855DEA008DF276 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		CBA3AFB129A1514F0023172F /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		CBA3AFB529A244720023172F /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCard.swift; sourceTree = "<group>"; };
+		CBA3AFC729A2B20B0023172F /* Rubik.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rubik.ttf; sourceTree = "<group>"; };
 		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
 		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		CBCDDD3329855DE8008DF276 /* RBSC Video Community App */ = {
 			isa = PBXGroup;
 			children = (
+				CBA3AFC729A2B20B0023172F /* Rubik.ttf */,
 				CBA0D9F9299D8DD1000FC009 /* Player */,
 				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
 				CBA0D9F1299D7F41000FC009 /* Auth */,
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBCDDD3C29855DEA008DF276 /* Preview Assets.xcassets in Resources */,
+				CBA3AFCB29A2BBDF0023172F /* Rubik.ttf in Resources */,
 				CBCDDD3929855DEA008DF276 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +564,7 @@
 				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RBSC-Video-Community-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -588,6 +593,7 @@
 				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RBSC-Video-Community-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -14,7 +14,7 @@ class LatestEpisodesViewModel: ObservableObject {
         state = .loading
         
         do {
-            let url = URL(string: "https://api.rocketbeans.tv/v1/media/episode/preview/newest")!
+            let url = URL(string: "https://api.rocketbeans.tv/v1/media/episode/preview/newest?limit=50")!
             let (data, _) = try await URLSession.shared.data(from: url)
             let paginatedEpisodes: PaginatedBohnenEpisodes = try JSONDecoder().decode(PaginatedBohnenEpisodes.self, from: data)
             
