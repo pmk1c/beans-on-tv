@@ -83,14 +83,14 @@
 		CBA3AFB129A1514F0023172F /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCard.swift; sourceTree = "<group>"; };
 		CBA3AFC729A2B20B0023172F /* Rubik.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rubik.ttf; sourceTree = "<group>"; };
-		CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RBSC Video Community App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBCDDD3129855DE8008DF276 /* RBSCVCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBSCVCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSCVCApp.swift; sourceTree = "<group>"; };
 		CBCDDD3629855DE8008DF276 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		CBCDDD3829855DEA008DF276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCDDD3B29855DEA008DF276 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CBCDDD4129855DEB008DF276 /* RBSC Video Community AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RBSC Video Community AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBCDDD4129855DEB008DF276 /* RBSCVCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBSCVCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD4529855DEB008DF276 /* RBSC_Video_Community_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSC_Video_Community_AppTests.swift; sourceTree = "<group>"; };
-		CBCDDD4B29855DEB008DF276 /* RBSC Video Community AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RBSC Video Community AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBCDDD4B29855DEB008DF276 /* RBSCVCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBSCVCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBCDDD4F29855DEB008DF276 /* RBSC_Video_Community_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSC_Video_Community_AppUITests.swift; sourceTree = "<group>"; };
 		CBCDDD5129855DEB008DF276 /* RBSC_Video_Community_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSC_Video_Community_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,9 +199,9 @@
 			children = (
 				CB01A2E729A3EB290073BAF9 /* Extensions */,
 				CB6A6D61299FB9CD002A010D /* Libraries */,
-				CBCDDD3329855DE8008DF276 /* RBSC Video Community App */,
-				CBCDDD4429855DEB008DF276 /* RBSC Video Community AppTests */,
-				CBCDDD4E29855DEB008DF276 /* RBSC Video Community AppUITests */,
+				CBCDDD3329855DE8008DF276 /* RBSCVCA */,
+				CBCDDD4429855DEB008DF276 /* RBSCVCATests */,
+				CBCDDD4E29855DEB008DF276 /* RBSCVCAUITests */,
 				CBCDDD3229855DE8008DF276 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -209,14 +209,14 @@
 		CBCDDD3229855DE8008DF276 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */,
-				CBCDDD4129855DEB008DF276 /* RBSC Video Community AppTests.xctest */,
-				CBCDDD4B29855DEB008DF276 /* RBSC Video Community AppUITests.xctest */,
+				CBCDDD3129855DE8008DF276 /* RBSCVCA.app */,
+				CBCDDD4129855DEB008DF276 /* RBSCVCATests.xctest */,
+				CBCDDD4B29855DEB008DF276 /* RBSCVCAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CBCDDD3329855DE8008DF276 /* RBSC Video Community App */ = {
+		CBCDDD3329855DE8008DF276 /* RBSCVCA */ = {
 			isa = PBXGroup;
 			children = (
 				CB01A2EA29A3F0080073BAF9 /* Account */,
@@ -229,7 +229,7 @@
 				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 				CBA3AFB129A1514F0023172F /* RuntimeError.swift */,
 			);
-			path = "RBSC Video Community App";
+			path = RBSCVCA;
 			sourceTree = "<group>";
 		};
 		CBCDDD3A29855DEA008DF276 /* Preview Content */ = {
@@ -240,29 +240,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CBCDDD4429855DEB008DF276 /* RBSC Video Community AppTests */ = {
+		CBCDDD4429855DEB008DF276 /* RBSCVCATests */ = {
 			isa = PBXGroup;
 			children = (
 				CBCDDD4529855DEB008DF276 /* RBSC_Video_Community_AppTests.swift */,
 			);
-			path = "RBSC Video Community AppTests";
+			path = RBSCVCATests;
 			sourceTree = "<group>";
 		};
-		CBCDDD4E29855DEB008DF276 /* RBSC Video Community AppUITests */ = {
+		CBCDDD4E29855DEB008DF276 /* RBSCVCAUITests */ = {
 			isa = PBXGroup;
 			children = (
 				CBCDDD4F29855DEB008DF276 /* RBSC_Video_Community_AppUITests.swift */,
 				CBCDDD5129855DEB008DF276 /* RBSC_Video_Community_AppUITestsLaunchTests.swift */,
 			);
-			path = "RBSC Video Community AppUITests";
+			path = RBSCVCAUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CBCDDD3029855DE8008DF276 /* RBSC Video Community App */ = {
+		CBCDDD3029855DE8008DF276 /* RBSCVCA */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBCDDD5529855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community App" */;
+			buildConfigurationList = CBCDDD5529855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCA" */;
 			buildPhases = (
 				CBCDDD2D29855DE8008DF276 /* Sources */,
 				CBCDDD2E29855DE8008DF276 /* Frameworks */,
@@ -272,17 +272,17 @@
 			);
 			dependencies = (
 			);
-			name = "RBSC Video Community App";
+			name = RBSCVCA;
 			packageProductDependencies = (
 				CBA3AFCE29A2D7070023172F /* Sentry */,
 			);
 			productName = "RBSC Video Community App";
-			productReference = CBCDDD3129855DE8008DF276 /* RBSC Video Community App.app */;
+			productReference = CBCDDD3129855DE8008DF276 /* RBSCVCA.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CBCDDD4029855DEB008DF276 /* RBSC Video Community AppTests */ = {
+		CBCDDD4029855DEB008DF276 /* RBSCVCATests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBCDDD5829855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community AppTests" */;
+			buildConfigurationList = CBCDDD5829855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCATests" */;
 			buildPhases = (
 				CBCDDD3D29855DEB008DF276 /* Sources */,
 				CBCDDD3E29855DEB008DF276 /* Frameworks */,
@@ -293,14 +293,14 @@
 			dependencies = (
 				CBCDDD4329855DEB008DF276 /* PBXTargetDependency */,
 			);
-			name = "RBSC Video Community AppTests";
+			name = RBSCVCATests;
 			productName = "RBSC Video Community AppTests";
-			productReference = CBCDDD4129855DEB008DF276 /* RBSC Video Community AppTests.xctest */;
+			productReference = CBCDDD4129855DEB008DF276 /* RBSCVCATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CBCDDD4A29855DEB008DF276 /* RBSC Video Community AppUITests */ = {
+		CBCDDD4A29855DEB008DF276 /* RBSCVCAUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBCDDD5B29855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community AppUITests" */;
+			buildConfigurationList = CBCDDD5B29855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCAUITests" */;
 			buildPhases = (
 				CBCDDD4729855DEB008DF276 /* Sources */,
 				CBCDDD4829855DEB008DF276 /* Frameworks */,
@@ -311,9 +311,9 @@
 			dependencies = (
 				CBCDDD4D29855DEB008DF276 /* PBXTargetDependency */,
 			);
-			name = "RBSC Video Community AppUITests";
+			name = RBSCVCAUITests;
 			productName = "RBSC Video Community AppUITests";
-			productReference = CBCDDD4B29855DEB008DF276 /* RBSC Video Community AppUITests.xctest */;
+			productReference = CBCDDD4B29855DEB008DF276 /* RBSCVCAUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -339,7 +339,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBCDDD2C29855DE8008DF276 /* Build configuration list for PBXProject "RBSC Video Community App" */;
+			buildConfigurationList = CBCDDD2C29855DE8008DF276 /* Build configuration list for PBXProject "RBSCVCA" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -355,9 +355,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CBCDDD3029855DE8008DF276 /* RBSC Video Community App */,
-				CBCDDD4029855DEB008DF276 /* RBSC Video Community AppTests */,
-				CBCDDD4A29855DEB008DF276 /* RBSC Video Community AppUITests */,
+				CBCDDD3029855DE8008DF276 /* RBSCVCA */,
+				CBCDDD4029855DEB008DF276 /* RBSCVCATests */,
+				CBCDDD4A29855DEB008DF276 /* RBSCVCAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -444,12 +444,12 @@
 /* Begin PBXTargetDependency section */
 		CBCDDD4329855DEB008DF276 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CBCDDD3029855DE8008DF276 /* RBSC Video Community App */;
+			target = CBCDDD3029855DE8008DF276 /* RBSCVCA */;
 			targetProxy = CBCDDD4229855DEB008DF276 /* PBXContainerItemProxy */;
 		};
 		CBCDDD4D29855DEB008DF276 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CBCDDD3029855DE8008DF276 /* RBSC Video Community App */;
+			target = CBCDDD3029855DE8008DF276 /* RBSCVCA */;
 			targetProxy = CBCDDD4C29855DEB008DF276 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -581,7 +581,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RBSC-Video-Community-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Beans TV";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -609,7 +609,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RBSC-Video-Community-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "RBSC Video Community App";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rocket Beans TV";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -640,7 +640,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RBSC Video Community App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RBSC Video Community App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RBSCVCA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RBSCVCA";
 				TVOS_DEPLOYMENT_TARGET = 16.1;
 			};
 			name = Debug;
@@ -660,7 +660,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RBSC Video Community App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RBSC Video Community App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RBSCVCA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RBSCVCA";
 				TVOS_DEPLOYMENT_TARGET = 16.1;
 			};
 			name = Release;
@@ -704,7 +704,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBCDDD2C29855DE8008DF276 /* Build configuration list for PBXProject "RBSC Video Community App" */ = {
+		CBCDDD2C29855DE8008DF276 /* Build configuration list for PBXProject "RBSCVCA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBCDDD5329855DEB008DF276 /* Debug */,
@@ -713,7 +713,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBCDDD5529855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community App" */ = {
+		CBCDDD5529855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBCDDD5629855DEB008DF276 /* Debug */,
@@ -722,7 +722,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBCDDD5829855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community AppTests" */ = {
+		CBCDDD5829855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCATests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBCDDD5929855DEB008DF276 /* Debug */,
@@ -731,7 +731,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBCDDD5B29855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSC Video Community AppUITests" */ = {
+		CBCDDD5B29855DEB008DF276 /* Build configuration list for PBXNativeTarget "RBSCVCAUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBCDDD5C29855DEB008DF276 /* Debug */,
