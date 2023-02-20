@@ -47,4 +47,19 @@ class AuthTokenBloc: ObservableObject {
             }
         }
     }
+    
+    func delete() async {
+        do {
+            try await SecureStorage.delete(key: accessTokenKey).value
+            try await SecureStorage.delete(key: refreshTokenKey).value
+            await MainActor.run {
+                state = .unauthenticated
+            }
+        } catch {
+            await MainActor.run {
+                print("Error: \(error)")
+                state = .unauthenticated
+            }
+        }
+    }
 }

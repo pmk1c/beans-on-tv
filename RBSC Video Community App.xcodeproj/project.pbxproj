@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB01A2E929A3EB3E0073BAF9 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01A2E829A3EB3E0073BAF9 /* Dictionary.swift */; };
+		CB01A2EC29A3F0130073BAF9 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB01A2EB29A3F0130073BAF9 /* AccountView.swift */; };
 		CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */; };
 		CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03A485299826E10026E7BA /* CodeTokenExchange.swift */; };
 		CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452892998F9C600858968 /* LatestEpisodesView.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		CB01A2E829A3EB3E0073BAF9 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		CB01A2EB29A3F0130073BAF9 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchangeView.swift; sourceTree = "<group>"; };
 		CB03A485299826E10026E7BA /* CodeTokenExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTokenExchange.swift; sourceTree = "<group>"; };
 		CB1452892998F9C600858968 /* LatestEpisodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 				CB01A2E829A3EB3E0073BAF9 /* Dictionary.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CB01A2EA29A3F0080073BAF9 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				CB01A2EB29A3F0130073BAF9 /* AccountView.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		CB6A6D61299FB9CD002A010D /* Libraries */ = {
@@ -209,6 +219,7 @@
 		CBCDDD3329855DE8008DF276 /* RBSC Video Community App */ = {
 			isa = PBXGroup;
 			children = (
+				CB01A2EA29A3F0080073BAF9 /* Account */,
 				CBA3AFC729A2B20B0023172F /* Rubik.ttf */,
 				CBA0D9F9299D8DD1000FC009 /* Player */,
 				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
@@ -398,6 +409,7 @@
 				CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */,
 				CB03A486299826E10026E7BA /* CodeTokenExchange.swift in Sources */,
 				CB14529029990AE600858968 /* BohnenEpisodes.swift in Sources */,
+				CB01A2EC29A3F0130073BAF9 /* AccountView.swift in Sources */,
 				CBA0D9FB299D8DE7000FC009 /* VideoToken.swift in Sources */,
 				CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */,
 				CB01A2E929A3EB3E0073BAF9 /* Dictionary.swift in Sources */,

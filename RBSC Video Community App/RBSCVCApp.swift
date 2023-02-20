@@ -22,7 +22,16 @@ struct RBSCVCApp: App {
                     case .unauthenticated:
                         LoginView()
                     case .authenticated:
-                        LatestEpisodesView()
+                        TabView {
+                            LatestEpisodesView()
+                                .tabItem {
+                                    Label("Neueste Videos", systemImage: "star.square.fill").labelStyle(.titleOnly)
+                                }
+                            AccountView()
+                                .tabItem {
+                                    Label("Account", systemImage: "person.crop.circle").labelStyle(.iconOnly)
+                                }
+                        }
                     }
                 }.task {
                     await authTokenBloc.load()

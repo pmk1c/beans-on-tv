@@ -13,7 +13,6 @@ struct LatestEpisodesView: View {
             ProgressView()
         case .loaded(let episodes):
             ScrollView {
-                Text("Neueste Videos").font(.custom("Rubik-Light_Bold", size: 48)).shadow(color: .black, radius: 0.5, x: 2, y: 2).frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 16)
                 EpisodesGridView(episodes: episodes).padding(.horizontal, 16)
             }
         case .failed(let error):
