@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "appicon-middle.png",
+      "filename" : "App Icon Middle.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
+      "filename" : "App Icon Middle 2x.png",
       "idiom" : "tv",
       "scale" : "2x"
     },

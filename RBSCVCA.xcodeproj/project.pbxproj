@@ -69,6 +69,9 @@
 		CB14529129990B2000858968 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CB14529329990D4400858968 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		CB1452952999147900858968 /* EpisodeToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeToken.swift; sourceTree = "<group>"; };
+		CB4C796B29A4042800B19D0E /* Top Shelf Image Wide.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Top Shelf Image Wide.svg"; sourceTree = "<group>"; };
+		CB4C796C29A4050700B19D0E /* Top Shelf Image.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Top Shelf Image.svg"; sourceTree = "<group>"; };
+		CB4C796F29A412C700B19D0E /* App Icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "App Icon.svg"; sourceTree = "<group>"; };
 		CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesViewModel.swift; sourceTree = "<group>"; };
 		CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesGridView.swift; sourceTree = "<group>"; };
 		CB6A6D64299FBA38002A010D /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
@@ -135,6 +138,31 @@
 				CB01A2EB29A3F0130073BAF9 /* AccountView.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		CB4C796729A403E700B19D0E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		CB4C796929A403F900B19D0E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CB4C796A29A4041100B19D0E /* SVG */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CB4C796A29A4041100B19D0E /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				CB4C796F29A412C700B19D0E /* App Icon.svg */,
+				CB4C796C29A4050700B19D0E /* Top Shelf Image.svg */,
+				CB4C796B29A4042800B19D0E /* Top Shelf Image Wide.svg */,
+			);
+			path = SVG;
 			sourceTree = "<group>";
 		};
 		CB6A6D61299FB9CD002A010D /* Libraries */ = {
@@ -219,13 +247,15 @@
 		CBCDDD3329855DE8008DF276 /* RBSCVCA */ = {
 			isa = PBXGroup;
 			children = (
+				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
+				CB4C796929A403F900B19D0E /* Assets */,
+				CB4C796729A403E700B19D0E /* New Group */,
 				CB01A2EA29A3F0080073BAF9 /* Account */,
 				CBA3AFC729A2B20B0023172F /* Rubik.ttf */,
 				CBA0D9F9299D8DD1000FC009 /* Player */,
 				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
 				CBA0D9F1299D7F41000FC009 /* Auth */,
 				CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */,
-				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
 				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 				CBA3AFB129A1514F0023172F /* RuntimeError.swift */,
 			);
@@ -576,7 +606,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RBSC Video Community App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "RBSCVCA/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -604,7 +634,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RBSC Video Community App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "RBSCVCA/Preview\\ Content";
 				DEVELOPMENT_TEAM = 8G26T3SC9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
