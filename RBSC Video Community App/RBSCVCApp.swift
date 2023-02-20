@@ -1,8 +1,15 @@
 import SwiftUI
+import Sentry
 
 @main
 struct RBSCVCApp: App {
     @StateObject var authTokenBloc = AuthTokenBloc()
+    
+    init() {
+        SentrySDK.start { options in
+            options.dsn = "https://5ea110fa8c8d48db928a4f3211a5856f@o4504708985847808.ingest.sentry.io/4504708989714432"
+        }
+    }
     
     var body: some Scene {
         WindowGroup {
