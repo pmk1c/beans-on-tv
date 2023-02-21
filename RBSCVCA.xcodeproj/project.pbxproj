@@ -140,13 +140,6 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		CB4C796729A403E700B19D0E /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		CB4C796929A403F900B19D0E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +218,6 @@
 		CBCDDD2829855DE8008DF276 = {
 			isa = PBXGroup;
 			children = (
-				CB01A2E729A3EB290073BAF9 /* Extensions */,
-				CB6A6D61299FB9CD002A010D /* Libraries */,
 				CBCDDD3329855DE8008DF276 /* RBSCVCA */,
 				CBCDDD4429855DEB008DF276 /* RBSCVCATests */,
 				CBCDDD4E29855DEB008DF276 /* RBSCVCAUITests */,
@@ -247,17 +238,18 @@
 		CBCDDD3329855DE8008DF276 /* RBSCVCA */ = {
 			isa = PBXGroup;
 			children = (
-				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
-				CB4C796929A403F900B19D0E /* Assets */,
-				CB4C796729A403E700B19D0E /* New Group */,
-				CB01A2EA29A3F0080073BAF9 /* Account */,
-				CBA3AFC729A2B20B0023172F /* Rubik.ttf */,
-				CBA0D9F9299D8DD1000FC009 /* Player */,
-				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
-				CBA0D9F1299D7F41000FC009 /* Auth */,
 				CBCDDD3429855DE8008DF276 /* RBSCVCApp.swift */,
-				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 				CBA3AFB129A1514F0023172F /* RuntimeError.swift */,
+				CBA3AFC729A2B20B0023172F /* Rubik.ttf */,
+				CBCDDD3829855DEA008DF276 /* Assets.xcassets */,
+				CB01A2EA29A3F0080073BAF9 /* Account */,
+				CB4C796929A403F900B19D0E /* Assets */,
+				CBA0D9F1299D7F41000FC009 /* Auth */,
+				CB01A2E729A3EB290073BAF9 /* Extensions */,
+				CBA0D9F2299D7F68000FC009 /* LatestEpisodes */,
+				CB6A6D61299FB9CD002A010D /* Libraries */,
+				CBA0D9F9299D8DD1000FC009 /* Player */,
+				CBCDDD3A29855DEA008DF276 /* Preview Content */,
 			);
 			path = RBSCVCA;
 			sourceTree = "<group>";

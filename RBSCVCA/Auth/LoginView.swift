@@ -59,9 +59,3 @@ struct LoginView: View {
         await authTokenBloc.store(accessToken: authLocal.data.token, refreshToken: authLocal.data.refreshToken)
     }
 }
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}

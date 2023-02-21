@@ -31,13 +31,11 @@ struct PlayerView: View {
        }
     
     func fetchVideoToken() async throws {
-        guard case let .authenticated(accessToken, _) = authTokenBloc.state else {
-            throw RuntimeError("You need to be authenticated to reach this code!")
-        }
-        
-        guard let episodeToken = (episode.tokens.first { $0.type == "rbsc" })?.token else {
+        guard case let .authenticated(accessToken, _) = authTokenBloc.state,
+              let episodeToken = (episode.tokens.first { $0.type == "rbsc" })?.token
+        else {
             if let youTubeId = episode.tokens.first(where: { $0.type == "youtube" })?.token,
-            let url = URL(string: "youtube://watch/\(youTubeId)") {
+               let url = URL(string: "youtube://watch/\(youTubeId)") {
                 openURL(url)
             }
             return

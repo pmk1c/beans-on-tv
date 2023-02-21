@@ -13,35 +13,27 @@ struct RBSCVCApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                Image(uiImage: UIImage(named: "Background")!).opacity(0.5)
-                NavigationStack {
-                    switch(authTokenBloc.state) {
-                    case .unknown:
-                        ProgressView()
-                    case .unauthenticated:
-                        LoginView()
-                    case .authenticated:
-                        TabView {
-                            LatestEpisodesView()
-                                .tabItem {
-                                    Label("Neueste Videos", systemImage: "star.square.fill").labelStyle(.titleOnly)
-                                }
-                            AccountView()
-                                .tabItem {
-                                    Label("Account", systemImage: "person.crop.circle").labelStyle(.iconOnly)
-                                }
-                        }
+            NavigationStack {
+                ZStack {
+                    Image(uiImage: UIImage(named: "Background")!).opacity(0.5)
+                    TabView {
+                        LatestEpisodesView()
+                            .tabItem {
+                                Label("Neueste Videos", systemImage: "star.square.fill").labelStyle(.titleOnly)
+                            }
+                        AccountView()
+                            .tabItem {
+                                Label("Account", systemImage: "person.crop.circle").labelStyle(.iconOnly)
+                            }
                     }
-                }.task {
-                    await authTokenBloc.load()
-                }.environmentObject(authTokenBloc).onAppear {
-                    for family in UIFont.familyNames.sorted() {
-                        let names = UIFont.fontNames(forFamilyName: family)
-                        print("Family: \(family) Font names: \(names)")
+                    .task {
+                        await authTokenBloc.load()
                     }
+                }.navigationDestination(for: Episode.self) { episode in
+                    PlayerView(episode: episode)
                 }
             }
+            .environmentObject(authTokenBloc)
         }
     }
 }
