@@ -11,6 +11,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in Bloc.emit(_:):Bloc.swift">
+      </ContextState>
+      <ContextState
          contextName = "PlayerView.fetchVideoToken():PlayerView.swift">
       </ContextState>
    </ContextStates>

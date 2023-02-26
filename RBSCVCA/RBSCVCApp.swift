@@ -3,7 +3,7 @@ import Sentry
 
 @main
 struct RBSCVCApp: App {
-    @StateObject var authTokenBloc = AuthTokenBloc()
+    @StateObject var authenticationBloc = AuthenticationBloc()
     
     init() {
         SentrySDK.start { options in
@@ -26,14 +26,14 @@ struct RBSCVCApp: App {
                                 Label("Account", systemImage: "person.crop.circle").labelStyle(.iconOnly)
                             }
                     }
-                    .task {
-                        await authTokenBloc.load()
+                    .onAppear {
+                        authenticationBloc.add(AuthenticationStarted())
                     }
                 }.navigationDestination(for: Episode.self) { episode in
                     PlayerView(episode: episode)
                 }
             }
-            .environmentObject(authTokenBloc)
+            .environmentObject(authenticationBloc)
         }
     }
 }

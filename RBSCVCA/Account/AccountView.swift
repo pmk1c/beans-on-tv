@@ -1,19 +1,17 @@
 import SwiftUI
 
 struct AccountView: View {
-    @EnvironmentObject var authTokenBloc: AuthTokenBloc
+    @EnvironmentObject var authenticationBloc: AuthenticationBloc
     
     var body: some View {
-        switch(authTokenBloc.state) {
+        switch(authenticationBloc.state) {
         case .unauthenticated:
             LoginView()
         case .authenticated(_, _):
             Button("Abmelden", role: .destructive, action: {
-                Task {
-                    await authTokenBloc.delete()
-                }
+                authenticationBloc.add(AuthenticationSignOutPressed())
             })
-        case .unknown:
+        case .initial:
             ProgressView()
         }
     }

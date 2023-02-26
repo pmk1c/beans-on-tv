@@ -650,5 +650,431 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39601619-E0F0-400A-8F8E-4D733F2A583B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "39601619-E0F0-400A-8F8E-4D733F2A583B - 93f041cbe2419e7d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RBSCVCA.Bloc.deinit"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Libraries/Bloc/Bloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "39601619-E0F0-400A-8F8E-4D733F2A583B - d36261342cff07bc"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RBSCVCA.Bloc.__deallocating_deinit"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Libraries/Bloc/Bloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "21D226C3-A411-413A-80AC-118D6FB64A84"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "on(event:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "21D226C3-A411-413A-80AC-118D6FB64A84 - d79ec31550639072"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(RBSCVCA.AuthenticationSignOutPressed) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "62">
+               </Location>
+               <Location
+                  uuid = "21D226C3-A411-413A-80AC-118D6FB64A84 - 358534c50a154440"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) await resume partial function for RBSCVCA.AuthenticationBloc.on(RBSCVCA.AuthenticationSignOutPressed) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "21D226C3-A411-413A-80AC-118D6FB64A84 - d94c78313a095470"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(RBSCVCA.AuthenticationSignOutPressed) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "306D4D95-8A9C-4C7B-A888-C2139573EFA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "on(event:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "306D4D95-8A9C-4C7B-A888-C2139573EFA6 - 2207d9f0534a56e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "195">
+               </Location>
+               <Location
+                  uuid = "306D4D95-8A9C-4C7B-A888-C2139573EFA6 - 44645a53cc799ec4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  uuid = "306D4D95-8A9C-4C7B-A888-C2139573EFA6 - 842cb1d3dd7112ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  uuid = "306D4D95-8A9C-4C7B-A888-C2139573EFA6 - 318a92650e416c86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(10) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B859C6B6-401C-4F1D-BDFC-1DE9D54E862A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "on(event:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B859C6B6-401C-4F1D-BDFC-1DE9D54E862A - 2207d9f0534a5787"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "738">
+               </Location>
+               <Location
+                  uuid = "B859C6B6-401C-4F1D-BDFC-1DE9D54E862A - 655f9515e5edd3b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(8) await resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  uuid = "B859C6B6-401C-4F1D-BDFC-1DE9D54E862A - aaea7a664ae5478f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "39">
+               </Location>
+               <Location
+                  uuid = "B859C6B6-401C-4F1D-BDFC-1DE9D54E862A - dab22636426446f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(13) suspend resume partial function for RBSCVCA.AuthenticationBloc.on(event: RBSCVCA.AuthenticationEvent) async throws -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/AuthenticationBloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6426AFD7-53F9-4015-9DD7-FD170FFBC349"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "bindEvents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6426AFD7-53F9-4015-9DD7-FD170FFBC349 - 14c571ef1e6dae16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (&#x3c4;_0_0) async -&gt; () in RBSCVCA.Bloc.bindEvents() -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Libraries/Bloc/Bloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "99">
+               </Location>
+               <Location
+                  uuid = "6426AFD7-53F9-4015-9DD7-FD170FFBC349 - 1e8515c432bb5a83"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 (&#x3c4;_0_0) async -&gt; () in RBSCVCA.Bloc.bindEvents() -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Libraries/Bloc/Bloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "6426AFD7-53F9-4015-9DD7-FD170FFBC349 - f830c7c4362a53d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 (&#x3c4;_0_0) async -&gt; () in RBSCVCA.Bloc.bindEvents() -&gt; ()"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Libraries/Bloc/Bloc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46C0FB36-DEBB-410E-80D4-BFD7A5107DD8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "on(event:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C6CD331-754B-47B7-B8F6-34396107BF4D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "bindChanges()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6FA37E5-46A0-445B-BBE4-EA7000CD94B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "on(event:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6654A1C2-F410-4E8A-B988-C9158841E625"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "emit(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41345E87-26B5-4147-98D8-FC95C6104DBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "bindEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29227BF4-D46E-4AE5-8060-FFCB538B7537"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Libraries/Bloc/Bloc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "on(error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -6,7 +6,7 @@ struct PlayerView: View {
     
     @Environment(\.openURL) private var openURL
     @State var videoTokenResult: Result<String, Error>?
-    @EnvironmentObject var authTokenBloc: AuthTokenBloc
+    @EnvironmentObject var authenticationBloc: AuthenticationBloc
        
        var body: some View {
            switch(videoTokenResult) {
@@ -31,7 +31,7 @@ struct PlayerView: View {
        }
     
     func fetchVideoToken() async throws {
-        guard case let .authenticated(accessToken, _) = authTokenBloc.state,
+        guard case let .authenticated(accessToken, _) = authenticationBloc.state,
               let episodeToken = (episode.tokens.first { $0.type == "rbsc" })?.token
         else {
             if let youTubeId = episode.tokens.first(where: { $0.type == "youtube" })?.token,

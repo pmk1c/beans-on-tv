@@ -20,13 +20,17 @@
 		CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */; };
 		CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */; };
 		CB6A6D65299FBA38002A010D /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6A6D64299FBA38002A010D /* SecureStorage.swift */; };
+		CBA08A1C29A6896E00A05638 /* RocketBeansTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A1B29A6896E00A05638 /* RocketBeansTV.swift */; };
+		CBA08A1E29A689F700A05638 /* RocketBeansTVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A1D29A689F700A05638 /* RocketBeansTVError.swift */; };
+		CBA08A2329A6B3A800A05638 /* Bloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A2229A6B3A800A05638 /* Bloc.swift */; };
+		CBA08A2529A6C2F800A05638 /* PublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A2429A6C2F800A05638 /* PublisherExtension.swift */; };
 		CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9EF299D7F1C000FC009 /* LoginView.swift */; };
 		CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F3299D8078000FC009 /* AuthLocal.swift */; };
 		CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */; };
 		CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F7299D80EC000FC009 /* Token.swift */; };
 		CBA0D9FB299D8DE7000FC009 /* VideoToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9FA299D8DE7000FC009 /* VideoToken.swift */; };
 		CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9FC299D8E34000FC009 /* VideoTokenResponse.swift */; };
-		CBA3AFAC29A1445F0023172F /* AuthTokenBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAB29A1445F0023172F /* AuthTokenBloc.swift */; };
+		CBA3AFAC29A1445F0023172F /* AuthenticationBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */; };
 		CBA3AFAE29A1499F0023172F /* SecureStorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */; };
 		CBA3AFB229A1514F0023172F /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB129A1514F0023172F /* RuntimeError.swift */; };
 		CBA3AFB829A24C6F0023172F /* EpisodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */; };
@@ -75,13 +79,17 @@
 		CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEpisodesViewModel.swift; sourceTree = "<group>"; };
 		CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesGridView.swift; sourceTree = "<group>"; };
 		CB6A6D64299FBA38002A010D /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
+		CBA08A1B29A6896E00A05638 /* RocketBeansTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTV.swift; sourceTree = "<group>"; };
+		CBA08A1D29A689F700A05638 /* RocketBeansTVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTVError.swift; sourceTree = "<group>"; };
+		CBA08A2229A6B3A800A05638 /* Bloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bloc.swift; sourceTree = "<group>"; };
+		CBA08A2429A6C2F800A05638 /* PublisherExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtension.swift; sourceTree = "<group>"; };
 		CBA0D9EF299D7F1C000FC009 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CBA0D9F3299D8078000FC009 /* AuthLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocal.swift; sourceTree = "<group>"; };
 		CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocalToken.swift; sourceTree = "<group>"; };
 		CBA0D9F7299D80EC000FC009 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		CBA0D9FA299D8DE7000FC009 /* VideoToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoToken.swift; sourceTree = "<group>"; };
 		CBA0D9FC299D8E34000FC009 /* VideoTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTokenResponse.swift; sourceTree = "<group>"; };
-		CBA3AFAB29A1445F0023172F /* AuthTokenBloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenBloc.swift; sourceTree = "<group>"; };
+		CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBloc.swift; sourceTree = "<group>"; };
 		CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageError.swift; sourceTree = "<group>"; };
 		CBA3AFB129A1514F0023172F /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCard.swift; sourceTree = "<group>"; };
@@ -161,6 +169,8 @@
 		CB6A6D61299FB9CD002A010D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CBA08A2129A6B39B00A05638 /* Bloc */,
+				CBA08A1929A688DA00A05638 /* RocketBeansTV */,
 				CB6A6D62299FB9DA002A010D /* SecureStorage */,
 			);
 			path = Libraries;
@@ -175,6 +185,37 @@
 			path = SecureStorage;
 			sourceTree = "<group>";
 		};
+		CBA08A1929A688DA00A05638 /* RocketBeansTV */ = {
+			isa = PBXGroup;
+			children = (
+				CBA08A1A29A688EC00A05638 /* Models */,
+				CBA08A1B29A6896E00A05638 /* RocketBeansTV.swift */,
+				CBA08A1D29A689F700A05638 /* RocketBeansTVError.swift */,
+			);
+			path = RocketBeansTV;
+			sourceTree = "<group>";
+		};
+		CBA08A1A29A688EC00A05638 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
+				CB14529129990B2000858968 /* Episode.swift */,
+				CB1452952999147900858968 /* EpisodeToken.swift */,
+				CB14529329990D4400858968 /* Thumbnail.swift */,
+				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CBA08A2129A6B39B00A05638 /* Bloc */ = {
+			isa = PBXGroup;
+			children = (
+				CBA08A2229A6B3A800A05638 /* Bloc.swift */,
+				CBA08A2429A6C2F800A05638 /* PublisherExtension.swift */,
+			);
+			path = Bloc;
+			sourceTree = "<group>";
+		};
 		CBA0D9F1299D7F41000FC009 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +225,7 @@
 				CBA0D9F3299D8078000FC009 /* AuthLocal.swift */,
 				CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */,
 				CBA0D9F7299D80EC000FC009 /* Token.swift */,
-				CBA3AFAB29A1445F0023172F /* AuthTokenBloc.swift */,
+				CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -195,11 +236,6 @@
 				CB1452892998F9C600858968 /* LatestEpisodesView.swift */,
 				CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */,
 				CB5E40A8299C2764002EAD1D /* LatestEpisodesViewModel.swift */,
-				CB14528B299906EA00858968 /* PaginatedBohnenEpisodes.swift */,
-				CB14529129990B2000858968 /* Episode.swift */,
-				CB1452952999147900858968 /* EpisodeToken.swift */,
-				CB14529329990D4400858968 /* Thumbnail.swift */,
-				CB14528F29990AE600858968 /* BohnenEpisodes.swift */,
 				CBA3AFB729A24C6F0023172F /* EpisodeCard.swift */,
 			);
 			path = LatestEpisodes;
@@ -420,7 +456,8 @@
 				CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */,
 				CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */,
 				CB5E40A9299C2764002EAD1D /* LatestEpisodesViewModel.swift in Sources */,
-				CBA3AFAC29A1445F0023172F /* AuthTokenBloc.swift in Sources */,
+				CBA08A2329A6B3A800A05638 /* Bloc.swift in Sources */,
+				CBA3AFAC29A1445F0023172F /* AuthenticationBloc.swift in Sources */,
 				CBA0D9FD299D8E34000FC009 /* VideoTokenResponse.swift in Sources */,
 				CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */,
 				CBA3AFB829A24C6F0023172F /* EpisodeCard.swift in Sources */,
@@ -437,8 +474,11 @@
 				CB01A2E929A3EB3E0073BAF9 /* Dictionary.swift in Sources */,
 				CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */,
 				CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */,
+				CBA08A1E29A689F700A05638 /* RocketBeansTVError.swift in Sources */,
+				CBA08A2529A6C2F800A05638 /* PublisherExtension.swift in Sources */,
 				CB14529229990B2000858968 /* Episode.swift in Sources */,
 				CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */,
+				CBA08A1C29A6896E00A05638 /* RocketBeansTV.swift in Sources */,
 				CB14529429990D4400858968 /* Thumbnail.swift in Sources */,
 				CBA3AFAE29A1499F0023172F /* SecureStorageError.swift in Sources */,
 			);

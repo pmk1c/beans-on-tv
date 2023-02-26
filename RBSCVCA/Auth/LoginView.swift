@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var authTokenBloc: AuthTokenBloc
+    @EnvironmentObject var authenticationBloc: AuthenticationBloc
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var secondFactorToken: String = ""
@@ -56,6 +56,9 @@ struct LoginView: View {
         
         let authLocal: AuthLocal = try! jsonDecoder.decode(AuthLocal.self, from: result)
         
-        await authTokenBloc.store(accessToken: authLocal.data.token, refreshToken: authLocal.data.refreshToken)
+        authenticationBloc.add(AuthenticationTokenFetched(
+            accessToken: authLocal.data.token,
+            refreshToken: authLocal.data.refreshToken
+        ))
     }
 }
