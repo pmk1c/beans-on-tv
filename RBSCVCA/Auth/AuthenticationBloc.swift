@@ -12,24 +12,10 @@ struct AuthenticationTokenFetched: AuthenticationEvent {
 
 struct AuthenticationSignOutPressed: AuthenticationEvent {}
 
-enum AuthenticationState: Equatable {
+enum AuthenticationState {
     case initial
     case unauthenticated
     case authenticated(accessToken: Token, refreshToken: Token)
-    
-    
-    static func == (lhs: AuthenticationState, rhs: AuthenticationState) -> Bool {
-        switch((lhs, rhs)) {
-        case (
-            .authenticated(let lhsAccessToken, let lhsRefreshToken),
-            .authenticated(let rhsAccessToken, let rhsRefreshToken)
-        ):
-            return lhsAccessToken.token == rhsAccessToken.token && lhsRefreshToken.token == rhsRefreshToken.token
-        default:
-            return lhs == rhs
-        }
-    }
-    
 }
 
 class AuthenticationBloc: Bloc<AuthenticationEvent, AuthenticationState> {

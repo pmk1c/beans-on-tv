@@ -1,22 +1,20 @@
 import SwiftUI
 
 struct LatestEpisodesView: View {
-    @StateObject private var viewModel = LatestEpisodesViewModel()
+    @StateObject private var latestEpisodesBloc = LatestEpisodesBloc()
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        switch(viewModel.state) {
-        case .idle:
-            ProgressView().onAppear {  Task { await viewModel.load() } }
-        case .loading:
-            ProgressView()
-        case .loaded(let episodes):
+        switch(latestEpisodesBloc.state) {
+        case let state as LatestEpisodesLoaded:
             ScrollView {
-                EpisodesGridView(episodes: episodes).padding(.horizontal, 16)
+                EpisodesGridView(episodes: state.episodes).padding(.horizontal, 16)
+            }.environmentObject(latestEpisodesBloc)
+        default:
+            ProgressView().onAppear {
+                latestEpisodesBloc.add(LatestEpisodesStarted())
             }
-        case .failed(let error):
-            Text(error.localizedDescription)
         }
     }
 }

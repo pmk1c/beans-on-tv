@@ -1,16 +1,15 @@
 import Foundation
-import Combine
 
 struct RocketBeansTV {
-    func fetchNewestEpisodes() -> any Publisher<[Episode], RocketBeansTVError> {
-        let url = URL(string: "https://api.rocketbeans.tv/v1/media/episode/preview/newest?limit=50")!
-        let decoder = JSONDecoder()
-        
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .map { $0.data }
-            .decode(type: PaginatedBohnenEpisodes.self, decoder: decoder)
-            .map { $0.data.episodes }
-            .mapError { RocketBeansTVError.unknownError(error: $0) }
-            .eraseToAnyPublisher()
+    func fetchNewestEpisodes(limit: Int, offset: Int) async throws -> PaginatedBohnenEpisodes {
+        do {
+            let url = URL(string: "https://api.rocketbeans.tv/v1/media/episode/preview/newest?limit=\(limit)&offset=\(offset)")!
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let paginatedEpisodes: PaginatedBohnenEpisodes = try JSONDecoder().decode(PaginatedBohnenEpisodes.self, from: data)
+            
+            return paginatedEpisodes
+        } catch {
+            throw RocketBeansTVError.unknownError(error: error)
+        }
     }
 }

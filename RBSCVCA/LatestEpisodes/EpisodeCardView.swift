@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct EpisodeCard: View {
+struct EpisodeCardView: View {
     let episode: Episode
     @FocusState private var focused: Bool
     
@@ -34,8 +34,8 @@ struct EpisodeCard_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            EpisodeCard(episode: episode).previewDisplayName("Default")
-            EpisodeCard(episode: episodeMissingImage).previewDisplayName("Missing Image")
+            EpisodeCardView(episode: episode).previewDisplayName("Default")
+            EpisodeCardView(episode: episodeMissingImage).previewDisplayName("Missing Image")
         }
     }
 }
