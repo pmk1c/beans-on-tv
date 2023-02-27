@@ -9,9 +9,9 @@ struct EpisodeCardView: View {
             NavigationLink(value: episode, label: {
                 AsyncImage(url: episode.thumbnailUrl) { phase in
                     if let image = phase.image {
-                        image.resizable().scaledToFill()
+                        image.resizable().scaledToFill().frame(width: 400 , height: 225)
                     } else {
-                        Image(uiImage: UIImage(named: "Placeholder 16x9")!)
+                        Image(uiImage: UIImage(named: "Placeholder 16x9")!).resizable().scaledToFill().frame(width: 400 , height: 225)
                     }
                 }
             })
@@ -22,6 +22,7 @@ struct EpisodeCardView: View {
                 .padding(.top, 8)
                 .opacity(focused ? 1 : 0)
                 .font(.custom("Rubik-Light_Medium", size: 24))
+                .frame(width: 440)
         }
     }
 }

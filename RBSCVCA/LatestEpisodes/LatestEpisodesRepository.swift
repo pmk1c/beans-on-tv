@@ -1,7 +1,7 @@
 import Foundation
 
 struct LatestEpisodesRepository {
-    let episodesPerPage = 25
+    let episodesPerPage = 16
     
     let rbtv = RocketBeansTV()
     

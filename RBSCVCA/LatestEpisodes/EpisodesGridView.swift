@@ -4,7 +4,7 @@ struct EpisodesGridView: View {
     @EnvironmentObject var latestEpisodesBloc: LatestEpisodesBloc
     var episodes: [Episode]
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         LazyVGrid(columns: columns) {
