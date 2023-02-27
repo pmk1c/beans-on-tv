@@ -1,7 +1,8 @@
 import Foundation
 
-struct PaginatedBohnenEpisodes: Decodable {
-    let pagination: Pagination
-    let data: BohnenEpisodes
+extension RocketBeansTV {
+    struct PaginatedBohnenEpisodes: Decodable {
+        let pagination: Pagination
+        let data: BohnenEpisodes
+    }
 }
-

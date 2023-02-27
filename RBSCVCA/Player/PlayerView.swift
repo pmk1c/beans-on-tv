@@ -31,17 +31,15 @@ struct PlayerView: View {
        }
     
     func fetchVideoToken() async throws {
-        guard case let .authenticated(accessToken, _) = authenticationBloc.state,
-              let episodeToken = (episode.tokens.first { $0.type == "rbsc" })?.token
+        guard let rbscToken = episode.rbscToken,
+              case let .authenticated(accessToken, _) = authenticationBloc.state
         else {
-            if let youTubeId = episode.tokens.first(where: { $0.type == "youtube" })?.token,
-               let url = URL(string: "youtube://watch/\(youTubeId)") {
-                openURL(url)
-            }
+            let url = URL(string: "youtube://watch/\(episode.youtubeId)")!
+            openURL(url)
             return
         }
         
-        let url = URL(string: "https://api.rocketbeans.tv/v1/rbsc/video/token/\(episodeToken)")!
+        let url = URL(string: "https://api.rocketbeans.tv/v1/rbsc/video/token/\(rbscToken)")!
         var request = URLRequest(url: url)
         request.setValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
         

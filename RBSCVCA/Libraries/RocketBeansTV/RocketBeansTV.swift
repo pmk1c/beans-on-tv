@@ -9,7 +9,7 @@ struct RocketBeansTV {
             
             return paginatedEpisodes
         } catch {
-            throw RocketBeansTVError.unknownError(error: error)
+            throw RocketBeansTV.Failure.unknownError(error: error)
         }
     }
 }

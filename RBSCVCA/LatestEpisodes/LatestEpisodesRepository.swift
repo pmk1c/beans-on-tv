@@ -10,7 +10,7 @@ struct LatestEpisodesRepository {
         let response = try await rbtv.fetchNewestEpisodes(limit: episodesPerPage, offset: offset)
         
         let hasNext = response.pagination.total > offset + episodesPerPage
-        let episodes = response.data.episodes
+        let episodes = response.data.episodes.map { Episode(episode: $0) }
         return Page(number: number, hasNext: hasNext, episodes: episodes)
     }
 }

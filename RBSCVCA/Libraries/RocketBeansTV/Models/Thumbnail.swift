@@ -1,6 +1,8 @@
 import Foundation
 
-struct Thumbnail: Decodable {
-    let url: String
+extension RocketBeansTV {
+    struct Thumbnail: Decodable {
+        let name: String
+        let url: String
+    }
 }
-

@@ -1,6 +1,7 @@
 import Foundation
 
-struct BohnenEpisodes: Decodable {
-    let episodes: [Episode]
+extension RocketBeansTV {
+    struct BohnenEpisodes: Decodable {
+        let episodes: [Episode]
+    }
 }
-

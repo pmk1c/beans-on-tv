@@ -1,5 +1,7 @@
 import Foundation
 
-enum RocketBeansTVError: Error {
-    case unknownError(error: Error)
+extension RocketBeansTV {
+    enum Failure: Error {
+        case unknownError(error: Error)
+    }
 }
