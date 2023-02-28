@@ -3,7 +3,7 @@ import Foundation
 struct LatestEpisodesRepository {
     let episodesPerPage = 16
     
-    let rbtv = RocketBeansTV()
+    let rbtv = RocketBeansTV(token: nil)
     
     func fetchPage(number: Int) async throws -> Page {
         let offset = number * episodesPerPage

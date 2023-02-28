@@ -3,49 +3,50 @@ import AVKit
 
 struct PlayerView: View {
     var episode: Episode
+    @EnvironmentObject var authenticationBloc: AuthenticationBloc
+    
+    var body: some View {
+        PlayerChildView(episode: episode, rbscVideoTokenBloc: createRBSCVideoTokenBloc())
+    }
+    
+    func createRBSCVideoTokenBloc() -> RBSCVideoTokenBloc {
+        guard case let .authenticated(accessToken, _) = authenticationBloc.state else { assert(false, "This should not happen") }
+        return RBSCVideoTokenBloc(token: accessToken)
+    }
+}
+
+struct PlayerChildView: View {
+    var episode: Episode
+    @ObservedObject var rbscVideoTokenBloc: RBSCVideoTokenBloc
     
     @Environment(\.openURL) private var openURL
-    @State var videoTokenResult: Result<String, Error>?
     @EnvironmentObject var authenticationBloc: AuthenticationBloc
        
        var body: some View {
-           switch(videoTokenResult) {
-           case .success(let videoToken):
+           switch(rbscVideoTokenBloc.state) {
+           case .initial:
+               ProgressView().onAppear(perform: fetchVideoToken)
+           case let .fetched(videoToken):
                let player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
                VideoPlayer(player: player)
-               .ignoresSafeArea()
-               .onAppear {
-                   player.play()
-               }.onDisappear() {
-                   player.pause()
-               }
-           case .failure(let error):
-               Text(error.localizedDescription)
-           case nil:
-               ProgressView().onAppear {
-                   Task {
-                       try await self.fetchVideoToken()
+                   .ignoresSafeArea()
+                   .onAppear {
+                       player.play()
+                   }.onDisappear() {
+                       player.pause()
                    }
-               }
            }
        }
     
-    func fetchVideoToken() async throws {
+    func fetchVideoToken() {
         guard let rbscToken = episode.rbscToken,
-              case let .authenticated(accessToken, _) = authenticationBloc.state
+              case .authenticated = authenticationBloc.state
         else {
             let url = URL(string: "youtube://watch/\(episode.youtubeId)")!
             openURL(url)
             return
         }
         
-        let url = URL(string: "https://api.rocketbeans.tv/v1/rbsc/video/token/\(rbscToken)")!
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
-        
-        let (result, _) = try await URLSession.shared.data(for: request)
-        let videoTokenResponse: VideoTokenResponse = try! JSONDecoder().decode(VideoTokenResponse.self, from: result)
-        
-        self.videoTokenResult = Result.success(videoTokenResponse.data.signedToken)
+        rbscVideoTokenBloc.add(RBSCVideoTokenStarted(rbscToken: rbscToken))
     }
 }
