@@ -10,7 +10,9 @@ struct PlayerView: View {
     }
     
     func createRBSCVideoTokenBloc() -> RBSCVideoTokenBloc {
-        guard case let .authenticated(token) = authenticationBloc.state else { assert(false, "This should not happen") }
+        guard case let .authenticated(token) = authenticationBloc.state else {
+            precondition(false, "This should not happen")
+        }
         return RBSCVideoTokenBloc(token: token)
     }
 }
