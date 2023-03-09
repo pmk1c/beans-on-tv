@@ -6,12 +6,12 @@ struct PlayerView: View {
     @EnvironmentObject var authenticationBloc: AuthenticationBloc
     
     var body: some View {
-        PlayerChildView(episode: episode, rbscVideoTokenBloc: createRBSCVideoTokenBloc())
+        PlayerChildView(episode: episode, rbscVideoTokenBloc: createRBSCVideoTokenBloc()!)
     }
     
-    func createRBSCVideoTokenBloc() -> RBSCVideoTokenBloc {
+    func createRBSCVideoTokenBloc() -> RBSCVideoTokenBloc? {
         guard case let .authenticated(token) = authenticationBloc.state else {
-            precondition(false, "This should not happen")
+            return nil
         }
         return RBSCVideoTokenBloc(token: token)
     }
