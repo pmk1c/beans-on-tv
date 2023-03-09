@@ -10,8 +10,8 @@ struct PlayerView: View {
     }
     
     func createRBSCVideoTokenBloc() -> RBSCVideoTokenBloc {
-        guard case let .authenticated(accessToken, _) = authenticationBloc.state else { assert(false, "This should not happen") }
-        return RBSCVideoTokenBloc(token: accessToken)
+        guard case let .authenticated(token) = authenticationBloc.state else { assert(false, "This should not happen") }
+        return RBSCVideoTokenBloc(token: token)
     }
 }
 
@@ -21,22 +21,25 @@ struct PlayerChildView: View {
     
     @Environment(\.openURL) private var openURL
     @EnvironmentObject var authenticationBloc: AuthenticationBloc
-       
-       var body: some View {
-           switch(rbscVideoTokenBloc.state) {
-           case .initial:
-               ProgressView().onAppear(perform: fetchVideoToken)
-           case let .fetched(videoToken):
-               let player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
-               VideoPlayer(player: player)
-                   .ignoresSafeArea()
-                   .onAppear {
-                       player.play()
-                   }.onDisappear() {
-                       player.pause()
-                   }
-           }
-       }
+    @State var player: AVPlayer?
+    
+    var body: some View {
+        switch(rbscVideoTokenBloc.state) {
+        case .initial:
+            ProgressView().onAppear(perform: fetchVideoToken)
+        case let .fetched(videoToken):
+            VideoPlayer(player: player)
+                .ignoresSafeArea()
+                .onAppear {
+                    if (player == nil) {
+                        player = AVPlayer(url: URL(string: "https://cloudflarestream.com/\(videoToken)/manifest/video.m3u8")!)
+                    }
+                    player!.play()
+                }.onDisappear() {
+                    player!.pause()
+                }
+        }
+    }
     
     func fetchVideoToken() {
         guard let rbscToken = episode.rbscToken,

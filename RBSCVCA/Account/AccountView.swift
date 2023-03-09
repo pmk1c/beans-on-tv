@@ -6,8 +6,8 @@ struct AccountView: View {
     var body: some View {
         switch(authenticationBloc.state) {
         case .unauthenticated:
-            LoginView()
-        case .authenticated(_, _):
+            CodeTokenExchangeView()
+        case .authenticated(_):
             Button("Abmelden", role: .destructive, action: {
                 authenticationBloc.add(AuthenticationSignOutPressed())
             })

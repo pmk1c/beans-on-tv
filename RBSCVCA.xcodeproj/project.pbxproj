@@ -26,9 +26,6 @@
 		CBA08A1E29A689F700A05638 /* RocketBeansTVFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A1D29A689F700A05638 /* RocketBeansTVFailure.swift */; };
 		CBA08A2329A6B3A800A05638 /* Bloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A2229A6B3A800A05638 /* Bloc.swift */; };
 		CBA08A2529A6C2F800A05638 /* PublisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA08A2429A6C2F800A05638 /* PublisherExtension.swift */; };
-		CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9EF299D7F1C000FC009 /* LoginView.swift */; };
-		CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F3299D8078000FC009 /* AuthLocal.swift */; };
-		CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */; };
 		CBA0D9F8299D80EC000FC009 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA0D9F7299D80EC000FC009 /* Token.swift */; };
 		CBA3AFAC29A1445F0023172F /* AuthenticationBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */; };
 		CBA3AFAE29A1499F0023172F /* SecureStorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */; };
@@ -90,9 +87,6 @@
 		CBA08A1D29A689F700A05638 /* RocketBeansTVFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTVFailure.swift; sourceTree = "<group>"; };
 		CBA08A2229A6B3A800A05638 /* Bloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bloc.swift; sourceTree = "<group>"; };
 		CBA08A2429A6C2F800A05638 /* PublisherExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtension.swift; sourceTree = "<group>"; };
-		CBA0D9EF299D7F1C000FC009 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		CBA0D9F3299D8078000FC009 /* AuthLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocal.swift; sourceTree = "<group>"; };
-		CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocalToken.swift; sourceTree = "<group>"; };
 		CBA0D9F7299D80EC000FC009 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationBloc.swift; sourceTree = "<group>"; };
 		CBA3AFAD29A1499F0023172F /* SecureStorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageError.swift; sourceTree = "<group>"; };
@@ -234,9 +228,6 @@
 			children = (
 				CB03A483299816030026E7BA /* CodeTokenExchangeView.swift */,
 				CB03A485299826E10026E7BA /* CodeTokenExchange.swift */,
-				CBA0D9EF299D7F1C000FC009 /* LoginView.swift */,
-				CBA0D9F3299D8078000FC009 /* AuthLocal.swift */,
-				CBA0D9F5299D80D1000FC009 /* AuthLocalToken.swift */,
 				CBA0D9F7299D80EC000FC009 /* Token.swift */,
 				CBA3AFAB29A1445F0023172F /* AuthenticationBloc.swift */,
 			);
@@ -469,13 +460,11 @@
 			files = (
 				CB14528C299906EA00858968 /* PaginatedBohnenEpisodes.swift in Sources */,
 				CB60194D29AE23E2004E0FAE /* VideoTokenResponse.swift in Sources */,
-				CBA0D9F4299D8078000FC009 /* AuthLocal.swift in Sources */,
 				CBE6914729AD2B9B00D37977 /* LatestEpisodesRepository.swift in Sources */,
 				CB60194C29AE23E2004E0FAE /* VideoToken.swift in Sources */,
 				CB03A484299816030026E7BA /* CodeTokenExchangeView.swift in Sources */,
 				CBA08A2329A6B3A800A05638 /* Bloc.swift in Sources */,
 				CBA3AFAC29A1445F0023172F /* AuthenticationBloc.swift in Sources */,
-				CBA0D9F0299D7F1C000FC009 /* LoginView.swift in Sources */,
 				CBA3AFB829A24C6F0023172F /* EpisodeCardView.swift in Sources */,
 				CB6A6D65299FBA38002A010D /* SecureStorage.swift in Sources */,
 				CB1452962999147900858968 /* EpisodeToken.swift in Sources */,
@@ -489,7 +478,6 @@
 				CBE6914929AD40F400D37977 /* Pagination.swift in Sources */,
 				CB14528A2998F9C600858968 /* LatestEpisodesView.swift in Sources */,
 				CB01A2E929A3EB3E0073BAF9 /* Dictionary.swift in Sources */,
-				CBA0D9F6299D80D1000FC009 /* AuthLocalToken.swift in Sources */,
 				CB60194F29AE261F004E0FAE /* RBSCVideoTokenBloc.swift in Sources */,
 				CBCDDD3529855DE8008DF276 /* RBSCVCApp.swift in Sources */,
 				CBD8473629ABF4D50069C478 /* LatestEpisodesBloc.swift in Sources */,

@@ -6,8 +6,7 @@ protocol AuthenticationEvent {}
 struct AuthenticationStarted: AuthenticationEvent {}
 
 struct AuthenticationTokenFetched: AuthenticationEvent {
-    let accessToken: Token
-    let refreshToken: Token
+    let token: Token
 }
 
 struct AuthenticationSignOutPressed: AuthenticationEvent {}
@@ -15,12 +14,11 @@ struct AuthenticationSignOutPressed: AuthenticationEvent {}
 enum AuthenticationState {
     case initial
     case unauthenticated
-    case authenticated(accessToken: Token, refreshToken: Token)
+    case authenticated(token: Token)
 }
 
 class AuthenticationBloc: Bloc<AuthenticationEvent, AuthenticationState> {
-    let accessTokenKey = "accessToken-1"
-    let refreshTokenKey = "refreshToken-1"
+    let tokenKey = "token-1"
     
     init() {
         super.init(.initial)
@@ -28,23 +26,20 @@ class AuthenticationBloc: Bloc<AuthenticationEvent, AuthenticationState> {
     
     func on(event: AuthenticationStarted) async throws {
         do {
-            let accessToken: Token = try await SecureStorage.get(key: accessTokenKey)
-            let refreshToken: Token = try await SecureStorage.get(key: refreshTokenKey)
-            emit(.authenticated(accessToken: accessToken, refreshToken: refreshToken))
+            let token: Token = try await SecureStorage.get(key: tokenKey)
+            emit(.authenticated(token: token))
         } catch SecureStorageError.keyNotFound {
             emit(.unauthenticated)
         }
     }
     
     func on(event: AuthenticationTokenFetched) async throws {
-        try await SecureStorage.store(key: accessTokenKey, value: event.accessToken)
-        try await SecureStorage.store(key: refreshTokenKey, value: event.refreshToken)
-        emit(.authenticated(accessToken: event.accessToken, refreshToken: event.refreshToken))
+        try await SecureStorage.store(key: tokenKey, value: event.token)
+        emit(.authenticated(token: event.token))
     }
     
     func on(event: AuthenticationSignOutPressed) async throws {
-        try await SecureStorage.delete(key: accessTokenKey)
-        try await SecureStorage.delete(key: refreshTokenKey)
+        try await SecureStorage.delete(key: tokenKey)
         emit(.unauthenticated)
     }
     

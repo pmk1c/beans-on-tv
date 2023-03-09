@@ -20,11 +20,11 @@ struct RocketBeansTV {
     func fetchRBSCVideoToken(rbscToken: String) async throws -> VideoTokenResponse {
         guard let token = token else { throw Failure.noToken }
         
-        var url = baseUrl
+        let url = baseUrl
             .appending(path: "/rbsc/video/token")
             .appending(path: rbscToken)
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
         let (result, _) = try await URLSession.shared.data(for: request)
         let videoTokenResponse: VideoTokenResponse = try! JSONDecoder().decode(VideoTokenResponse.self, from: result)
         

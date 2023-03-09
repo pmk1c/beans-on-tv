@@ -708,8 +708,8 @@
             filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "on(event:)"
             landmarkType = "7">
             <Locations>
@@ -771,8 +771,8 @@
             filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "on(event:)"
             landmarkType = "7">
             <Locations>
@@ -849,8 +849,8 @@
             filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "on(event:)"
             landmarkType = "7">
             <Locations>
@@ -990,8 +990,8 @@
             filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "on(event:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1006,8 +1006,8 @@
             filePath = "RBSCVCA/Auth/AuthenticationBloc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "on(event:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1057,6 +1057,148 @@
             startingLineNumber = "28"
             endingLineNumber = "28"
             landmarkName = "on(error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA0103B7-E42A-43AC-BECB-9F5531D1A3BA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Player/PlayerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "fetchVideoToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8488AA3-54DF-429C-A82A-431B76617F61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/CodeTokenExchangeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "fetchToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E63E6B55-0E9B-4877-B469-2356A74F2BAA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/CodeTokenExchangeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "fetchToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "019BDE62-E6D5-4F4C-9199-20C407FCB7B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/CodeTokenExchangeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "019BDE62-E6D5-4F4C-9199-20C407FCB7B6 - d9c281682c6c8371"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in closure #3 () -&gt; () in RBSCVCA.CodeTokenExchangeView.body.getter : some"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/CodeTokenExchangeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "101">
+               </Location>
+               <Location
+                  uuid = "019BDE62-E6D5-4F4C-9199-20C407FCB7B6 - be7c19c3f69f408d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #3 () -&gt; () in RBSCVCA.CodeTokenExchangeView.body.getter : some"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/CodeTokenExchangeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  uuid = "019BDE62-E6D5-4F4C-9199-20C407FCB7B6 - 98e4b3c6f5e7fe70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #3 () -&gt; () in RBSCVCA.CodeTokenExchangeView.body.getter : some"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/CodeTokenExchangeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "019BDE62-E6D5-4F4C-9199-20C407FCB7B6 - d31ba834b8f35c73"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in closure #3 () -&gt; () in RBSCVCA.CodeTokenExchangeView.body.getter : some"
+                  moduleName = "RBSCVCA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruben.grimm/Projekte/RBSCVCA/RBSCVCA/Auth/CodeTokenExchangeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB1E7928-7724-4203-8CC3-6DDF84AB2106"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RBSCVCA/Auth/CodeTokenExchangeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "createCode()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

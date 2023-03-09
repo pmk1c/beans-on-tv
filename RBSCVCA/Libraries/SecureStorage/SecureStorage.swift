@@ -3,7 +3,6 @@ import Combine
 
 struct SecureStorage {
     static let secClass = kSecClassGenericPassword
-    static let dateEncodingStrategy = kSecClassGenericPassword
     
     static func store(key: String, value: Codable) async throws {
         var json: Data

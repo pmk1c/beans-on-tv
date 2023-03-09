@@ -3,23 +3,17 @@ import SwiftUI
 struct CodeTokenExchangeView: View {
     @State private var createCodeResult: Result<CodeTokenExchange, Error>?
     @State private var fetchTokenResult: Result<CodeTokenExchange, Error>?
+    @EnvironmentObject var authenticationBloc: AuthenticationBloc
     
     var body: some View {
         switch createCodeResult {
         case .success(let codeTokenExchange):
-            switch fetchTokenResult {
-                case .success(_):
-                LatestEpisodesView()
-            case .failure(let error):
-                Text(error.localizedDescription)
-            case nil:
-                VStack {
-                    Text("Besuche https://rbscvca.vercel.app, logge dich mit deinem RocketBeans-Account ein und gib den unten stehenden Code ein.")
-                    Text(codeTokenExchange.code)
-                }.onAppear {
-                    Task {
-                        try await self.fetchToken()
-                    }
+            VStack {
+                Text("Besuche https://rbtv.bmind.de, melde dich mit deinem RBTV-Account an und gib folgenden Code ein:").font(.custom("Rubik-Light_Medium", size: 32)).padding(.bottom, 32)
+                Text(formatCode(code: codeTokenExchange.code)).font(.custom("Rubik-Light_Medium", size: 48))
+            }.onAppear {
+                Task {
+                    try await self.fetchToken()
                 }
             }
         case .failure(let error):
@@ -29,6 +23,13 @@ struct CodeTokenExchangeView: View {
                 try await self.createCode()
             }}
         }
+    }
+    
+    func formatCode(code: String) -> String {
+        let start = code.startIndex
+        let fourth = code.index(start, offsetBy: 4)
+        let end = code.endIndex
+        return "\(code[start..<fourth])-\(code[fourth..<end])"
     }
     
     func createCode() async throws {
@@ -52,21 +53,18 @@ struct CodeTokenExchangeView: View {
         request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlldGFjZnppbHZpaXR1bHBlY2R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzYwNjI0NDcsImV4cCI6MTk5MTYzODQ0N30.jD-zPr3HB4C2AoImRgBFSxfRbPAnbQRQWwuPowxEsQU", forHTTPHeaderField: "Authorization")
         let json = try JSONEncoder().encode(self.createCodeResult?.get())
         
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         let (data, _) = try await URLSession.shared.upload(for: request, from: json)
-        let codeTokenExchange: CodeTokenExchange = try! JSONDecoder().decode(CodeTokenExchange.self, from: data)
+        let codeTokenExchange: CodeTokenExchange = try! jsonDecoder.decode(CodeTokenExchange.self, from: data)
         
-        if (codeTokenExchange.token == nil) {
+        guard let token = codeTokenExchange.token else {
             // 5 seconds
             try await Task.sleep(nanoseconds: 5000000000)
             try await fetchToken();
-        } else {
-            self.fetchTokenResult = Result.success(codeTokenExchange)
+            return
         }
-    }
-}
-
-struct CodeTokenExchangeView_Previews: PreviewProvider {
-    static var previews: some View {
-        CodeTokenExchangeView()
+        
+        authenticationBloc.add(AuthenticationTokenFetched(token: token))
     }
 }
