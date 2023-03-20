@@ -1,4 +1,5 @@
 import SwiftUI
+import CachedAsyncImage
 
 struct EpisodeCardView: View {
     let episode: Episode
@@ -7,7 +8,7 @@ struct EpisodeCardView: View {
     var body: some View {
         VStack {
             NavigationLink(value: episode, label: {
-                AsyncImage(url: episode.thumbnailUrl) { phase in
+                CachedAsyncImage(url: episode.thumbnailUrl) { phase in
                     if let image = phase.image {
                         image.resizable().scaledToFill().frame(width: 400 , height: 225)
                     } else {

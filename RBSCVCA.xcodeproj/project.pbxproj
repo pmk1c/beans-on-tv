@@ -17,6 +17,7 @@
 		CB14529229990B2000858968 /* RocketBeansTVEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529129990B2000858968 /* RocketBeansTVEpisode.swift */; };
 		CB14529429990D4400858968 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14529329990D4400858968 /* Thumbnail.swift */; };
 		CB1452962999147900858968 /* EpisodeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1452952999147900858968 /* EpisodeToken.swift */; };
+		CB2A8A4B29C8ECDE00E3AAB6 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = CB2A8A4A29C8ECDE00E3AAB6 /* CachedAsyncImage */; };
 		CB5E40AB299C31F9002EAD1D /* EpisodesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E40AA299C31F9002EAD1D /* EpisodesGridView.swift */; };
 		CB60194C29AE23E2004E0FAE /* VideoToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60194A29AE23E2004E0FAE /* VideoToken.swift */; };
 		CB60194D29AE23E2004E0FAE /* VideoTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB60194B29AE23E2004E0FAE /* VideoTokenResponse.swift */; };
@@ -116,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBA3AFCF29A2D7070023172F /* Sentry in Frameworks */,
+				CB2A8A4B29C8ECDE00E3AAB6 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +341,7 @@
 			name = RBSCVCA;
 			packageProductDependencies = (
 				CBA3AFCE29A2D7070023172F /* Sentry */,
+				CB2A8A4A29C8ECDE00E3AAB6 /* CachedAsyncImage */,
 			);
 			productName = "RBSC Video Community App";
 			productReference = CBCDDD3129855DE8008DF276 /* RBSCVCA.app */;
@@ -414,6 +417,7 @@
 			mainGroup = CBCDDD2829855DE8008DF276;
 			packageReferences = (
 				CBA3AFCD29A2D7070023172F /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				CB2A8A4929C8ECDE00E3AAB6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			productRefGroup = CBCDDD3229855DE8008DF276 /* Products */;
 			projectDirPath = "";
@@ -815,6 +819,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CB2A8A4929C8ECDE00E3AAB6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CBA3AFCD29A2D7070023172F /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
@@ -826,6 +838,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CB2A8A4A29C8ECDE00E3AAB6 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB2A8A4929C8ECDE00E3AAB6 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
 		CBA3AFCE29A2D7070023172F /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CBA3AFCD29A2D7070023172F /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
