@@ -1,6 +1,6 @@
 import Foundation
 
-struct Token: Codable {
+struct Token: Codable, Equatable {
     let accessToken: String
     let tokenType: String
     let expiresIn: Date

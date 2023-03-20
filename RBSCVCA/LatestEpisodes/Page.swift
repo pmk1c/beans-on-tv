@@ -1,6 +1,6 @@
 import Foundation
 
-struct Page {
+struct Page: Equatable {
     let number: Int
     let hasNext: Bool
     let episodes: [Episode]

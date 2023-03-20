@@ -7,7 +7,7 @@ struct RBSCVideoTokenStarted: RBSCVideoTokenEvent {
     let rbscToken: String
 }
 
-enum RBSCVideoTokenState {
+enum RBSCVideoTokenState: Equatable {
     case initial
     case fetched(videoToken: String)
 }

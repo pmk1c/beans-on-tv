@@ -7,9 +7,9 @@ struct LatestEpisodesView: View {
     
     var body: some View {
         switch(latestEpisodesBloc.state) {
-        case let state as LatestEpisodesLoaded:
+        case let .latestEpisodesLoaded(_, episodes):
             ScrollView {
-                EpisodesGridView(episodes: state.episodes).padding(.horizontal, 16)
+                EpisodesGridView(episodes: episodes).padding(.horizontal, 16)
             }.environmentObject(latestEpisodesBloc)
         default:
             ProgressView().onAppear {

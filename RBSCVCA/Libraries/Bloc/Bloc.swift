@@ -6,7 +6,7 @@ struct Change<State> {
     let nextState: State
 }
 
-class Bloc<Event, State>: ObservableObject {
+class Bloc<Event, State: Equatable>: ObservableObject {
     @Published var state: State
     
     private let events = PassthroughSubject<Event, Never>()
@@ -50,6 +50,7 @@ class Bloc<Event, State>: ObservableObject {
     private func bindChanges() {
         let changesSink = changes
             .map { $0.nextState }
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .assign(to: \.state, on: self)
         cancellables.insert(changesSink)

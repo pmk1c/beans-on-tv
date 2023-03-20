@@ -11,7 +11,7 @@ struct AuthenticationTokenFetched: AuthenticationEvent {
 
 struct AuthenticationSignOutPressed: AuthenticationEvent {}
 
-enum AuthenticationState {
+enum AuthenticationState: Equatable {
     case initial
     case unauthenticated
     case authenticated(token: Token)

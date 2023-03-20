@@ -1190,7 +1190,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EB1E7928-7724-4203-8CC3-6DDF84AB2106"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RBSCVCA/Auth/CodeTokenExchangeView.swift"

@@ -8,15 +8,15 @@ struct LatestEpisodesEpisodeAppeared: LatestEpisodesEvent {
     let episode: Episode
 }
 
-protocol LatestEpisodesState {}
+enum LatestEpisodesState: Equatable {
+    case latestEpisodesInitial
+    case latestEpisodesLoaded(pages: [Page], episodes: [Episode])
+}
 
-struct LatestEpisodesInitial: LatestEpisodesState {}
-
-struct LatestEpisodesLoaded: LatestEpisodesState {
-    let pages: [Page]
-    
-    var episodes: [Episode] {
-        pages.flatMap { $0.episodes }
+extension LatestEpisodesState {
+    init(_ pages: [Page]) {
+        let episodes = pages.flatMap { $0.episodes }
+        self = .latestEpisodesLoaded(pages: pages, episodes: episodes)
     }
 }
 
@@ -24,24 +24,24 @@ class LatestEpisodesBloc: Bloc<LatestEpisodesEvent, LatestEpisodesState> {
     let latestEpisodesRepository = LatestEpisodesRepository()
     
     init() {
-        super.init(LatestEpisodesInitial())
+        super.init(.latestEpisodesInitial)
     }
     
     func on(event: LatestEpisodesStarted) async throws {
         let page = try await latestEpisodesRepository.fetchPage(number: 0)
-        emit(LatestEpisodesLoaded(pages: [page]))
+        emit(.init([page]))
     }
     
     func on(event: LatestEpisodesEpisodeAppeared) async throws {
-        guard let state = state as? LatestEpisodesLoaded else { return }
+        guard case let .latestEpisodesLoaded(pages, _) = state else { return }
         
-        let lastPage = state.pages.last!
+        let lastPage = pages.last!
         if (event.episode == lastPage.episodes.last) {
             let nextPageNumber = lastPage.number + 1
             let nextPage = try await latestEpisodesRepository.fetchPage(number: nextPageNumber)
-            var newPages = state.pages
+            var newPages = pages
             newPages.append(nextPage)
-            emit(LatestEpisodesLoaded(pages: newPages))
+            emit(.init(newPages))
         }
     }
     
