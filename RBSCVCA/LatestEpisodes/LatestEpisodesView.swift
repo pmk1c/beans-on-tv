@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct LatestEpisodesView: View {
     @StateObject private var latestEpisodesBloc = LatestEpisodesBloc()
@@ -10,7 +11,11 @@ struct LatestEpisodesView: View {
         case let .latestEpisodesLoaded(_, episodes):
             ScrollView {
                 EpisodesGridView(episodes: episodes).padding(.horizontal, 16)
-            }.environmentObject(latestEpisodesBloc)
+            }
+            .environmentObject(latestEpisodesBloc)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                latestEpisodesBloc.add(LatestEpisodesStarted())
+            }
         default:
             ProgressView().onAppear {
                 latestEpisodesBloc.add(LatestEpisodesStarted())
