@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "name": "Run tvOS",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "enableDebug": false,
+      "platform": "ios",
+      "runArguments": ["--simulator", "Apple TV", "--scheme", "RBSCVCA-tvOS"]
+    }
+  ]
+}
