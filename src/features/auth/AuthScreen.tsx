@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text} from 'react-native';
 
 function AuthScreen(): JSX.Element {
-  return <View />;
+  return <Text style={{flex: 1, backgroundColor: 'red'}}>AUTH</Text>;
 }
 
 export default AuthScreen;

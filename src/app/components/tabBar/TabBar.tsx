@@ -5,20 +5,27 @@ import TabBarItem from './TabBarItem';
 import Tab from './Tab';
 import borderRadius from '../../styleTokens/borderRadius';
 import color from '../../styleTokens/color';
+import useTabBar from './useTabBar';
+import TabBarContext from './TabBarContext';
 
 type TabBarProps = {
   tabs: Tab[];
 };
 
-function TabBar(props: TabBarProps): JSX.Element {
+function TabBar({tabs}: TabBarProps): JSX.Element {
+  const {focusedTab, setFocusedTab} = useTabBar(tabs);
+
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.tabBar}>
-        {props.tabs.map(tab => (
-          <TabBarItem key={tab.name} tab={tab} />
-        ))}
+    <TabBarContext.Provider value={{setFocusedTab}}>
+      <View style={styles.wrapper}>
+        <View style={styles.tabBar}>
+          {tabs.map(tab => (
+            <TabBarItem key={tab.name} tab={tab} />
+          ))}
+        </View>
       </View>
-    </View>
+      {focusedTab.content}
+    </TabBarContext.Provider>
   );
 }
 

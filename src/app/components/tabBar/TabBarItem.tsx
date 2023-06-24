@@ -7,14 +7,18 @@ import borderRadius from '../../styleTokens/borderRadius';
 import fontSize from '../../styleTokens/fontSizes';
 import RBTVIcon from '../../assets/icons/RBTVIcon';
 import fontFamily from '../../styleTokens/fontFamily';
+import useTabBarItem from './useTabBarItem';
 
 type TabBarProps = {
   tab: Tab;
 };
 
 function TabBarItem({tab}: TabBarProps): JSX.Element {
+  const {onFocus} = useTabBarItem(tab);
+
   return (
     <Pressable
+      onFocus={onFocus}
       children={({focused}) => (
         <View style={[styles.wrapper, focused && styles.wrapperFocused]}>
           <Text style={[styles.text, focused && styles.textFocused]}>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text} from 'react-native';
 
 function LatestVideosScreen(): JSX.Element {
-  return <View />;
+  return <Text style={{flex: 1, backgroundColor: 'green'}}>LATEST VIDEOS</Text>;
 }
 
 export default LatestVideosScreen;
