@@ -6,7 +6,7 @@ import {
   selectAuthTokenInitialized,
   setAuthToken,
 } from './authTokenSlice';
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {AppDispatch} from '../../app/store';
 
 type AuthScreenState =
@@ -30,18 +30,26 @@ function usePollAuthTokenStep() {
   const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch<AppDispatch>();
 
+  const tokenPollingTimeout = useRef<number>();
+  const stopPolling = () => {
+    if (tokenPollingTimeout.current) {
+      clearTimeout(tokenPollingTimeout.current);
+    }
+  };
+  useEffect(() => {
+    return stopPolling;
+  }, []);
   return useCallback(
     (code: string) => {
       return new Promise(async resolve => {
-        let tokenPollingTimeout: number;
         const pollToken = async () => {
           const token = await getToken(code).unwrap();
           if (token) {
-            clearTimeout(tokenPollingTimeout);
+            stopPolling();
             await dispatch(setAuthToken(token));
             resolve(undefined);
           } else {
-            tokenPollingTimeout = setTimeout(pollToken, 1000);
+            tokenPollingTimeout.current = setTimeout(pollToken, 1000);
           }
         };
         pollToken();
