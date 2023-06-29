@@ -1,0 +1,96 @@
+import React, {PropsWithRef, Ref, forwardRef} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import spacing from '../styleTokens/spacing';
+import color from '../styleTokens/color';
+import borderRadius from '../styleTokens/borderRadius';
+import fontSize from '../styleTokens/fontSizes';
+import RBTVIcon from '../assets/icons/RBTVIcon';
+import fontFamily from '../styleTokens/fontFamily';
+import {RBTVIconName} from '../assets/icons/RBTVIcon';
+
+type ButtonProps = PropsWithRef<{
+  buttonType?: 'destructive';
+  icon?: RBTVIconName;
+  title?: string;
+  onFocus?: () => void;
+  onPress?: () => void;
+}>;
+
+function getStyles(
+  styles: StyleSheet.NamedStyles<any>,
+  defaultStyleName: string,
+  buttonType: ButtonProps['buttonType'],
+  focused: boolean,
+) {
+  const styleNames = [defaultStyleName];
+  if (buttonType === 'destructive') {
+    styleNames.push(`${defaultStyleName}Destructive`);
+  }
+  if (focused) {
+    styleNames.push(`${defaultStyleName}Focused`);
+  }
+  if (buttonType === 'destructive' && focused) {
+    styleNames.push(`${defaultStyleName}DestructiveFocused`);
+  }
+
+  return styleNames.map(styleName => styles[styleName]).filter(Boolean);
+}
+
+function Button(
+  {buttonType, icon, title, onFocus, onPress}: ButtonProps,
+  ref: Ref<View>,
+): JSX.Element {
+  return (
+    <Pressable
+      ref={ref}
+      onFocus={onFocus}
+      onPress={onPress}
+      children={({focused}) => (
+        <View style={getStyles(styles, 'wrapper', buttonType, focused)}>
+          <Text style={getStyles(styles, 'text', buttonType, focused)}>
+            {icon ? (
+              <RBTVIcon
+                style={getStyles(styles, 'text', buttonType, focused)}
+                name={icon}
+              />
+            ) : null}
+            {title}
+          </Text>
+        </View>
+      )}
+    />
+  );
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingHorizontal: spacing.l,
+    paddingVertical: spacing.m,
+    backgroundColor: color.bodyBg,
+    color: color.textLight,
+    borderRadius: borderRadius.large,
+  },
+  wrapperDestructive: {
+    backgroundColor: color.red700,
+  },
+  wrapperFocused: {
+    backgroundColor: color.grey600,
+  },
+  wrapperDestructiveFocused: {
+    backgroundColor: color.red800,
+  },
+  text: {
+    fontFamily: fontFamily.primary,
+    fontSize: fontSize.xl,
+    lineHeight: 1.35 * fontSize.xl,
+    color: color.text,
+  },
+  textDestructive: {
+    color: color.textLight,
+  },
+  textFocused: {
+    color: color.textHighlight,
+  },
+});
+
+export default forwardRef(Button);

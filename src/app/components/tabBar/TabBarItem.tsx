@@ -1,13 +1,7 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import spacing from '../../styleTokens/spacing';
 import Tab from './Tab';
-import color from '../../styleTokens/color';
-import borderRadius from '../../styleTokens/borderRadius';
-import fontSize from '../../styleTokens/fontSizes';
-import RBTVIcon from '../../assets/icons/RBTVIcon';
-import fontFamily from '../../styleTokens/fontFamily';
 import useTabBarItem from './useTabBarItem';
+import Button from '../Button';
 
 type TabBarProps = {
   tab: Tab;
@@ -16,46 +10,7 @@ type TabBarProps = {
 function TabBarItem({tab}: TabBarProps): JSX.Element {
   const {onFocus} = useTabBarItem(tab);
 
-  return (
-    <Pressable
-      onFocus={onFocus}
-      children={({focused}) => (
-        <View style={[styles.wrapper, focused && styles.wrapperFocused]}>
-          <Text style={[styles.text, focused && styles.textFocused]}>
-            {tab.icon ? (
-              <RBTVIcon
-                style={[styles.text, focused && styles.textFocused]}
-                name={tab.icon}
-              />
-            ) : null}
-            {tab.title}
-          </Text>
-        </View>
-      )}
-    />
-  );
+  return <Button icon={tab.icon} title={tab.title} onFocus={onFocus} />;
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: spacing.l,
-    paddingVertical: spacing.m,
-    backgroundColor: color.bodyBg,
-    color: color.textLight,
-    borderRadius: borderRadius.large,
-  },
-  wrapperFocused: {
-    backgroundColor: color.grey600,
-  },
-  text: {
-    fontFamily: fontFamily.primary,
-    fontSize: fontSize.xl,
-    lineHeight: 1.35 * fontSize.xl,
-    color: color.text,
-  },
-  textFocused: {
-    color: color.textHighlight,
-  },
-});
 
 export default TabBarItem;

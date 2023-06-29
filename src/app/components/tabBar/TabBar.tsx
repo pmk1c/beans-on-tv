@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TVFocusGuideView, View} from 'react-native';
 import spacing from '../../styleTokens/spacing';
 import TabBarItem from './TabBarItem';
 import Tab from './Tab';
@@ -17,13 +17,15 @@ function TabBar({tabs}: TabBarProps): JSX.Element {
 
   return (
     <TabBarContext.Provider value={{setFocusedTab}}>
-      <View style={styles.wrapper}>
-        <View style={styles.tabBar}>
-          {tabs.map(tab => (
-            <TabBarItem key={tab.name} tab={tab} />
-          ))}
+      <TVFocusGuideView autoFocus trapFocusLeft trapFocusRight>
+        <View style={styles.wrapper}>
+          <View style={styles.tabBar}>
+            {tabs.map(tab => (
+              <TabBarItem key={tab.name} tab={tab} />
+            ))}
+          </View>
         </View>
-      </View>
+      </TVFocusGuideView>
       {focusedTab.content}
     </TabBarContext.Provider>
   );
@@ -38,6 +40,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.m,
     borderRadius: borderRadius.large,
     backgroundColor: color.bodyBg,
+  },
+  contentWrapper: {
+    flex: 1,
   },
 });
 

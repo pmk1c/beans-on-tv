@@ -331,6 +331,8 @@ PODS:
     - React-jsi (= 0.71.10-0)
     - React-logger (= 0.71.10-0)
     - React-perflogger (= 0.71.10-0)
+  - RNKeychain (8.1.1):
+    - React-Core
   - RNVectorIcons (9.2.0):
     - React-Core
   - Yoga (1.14.0)
@@ -371,6 +373,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -445,6 +448,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -485,6 +490,7 @@ SPEC CHECKSUMS:
   React-RCTText: 2c6c885b087cda557df82663907ec43d9332a0c3
   React-runtimeexecutor: b356132ee35b3839a774e78ca2b0bbaaa60ab4f6
   ReactCommon: 5058b77813ccae942072a77a541c72c1e171cb14
+  RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: 8a66578e1e74889976eed9edb780b0bd27623b60
 

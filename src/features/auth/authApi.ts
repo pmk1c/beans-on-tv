@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import Token from './Token';
 
 const authApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -15,11 +16,19 @@ const authApi = createApi({
   }),
   endpoints: build => ({
     createCode: build.mutation<string, void>({
-      query: () => ({url: 'code-token-exchange-create'}),
+      query: () => ({method: 'POST', url: 'code-token-exchange-create'}),
       transformResponse: (response: {code: string}) => response.code,
+    }),
+    getToken: build.mutation<Token, string>({
+      query: code => ({
+        method: 'POST',
+        url: 'code-token-exchange-read',
+        body: {code},
+      }),
+      transformResponse: (response: {token: Token}) => response.token,
     }),
   }),
 });
 
-export const {useCreateCodeMutation} = authApi;
+export const {useCreateCodeMutation, useGetTokenMutation} = authApi;
 export default authApi;

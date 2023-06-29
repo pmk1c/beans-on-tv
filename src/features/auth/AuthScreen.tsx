@@ -1,15 +1,84 @@
-import React, {useEffect} from 'react';
-import {Text} from 'react-native';
-import {useCreateCodeMutation} from './authApi';
+import React from 'react';
+import {StyleSheet, TVFocusGuideView, Text, View} from 'react-native';
+import {useAuthScreen} from './useAuthScreen';
+import color from '../../app/styleTokens/color';
+import spacing from '../../app/styleTokens/spacing';
+import Button from '../../app/components/Button';
+import fontFamily from '../../app/styleTokens/fontFamily';
+import fontSize from '../../app/styleTokens/fontSizes';
+import borderRadius from '../../app/styleTokens/borderRadius';
 
-function AuthScreen(): JSX.Element {
-  const [createCode, {data: code}] = useCreateCodeMutation();
+const codeSeperator = '–';
 
-  useEffect(() => {
-    createCode();
-  }, [createCode]);
-
-  return <Text style={{flex: 1, backgroundColor: 'red'}}>{code}</Text>;
+function formatCode(code: string): string {
+  return code.slice(0, 4) + codeSeperator + code.slice(4);
 }
+
+function AuthScreen(): JSX.Element | null {
+  const {state, logout} = useAuthScreen();
+
+  return (
+    <TVFocusGuideView
+      autoFocus
+      trapFocusLeft
+      trapFocusRight
+      trapFocusDown
+      style={styles.wrapper}>
+      {state.step === 'creatingCode' || state.step === 'pollingToken' ? (
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>
+            Besuche{' '}
+            <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
+            melde dich mit deinem RocketBeans TV-Account an und gib folgenden
+            Code ein:
+            {'\n'}
+            <Text style={styles.textHighlight}>
+              {state.step === 'pollingToken'
+                ? formatCode(state.code)
+                : codeSeperator}
+            </Text>
+          </Text>
+        </View>
+      ) : state.step === 'done' ? (
+        <Button buttonType="destructive" title="Abmelden" onPress={logout} />
+      ) : null}
+    </TVFocusGuideView>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textWrapper: {
+    backgroundColor: color.darkTransparentBg,
+    padding: spacing.l,
+    borderRadius: borderRadius.large,
+  },
+  text: {
+    fontFamily: fontFamily.primary,
+    fontSize: fontSize.xl,
+    lineHeight: 1.35 * fontSize.xl,
+    color: color.text,
+    textAlign: 'center',
+  },
+  textHighlight: {
+    color: color.textHighlight,
+  },
+  textActivityIndicator: {
+    height: 2,
+  },
+  logoutButton: {
+    color: color.textHighlight,
+    backgroundColor: color.red700,
+    paddingHorizontal: spacing.l,
+    paddingVertical: spacing.m,
+  },
+  logoutButtonFocused: {
+    backgroundColor: color.red800,
+  },
+});
 
 export default AuthScreen;

@@ -6,12 +6,12 @@ import TabBar from './app/components/tabBar/TabBar';
 import {Provider} from 'react-redux';
 import {store} from './app/store';
 
-function App(): JSX.Element {
+const backgroundImage = require('./app/assets/images/body_bg2021.jpg');
+
+function App(): JSX.Element | null {
   return (
     <Provider store={store}>
-      <ImageBackground
-        source={require('./app/assets/images/body_bg2021.jpg')}
-        style={{flex: 1}}>
+      <ImageBackground source={backgroundImage} style={{flex: 1}}>
         <TabBar
           tabs={[
             {
