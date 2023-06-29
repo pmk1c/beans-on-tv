@@ -17,16 +17,20 @@ function TabBar({tabs}: TabBarProps): JSX.Element {
 
   return (
     <TabBarContext.Provider value={{setFocusedTab}}>
-      <TVFocusGuideView autoFocus trapFocusLeft trapFocusRight>
-        <View style={styles.wrapper}>
+      <View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch'}}>
+        <TVFocusGuideView
+          autoFocus
+          trapFocusLeft
+          trapFocusRight
+          style={styles.wrapper}>
           <View style={styles.tabBar}>
             {tabs.map(tab => (
               <TabBarItem key={tab.name} tab={tab} />
             ))}
           </View>
-        </View>
-      </TVFocusGuideView>
-      {focusedTab.content}
+        </TVFocusGuideView>
+        {focusedTab.content}
+      </View>
     </TabBarContext.Provider>
   );
 }
@@ -40,9 +44,6 @@ const styles = StyleSheet.create({
     marginTop: spacing.m,
     borderRadius: borderRadius.large,
     backgroundColor: color.bodyBg,
-  },
-  contentWrapper: {
-    flex: 1,
   },
 });
 

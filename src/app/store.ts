@@ -4,12 +4,22 @@ import {setupListeners} from '@reduxjs/toolkit/dist/query';
 import authTokenSlice, {
   initializeAuthToken,
 } from '../features/auth/authTokenSlice';
+import rbtvApi from '../features/latestVideos/rbtvApi';
 
 export const store = configureStore({
-  reducer: {authToken: authTokenSlice, [authApi.reducerPath]: authApi.reducer},
+  reducer: {
+    authToken: authTokenSlice,
+    [authApi.reducerPath]: authApi.reducer,
+    [rbtvApi.reducerPath]: rbtvApi.reducer,
+  },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: {
+        warnAfter: 64,
+      },
+    })
       .concat(authApi.middleware)
+      .concat(rbtvApi.middleware)
       .concat(() => next => action => {
         console.debug(action);
         next(action);
