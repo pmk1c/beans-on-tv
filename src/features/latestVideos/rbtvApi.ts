@@ -1,33 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {selectAuthToken} from '../auth/authTokenSlice';
 import {RootState} from '../../app/store';
+import {mediaEpisodeCombinedResponse} from '../../../rbtv-apidoc';
+import {genericPaginatedApiResponse} from '../../../rbtv-apidoc-fixes';
 
-type GetMediaEpisodePreviewNewestResponse = {
-  succcess: boolean;
-  pagination: {
-    offset: number;
-    limit: number;
-    total: number;
-  };
-  data: {
-    episodes: {
-      id: number;
-      title: string;
-      thumbnail: {
-        url: string;
-        width: number;
-        height: number;
-      }[];
-      tokens: {
-        id: number;
-        mediaEpisodeId: number;
-        token: string;
-        type: 'youtube' | 'rbsc';
-        length: number;
-      }[];
-    }[];
-  };
-};
+type GetMediaEpisodePreviewNewestResponse =
+  genericPaginatedApiResponse<mediaEpisodeCombinedResponse>;
 
 const pageSize = 50;
 
