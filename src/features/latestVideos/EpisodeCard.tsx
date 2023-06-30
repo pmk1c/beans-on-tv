@@ -1,18 +1,13 @@
 import React from 'react';
-import {Dimensions, Image, Pressable, Text, View} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import borderRadius from '../../app/styleTokens/borderRadius';
 import {mediaEpisode} from '../../../rbtv-apidoc';
 import color from '../../app/styleTokens/color';
 import fontFamily from '../../app/styleTokens/fontFamily';
 import fontSize from '../../app/styleTokens/fontSizes';
 import spacing from '../../app/styleTokens/spacing';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '../../app/navigation/StackNavigator';
 
 interface EpisodeCardProps {
   episode: mediaEpisode;
@@ -22,8 +17,11 @@ const width = 420;
 const height = width * (9 / 16);
 
 function EpisodeCard({episode}: EpisodeCardProps): JSX.Element {
+  const navigation = useNavigation<StackNavigationProp>();
+
   return (
     <Pressable
+      onPress={() => navigation.push('Player', {episode})}
       children={({focused}) => (
         <View
           style={{

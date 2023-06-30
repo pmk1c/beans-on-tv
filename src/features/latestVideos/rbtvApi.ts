@@ -1,11 +1,17 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {selectAuthToken} from '../auth/authTokenSlice';
 import {RootState} from '../../app/store';
-import {mediaEpisodeCombinedResponse} from '../../../rbtv-apidoc';
+import {
+  RBSCVideoToken,
+  genericApiResponse,
+  mediaEpisodeCombinedResponse,
+} from '../../../rbtv-apidoc';
 import {genericPaginatedApiResponse} from '../../../rbtv-apidoc-fixes';
 
 type GetMediaEpisodePreviewNewestResponse =
   genericPaginatedApiResponse<mediaEpisodeCombinedResponse>;
+
+type GetRbscVideoTokenResponse = genericApiResponse<RBSCVideoToken>;
 
 const pageSize = 50;
 
@@ -35,8 +41,15 @@ const rbtvApi = createApi({
         params: {limit: pageSize, offset: page * pageSize},
       }),
     }),
+    getRbscVideoToken: build.query<GetRbscVideoTokenResponse, string>({
+      query: id => ({
+        method: 'GET',
+        url: `rbsc/video/token/${id}`,
+      }),
+    }),
   }),
 });
 
-export const {useGetMediaEpisodePreviewNewestQuery} = rbtvApi;
+export const {useGetMediaEpisodePreviewNewestQuery, useGetRbscVideoTokenQuery} =
+  rbtvApi;
 export default rbtvApi;
