@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import Token from './Token';
+import Token, {fromOAuthToken} from './Token';
 
 const authApi = createApi({
   reducerPath: 'authApi',
@@ -20,13 +20,22 @@ const authApi = createApi({
       query: () => ({method: 'POST', url: 'code-token-exchange-create'}),
       transformResponse: (response: {code: string}) => response.code,
     }),
-    getToken: build.mutation<Token, string>({
+    getToken: build.mutation<Token | null, string>({
       query: code => ({
         method: 'POST',
         url: 'code-token-exchange-read',
         body: {code},
       }),
-      transformResponse: (response: {token: Token}) => response.token,
+      transformResponse: (response: {token: any}) =>
+        response.token ? fromOAuthToken(response.token) : null,
+    }),
+    refreshToken: build.mutation<Token, Token>({
+      query: token => ({
+        method: 'POST',
+        url: 'token-refresh',
+        body: {refreshToken: token.refreshToken},
+      }),
+      transformResponse: (token: any) => fromOAuthToken(token),
     }),
   }),
 });

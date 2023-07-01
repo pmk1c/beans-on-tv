@@ -84,14 +84,22 @@ export function useAuthScreen() {
       return;
     }
 
+    if (state.step !== 'creatingCode') {
+      return;
+    }
+
     (async () => {
       const code = await createCode();
       setState({step: 'pollingToken', code});
       await pollAuthToken(code);
     })();
-  }, [authToken, authTokenInitialized, createCode, pollAuthToken]);
+  }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);
 
-  const logout = useLogout();
+  const logoutAction = useLogout();
+  const logout = useCallback(() => {
+    logoutAction();
+    setState({step: 'creatingCode'});
+  }, [logoutAction]);
 
   return {state, logout};
 }

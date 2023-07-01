@@ -21,7 +21,7 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
       .concat(() => next => action => {
-        console.debug(action);
+        console.debug(JSON.stringify(action));
         next(action);
       }),
 });

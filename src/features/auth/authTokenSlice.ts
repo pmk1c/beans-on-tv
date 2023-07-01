@@ -1,7 +1,8 @@
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import * as TokenStorage from './TokenStorage';
 import {RootState} from '../../app/store';
-import Token from './Token';
+import Token, {isValid} from './Token';
+import authApi from './authApi';
 
 const authTokenSlice = createSlice({
   name: 'authToken',
@@ -29,10 +30,22 @@ const authTokenSlice = createSlice({
 export const initializeAuthToken = createAsyncThunk(
   'authToken/initializeAuthToken',
   async (_, {dispatch}) => {
-    const token = await TokenStorage.getToken();
-    if (token) {
-      dispatch(authTokenSlice.actions.setAuthToken(token));
-    } else {
+    try {
+      const token = await TokenStorage.getToken();
+      if (!token) {
+        throw new Error('No token');
+      }
+
+      if (isValid(token)) {
+        dispatch(authTokenSlice.actions.setAuthToken(token));
+      } else {
+        console.log('access token', token);
+        const newToken = await dispatch(
+          authApi.endpoints.refreshToken.initiate(token),
+        ).unwrap();
+        dispatch(setAuthToken(newToken));
+      }
+    } catch {
       dispatch(authTokenSlice.actions.resetAuthToken());
     }
   },
