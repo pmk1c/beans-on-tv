@@ -3,7 +3,6 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 import {StackParamList} from '../../app/navigation/StackNavigator';
 import {useGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
-import {Dimensions} from 'react-native';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
