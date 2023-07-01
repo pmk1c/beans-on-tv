@@ -30,9 +30,10 @@ function PlayerScreen(): JSX.Element {
         flex: 1,
       }}
       source={{
-        uri: `https://cloudflarestream.com/${signedToken}/manifest/video.mpd`,
+        uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
       }}
       poster={poster?.url}
+      controls
     />
   );
 }
