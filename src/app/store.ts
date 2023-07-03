@@ -5,6 +5,35 @@ import authTokenSlice, {
   initializeAuthToken,
 } from '../features/auth/authTokenSlice';
 import rbtvApi from '../features/latestVideos/rbtvApi';
+import * as Sentry from '@sentry/react-native';
+
+const sentryReduxEnhancer = Sentry.createReduxEnhancer({
+  actionTransformer: action => {
+    if (action.type.toLowerCase().includes('token')) {
+      return {
+        ...action,
+        payload: 'REDACTED',
+      };
+    }
+
+    return action;
+  },
+  stateTransformer: state => {
+    return {
+      ...state,
+      authToken: 'REDACTED',
+      [authApi.reducerPath]: {
+        ...state[authApi.reducerPath],
+        getToken: 'REDACTED',
+        refreshToken: 'REDACTED',
+      },
+      [rbtvApi.reducerPath]: {
+        ...state[rbtvApi.reducerPath],
+        getRbscVideoToken: 'REDACTED',
+      },
+    };
+  },
+});
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +53,7 @@ export const store = configureStore({
         console.debug(JSON.stringify(action));
         next(action);
       }),
+  enhancers: [sentryReduxEnhancer],
 });
 setupListeners(store.dispatch);
 
