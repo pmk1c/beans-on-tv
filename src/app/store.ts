@@ -12,7 +12,7 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
     if (action.type.toLowerCase().includes('token')) {
       return {
         ...action,
-        payload: 'REDACTED',
+        payload: '[Filtered]',
       };
     }
 
@@ -21,15 +21,15 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   stateTransformer: state => {
     return {
       ...state,
-      authToken: 'REDACTED',
+      authToken: '[Filtered]',
       [authApi.reducerPath]: {
         ...state[authApi.reducerPath],
-        getToken: 'REDACTED',
-        refreshToken: 'REDACTED',
+        getToken: '[Filtered]',
+        refreshToken: '[Filtered]',
       },
       [rbtvApi.reducerPath]: {
         ...state[rbtvApi.reducerPath],
-        getRbscVideoToken: 'REDACTED',
+        getRbscVideoToken: '[Filtered]',
       },
     };
   },
