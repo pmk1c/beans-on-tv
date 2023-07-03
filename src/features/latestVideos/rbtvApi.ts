@@ -24,7 +24,7 @@ const rbtvApi = createApi({
 
       const authToken = selectAuthToken(getState() as RootState);
       if (authToken) {
-        headers.set('Authorization', `Bearer ${authToken.access_token}`);
+        headers.set('Authorization', `Bearer ${authToken.accessToken}`);
       }
 
       return headers;
@@ -50,6 +50,8 @@ const rbtvApi = createApi({
   }),
 });
 
-export const {useGetMediaEpisodePreviewNewestQuery, useGetRbscVideoTokenQuery} =
-  rbtvApi;
+export const {
+  useGetMediaEpisodePreviewNewestQuery,
+  useLazyGetRbscVideoTokenQuery,
+} = rbtvApi;
 export default rbtvApi;
