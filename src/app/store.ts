@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore, isRejected} from '@reduxjs/toolkit';
 import authApi from '../features/auth/authApi';
 import {setupListeners} from '@reduxjs/toolkit/dist/query';
 import authTokenSlice, {
@@ -51,6 +51,12 @@ export const store = configureStore({
       .concat(rbtvApi.middleware)
       .concat(() => next => action => {
         console.debug(JSON.stringify(action));
+        next(action);
+      })
+      .concat(() => next => action => {
+        if (isRejected(action)) {
+          Sentry.captureException(new Error(action.error.message));
+        }
         next(action);
       }),
   enhancers: [sentryReduxEnhancer],
