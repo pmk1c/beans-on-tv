@@ -1,0 +1,10 @@
+--- ios/Info.plist-withoutpatch	2023-07-04 22:12:01
++++ ios/Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/tvos-arm64/hermes.framework/Info.plist	2023-07-04 22:07:33
+@@ -22,5 +22,7 @@
+ 	<string>0.12.0</string>
+ 	<key>CSResourcesFileMapped</key>
+ 	<true/>
++	<key>MinimumOSVersion</key>
++	<string>12.4</string>
+ </dict>
+ </plist>
