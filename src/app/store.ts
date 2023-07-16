@@ -6,6 +6,7 @@ import authTokenSlice, {
 } from '../features/auth/authTokenSlice';
 import rbtvApi from '../features/latestVideos/rbtvApi';
 import * as Sentry from '@sentry/react-native';
+import {useDispatch} from 'react-redux';
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: action => {
@@ -67,3 +68,5 @@ store.dispatch(initializeAuthToken());
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();

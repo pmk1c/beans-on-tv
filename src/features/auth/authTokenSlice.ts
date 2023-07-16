@@ -39,7 +39,6 @@ export const initializeAuthToken = createAsyncThunk(
       if (isValid(token)) {
         dispatch(authTokenSlice.actions.setAuthToken(token));
       } else {
-        console.log('access token', token);
         const newToken = await dispatch(
           authApi.endpoints.refreshToken.initiate(token),
         ).unwrap();
