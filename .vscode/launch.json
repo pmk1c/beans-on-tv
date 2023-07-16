@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "Debug iOS Hermes",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "platform": "ios",
+      "runArguments": ["--scheme", "RBSCVCA-tvOS"]
+    }
+  ]
+}
