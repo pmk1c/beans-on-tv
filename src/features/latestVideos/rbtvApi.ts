@@ -8,12 +8,10 @@ import {
 } from '../../../rbtv-apidoc';
 import {genericPaginatedApiResponse} from '../../../rbtv-apidoc-fixes';
 
-type GetMediaEpisodePreviewNewestResponse =
+export type GetMediaEpisodePreviewNewestResponse =
   genericPaginatedApiResponse<mediaEpisodeCombinedResponse>;
 
 type GetRbscVideoTokenResponse = genericApiResponse<RBSCVideoToken>;
-
-const pageSize = 50;
 
 const rbtvApi = createApi({
   reducerPath: 'rbtvApi',
@@ -33,12 +31,12 @@ const rbtvApi = createApi({
   endpoints: build => ({
     getMediaEpisodePreviewNewest: build.query<
       GetMediaEpisodePreviewNewestResponse,
-      number
+      {limit: number; offset: number}
     >({
-      query: page => ({
+      query: params => ({
         method: 'GET',
         url: 'media/episode/preview/newest',
-        params: {limit: pageSize, offset: page * pageSize},
+        params,
       }),
     }),
     getRbscVideoToken: build.query<GetRbscVideoTokenResponse, string>({
@@ -51,7 +49,7 @@ const rbtvApi = createApi({
 });
 
 export const {
-  useGetMediaEpisodePreviewNewestQuery,
+  useLazyGetMediaEpisodePreviewNewestQuery,
   useLazyGetRbscVideoTokenQuery,
 } = rbtvApi;
 export default rbtvApi;
