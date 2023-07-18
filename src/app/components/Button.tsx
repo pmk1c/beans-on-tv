@@ -1,5 +1,5 @@
 import React, {PropsWithRef, Ref, forwardRef} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleProp, StyleSheet, Text, View} from 'react-native';
 import spacing from '../styleTokens/spacing';
 import color from '../styleTokens/color';
 import borderRadius from '../styleTokens/borderRadius';
@@ -16,8 +16,8 @@ type ButtonProps = PropsWithRef<{
   onPress?: () => void;
 }>;
 
-function getStyles(
-  styles: StyleSheet.NamedStyles<any>,
+function getStyles<T = unknown>(
+  styles: Record<string, StyleProp<T>>,
   defaultStyleName: string,
   buttonType: ButtonProps['buttonType'],
   focused: boolean,
@@ -46,11 +46,11 @@ function Button(
       onFocus={onFocus}
       onPress={onPress}
       children={({focused}) => (
-        <View style={getStyles(styles, 'wrapper', buttonType, focused)}>
-          <Text style={getStyles(styles, 'text', buttonType, focused)}>
+        <View style={getStyles(viewStyles, 'wrapper', buttonType, focused)}>
+          <Text style={getStyles(textStyles, 'text', buttonType, focused)}>
             {icon ? (
               <RBTVIcon
-                style={getStyles(styles, 'text', buttonType, focused)}
+                style={getStyles(textStyles, 'text', buttonType, focused)}
                 name={icon}
               />
             ) : null}
@@ -62,7 +62,7 @@ function Button(
   );
 }
 
-const styles = StyleSheet.create({
+const viewStyles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: spacing.l,
     paddingVertical: spacing.m,
@@ -79,6 +79,9 @@ const styles = StyleSheet.create({
   wrapperDestructiveFocused: {
     backgroundColor: color.red800,
   },
+});
+
+const textStyles = StyleSheet.create({
   text: {
     fontFamily: fontFamily.primary,
     fontSize: fontSize.xl,
