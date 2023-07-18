@@ -5,7 +5,7 @@ import {
 } from './rbtvApi';
 import capture from '../../app/capture';
 
-const limit = 50;
+const limit = 48;
 
 function useLatestVideosScreen() {
   const [pages, setPages] = useState<
