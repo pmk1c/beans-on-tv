@@ -1,5 +1,5 @@
 import * as Keychain from 'react-native-keychain';
-import Token from './Token';
+import Token, {fromJSON} from './Token';
 
 const username = 'unknown';
 const service = 'api.rocketbeans.tv/v1';
@@ -21,7 +21,7 @@ export async function setToken(token: Token) {
 export async function getToken() {
   const result = await Keychain.getGenericPassword({service});
 
-  return result ? JSON.parse(result.password) : null;
+  return result ? fromJSON(result.password) : null;
 }
 
 export async function resetToken() {

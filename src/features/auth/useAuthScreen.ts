@@ -8,6 +8,7 @@ import {
 } from './authTokenSlice';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {AppDispatch} from '../../app/store';
+import capture from '../../app/capture';
 
 type AuthScreenState =
   | {
@@ -41,7 +42,7 @@ function usePollAuthTokenStep() {
   }, []);
   return useCallback(
     (code: string) => {
-      return new Promise(async resolve => {
+      return new Promise(resolve => {
         const pollToken = async () => {
           const token = await getToken(code).unwrap();
           if (token) {
@@ -49,10 +50,13 @@ function usePollAuthTokenStep() {
             await dispatch(setAuthToken(token));
             resolve(undefined);
           } else {
-            tokenPollingTimeout.current = setTimeout(pollToken, 1000);
+            tokenPollingTimeout.current = setTimeout(
+              () => capture(pollToken()),
+              1000,
+            );
           }
         };
-        pollToken();
+        capture(pollToken());
       });
     },
     [dispatch, getToken],
@@ -88,16 +92,18 @@ export function useAuthScreen() {
       return;
     }
 
-    (async () => {
-      const code = await createCode();
-      setState({step: 'pollingToken', code});
-      await pollAuthToken(code);
-    })();
+    capture(
+      (async () => {
+        const code = await createCode();
+        setState({step: 'pollingToken', code});
+        await pollAuthToken(code);
+      })(),
+    );
   }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);
 
   const logoutAction = useLogout();
   const logout = useCallback(() => {
-    logoutAction();
+    capture(logoutAction());
     setState({step: 'creatingCode'});
   }, [logoutAction]);
 

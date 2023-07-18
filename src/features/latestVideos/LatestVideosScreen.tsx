@@ -4,6 +4,8 @@ import {useGetMediaEpisodePreviewNewestQuery} from './rbtvApi';
 import spacing from '../../app/styleTokens/spacing';
 import EpisodeCard from './EpisodeCard';
 
+const numColumns = 4;
+
 function LatestVideosScreen(): JSX.Element {
   const {data} = useGetMediaEpisodePreviewNewestQuery(0);
   const episodes = data?.data?.episodes;
@@ -20,8 +22,19 @@ function LatestVideosScreen(): JSX.Element {
       }}
       data={episodes}
       keyExtractor={episode => episode.id.toString()}
-      numColumns={4}
-      renderItem={({item: episode}) => <EpisodeCard episode={episode} />}
+      numColumns={numColumns}
+      renderItem={({index, item: episode}) => (
+        <EpisodeCard
+          episode={episode}
+          thumbnailPriority={
+            index < numColumns
+              ? 'high'
+              : index < numColumns * 2
+              ? 'normal'
+              : 'low'
+          }
+        />
+      )}
     />
   );
 }

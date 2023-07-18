@@ -9,6 +9,8 @@ import StackNavigator from './app/navigation/StackNavigator';
 import * as Sentry from '@sentry/react-native';
 import {AppState} from 'react-native';
 import authApi from './features/auth/authApi';
+import capture from './app/capture';
+import {initializeAuthToken} from './features/auth/authTokenSlice';
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -22,20 +24,21 @@ Sentry.init({
   ],
 });
 
-function App(): JSX.Element | null {
+function App(): JSX.Element {
   const navigation =
     React.useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
 
   const dispatch = useAppDispatch();
+  capture(dispatch(initializeAuthToken()));
   useEffect(() => {
     const subscription = AppState.addEventListener('change', state => {
       if (state === 'active') {
-        dispatch(authApi.endpoints.ping.initiate());
+        capture(dispatch(authApi.endpoints.ping.initiate()));
       }
     });
 
     () => subscription.remove();
-  });
+  }, [dispatch]);
 
   return (
     <NavigationContainer
@@ -43,11 +46,17 @@ function App(): JSX.Element | null {
       onReady={() => {
         routingInstrumentation.registerNavigationContainer(navigation);
       }}>
-      <Provider store={store}>
-        <StackNavigator />
-      </Provider>
+      <StackNavigator />
     </NavigationContainer>
   );
 }
 
-export default Sentry.wrap(App);
+function AppWithProvider(): JSX.Element {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+export default Sentry.wrap(AppWithProvider);

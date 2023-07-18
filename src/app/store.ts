@@ -1,16 +1,18 @@
-import {configureStore, isRejected} from '@reduxjs/toolkit';
+import {StoreEnhancer, configureStore} from '@reduxjs/toolkit';
 import authApi from '../features/auth/authApi';
 import {setupListeners} from '@reduxjs/toolkit/dist/query';
-import authTokenSlice, {
-  initializeAuthToken,
-} from '../features/auth/authTokenSlice';
+import authTokenSlice from '../features/auth/authTokenSlice';
 import rbtvApi from '../features/latestVideos/rbtvApi';
 import * as Sentry from '@sentry/react-native';
 import {useDispatch} from 'react-redux';
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: action => {
-    if (action.type.toLowerCase().includes('token')) {
+    if (
+      action.payload &&
+      typeof action.type === 'string' &&
+      action.type.toLowerCase().includes('token')
+    ) {
       return {
         ...action,
         payload: '[Filtered]',
@@ -19,7 +21,7 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
 
     return action;
   },
-  stateTransformer: state => {
+  stateTransformer: (state: RootState) => {
     return {
       ...state,
       authToken: '[Filtered]',
@@ -34,7 +36,7 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
       },
     };
   },
-});
+}) as StoreEnhancer;
 
 export const store = configureStore({
   reducer: {
@@ -53,18 +55,10 @@ export const store = configureStore({
       .concat(() => next => action => {
         console.debug(JSON.stringify(action));
         next(action);
-      })
-      .concat(() => next => action => {
-        if (isRejected(action)) {
-          Sentry.captureException(new Error(action.error.message));
-        }
-        next(action);
       }),
   enhancers: [sentryReduxEnhancer],
 });
 setupListeners(store.dispatch);
-
-store.dispatch(initializeAuthToken());
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

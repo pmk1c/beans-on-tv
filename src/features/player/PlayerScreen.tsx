@@ -7,6 +7,7 @@ import {
 import {useLazyGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
 import {Image, Linking} from 'react-native';
+import capture from '../../app/capture';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -21,23 +22,25 @@ function PlayerScreen(): JSX.Element {
   const [getRbscVideoToken] = useLazyGetRbscVideoTokenQuery();
   const navigation = useNavigation<StackNavigationProp>();
   useEffect(() => {
-    (async () => {
-      try {
-        if (!rbscVideoToken) {
-          throw new Error('No rbsc token found');
-        }
+    capture(
+      (async () => {
+        try {
+          if (!rbscVideoToken) {
+            throw new Error('No rbsc token found');
+          }
 
-        const {data} = await getRbscVideoToken(rbscVideoToken.token).unwrap();
-        setSignedToken(data.signedToken);
-      } catch {
-        if (!youtubeVideoToken) {
-          return;
-        }
+          const {data} = await getRbscVideoToken(rbscVideoToken.token).unwrap();
+          setSignedToken(data.signedToken);
+        } catch {
+          if (!youtubeVideoToken) {
+            return;
+          }
 
-        await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
-        navigation.pop();
-      }
-    })();
+          await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
+          navigation.pop();
+        }
+      })(),
+    );
   }, [getRbscVideoToken, navigation, rbscVideoToken, youtubeVideoToken]);
 
   if (!signedToken) {

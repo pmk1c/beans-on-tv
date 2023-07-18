@@ -1,10 +1,11 @@
 import React from 'react';
-import {ImageBackground} from 'react-native';
+import {ImageBackground, ImageRequireSource} from 'react-native';
 import AuthScreen from '../features/auth/AuthScreen';
 import LatestVideosScreen from '../features/latestVideos/LatestVideosScreen';
 import TabBar from './components/tabBar/TabBar';
 
-const backgroundImage = require('./assets/images/body_bg2021.jpg');
+const backgroundImage =
+  require('./assets/images/body_bg2021.jpg') as ImageRequireSource;
 
 function HomeScreen(): JSX.Element | null {
   return (

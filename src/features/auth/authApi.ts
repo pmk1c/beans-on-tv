@@ -1,6 +1,12 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import Token, {fromOAuthToken} from './Token';
 
+export interface OAuthToken {
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+}
+
 const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
@@ -26,7 +32,7 @@ const authApi = createApi({
         url: 'code-token-exchange-read',
         body: {code},
       }),
-      transformResponse: (response: {token: any}) =>
+      transformResponse: (response: {token?: OAuthToken}) =>
         response.token ? fromOAuthToken(response.token) : null,
     }),
     refreshToken: build.mutation<Token, Token>({
@@ -35,7 +41,7 @@ const authApi = createApi({
         url: 'token-refresh',
         body: {refreshToken: token.refreshToken},
       }),
-      transformResponse: (token: any) => fromOAuthToken(token),
+      transformResponse: (token: OAuthToken) => fromOAuthToken(token),
     }),
     ping: build.mutation<void, void>({
       query: () => ({

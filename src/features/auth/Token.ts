@@ -1,14 +1,31 @@
+import {OAuthToken} from './authApi';
+
 type Token = {
   accessToken: string;
   validUntil: string;
   refreshToken: string;
 };
 
-export function fromOAuthToken(token: {
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-}) {
+function isToken(token: unknown): token is Token {
+  return (
+    typeof token === 'object' &&
+    token !== null &&
+    typeof (token as Token).accessToken === 'string' &&
+    typeof (token as Token).validUntil === 'string' &&
+    typeof (token as Token).refreshToken === 'string'
+  );
+}
+
+export function fromJSON(json: string) {
+  const token = JSON.parse(json) as unknown;
+  if (!isToken(token)) {
+    throw new Error('Invalid token');
+  }
+
+  return token;
+}
+
+export function fromOAuthToken(token: OAuthToken) {
   return {
     accessToken: token.access_token,
     refreshToken: token.refresh_token,

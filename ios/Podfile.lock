@@ -15,6 +15,15 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.11-0)
   - hermes-engine/Pre-built (0.71.11-0)
   - libevent (2.1.12.1)
+  - libwebp (1.2.4):
+    - libwebp/demux (= 1.2.4)
+    - libwebp/mux (= 1.2.4)
+    - libwebp/webp (= 1.2.4)
+  - libwebp/demux (1.2.4):
+    - libwebp/webp
+  - libwebp/mux (1.2.4):
+    - libwebp/demux
+  - libwebp/webp (1.2.4)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -342,6 +351,10 @@ PODS:
     - React-jsi (= 0.71.11-0)
     - React-logger (= 0.71.11-0)
     - React-perflogger (= 0.71.11-0)
+  - RNFastImage (8.6.3):
+    - React-Core
+    - SDWebImage (~> 5.11.1)
+    - SDWebImageWebPCoder (~> 0.8.4)
   - RNKeychain (8.1.1):
     - React-Core
   - RNReanimated (3.3.0):
@@ -378,6 +391,12 @@ PODS:
     - Sentry/HybridSDK (= 8.7.3)
   - RNVectorIcons (9.2.0):
     - React-Core
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SDWebImageWebPCoder (0.8.5):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.10)
   - Sentry/HybridSDK (8.7.3):
     - SentryPrivate (= 8.7.3)
   - SentryPrivate (8.7.3)
@@ -421,6 +440,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -432,6 +452,9 @@ SPEC REPOS:
   https://github.com/react-native-tvos/react-native-tvos-podspecs.git:
     - libevent
   trunk:
+    - libwebp
+    - SDWebImage
+    - SDWebImageWebPCoder
     - Sentry
     - SentryPrivate
 
@@ -506,6 +529,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNFastImage:
+    :path: "../node_modules/react-native-fast-image"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
   RNReanimated:
@@ -528,6 +553,7 @@ SPEC CHECKSUMS:
   glog: a2ded9bf28f0cb2fce90ad21eb419299a500ff6c
   hermes-engine: 47dc3205428409d784a2e3db57c1d279a00070e8
   libevent: a6d75fcd7be07cbc5070300ea8dbc8d55dfab88e
+  libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
   RCT-Folly: 136e9161a833a162fe3e8b647098759aae227036
   RCTRequired: eb1edfb86bdfa4581d2fb03c1d62c691be8766e2
   RCTTypeSafety: 55e9f8c38479e29b796640582c64397fc7d6651c
@@ -556,11 +582,14 @@ SPEC CHECKSUMS:
   React-RCTText: e83b6e2d96ca8cd4d2d142ff79100a787772b382
   React-runtimeexecutor: f4612823f6da38f89fcf5cc13948f1b503d7e9ab
   ReactCommon: a99294a510a3b80273737b796da02ba481ba78c0
+  RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333
   RNReanimated: 53419c0e0c12aff0c33248cfb299699387fda9a9
   RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
   RNSentry: 9f0447b3ce13806f544903748de423259ead8552
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
   Yoga: 1f76fc24e06883e0b475767d9aa6eab827a44441

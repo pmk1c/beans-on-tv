@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "name": "Debug iOS Hermes",
+      "name": "Debug tvOS",
       "request": "launch",
       "type": "reactnativedirect",
       "cwd": "${workspaceFolder}",

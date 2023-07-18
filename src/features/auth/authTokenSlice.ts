@@ -3,6 +3,7 @@ import * as TokenStorage from './TokenStorage';
 import {RootState} from '../../app/store';
 import Token, {isValid} from './Token';
 import authApi from './authApi';
+import capture from '../../app/capture';
 
 const authTokenSlice = createSlice({
   name: 'authToken',
@@ -42,7 +43,7 @@ export const initializeAuthToken = createAsyncThunk(
         const newToken = await dispatch(
           authApi.endpoints.refreshToken.initiate(token),
         ).unwrap();
-        dispatch(setAuthToken(newToken));
+        capture(dispatch(setAuthToken(newToken)));
       }
     } catch {
       dispatch(authTokenSlice.actions.resetAuthToken());
