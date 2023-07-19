@@ -1,8 +1,6 @@
 import React from 'react';
 import {ImageBackground, ImageRequireSource} from 'react-native';
-import AuthScreen from '../features/auth/AuthScreen';
-import LatestVideosScreen from '../features/latestVideos/LatestVideosScreen';
-import TabBar from './components/tabBar/TabBar';
+import TabNavigator from './navigation/TabNavigator';
 
 const backgroundImage =
   require('./assets/images/body_bg2021.jpg') as ImageRequireSource;
@@ -10,20 +8,7 @@ const backgroundImage =
 function HomeScreen(): JSX.Element | null {
   return (
     <ImageBackground source={backgroundImage} style={{flex: 1}}>
-      <TabBar
-        tabs={[
-          {
-            name: 'latestVideos',
-            title: 'Neueste Videos',
-            content: <LatestVideosScreen />,
-          },
-          {
-            name: 'auth',
-            icon: 'user_circle',
-            content: <AuthScreen />,
-          },
-        ]}
-      />
+      <TabNavigator />
     </ImageBackground>
   );
 }

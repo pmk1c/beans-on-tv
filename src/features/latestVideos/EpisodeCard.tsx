@@ -48,15 +48,16 @@ function EpisodeCard({
 
   return (
     <Pressable
+      style={{
+        width: width,
+        height: height + spacing.m + fontSize.xl * 1.35 * 3,
+        flexDirection: 'column',
+        gap: spacing.m,
+        alignItems: 'center',
+      }}
       onPress={() => navigation.push('Player', {episode})}
       children={({focused}) => (
-        <View
-          style={{
-            flexDirection: 'column',
-            width: width,
-            gap: spacing.m,
-            alignItems: 'center',
-          }}>
+        <>
           <FastImage
             style={{
               borderRadius: borderRadius.large,
@@ -79,7 +80,7 @@ function EpisodeCard({
             }}>
             {episode.title}
           </Text>
-        </View>
+        </>
       )}
     />
   );

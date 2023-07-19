@@ -53,7 +53,9 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
       .concat(() => next => action => {
-        console.debug(JSON.stringify(action));
+        if (false && __DEV__) {
+          console.debug(JSON.stringify(action));
+        }
         next(action);
       }),
   enhancers: [sentryReduxEnhancer],
