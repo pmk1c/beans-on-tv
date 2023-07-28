@@ -6,8 +6,13 @@ import {
 } from '../../app/navigation/StackNavigator';
 import {useLazyGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
-import {Image, Linking} from 'react-native';
+import {ImageBackground, Linking, Modal, Text, View} from 'react-native';
 import capture from '../../app/capture';
+import color from '../../app/styleTokens/color';
+import spacing from '../../app/styleTokens/spacing';
+import borderRadius from '../../app/styleTokens/borderRadius';
+import fontFamily from '../../app/styleTokens/fontFamily';
+import fontSize from '../../app/styleTokens/fontSizes';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -18,43 +23,79 @@ function PlayerScreen(): JSX.Element {
   const youtubeVideoToken = episode.tokens.find(t => t.type === 'youtube');
   const poster = episode.thumbnail.find(t => t.name === 'ytbig');
   const [signedToken, setSignedToken] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<'rbsc' | 'yt'>();
 
   const [getRbscVideoToken] = useLazyGetRbscVideoTokenQuery();
   const navigation = useNavigation<StackNavigationProp>();
   useEffect(() => {
     capture(
       (async () => {
-        try {
-          if (!rbscVideoToken) {
-            throw new Error('No rbsc token found');
-          }
-
-          const {data} = await getRbscVideoToken(rbscVideoToken.token).unwrap();
-          setSignedToken(data.signedToken);
-        } catch {
-          if (!youtubeVideoToken) {
+        let rbscTokenError;
+        if (rbscVideoToken) {
+          try {
+            const {data} = await getRbscVideoToken(
+              rbscVideoToken.token,
+            ).unwrap();
+            setSignedToken(data.signedToken);
             return;
-          }
-
-          await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
-          navigation.pop();
+          } catch {}
         }
+
+        if (youtubeVideoToken) {
+          try {
+            await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
+            navigation.pop();
+          } catch {
+            if (rbscVideoToken) {
+              setError('rbsc');
+            } else {
+              setError('yt');
+            }
+          }
+          return;
+        }
+
+        throw new Error('No video token found!');
       })(),
     );
   }, [getRbscVideoToken, navigation, rbscVideoToken, youtubeVideoToken]);
 
   if (!signedToken) {
     return (
-      <Image
+      <ImageBackground
         style={{
           flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         source={episode?.thumbnail.map(thumbnail => ({
           uri: thumbnail.url,
           width: thumbnail.width,
           height: thumbnail.height,
-        }))}
-      />
+        }))}>
+        {error ? (
+          <View
+            style={{
+              backgroundColor: color.darkTransparentBg,
+              padding: spacing.l,
+              borderRadius: borderRadius.large,
+            }}>
+            <Text
+              style={{
+                fontFamily: fontFamily.primary,
+                fontSize: fontSize.xl,
+                lineHeight: 1.35 * fontSize.xl,
+                color: color.text,
+                textAlign: 'center',
+              }}>
+              Das Video konnte nicht geladen werden.{' '}
+              {error === 'rbsc'
+                ? 'Melde dich mit deinem RBSC-Account an oder installiere die YouTube-App, um es zu sehen.'
+                : ' Installiere die YouTube-App, um es zu sehen.'}
+            </Text>
+          </View>
+        ) : null}
+      </ImageBackground>
     );
   }
 
