@@ -69,6 +69,7 @@ function EpisodeCard({
               uri: thumbnail?.url,
               priority: fastImagePriority,
             }}
+            defaultSource={require('../../app/assets/images/placeholder_16x9-420.png')}
           />
           <Text
             style={{
