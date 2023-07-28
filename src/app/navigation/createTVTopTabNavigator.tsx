@@ -62,11 +62,12 @@ function TVTopTabNavigator({
             borderRadius: borderRadius.large,
             backgroundColor: color.bodyBg,
           }}>
-          {state.routes.map(route => (
+          {state.routes.map((route, i) => (
             <Button
               key={route.key}
               icon={descriptors[route.key].options.icon}
               title={descriptors[route.key].options.title}
+              buttonType={i === state.index ? 'active' : undefined}
               onFocus={() => {
                 navigation.dispatch({
                   ...TabActions.jumpTo(route.name),

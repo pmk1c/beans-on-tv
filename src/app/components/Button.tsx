@@ -1,5 +1,12 @@
 import React, {PropsWithRef, Ref, forwardRef} from 'react';
-import {Pressable, StyleProp, StyleSheet, Text, View} from 'react-native';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import spacing from '../styleTokens/spacing';
 import color from '../styleTokens/color';
 import borderRadius from '../styleTokens/borderRadius';
@@ -9,9 +16,10 @@ import fontFamily from '../styleTokens/fontFamily';
 import {RBTVIconName} from '../assets/icons/RBTVIcon';
 
 type ButtonProps = PropsWithRef<{
-  buttonType?: 'destructive';
+  buttonType?: 'destructive' | 'active';
   icon?: RBTVIconName;
   title?: string;
+  style?: StyleProp<ViewStyle>;
   onFocus?: () => void;
   onPress?: () => void;
 }>;
@@ -23,6 +31,9 @@ function getStyles<T = unknown>(
   focused: boolean,
 ) {
   const styleNames = [defaultStyleName];
+  if (buttonType === 'active') {
+    styleNames.push(`${defaultStyleName}Active`);
+  }
   if (buttonType === 'destructive') {
     styleNames.push(`${defaultStyleName}Destructive`);
   }
@@ -37,7 +48,7 @@ function getStyles<T = unknown>(
 }
 
 function Button(
-  {buttonType, icon, title, onFocus, onPress}: ButtonProps,
+  {buttonType, icon, title, style, onFocus, onPress}: ButtonProps,
   ref: Ref<View>,
 ): JSX.Element {
   return (
@@ -69,6 +80,9 @@ const viewStyles = StyleSheet.create({
     backgroundColor: color.bodyBg,
     color: color.textLight,
     borderRadius: borderRadius.large,
+  },
+  wrapperActive: {
+    backgroundColor: color.lightTransparentBg,
   },
   wrapperDestructive: {
     backgroundColor: color.red700,
