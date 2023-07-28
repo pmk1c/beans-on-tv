@@ -4,12 +4,13 @@ import {
   useLazyGetMediaEpisodePreviewNewestQuery,
 } from './rbtvApi';
 import capture from '../../app/capture';
+import {AppState} from 'react-native';
 
 const limit = 48;
 
 function useLatestVideosScreen() {
   const [pages, setPages] = useState<
-    Record<string, GetMediaEpisodePreviewNewestResponse['data']>
+    Record<string, GetMediaEpisodePreviewNewestResponse['data'] | undefined>
   >({});
   const [total, setTotal] = useState<number>();
   const [getMediaEpisodePreviewNewest] =
@@ -26,17 +27,32 @@ function useLatestVideosScreen() {
         offset: pageNumber * limit,
         limit,
       }).unwrap();
-      setPages(stalePages => ({...stalePages, [pageNumber]: response.data}));
+      setPages(stalePages => {
+        if (pageNumber === 0) {
+          const stalePage = stalePages[pageNumber];
+          if (stalePage?.episodes[0].id !== response.data.episodes[0].id) {
+            return {0: response.data};
+          }
+        }
+
+        return {...stalePages, [pageNumber]: response.data};
+      });
       setTotal(response.pagination.total);
     },
     [total, getMediaEpisodePreviewNewest],
   );
 
   useEffect(() => {
-    capture(loadPage(0));
+    const subscription = AppState.addEventListener('change', state => {
+      if (state === 'active') {
+        capture(loadPage(0));
+      }
+    });
+
+    () => subscription.remove();
   }, [loadPage]);
 
-  const episodes = Object.values(pages).flatMap(data => data.episodes);
+  const episodes = Object.values(pages).flatMap(data => data?.episodes ?? []);
 
   const loadNextPage = useCallback(() => {
     const pageNumber = Object.keys(pages).length;
