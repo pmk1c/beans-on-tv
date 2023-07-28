@@ -10,6 +10,7 @@ import spacing from '../../app/styleTokens/spacing';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '../../app/navigation/StackNavigator';
 import capture from '../../app/capture';
+import {formatDistanceToNowStrict} from 'date-fns';
 
 interface EpisodeCardProps {
   episode: mediaEpisode;
@@ -64,6 +65,8 @@ function EpisodeCard({
               height,
               width,
               transform: [{scale: focused ? 1.1 : 1}],
+              borderWidth: focused ? 2 : 0,
+              borderColor: color.textHighlight,
             }}
             source={{
               uri: thumbnail?.url,
@@ -71,16 +74,54 @@ function EpisodeCard({
             }}
             defaultSource={require('../../app/assets/images/placeholder_16x9-420.png')}
           />
-          <Text
-            style={{
-              opacity: focused ? 1 : 0,
-              color: color.textHighlight,
-              fontFamily: fontFamily.primary,
-              fontSize: fontSize.xl,
-              lineHeight: 1.35 * fontSize.xl,
-            }}>
-            {episode.title}
-          </Text>
+          <View style={{gap: spacing['2xs']}}>
+            <Text
+              numberOfLines={2}
+              style={{
+                color: color.textHighlight,
+                fontFamily: fontFamily.primary,
+                fontSize: fontSize.xl,
+                lineHeight: 1.35 * fontSize.xl,
+              }}>
+              {episode.title}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                flex: 1,
+              }}>
+              <Text
+                style={{
+                  color: color.textHighlight,
+                  fontWeight: 'normal',
+                  fontFamily: fontFamily.primary,
+                  fontSize: fontSize.l,
+                  lineHeight: 1.35 * fontSize.l,
+                }}
+                numberOfLines={1}>
+                {episode.showName}
+              </Text>
+              <Text
+                style={{
+                  color: color.textHighlight,
+                  fontWeight: 'normal',
+                  fontFamily: fontFamily.primary,
+                  fontSize: fontSize.l,
+                  lineHeight: 1.35 * fontSize.l,
+                }}
+                numberOfLines={1}>
+                {formatDistanceToNowStrict(
+                  Date.parse(
+                    episode.distributionPublishingDate as unknown as string,
+                  ),
+                  {
+                    addSuffix: true,
+                  },
+                )}
+              </Text>
+            </View>
+          </View>
         </>
       )}
     />

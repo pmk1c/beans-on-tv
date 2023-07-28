@@ -11,6 +11,8 @@ import {AppState} from 'react-native';
 import authApi from './features/auth/authApi';
 import capture from './app/capture';
 import {initializeAuthToken} from './features/auth/authTokenSlice';
+import {setDefaultOptions} from 'date-fns';
+import {de} from 'date-fns/locale';
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -24,6 +26,8 @@ Sentry.init({
     }),
   ],
 });
+
+setDefaultOptions({locale: de});
 
 function App(): JSX.Element {
   const navigation =

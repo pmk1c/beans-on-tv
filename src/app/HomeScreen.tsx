@@ -3,7 +3,7 @@ import {ImageBackground, ImageRequireSource} from 'react-native';
 import TabNavigator from './navigation/TabNavigator';
 
 const backgroundImage =
-  require('./assets/images/body_bg2021.jpg') as ImageRequireSource;
+  require('./assets/images/body_bg2021-127.jpg') as ImageRequireSource;
 
 function HomeScreen(): JSX.Element | null {
   return (
