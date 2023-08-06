@@ -109,6 +109,7 @@ function PlayerScreen(): JSX.Element {
       }}
       poster={poster?.url}
       controls
+      resizeMode="contain"
     />
   );
 }
