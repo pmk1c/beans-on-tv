@@ -1,4 +1,6 @@
-const rem = 16;
+import perfectSize from "../perfectSize";
+
+const rem = perfectSize(16);
 const fontSize = {
   '2xs': 0.579 * rem,
   xs: 0.694 * rem,

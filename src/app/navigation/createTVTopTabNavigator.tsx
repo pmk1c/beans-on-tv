@@ -11,9 +11,9 @@ import {
   TabActionHelpers,
   createNavigatorFactory,
 } from '@react-navigation/native';
-import spacing from '../styleTokens/spacing';
-import borderRadius from '../styleTokens/borderRadius';
-import color from '../styleTokens/color';
+import spacing from '../styles/tokens/spacing';
+import borderRadius from '../styles/tokens/borderRadius';
+import color from '../styles/tokens/color';
 import Button from '../components/Button';
 import {RBTVIconName} from '../assets/icons/RBTVIcon';
 

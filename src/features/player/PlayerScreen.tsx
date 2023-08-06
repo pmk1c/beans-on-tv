@@ -8,11 +8,11 @@ import {useLazyGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
 import {ImageBackground, Linking, Modal, Text, View} from 'react-native';
 import capture from '../../app/capture';
-import color from '../../app/styleTokens/color';
-import spacing from '../../app/styleTokens/spacing';
-import borderRadius from '../../app/styleTokens/borderRadius';
-import fontFamily from '../../app/styleTokens/fontFamily';
-import fontSize from '../../app/styleTokens/fontSizes';
+import color from '../../app/styles/tokens/color';
+import spacing from '../../app/styles/tokens/spacing';
+import borderRadius from '../../app/styles/tokens/borderRadius';
+import fontFamily from '../../app/styles/tokens/fontFamily';
+import fontSize from '../../app/styles/tokens/fontSizes';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 

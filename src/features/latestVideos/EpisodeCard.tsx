@@ -1,23 +1,24 @@
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Pressable, Text, View} from 'react-native';
-import borderRadius from '../../app/styleTokens/borderRadius';
+import borderRadius from '../../app/styles/tokens/borderRadius';
 import {mediaEpisode} from '../../../rbtv-apidoc';
-import color from '../../app/styleTokens/color';
-import fontFamily from '../../app/styleTokens/fontFamily';
-import fontSize from '../../app/styleTokens/fontSizes';
-import spacing from '../../app/styleTokens/spacing';
+import color from '../../app/styles/tokens/color';
+import fontFamily from '../../app/styles/tokens/fontFamily';
+import fontSize from '../../app/styles/tokens/fontSizes';
+import spacing from '../../app/styles/tokens/spacing';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '../../app/navigation/StackNavigator';
 import capture from '../../app/capture';
 import {formatDistanceToNowStrict} from 'date-fns';
+import perfectSize from '../../app/styles/perfectSize';
 
 interface EpisodeCardProps {
   episode: mediaEpisode;
   thumbnailPriority: 'high' | 'normal' | 'low';
 }
 
-const width = 420;
+const width = perfectSize(420);
 const height = width * (9 / 16);
 
 function findThumbnail(thumbnails: mediaEpisode['thumbnail']) {

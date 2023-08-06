@@ -7,12 +7,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import spacing from '../styleTokens/spacing';
-import color from '../styleTokens/color';
-import borderRadius from '../styleTokens/borderRadius';
-import fontSize from '../styleTokens/fontSizes';
+import spacing from '../styles/tokens/spacing';
+import color from '../styles/tokens/color';
+import borderRadius from '../styles/tokens/borderRadius';
+import fontSize from '../styles/tokens/fontSizes';
 import RBTVIcon from '../assets/icons/RBTVIcon';
-import fontFamily from '../styleTokens/fontFamily';
+import fontFamily from '../styles/tokens/fontFamily';
 import {RBTVIconName} from '../assets/icons/RBTVIcon';
 
 type ButtonProps = PropsWithRef<{
