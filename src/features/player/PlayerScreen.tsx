@@ -6,7 +6,7 @@ import {
 } from '../../app/navigation/StackNavigator';
 import {useLazyGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
-import {ImageBackground, Linking, Modal, Text, View} from 'react-native';
+import {ImageBackground, Linking, Platform, Text, View} from 'react-native';
 import capture from '../../app/capture';
 import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
@@ -43,7 +43,11 @@ function PlayerScreen(): JSX.Element {
 
         if (youtubeVideoToken) {
           try {
-            await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
+            const url = Platform.select({
+              ios: `youtube://watch/${youtubeVideoToken.token}`,
+              android: `https://www.youtube.com/watch?v=${youtubeVideoToken.token}`,
+            }) as string;
+            await Linking.openURL(url);
             navigation.pop();
           } catch {
             if (rbscVideoToken) {
