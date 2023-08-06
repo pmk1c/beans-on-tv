@@ -7,13 +7,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import spacing from '../styleTokens/spacing';
-import color from '../styleTokens/color';
-import borderRadius from '../styleTokens/borderRadius';
-import fontSize from '../styleTokens/fontSizes';
+import spacing from '../styles/tokens/spacing';
+import color from '../styles/tokens/color';
+import borderRadius from '../styles/tokens/borderRadius';
 import RBTVIcon from '../assets/icons/RBTVIcon';
-import fontFamily from '../styleTokens/fontFamily';
 import {RBTVIconName} from '../assets/icons/RBTVIcon';
+import fontPresets from '../styles/tokens/fontPresets';
 
 type ButtonProps = PropsWithRef<{
   buttonType?: 'destructive' | 'active';
@@ -97,9 +96,7 @@ const viewStyles = StyleSheet.create({
 
 const textStyles = StyleSheet.create({
   text: {
-    fontFamily: fontFamily.primary,
-    fontSize: fontSize.xl,
-    lineHeight: 1.35 * fontSize.xl,
+    ...fontPresets.xl,
     color: color.text,
   },
   textDestructive: {

@@ -1,12 +1,11 @@
 import React from 'react';
 import {StyleSheet, TVFocusGuideView, Text, View} from 'react-native';
 import {useAuthScreen} from './useAuthScreen';
-import color from '../../app/styleTokens/color';
-import spacing from '../../app/styleTokens/spacing';
+import color from '../../app/styles/tokens/color';
+import spacing from '../../app/styles/tokens/spacing';
 import Button from '../../app/components/Button';
-import fontFamily from '../../app/styleTokens/fontFamily';
-import fontSize from '../../app/styleTokens/fontSizes';
-import borderRadius from '../../app/styleTokens/borderRadius';
+import borderRadius from '../../app/styles/tokens/borderRadius';
+import fontPresets from '../../app/styles/tokens/fontPresets';
 
 const codeSeperator = '–';
 
@@ -58,9 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.large,
   },
   text: {
-    fontFamily: fontFamily.primary,
-    fontSize: fontSize.xl,
-    lineHeight: 1.35 * fontSize.xl,
+    ...fontPresets.xl,
     color: color.text,
     textAlign: 'center',
   },

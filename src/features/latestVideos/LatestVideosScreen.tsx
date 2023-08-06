@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import spacing from '../../app/styleTokens/spacing';
+import spacing from '../../app/styles/tokens/spacing';
 import EpisodeCard from './EpisodeCard';
 import useLatestVideosScreen from './useLatestVideosScreen';
 

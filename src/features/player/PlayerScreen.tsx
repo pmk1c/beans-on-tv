@@ -6,13 +6,12 @@ import {
 } from '../../app/navigation/StackNavigator';
 import {useLazyGetRbscVideoTokenQuery} from '../latestVideos/rbtvApi';
 import Video from 'react-native-video';
-import {ImageBackground, Linking, Modal, Text, View} from 'react-native';
+import {ImageBackground, Linking, Platform, Text, View} from 'react-native';
 import capture from '../../app/capture';
-import color from '../../app/styleTokens/color';
-import spacing from '../../app/styleTokens/spacing';
-import borderRadius from '../../app/styleTokens/borderRadius';
-import fontFamily from '../../app/styleTokens/fontFamily';
-import fontSize from '../../app/styleTokens/fontSizes';
+import color from '../../app/styles/tokens/color';
+import spacing from '../../app/styles/tokens/spacing';
+import borderRadius from '../../app/styles/tokens/borderRadius';
+import fontPresets from '../../app/styles/tokens/fontPresets';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -43,7 +42,11 @@ function PlayerScreen(): JSX.Element {
 
         if (youtubeVideoToken) {
           try {
-            await Linking.openURL(`youtube://watch/${youtubeVideoToken.token}`);
+            const url = Platform.select({
+              ios: `youtube://watch/${youtubeVideoToken.token}`,
+              android: `https://www.youtube.com/watch?v=${youtubeVideoToken.token}`,
+            }) as string;
+            await Linking.openURL(url);
             navigation.pop();
           } catch {
             if (rbscVideoToken) {
@@ -82,9 +85,7 @@ function PlayerScreen(): JSX.Element {
             }}>
             <Text
               style={{
-                fontFamily: fontFamily.primary,
-                fontSize: fontSize.xl,
-                lineHeight: 1.35 * fontSize.xl,
+                ...fontPresets.xl,
                 color: color.text,
                 textAlign: 'center',
               }}>
@@ -109,6 +110,7 @@ function PlayerScreen(): JSX.Element {
       }}
       poster={poster?.url}
       controls
+      resizeMode="contain"
     />
   );
 }

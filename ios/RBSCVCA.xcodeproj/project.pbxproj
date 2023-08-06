@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22558B29B5FE4996804BA67A /* Rubik.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07B42E4DE421474EBE728622 /* Rubik.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		CB868DAA2A44F0DA007A0DE6 /* rbtvIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB868DA62A44F0DA007A0DE6 /* rbtvIcons.ttf */; };
-		CB868DAE2A44F0DA007A0DE6 /* Rubik.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB868DA72A44F0DA007A0DE6 /* Rubik.ttf */; };
+		6371147147CE4E558E9B200D /* rbtvIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB69DD9CD92A4929AC3AE909 /* rbtvIcons.ttf */; };
 		EE57DEA5314790D63C074D03 /* libPods-RBSCVCA-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA54FCF2086BA3B4678F8237 /* libPods-RBSCVCA-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		015BA46D04C1496C29E63456 /* Pods-RBSCVCA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSCVCA.debug.xcconfig"; path = "Target Support Files/Pods-RBSCVCA/Pods-RBSCVCA.debug.xcconfig"; sourceTree = "<group>"; };
+		07B42E4DE421474EBE728622 /* Rubik.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Rubik.ttf; path = ../src/app/assets/fonts/Rubik.ttf; sourceTree = "<group>"; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RBSCVCA/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.mm; path = RBSCVCA/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RBSCVCA/Images.xcassets; sourceTree = "<group>"; };
@@ -28,8 +29,7 @@
 		388308430DF4BE056B0CEF13 /* Pods-RBSCVCA-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSCVCA-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RBSCVCA-tvOS/Pods-RBSCVCA-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RBSCVCA/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DC2855AB2CCC04BED0978AE /* libPods-RBSCVCA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RBSCVCA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB868DA62A44F0DA007A0DE6 /* rbtvIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rbtvIcons.ttf; sourceTree = "<group>"; };
-		CB868DA72A44F0DA007A0DE6 /* Rubik.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rubik.ttf; sourceTree = "<group>"; };
+		AB69DD9CD92A4929AC3AE909 /* rbtvIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = rbtvIcons.ttf; path = ../src/app/assets/fonts/rbtvIcons.ttf; sourceTree = "<group>"; };
 		CCE9A90FED9D09047497AB6D /* Pods-RBSCVCA-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSCVCA-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RBSCVCA-tvOS/Pods-RBSCVCA-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EA54FCF2086BA3B4678F8237 /* libPods-RBSCVCA-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RBSCVCA-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -48,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08C499943308422CB2CDCB06 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				07B42E4DE421474EBE728622 /* Rubik.ttf */,
+				AB69DD9CD92A4929AC3AE909 /* rbtvIcons.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* RBSCVCA */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +92,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				CB868DA52A44F0DA007A0DE6 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* RBSCVCA */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				9B1644CBAE2FABCCC6E29A69 /* Pods */,
+				08C499943308422CB2CDCB06 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -112,15 +121,6 @@
 				388308430DF4BE056B0CEF13 /* Pods-RBSCVCA-tvOS.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		CB868DA52A44F0DA007A0DE6 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CB868DA62A44F0DA007A0DE6 /* rbtvIcons.ttf */,
-				CB868DA72A44F0DA007A0DE6 /* Rubik.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,8 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-				CB868DAE2A44F0DA007A0DE6 /* Rubik.ttf in Resources */,
-				CB868DAA2A44F0DA007A0DE6 /* rbtvIcons.ttf in Resources */,
+				22558B29B5FE4996804BA67A /* Rubik.ttf in Resources */,
+				6371147147CE4E558E9B200D /* rbtvIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
