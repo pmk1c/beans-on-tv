@@ -10,10 +10,9 @@ import {
 import spacing from '../styles/tokens/spacing';
 import color from '../styles/tokens/color';
 import borderRadius from '../styles/tokens/borderRadius';
-import fontSize from '../styles/tokens/fontSizes';
 import RBTVIcon from '../assets/icons/RBTVIcon';
-import fontFamily from '../styles/tokens/fontFamily';
 import {RBTVIconName} from '../assets/icons/RBTVIcon';
+import fontPresets from '../styles/tokens/fontPresets';
 
 type ButtonProps = PropsWithRef<{
   buttonType?: 'destructive' | 'active';
@@ -97,9 +96,7 @@ const viewStyles = StyleSheet.create({
 
 const textStyles = StyleSheet.create({
   text: {
-    fontFamily: fontFamily.primary,
-    fontSize: fontSize.xl,
-    lineHeight: 1.35 * fontSize.xl,
+    ...fontPresets.xl,
     color: color.text,
   },
   textDestructive: {

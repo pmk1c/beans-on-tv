@@ -11,8 +11,7 @@ import capture from '../../app/capture';
 import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
 import borderRadius from '../../app/styles/tokens/borderRadius';
-import fontFamily from '../../app/styles/tokens/fontFamily';
-import fontSize from '../../app/styles/tokens/fontSizes';
+import fontPresets from '../../app/styles/tokens/fontPresets';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -86,9 +85,7 @@ function PlayerScreen(): JSX.Element {
             }}>
             <Text
               style={{
-                fontFamily: fontFamily.primary,
-                fontSize: fontSize.xl,
-                lineHeight: 1.35 * fontSize.xl,
+                ...fontPresets.xl,
                 color: color.text,
                 textAlign: 'center',
               }}>
