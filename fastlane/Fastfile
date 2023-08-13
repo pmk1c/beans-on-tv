@@ -10,8 +10,6 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-default_platform(:ios)
-
 platform :ios do
   before_all do
     app_store_connect_api_key(
@@ -21,10 +19,19 @@ platform :ios do
     )
   end
 
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    increment_build_number(xcodeproj: "ios/RBSCVCA.xcodeproj")
+  desc "Push a new test build to TestFlight"
+  lane :test do
+    increment_build_number(xcodeproj: "ios/RBSCVCA.xcodeproj", skip_info_plist: true)
     build_app(workspace: "ios/RBSCVCA.xcworkspace", scheme: "RBSCVCA-tvOS", xcargs: "-allowProvisioningUpdates")
     upload_to_testflight
+  end
+end
+
+platform :android do
+  desc "Push a new test build to Play Store"
+  lane :test do
+    android_set_version_code(gradle_file: "android/app/build.gradle")
+    gradle(project_dir: "android", task: 'bundle', build_type: 'Release', )
+    upload_to_play_store(track: 'internal')
   end
 end

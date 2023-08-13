@@ -1,8 +1,10 @@
-app_identifier("de.bmind.rbscvca") # The bundle identifier of your app
-apple_id("ruben.grimm@bmind.de") # Your Apple Developer Portal username
-
-itc_team_id("126084830") # App Store Connect Team ID
-team_id("8G26T3SC9P") # Developer Portal Team ID
-
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile
+
+app_identifier("de.bmind.rbscvca")
+apple_id("ruben.grimm@bmind.de")
+itc_team_id("126084830")
+team_id("8G26T3SC9P")
+
+package_name("de.bmind.rbscvca")
+json_key_file("fastlane/pc-api-8017505507275839429-507-ec4c4aae9c09.json")

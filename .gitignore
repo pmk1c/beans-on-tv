@@ -65,6 +65,8 @@ buck-out/
 
 .expo
 
+android/key.properties
 fastlane/*.p8
+fastlane/*.json
 ios/sentry.properties
 *.app.dSYM.zip
