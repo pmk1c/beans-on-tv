@@ -144,8 +144,8 @@
 			);
 			dependencies = (
 			);
-			name = "RBSCVCA-tvOS";
-			productName = "RBSCVCA-tvOS";
+			name = "RocketBeans TV";
+			productName = "RocketBeans TV";
 			productReference = 2D02E47B1E0B4A5D006451C7 /* RBSCVCA-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};

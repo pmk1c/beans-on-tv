@@ -15,10 +15,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios test
+### ios publish_internal_test
 
 ```sh
-[bundle exec] fastlane ios test
+[bundle exec] fastlane ios publish_internal_test
 ```
 
 Push a new test build to TestFlight
@@ -28,10 +28,10 @@ Push a new test build to TestFlight
 
 ## Android
 
-### android test
+### android publish_internal_test
 
 ```sh
-[bundle exec] fastlane android test
+[bundle exec] fastlane android publish_internal_test
 ```
 
 Push a new test build to Play Store

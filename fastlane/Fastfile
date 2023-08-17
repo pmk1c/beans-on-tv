@@ -20,7 +20,7 @@ platform :ios do
   end
 
   desc "Push a new test build to TestFlight"
-  lane :test do
+  lane :publish_internal_test do
     increment_build_number(xcodeproj: "ios/RBSCVCA.xcodeproj", skip_info_plist: true)
     build_app(workspace: "ios/RBSCVCA.xcworkspace", scheme: "RBSCVCA-tvOS", xcargs: "-allowProvisioningUpdates")
     upload_to_testflight
@@ -29,7 +29,7 @@ end
 
 platform :android do
   desc "Push a new test build to Play Store"
-  lane :test do
+  lane :publish_internal_test do
     android_set_version_code(gradle_file: "android/app/build.gradle")
     gradle(project_dir: "android", task: 'bundle', build_type: 'Release', )
     upload_to_play_store(track: 'internal')
