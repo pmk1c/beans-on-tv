@@ -1,4 +1,4 @@
-package com.de.bmind.rbscvca;
+package de.bmind.rbscvca;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
