@@ -31,7 +31,11 @@ platform :android do
   desc "Push a new test build to Play Store"
   lane :publish_internal_test do
     android_set_version_code(gradle_file: "android/app/build.gradle")
-    gradle(project_dir: "android", task: 'bundle', build_type: 'Release', )
-    upload_to_play_store(track: 'internal')
+    gradle(project_dir: "android", task: "bundle", build_type: "Release")
+    upload_to_play_store(
+      track: "internal",
+      release_status: "draft",
+      skip_upload_apk: true,
+    )
   end
 end
