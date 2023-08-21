@@ -70,7 +70,10 @@ function EpisodeCard({
               uri: episode.thumbnailUrls.small,
               priority: fastImagePriority,
             }}
-            defaultSource={require('../../app/assets/images/placeholder_16x9-420.png')}
+            defaultSource={
+              // eslint-disable-next-line @typescript-eslint/no-var-requires
+              require('../../app/assets/images/placeholder_16x9-420.png') as number
+            }
           />
           <View style={{gap: spacing['2xs']}}>
             <Text

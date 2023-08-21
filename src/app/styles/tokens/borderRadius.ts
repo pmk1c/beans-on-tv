@@ -1,4 +1,4 @@
-import perfectSize from "../perfectSize";
+import perfectSize from '../perfectSize';
 
 enum borderRadius {
   large = perfectSize(12),

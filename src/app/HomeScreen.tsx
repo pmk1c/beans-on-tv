@@ -3,6 +3,7 @@ import {ImageBackground, ImageRequireSource} from 'react-native';
 import TabNavigator from './navigation/TabNavigator';
 
 const backgroundImage =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('./assets/images/body_bg2021-127.jpg') as ImageRequireSource;
 
 function HomeScreen(): JSX.Element | null {

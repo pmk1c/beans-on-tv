@@ -47,7 +47,7 @@ function getStyles<T = unknown>(
 }
 
 function Button(
-  {buttonType, icon, title, style, onFocus, onPress}: ButtonProps,
+  {buttonType, icon, title, onFocus, onPress}: ButtonProps,
   ref: Ref<View>,
 ): JSX.Element {
   return (

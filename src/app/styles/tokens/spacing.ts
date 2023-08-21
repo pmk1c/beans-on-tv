@@ -1,4 +1,4 @@
-import perfectSize from "../perfectSize";
+import perfectSize from '../perfectSize';
 
 const spacing = {
   '2xs': perfectSize(4),

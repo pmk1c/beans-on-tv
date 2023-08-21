@@ -10,6 +10,7 @@ import {
   TabRouterOptions,
   TabActionHelpers,
   createNavigatorFactory,
+  EventMapBase,
 } from '@react-navigation/native';
 import spacing from '../styles/tokens/spacing';
 import borderRadius from '../styles/tokens/borderRadius';
@@ -26,7 +27,7 @@ type TVTopTabNavigatorProps = DefaultNavigatorOptions<
   ParamListBase,
   TabNavigationState<ParamListBase>,
   TVTopTabNavigationOptions,
-  {}
+  EventMapBase
 > &
   TabRouterOptions;
 
@@ -41,7 +42,7 @@ function TVTopTabNavigator({
       TabRouterOptions,
       TabActionHelpers<ParamListBase>,
       TVTopTabNavigationOptions,
-      {}
+      Record<string, unknown>
     >(TabRouter, {
       children,
       screenOptions,
@@ -99,6 +100,6 @@ function TVTopTabNavigator({
 export default createNavigatorFactory<
   TabNavigationState<ParamListBase>,
   TVTopTabNavigationOptions,
-  {},
+  EventMapBase,
   typeof TVTopTabNavigator
 >(TVTopTabNavigator);

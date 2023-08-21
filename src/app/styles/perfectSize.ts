@@ -1,8 +1,7 @@
 import {PixelRatio, Dimensions} from 'react-native';
 import {create} from 'react-native-pixel-perfect';
 
-
-let displayProps = {
+const displayProps = {
   width: PixelRatio.roundToNearestPixel(
     Dimensions.get('window').width * PixelRatio.get(),
   ),
@@ -12,6 +11,5 @@ let displayProps = {
 };
 
 const perfectSize = create(displayProps);
-
 
 export default perfectSize;

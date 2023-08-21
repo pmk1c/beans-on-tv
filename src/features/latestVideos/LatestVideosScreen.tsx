@@ -12,7 +12,7 @@ function LatestVideosScreen(): JSX.Element {
     <FlatList
       contentContainerStyle={{
         gap: spacing['2xl'],
-        padding: spacing['xl'],
+        padding: spacing.xl,
       }}
       columnWrapperStyle={{
         gap: spacing['2xl'],
