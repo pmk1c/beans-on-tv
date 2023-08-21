@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Push a new test build to TestFlight
 
+### ios publish_open_test
+
+```sh
+[bundle exec] fastlane ios publish_open_test
+```
+
+Publish the latest build to open testing
+
+### ios publish_production
+
+```sh
+[bundle exec] fastlane ios publish_production
+```
+
+Publish the latest build to production
+
 ----
 
 
@@ -35,6 +51,22 @@ Push a new test build to TestFlight
 ```
 
 Push a new test build to Play Store
+
+### android publish_open_test
+
+```sh
+[bundle exec] fastlane android publish_open_test
+```
+
+Publish the latest build to open testing
+
+### android publish_production
+
+```sh
+[bundle exec] fastlane android publish_production
+```
+
+Publish the latest build to production
 
 ----
 

@@ -25,6 +25,29 @@ platform :ios do
     build_app(workspace: "ios/RBSCVCA.xcworkspace", scheme: "RBSCVCA-tvOS", xcargs: "-allowProvisioningUpdates")
     upload_to_testflight
   end
+
+  desc "Publish the latest build to open testing"
+  lane :publish_open_test do
+    build_number = get_build_number(xcodeproj: "ios/RBSCVCA.xcodeproj")
+    testflight(
+      build_number: build_number,
+      distribute_only: true,
+      distribute_external: true,
+      groups: ["Rocket Beans", "Rocket Beans Community"],
+    )
+  end
+
+  desc "Publish the latest build to production"
+  lane :publish_production do
+    build_number = get_build_number(xcodeproj: "ios/RBSCVCA.xcodeproj")
+    deliver(
+      build_number: build_number,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      run_precheck_before_submit: false,
+      force: true,
+    )
+  end
 end
 
 platform :android do
@@ -34,8 +57,29 @@ platform :android do
     gradle(project_dir: "android", task: "bundle", build_type: "Release")
     upload_to_play_store(
       track: "internal",
-      release_status: "draft",
       skip_upload_apk: true,
+    )
+  end
+
+  desc "Publish the latest build to open testing"
+  lane :publish_open_test do
+    version_code = android_get_version_code(gradle_file: "android/app/build.gradle")
+    supply(
+      version_code: version_code,
+      track_promote_to: "beta",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+    )
+  end
+
+  desc "Publish the latest build to production"
+  lane :publish_production do
+    version_code = android_get_version_code(gradle_file: "android/app/build.gradle")
+    supply(
+      version_code: version_code,
+      track_promote_to: "production",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
     )
   end
 end
