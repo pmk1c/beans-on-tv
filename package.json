@@ -7,7 +7,8 @@
     "tvos": "react-native run-ios --scheme RBSCVCA-tvOS",
     "start": "react-native start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest"
+    "test": "jest",
+    "codegen": "npx @rtk-query/codegen-openapi rbtv-api/codegen-config.json"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.7",

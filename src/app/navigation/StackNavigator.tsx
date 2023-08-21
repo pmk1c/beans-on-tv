@@ -5,11 +5,11 @@ import {
 } from '@react-navigation/native-stack';
 import HomeScreen from '../HomeScreen';
 import PlayerScreen from '../../features/player/PlayerScreen';
-import {mediaEpisode} from '../../../rbtv-apidoc';
+import Episode from '../types/Episode';
 
 export type StackParamList = {
   Home: undefined;
-  Player: {episode: mediaEpisode};
+  Player: {episode: Episode};
 };
 
 export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;

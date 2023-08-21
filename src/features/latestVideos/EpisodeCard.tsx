@@ -2,44 +2,42 @@ import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Pressable, Text, View} from 'react-native';
 import borderRadius from '../../app/styles/tokens/borderRadius';
-import {mediaEpisode} from '../../../rbtv-apidoc';
 import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '../../app/navigation/StackNavigator';
-import capture from '../../app/capture';
 import {formatDistanceToNowStrict} from 'date-fns';
 import perfectSize from '../../app/styles/perfectSize';
 import fontPresets from '../../app/styles/tokens/fontPresets';
+import Episode from '../../app/types/Episode';
 
 interface EpisodeCardProps {
-  episode: mediaEpisode;
+  episode: Episode;
   thumbnailPriority: 'high' | 'normal' | 'low';
 }
 
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
-function findThumbnail(thumbnails: mediaEpisode['thumbnail']) {
-  const thumbnail =
-    thumbnails.find(t => t.name === 'medium') ??
-    thumbnails.find(t => t.name === 'ytbig') ??
-    thumbnails.find(t => t.name === 'large') ??
-    thumbnails.find(t => t.name === 'source');
+// function findThumbnail(thumbnails: Episode['thumbnail']) {
+//   const thumbnail =
+//     thumbnails.find(t => t.name === 'medium') ??
+//     thumbnails.find(t => t.name === 'ytbig') ??
+//     thumbnails.find(t => t.name === 'large') ??
+//     thumbnails.find(t => t.name === 'source');
 
-  if (!thumbnail) {
-    capture(new Error('No thumbnail found'));
-  }
+//   if (!thumbnail) {
+//     capture(new Error('No thumbnail found'));
+//   }
 
-  return thumbnail;
-}
+//   return thumbnail;
+// }
 
 function EpisodeCard({
   episode,
   thumbnailPriority,
 }: EpisodeCardProps): JSX.Element {
   const navigation = useNavigation<StackNavigationProp>();
-  const thumbnail = findThumbnail(episode.thumbnail);
   const fastImagePriority =
     thumbnailPriority === 'high'
       ? FastImage.priority.high
@@ -69,7 +67,7 @@ function EpisodeCard({
               borderColor: color.textHighlight,
             }}
             source={{
-              uri: thumbnail?.url,
+              uri: episode.thumbnailUrls.small,
               priority: fastImagePriority,
             }}
             defaultSource={require('../../app/assets/images/placeholder_16x9-420.png')}
