@@ -29,11 +29,10 @@ function PlayerScreen(): JSX.Element {
   useEffect(() => {
     capture(
       (async () => {
-        let rbscTokenError;
-        if (episode.videoTokens.rbtv) {
+        if (episode.videoTokens.rbsc) {
           try {
             const {data} = await getRbscVideoToken({
-              videoToken: episode.videoTokens.rbtv.token,
+              videoToken: episode.videoTokens.rbsc.token,
             }).unwrap();
             setSignedToken(data?.signedToken);
             return;
@@ -50,7 +49,7 @@ function PlayerScreen(): JSX.Element {
             await Linking.openURL(url);
             navigation.pop();
           } catch {
-            if (episode.videoTokens.rbtv) {
+            if (episode.videoTokens.rbsc) {
               setError('rbsc');
             } else {
               setError('yt');

@@ -30,11 +30,11 @@ function useLatestVideosScreen() {
         if (pageNumber === 0) {
           const stalePage = stalePages[pageNumber];
           if (stalePage?.data[0].id !== response.data[0].id) {
-            return {0: response.data};
+            return {0: response};
           }
         }
 
-        return {...stalePages, [pageNumber]: response.data};
+        return {...stalePages, [pageNumber]: response};
       });
       setTotal(response.meta.total);
     },
