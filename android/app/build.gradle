@@ -95,6 +95,8 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 

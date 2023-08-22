@@ -28,7 +28,7 @@ function AuthScreen(): JSX.Element | null {
           <Text style={styles.text}>
             Besuche{' '}
             <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
-            melde dich mit deinem RocketBeans TV-Account an und gib folgenden
+            melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
             Code ein:
             {'\n'}
             <Text style={styles.textHighlight}>
