@@ -34,6 +34,6 @@ const fontPresets = {
     lineHeight: 1.35 * fontSize.xl,
     fontWeight: 'bold',
   },
-};
+} as const;
 
 export default fontPresets;

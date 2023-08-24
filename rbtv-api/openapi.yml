@@ -1,0 +1,150 @@
+openapi: '3.0.0'
+info:
+  title: Rocket Beans TV API
+  version: '1.0.0'
+  license:
+    name: MIT
+    url: https://github.com/rocketbeans/rbtv-apidoc/blob/master/LICENSE
+servers:
+  - url: https://api.rocketbeans.tv/v1
+paths:
+  /media/episode/preview/newest:
+    get:
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 4
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - pagination
+                  - data
+                properties:
+                  success:
+                    type: boolean
+                  pagination:
+                    type: object
+                    required:
+                      - offset
+                      - limit
+                      - total
+                    properties:
+                      offset:
+                        type: integer
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+                  data:
+                    type: object
+                    required:
+                      - episodes
+                    properties:
+                      episodes:
+                        type: array
+                        items:
+                          type: object
+                          required:
+                            - id
+                            - title
+                            - thumbnail
+                            - tokens
+                            - distributionPublishingDate
+                          properties:
+                            id:
+                              type: integer
+                            title:
+                              type: string
+                            showName:
+                              type: string
+                            thumbnail:
+                              type: array
+                              items:
+                                type: object
+                                required:
+                                  - name
+                                  - url
+                                properties:
+                                  name:
+                                    type: string
+                                    enum:
+                                      - small
+                                      - medium
+                                      - large
+                                      - source
+                                      - ytsmall
+                                      - ytbig
+                                  url:
+                                    type: string
+                                  height:
+                                    type: integer
+                                  width:
+                                    type: integer
+                            tokens:
+                              type: array
+                              items:
+                                type: object
+                                required:
+                                  - id
+                                  - mediaEpisodeId
+                                  - token
+                                  - type
+                                  - length
+                                properties:
+                                  id:
+                                    type: integer
+                                  mediaEpisodeId:
+                                    type: integer
+                                  token:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                      - youtube
+                                      - rbsc
+                                  length:
+                                    type: integer
+                            distributionPublishingDate:
+                              type: string
+                              format: rfc3339
+  /rbsc/video/token/${videoToken}:
+    parameters:
+      - name: videoToken
+        in: path
+        schema:
+          type: string
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      signedToken:
+                        type: string
+                      validUntil:
+                        type: string
+        '401':
+          description: Unauthorized

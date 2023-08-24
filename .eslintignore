@@ -1,2 +1,3 @@
-rbtv-apidoc
 .eslintrc.js
+*.generated.ts
+vendor/

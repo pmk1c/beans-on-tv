@@ -1,5 +1,4 @@
-fastlane documentation
-----
+## fastlane documentation
 
 # Installation
 
@@ -39,8 +38,7 @@ Publish the latest build to open testing
 
 Publish the latest build to production
 
-----
-
+---
 
 ## Android
 
@@ -68,7 +66,7 @@ Publish the latest build to open testing
 
 Publish the latest build to production
 
-----
+---
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 
