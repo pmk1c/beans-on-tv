@@ -35,15 +35,6 @@ function App(): JSX.Element {
 
   const dispatch = useAppDispatch();
   capture(dispatch(initializeAuthToken()));
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', state => {
-      if (state === 'active') {
-        capture(dispatch(authApi.endpoints.ping.initiate()));
-      }
-    });
-
-    () => subscription.remove();
-  }, [dispatch]);
 
   return (
     <NavigationContainer

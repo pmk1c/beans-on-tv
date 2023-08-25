@@ -41,12 +41,6 @@ const authApi = createApi({
       }),
       transformResponse: (token: OAuthToken) => fromOAuthToken(token),
     }),
-    ping: build.mutation<void, void>({
-      query: () => ({
-        method: 'POST',
-        url: 'token-refresh',
-      }),
-    }),
   }),
 });
 
