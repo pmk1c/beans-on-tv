@@ -1,4 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import {Platform} from 'react-native';
+
 import Token, {fromOAuthToken} from './Token';
 
 export interface OAuthToken {
@@ -10,16 +12,12 @@ export interface OAuthToken {
 const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ietacfzilviitulpecdz.supabase.co/functions/v1/',
-    prepareHeaders: headers => {
-      headers.set('Content-Type', 'application/json');
-      headers.set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlldGFjZnppbHZpaXR1bHBlY2R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzYwNjI0NDcsImV4cCI6MTk5MTYzODQ0N30.jD-zPr3HB4C2AoImRgBFSxfRbPAnbQRQWwuPowxEsQU',
-      );
-
-      return headers;
-    },
+    baseUrl: __DEV__
+      ? Platform.select({
+          ios: 'http://localhost:5173/api',
+          android: 'http://10.0.2.2:5173/api',
+        })
+      : 'https://rbtv.bmind.de/api',
   }),
   endpoints: build => ({
     createCode: build.mutation<string, void>({
