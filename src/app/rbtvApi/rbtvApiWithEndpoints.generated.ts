@@ -14,7 +14,7 @@ const injectedRtkApi = api.injectEndpoints({
       GetRbscVideoTokenByVideoTokenApiResponse,
       GetRbscVideoTokenByVideoTokenApiArg
     >({
-      query: queryArg => ({url: `/rbsc/video/token/$${queryArg.videoToken}`}),
+      query: queryArg => ({url: `/rbsc/video/token/${queryArg.videoToken}`}),
     }),
   }),
   overrideExisting: false,
