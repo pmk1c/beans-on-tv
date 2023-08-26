@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react-native';
 
-function captureError(error: unknown) {
+export function captureError(error: unknown) {
   console.error(error);
   Sentry.captureException(error);
 }

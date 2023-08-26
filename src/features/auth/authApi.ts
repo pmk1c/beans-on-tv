@@ -1,13 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {Platform} from 'react-native';
 
-import Token, {fromOAuthToken} from './Token';
-
-export interface OAuthToken {
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-}
+import Token from './Token';
 
 const authApi = createApi({
   reducerPath: 'authApi',
@@ -30,16 +24,15 @@ const authApi = createApi({
         url: 'code-token-exchange-read',
         body: {code},
       }),
-      transformResponse: (response: {token?: OAuthToken}) =>
-        response.token ? fromOAuthToken(response.token) : null,
+      transformResponse: (response: {token: Token | null}) => response.token,
     }),
     refreshToken: build.mutation<Token, Token>({
       query: token => ({
         method: 'POST',
         url: 'token-refresh',
-        body: {refreshToken: token.refreshToken},
+        body: {token},
       }),
-      transformResponse: (token: OAuthToken) => fromOAuthToken(token),
+      transformResponse: (response: {token: Token}) => response.token,
     }),
   }),
 });

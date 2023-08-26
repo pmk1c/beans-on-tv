@@ -3,7 +3,7 @@ import * as TokenStorage from './TokenStorage';
 import {RootState} from '../../app/store';
 import Token, {isValid} from './Token';
 import authApi from './authApi';
-import capture from '../../app/capture';
+import capture, {captureError} from '../../app/capture';
 
 const authTokenSlice = createSlice({
   name: 'authToken',
@@ -34,7 +34,8 @@ export const initializeAuthToken = createAsyncThunk(
     try {
       const token = await TokenStorage.getToken();
       if (!token) {
-        throw new Error('No token');
+        dispatch(resetAuthToken());
+        return;
       }
 
       if (isValid(token)) {
@@ -45,8 +46,9 @@ export const initializeAuthToken = createAsyncThunk(
         ).unwrap();
         capture(dispatch(setAuthToken(newToken)));
       }
-    } catch {
-      dispatch(authTokenSlice.actions.resetAuthToken());
+    } catch (error) {
+      captureError(error);
+      capture(dispatch(resetAuthToken()));
     }
   },
 );

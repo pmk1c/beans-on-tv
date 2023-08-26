@@ -53,7 +53,7 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(rbtvApiBase.middleware)
       .concat(() => next => action => {
-        if (false && __DEV__) {
+        if (__DEV__) {
           console.debug(JSON.stringify(action));
         }
         next(action);
