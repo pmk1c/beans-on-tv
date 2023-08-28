@@ -4,6 +4,8 @@ import {AppState} from 'react-native';
 import {useLazyGetMediaEpisodePreviewNewestQuery} from '../../app/rbtvApi';
 import Page from '../../app/types/Page';
 import Episode from '../../app/types/Episode';
+import {useSelector} from 'react-redux';
+import {selectAuthToken} from '../auth/authTokenSlice';
 
 const limit = 48;
 
@@ -51,7 +53,10 @@ function useLatestVideosScreen() {
     () => subscription.remove();
   }, [loadPage]);
 
-  const episodes = Object.values(pages).flatMap(page => page?.data ?? []);
+  const authToken = useSelector(selectAuthToken);
+  const episodes = Object.values(pages)
+    .flatMap(page => page?.data ?? [])
+    .filter(episode => !authToken?.appReview || episode.videoTokens.rbsc);
 
   const loadNextPage = useCallback(() => {
     const pageNumber = Object.keys(pages).length;

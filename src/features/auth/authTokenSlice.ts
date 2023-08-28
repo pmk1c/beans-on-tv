@@ -33,19 +33,20 @@ export const initializeAuthToken = createAsyncThunk(
   async (_, {dispatch}) => {
     try {
       const token = await TokenStorage.getToken();
-      if (!token) {
-        dispatch(resetAuthToken());
+      if (!token || (!isValid(token) && !token.refreshToken)) {
+        capture(dispatch(resetAuthToken()));
         return;
       }
 
-      if (isValid(token)) {
-        dispatch(authTokenSlice.actions.setAuthToken(token));
-      } else {
+      if (!isValid(token)) {
         const newToken = await dispatch(
           authApi.endpoints.refreshToken.initiate(token),
         ).unwrap();
         capture(dispatch(setAuthToken(newToken)));
+        return;
       }
+
+      capture(dispatch(setAuthToken(token)));
     } catch (error) {
       captureError(error);
       capture(dispatch(resetAuthToken()));

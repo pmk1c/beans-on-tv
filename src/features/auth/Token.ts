@@ -1,7 +1,8 @@
 type Token = {
   accessToken: string;
   validUntil: string;
-  refreshToken: string;
+  refreshToken: string | null;
+  appReview: boolean;
 };
 
 function isToken(token: unknown): token is Token {
@@ -9,16 +10,21 @@ function isToken(token: unknown): token is Token {
     typeof token === 'object' &&
     token !== null &&
     'accessToken' in token &&
-    'validUntil' in token &&
-    'refreshToken' in token &&
     typeof token.accessToken === 'string' &&
+    'validUntil' in token &&
     typeof token.validUntil === 'string' &&
-    typeof token.refreshToken === 'string'
+    'refreshToken' in token &&
+    (typeof token.refreshToken === 'string' || token.refreshToken === null) &&
+    'appReview' in token &&
+    typeof token.appReview === 'boolean'
   );
 }
 
 export function fromJSON(json: string) {
-  const token = JSON.parse(json);
+  const token = {
+    appReview: false,
+    ...JSON.parse(json),
+  };
   if (!isToken(token)) {
     throw new Error('Invalid token: ' + JSON.stringify(token));
   }
