@@ -43,6 +43,7 @@ platform :ios do
     deliver(
       build_number: build_number,
       skip_binary_upload: true,
+      skip_metadata: true,
       skip_screenshots: true,
       run_precheck_before_submit: false,
       force: true,
