@@ -12,16 +12,25 @@ const authApi = createApi({
           android: 'http://10.0.2.2:5173/api',
         })
       : 'https://rbtv.bmind.de/api',
+    prepareHeaders: headers => {
+      headers.set('Content-Type', 'application/json');
+
+      return headers;
+    },
   }),
   endpoints: build => ({
     createCode: build.mutation<string, void>({
-      query: () => ({method: 'POST', url: 'code-token-exchange-create'}),
+      query: () => ({
+        method: 'POST',
+        url: '/code-token-exchange-create',
+        body: {},
+      }),
       transformResponse: (response: {code: string}) => response.code,
     }),
     getToken: build.mutation<Token | null, string>({
       query: code => ({
         method: 'POST',
-        url: 'code-token-exchange-read',
+        url: '/code-token-exchange-read',
         body: {code},
       }),
       transformResponse: (response: {token: Token | null}) => response.token,
@@ -29,7 +38,7 @@ const authApi = createApi({
     refreshToken: build.mutation<Token, Token>({
       query: token => ({
         method: 'POST',
-        url: 'token-refresh',
+        url: '/token-refresh',
         body: {token},
       }),
       transformResponse: (response: {token: Token}) => response.token,
