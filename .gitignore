@@ -70,3 +70,5 @@ fastlane/*.p8
 fastlane/*.json
 ios/sentry.properties
 *.app.dSYM.zip
+
+.expo

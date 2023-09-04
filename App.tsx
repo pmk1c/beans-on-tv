@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux';
-import {store, useAppDispatch} from './app/store';
+import {store, useAppDispatch} from './src/app/store';
 import {
   NavigationContainer,
   NavigationContainerRef,
 } from '@react-navigation/native';
-import StackNavigator from './app/navigation/StackNavigator';
+import StackNavigator from './src/app/navigation/StackNavigator';
 import * as Sentry from '@sentry/react-native';
-import {AppState} from 'react-native';
-import authApi from './features/auth/authApi';
-import capture from './app/capture';
-import {initializeAuthToken} from './features/auth/authTokenSlice';
+import capture from './src/app/capture';
+import {initializeAuthToken} from './src/features/auth/authTokenSlice';
 import {setDefaultOptions} from 'date-fns';
 import {de} from 'date-fns/locale';
 

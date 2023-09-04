@@ -31,7 +31,7 @@ function usePollAuthTokenStep() {
   const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch<AppDispatch>();
 
-  const tokenPollingTimeout = useRef<number>();
+  const tokenPollingTimeout = useRef<NodeJS.Timeout>();
   const stopPolling = () => {
     if (tokenPollingTimeout.current) {
       clearTimeout(tokenPollingTimeout.current);

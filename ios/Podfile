@@ -16,6 +16,28 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+target "RBSCVCA" do
+  config = use_native_modules!
+  platform :ios, min_ios_version_supported
+
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    :hermes_enabled => flags[:hermes_enabled],
+    :fabric_enabled => flags[:fabric_enabled],
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/..",
+  )
+
+  target "RBSCVCATests" do
+    inherit! :complete
+    # Pods for testing
+  end
+end
+
 target "RBSCVCA-tvOS" do
   config = use_native_modules!
   platform :tvos, min_ios_version_supported
@@ -31,6 +53,11 @@ target "RBSCVCA-tvOS" do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/..",
   )
+
+  target "RBSCVCA-tvOSTests" do
+    inherit! :complete
+    # Pods for testing
+  end
 end
 
 post_install do |installer|
@@ -42,10 +69,4 @@ post_install do |installer|
     :mac_catalyst_enabled => false,
   )
   __apply_Xcode_12_5_M1_post_install_workaround(installer)
-
-  %x(
-    if ! patch -R -p0 -s -f --dry-run Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/tvos-arm64/hermes.framework/Info.plist < hermes-engine.patch; then
-      patch -p0 Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework/tvos-arm64/hermes.framework/Info.plist < hermes-engine.patch
-    fi
-  )
 end
