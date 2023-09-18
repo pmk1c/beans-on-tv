@@ -428,7 +428,7 @@ PODS:
     - SDWebImageWebPCoder (~> 0.8.4)
   - RNKeychain (8.1.2):
     - React-Core
-  - RNReanimated (3.4.2):
+  - RNReanimated (3.5.2):
     - DoubleConversion
     - FBLazyVector
     - glog
@@ -678,7 +678,7 @@ SPEC CHECKSUMS:
   ReactCommon: 4c6dfd252dfdf932c6b30b20a11d3ef3a1fa1a5d
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNKeychain: a65256b6ca6ba6976132cc4124b238a5b13b3d9c
-  RNReanimated: 611549c48536f7c9802adcc0c48a9f7053d29323
+  RNReanimated: 55ad6c7128b39f99ee9706774cb96f1117883802
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   RNSentry: 0a1daa8ee81e2776f977ae8c66e67c8d85587828
   RNVectorIcons: 8b5bb0fa61d54cd2020af4f24a51841ce365c7e9
