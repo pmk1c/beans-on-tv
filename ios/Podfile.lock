@@ -15,17 +15,17 @@ PODS:
     - hermes-engine/Pre-built (= 0.72.4-0)
   - hermes-engine/Pre-built (0.72.4-0)
   - libevent (2.1.12.1)
-  - libwebp (1.3.1):
-    - libwebp/demux (= 1.3.1)
-    - libwebp/mux (= 1.3.1)
-    - libwebp/sharpyuv (= 1.3.1)
-    - libwebp/webp (= 1.3.1)
-  - libwebp/demux (1.3.1):
+  - libwebp (1.3.2):
+    - libwebp/demux (= 1.3.2)
+    - libwebp/mux (= 1.3.2)
+    - libwebp/sharpyuv (= 1.3.2)
+    - libwebp/webp (= 1.3.2)
+  - libwebp/demux (1.3.2):
     - libwebp/webp
-  - libwebp/mux (1.3.1):
+  - libwebp/mux (1.3.2):
     - libwebp/demux
-  - libwebp/sharpyuv (1.3.1)
-  - libwebp/webp (1.3.1):
+  - libwebp/sharpyuv (1.3.2)
+  - libwebp/webp (1.3.2):
     - libwebp/sharpyuv
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -642,7 +642,7 @@ SPEC CHECKSUMS:
   glog: a2ded9bf28f0cb2fce90ad21eb419299a500ff6c
   hermes-engine: 3315cf2e6b3de8115dee7b079f525e3991f5327d
   libevent: a6d75fcd7be07cbc5070300ea8dbc8d55dfab88e
-  libwebp: 33dc822fbbf4503668d09f7885bbfedc76c45e96
+  libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   RCT-Folly: 136e9161a833a162fe3e8b647098759aae227036
   RCTRequired: c6a944c3e67e47a4817dddeee251191f52989d7c
   RCTTypeSafety: 8c7da3fb6238735bea3141f6a965d879be4fb7a6
