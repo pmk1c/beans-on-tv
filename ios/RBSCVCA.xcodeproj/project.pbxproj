@@ -297,7 +297,7 @@
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
 			name = "RBSCVCA-tvOSTests";
-			productName = "RBSCVCA-tvOSTests";
+			productName = "Beans on TV";
 			productReference = 2D02E4901E0B4A5D006451C7 /* RBSCVCA-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
