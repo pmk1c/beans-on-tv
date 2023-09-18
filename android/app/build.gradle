@@ -86,7 +86,7 @@ android {
         applicationId "de.bmind.rbscvca"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 23
+        versionCode 26
         versionName "1.0"
     }
     signingConfigs {
