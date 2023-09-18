@@ -83,4 +83,12 @@ platform :android do
       skip_upload_aab: true,
     )
   end
+
+  lane :app_icon do
+    android_appicon(
+      appicon_image_file: "fastlane/images/rbtv-cornerbug-1024.png",
+      appicon_icon_types: [:launcher],
+      appicon_path: "android/app/src/main/res/mipmap",
+    )
+  end
 end

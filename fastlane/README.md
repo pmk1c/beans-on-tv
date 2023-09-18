@@ -68,6 +68,14 @@ Publish the latest build to open testing
 
 Publish the latest build to production
 
+### android app_icon
+
+```sh
+[bundle exec] fastlane android app_icon
+```
+
+
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
