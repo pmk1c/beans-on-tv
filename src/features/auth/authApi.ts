@@ -6,7 +6,7 @@ import Token from './Token';
 const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: __DEV__
+    baseUrl: process.env.USE_AUTH_DEV_SERVER
       ? Platform.select({
           ios: 'http://localhost:5173/api',
           android: 'http://10.0.2.2:5173/api',
