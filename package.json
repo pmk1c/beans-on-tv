@@ -10,8 +10,8 @@
     "tvos": "expo run:ios --scheme RBSCVCA-tvOS --device \"Apple TV\"",
     "lint": "eslint .",
     "test": "jest",
-    "codegen": "npx @rtk-query/codegen-openapi rbtv-api/codegen-config.json && prettier --write **/*.generated.ts",
-    "clean": "npx react-native-clean-project"
+    "codegen": "pnpm dlx @rtk-query/codegen-openapi rbtv-api/codegen-config.json && prettier --write **/*.generated.ts",
+    "clean": "pnpm dlx react-native-clean-project"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",
@@ -25,9 +25,9 @@
     "react-native-fast-image": "^8.6.3",
     "react-native-keychain": "^8.1.2",
     "react-native-pixel-perfect": "^1.0.2",
-    "react-native-reanimated": "^3.5.4",
-    "react-native-safe-area-context": "^4.7.4",
-    "react-native-screens": "^3.27.0",
+    "react-native-reanimated": "^3.6.1",
+    "react-native-safe-area-context": "^4.8.2",
+    "react-native-screens": "^3.29.0",
     "react-native-vector-icons": "^10.0.2",
     "react-native-video": "6.0.0-beta.0",
     "react-redux": "^8.1.3"
