@@ -79,9 +79,8 @@ apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 
 android {
     ndkVersion rootProject.ext.ndkVersion
-
     buildToolsVersion rootProject.ext.buildToolsVersion
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdkVersion
 
     namespace "de.bmind.rbscvca"
     defaultConfig {
@@ -119,12 +118,12 @@ android {
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
-
-    // For the TV repo, the plugin does not set the version correctly, so we add the version
-    // in gradle.properties for now
-    // We also use the io.github.react-native-tvos group for the react-android and hermes-android dependencies
+    // For the TV repo,
+    // we use the io.github.react-native-tvos group for the react-android and hermes-android dependencies
 
     implementation("io.github.react-native-tvos:react-android")
+    // No Flipper for TV
+    // implementation("com.facebook.react:flipper-integration")
 
     if (hermesEnabled.toBoolean()) {
         implementation("io.github.react-native-tvos:hermes-android")
