@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "RBSCVCA-tvOS.app"
+               BuildableName = "Beans on TV.app"
                BlueprintName = "RBSCVCA-tvOS"
                ReferencedContainer = "container:RBSCVCA.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "RBSCVCA-tvOSTests.xctest"
+               BuildableName = "Beans on TV.xctest"
                BlueprintName = "RBSCVCA-tvOSTests"
                ReferencedContainer = "container:RBSCVCA.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "RBSCVCA-tvOS.app"
+            BuildableName = "Beans on TV.app"
             BlueprintName = "RBSCVCA-tvOS"
             ReferencedContainer = "container:RBSCVCA.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "RBSCVCA-tvOS.app"
+            BuildableName = "Beans on TV.app"
             BlueprintName = "RBSCVCA-tvOS"
             ReferencedContainer = "container:RBSCVCA.xcodeproj">
          </BuildableReference>
