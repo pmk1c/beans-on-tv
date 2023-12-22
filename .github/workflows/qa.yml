@@ -13,6 +13,15 @@ jobs:
       - uses: ./.github/actions/setup-node
       - run: pnpm eslint
 
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - run: pnpm format:check
+
   typescript:
     name: TypeScript
     runs-on: ubuntu-latest

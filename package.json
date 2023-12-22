@@ -8,6 +8,8 @@
     "start": "react-native start",
     "tvos": "expo run:ios --scheme RBSCVCA-tvOS --device \"Apple TV\"",
     "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "jest",
     "codegen": "pnpm dlx @rtk-query/codegen-openapi rbtv-api/codegen-config.json && prettier --write **/*.generated.ts",
     "clean": "pnpm dlx react-native-clean-project"
