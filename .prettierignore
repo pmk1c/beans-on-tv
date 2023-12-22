@@ -1,0 +1,6 @@
+.*
+android/
+fastlane/
+ios/
+vendor/
+pnpm-lock.yaml
