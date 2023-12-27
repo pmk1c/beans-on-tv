@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@8.12.1",
   "scripts": {
-    "androidtv": "react-native run-android --device \"Android TV\"",
+    "android": "react-native run-android --list-devices",
     "start": "react-native start",
     "tvos": "expo run:ios --scheme RBSCVCA-tvOS --device \"Apple TV\"",
     "lint": "eslint .",

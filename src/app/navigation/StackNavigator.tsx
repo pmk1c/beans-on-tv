@@ -6,6 +6,8 @@ import {
 import HomeScreen from '../HomeScreen';
 import PlayerScreen from '../../features/player/PlayerScreen';
 import Episode from '../types/Episode';
+import {StackNavigationState} from '@react-navigation/native';
+import {TVEventControl} from 'react-native';
 
 export type StackParamList = {
   Home: undefined;
@@ -19,6 +21,20 @@ const Stack = createNativeStackNavigator<StackParamList>();
 function StackNavigator() {
   return (
     <Stack.Navigator
+      screenListeners={{
+        state: e => {
+          const data = e.data as {
+            state: StackNavigationState<StackParamList> | undefined;
+          };
+
+          // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
+          if (data.state?.routes.length === 1) {
+            TVEventControl.disableTVMenuKey();
+          } else {
+            TVEventControl.enableTVMenuKey();
+          }
+        },
+      }}
       screenOptions={{
         headerShown: false,
       }}>
