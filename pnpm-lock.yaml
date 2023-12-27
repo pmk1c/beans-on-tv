@@ -48,8 +48,8 @@ dependencies:
     specifier: ^10.0.3
     version: 10.0.3
   react-native-video:
-    specifier: 6.0.0-beta.0
-    version: 6.0.0-beta.0(react-native-tvos@0.73.1-1)(react@18.2.0)
+    specifier: 6.0.0-beta.3
+    version: 6.0.0-beta.3(react-native-tvos@0.73.1-1)(react@18.2.0)
   react-redux:
     specifier: ^8.1.3
     version: 8.1.3(@types/react@18.2.45)(react-native-tvos@0.73.1-1)(react@18.2.0)(redux@4.2.1)
@@ -8045,8 +8045,8 @@ packages:
       yargs: 16.2.0
     dev: false
 
-  /react-native-video@6.0.0-beta.0(react-native-tvos@0.73.1-1)(react@18.2.0):
-    resolution: {integrity: sha512-PZrwrbVKvIyDdRImV76T75/Cmilx5TC1H78D5/rPOsiE/LKabWWXUDNZeNx8hdwcmdPxtGHK77BdLq8S1qYAmQ==}
+  /react-native-video@6.0.0-beta.3(react-native-tvos@0.73.1-1)(react@18.2.0):
+    resolution: {integrity: sha512-WCGhl9drOr670En1taM7YF0r8obSjirnBabBaz+c0n2ZWd6EJUezI2+OtRH+/EQdtpI6hR52nTMIl42cQITEOw==}
     peerDependencies:
       react: '*'
       react-native: '*'
