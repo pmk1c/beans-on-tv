@@ -9,7 +9,7 @@ module.exports = {
       '<rootDir>/__mocks__/asset.ts',
   },
   randomize: true,
-  setupFilesAfterEnv: ['./__tests__/setup/failOnConsole.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest/setup/failOnConsole.ts'],
   transformIgnorePatterns: [
     '<rootDir>/node_modules/(?!@react-native|react-native|react-native-pixel-perfect)',
   ],

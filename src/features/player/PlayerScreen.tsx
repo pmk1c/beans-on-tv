@@ -4,7 +4,7 @@ import {
   StackNavigationProp,
   StackParamList,
 } from '../../app/navigation/StackNavigator';
-import Video from 'react-native-video';
+import Video, {ResizeMode} from 'react-native-video';
 import {ImageBackground, Linking, Platform, Text, View} from 'react-native';
 import capture from '../../app/capture';
 import color from '../../app/styles/tokens/color';
@@ -106,7 +106,7 @@ function PlayerScreen(): JSX.Element {
       }}
       poster={episode.thumbnailUrls.large}
       controls
-      resizeMode="contain"
+      resizeMode={ResizeMode.CONTAIN}
     />
   );
 }
