@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="#CC0E1118"
-    android:layoutDirection="ltr"
+    android:background="#E60E1118"
     android:orientation="vertical">
 
     <LinearLayout
@@ -45,51 +44,49 @@
             android:id="@+id/exo_next"
             style="@style/ExoMediaButton.Next" />
 
+        <ImageButton
+            android:id="@+id/exo_fullscreen"
+            style="@style/ExoMediaButton.FullScreen"
+            android:layout_height="30dp"
+            android:layout_margin="4dp"
+            android:scaleType="fitCenter" />
+
     </LinearLayout>
+
+    <androidx.media3.ui.DefaultTimeBar
+        android:id="@+id/exo_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="4dp">
 
         <TextView
             android:id="@+id/exo_position"
-            android:layout_width="48sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="-4dp"
+            android:layout_weight="1"
             android:fontFamily="@font/rubik_medium"
             android:text="0:00:00"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
-
-        <androidx.media3.ui.DefaultTimeBar
-            android:id="@+id/exo_progress"
-            android:layout_width="0dp"
-            android:layout_height="26dp"
-            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/exo_duration"
-            android:layout_width="48sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_weight="1"
             android:fontFamily="@font/rubik_medium"
-            android:includeFontPadding="false"
+            android:gravity="end"
             android:text="0:00:00"
-            android:textAlignment="textStart"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
 
-        <ImageButton
-            android:id="@+id/exo_fullscreen"
-            style="@style/ExoMediaButton.FullScreen"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_margin="4dp"
-            android:scaleType="fitCenter" />
     </LinearLayout>
 
 </LinearLayout>
