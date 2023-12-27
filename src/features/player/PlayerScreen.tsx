@@ -107,6 +107,7 @@ function PlayerScreen(): JSX.Element {
       poster={episode.thumbnailUrls.large}
       controls
       resizeMode={ResizeMode.CONTAIN}
+      useTextureView={false}
     />
   );
 }
