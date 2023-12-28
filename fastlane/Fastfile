@@ -67,6 +67,7 @@ platform :android do
     version_code = android_get_version_code(gradle_file: "android/app/build.gradle")
     supply(
       version_code: version_code,
+      track: "internal",
       track_promote_to: "beta",
       skip_upload_apk: true,
       skip_upload_aab: true,
@@ -78,6 +79,7 @@ platform :android do
     version_code = android_get_version_code(gradle_file: "android/app/build.gradle")
     supply(
       version_code: version_code,
+      track: "beta",
       track_promote_to: "production",
       skip_upload_apk: true,
       skip_upload_aab: true,
