@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Rocket Beans TV API",
+  "type": "collection",
+  "presets": {
+    "requestType": "http",
+    "requestUrl": "{{baseUrl}}"
+  }
+}

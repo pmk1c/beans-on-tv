@@ -1,5 +1,6 @@
 .*
 android/
+doc/rbtv-api
 fastlane/
 ios/
 vendor/

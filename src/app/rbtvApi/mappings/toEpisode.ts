@@ -1,5 +1,5 @@
 import Episode from '../../types/Episode';
-import {GetMediaEpisodePreviewNewestApiResponse} from '../rbtvApiWithEndpoints.generated';
+import {GetMediaEpisodePreviewNewestApiResponse} from '../rbtvApi';
 
 type EpisodeResponse =
   GetMediaEpisodePreviewNewestApiResponse['data']['episodes'][0];

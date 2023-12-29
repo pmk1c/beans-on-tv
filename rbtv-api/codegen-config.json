@@ -1,7 +1,0 @@
-{
-  "schemaFile": "./openapi.yml",
-  "apiFile": "../src/app/rbtvApi/rbtvApiBase.ts",
-  "apiImport": "rbtvApiBase",
-  "outputFile": "../src/app/rbtvApi/rbtvApiWithEndpoints.generated.ts",
-  "exportName": "rbtvApiWithEndpoints"
-}

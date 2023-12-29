@@ -1,2 +1,1 @@
-export * from './rbtvApiEnhanced';
-export {rbtvApiBase} from './rbtvApiBase';
+export * from './rbtvApi';

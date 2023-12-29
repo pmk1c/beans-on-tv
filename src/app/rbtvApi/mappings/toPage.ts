@@ -1,6 +1,6 @@
 import Episode from '../../types/Episode';
 import Page from '../../types/Page';
-import {GetMediaEpisodePreviewNewestApiResponse} from '../rbtvApiWithEndpoints.generated';
+import {GetMediaEpisodePreviewNewestApiResponse} from '../rbtvApi';
 import toEpisode from './toEpisode';
 
 const toPage = (

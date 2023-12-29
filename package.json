@@ -11,8 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "jest",
-    "codegen": "pnpm dlx @rtk-query/codegen-openapi rbtv-api/codegen-config.json && prettier --write **/*.generated.ts",
-    "clean": "pnpm dlx react-native-clean-project"
+    "clean": "pnpm dlx react-native-clean-project",
+    "all": "pnpm tsc; pnpm lint; pnpm format:check; pnpm test"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.9",

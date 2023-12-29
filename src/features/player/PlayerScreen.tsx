@@ -11,7 +11,7 @@ import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import fontPresets from '../../app/styles/tokens/fontPresets';
-import {useLazyGetRbscVideoTokenByVideoTokenQuery} from '../../app/rbtvApi/rbtvApiEnhanced';
+import {useLazyGetRbscVideoTokenByVideoTokenQuery} from '../../app/rbtvApi';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 

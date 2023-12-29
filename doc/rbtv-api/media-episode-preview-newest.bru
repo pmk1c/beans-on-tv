@@ -1,0 +1,28 @@
+meta {
+  name: media-episode-preview-newest
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/media/episode/preview/newest
+  body: none
+  auth: none
+}
+
+query {
+  ~offset: 
+  ~limit: 
+  ~order: 
+}
+
+auth:bearer {
+  token: {{bearerToken}}
+}
+
+script:post-response {
+  const rbscTokens = res.body.data.episodes.flatMap(e => e.tokens.filter(t => t.type === "rbsc"));
+  const randomRbscToken = rbscTokens[Math.floor(Math.random() * rbscTokens.length)];
+  
+  bru.setEnvVar(`randomRbscToken`, randomRbscToken.token);
+}

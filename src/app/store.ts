@@ -4,7 +4,7 @@ import {setupListeners} from '@reduxjs/toolkit/dist/query';
 import authTokenSlice from '../features/auth/authTokenSlice';
 import * as Sentry from '@sentry/react-native';
 import {useDispatch} from 'react-redux';
-import {rbtvApiBase} from './rbtvApi';
+import {rbtvApi} from './rbtvApi';
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: action => {
@@ -30,8 +30,8 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
         getToken: '[Filtered]',
         refreshToken: '[Filtered]',
       },
-      [rbtvApiBase.reducerPath]: {
-        ...state[rbtvApiBase.reducerPath],
+      [rbtvApi.reducerPath]: {
+        ...state[rbtvApi.reducerPath],
         getRbscVideoToken: '[Filtered]',
       },
     };
@@ -42,7 +42,7 @@ export const store = configureStore({
   reducer: {
     authToken: authTokenSlice,
     [authApi.reducerPath]: authApi.reducer,
-    [rbtvApiBase.reducerPath]: rbtvApiBase.reducer,
+    [rbtvApi.reducerPath]: rbtvApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -51,7 +51,7 @@ export const store = configureStore({
       },
     })
       .concat(authApi.middleware)
-      .concat(rbtvApiBase.middleware)
+      .concat(rbtvApi.middleware)
       .concat(() => next => action => {
         if (__DEV__) {
           console.debug(JSON.stringify(action));
