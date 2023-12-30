@@ -10,6 +10,7 @@ import {authTokenSlice} from '../../features/auth/authTokenSlice';
 import * as Sentry from '@sentry/react-native';
 import {useDispatch} from 'react-redux';
 import {rbtvApi} from '.././rbtvApi';
+import {rbtvSocketApiSlice} from '../rbtvApi/rbtvSocketApiSlice';
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: action => {
@@ -43,7 +44,12 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   },
 }) as StoreEnhancer;
 
-const reducer = combineSlices(authApi, rbtvApi, authTokenSlice);
+const reducer = combineSlices(
+  authApi,
+  rbtvApi,
+  authTokenSlice,
+  rbtvSocketApiSlice,
+);
 
 export const store = configureStore({
   reducer,

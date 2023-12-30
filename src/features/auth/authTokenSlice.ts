@@ -2,6 +2,8 @@ import * as TokenStorage from './TokenStorage';
 import Token, {isValid} from './Token';
 import authApi from './authApi';
 import {createSliceWithThunks} from '../../app/redux/createSliceWithThunks';
+import {selectSocket} from '../../app/rbtvApi/rbtvSocketApiSlice';
+import {RootState} from '../../app/redux/store';
 
 export const authTokenSlice = createSliceWithThunks({
   name: 'authToken',
@@ -11,7 +13,7 @@ export const authTokenSlice = createSliceWithThunks({
   },
   reducers: create => ({
     initializeAuthToken: create.asyncThunk<undefined, Token | undefined>(
-      async (_, {dispatch}) => {
+      async (_, {dispatch, getState}) => {
         const token = await TokenStorage.getToken();
         if (!token || (!isValid(token) && !token.refreshToken)) {
           return;
@@ -22,6 +24,11 @@ export const authTokenSlice = createSliceWithThunks({
             authApi.endpoints.refreshToken.initiate(token),
           ).unwrap();
         }
+
+        // TODO move this into its own slice, since it does not belong here
+        const socket = selectSocket(getState() as RootState);
+        socket.emitAuthentication(token.accessToken);
+        socket.onAuthenticationResult(() => {});
 
         return token;
       },
@@ -38,8 +45,12 @@ export const authTokenSlice = createSliceWithThunks({
       },
     ),
     setAuthToken: create.asyncThunk(
-      async (token: Token) => {
+      async (token: Token, {getState}) => {
         await TokenStorage.setToken(token);
+
+        // TODO move this into its own slice, since it does not belong here
+        const socket = selectSocket(getState() as RootState);
+        socket.emitAuthentication(token.accessToken);
       },
       {
         pending: (state, action) => {

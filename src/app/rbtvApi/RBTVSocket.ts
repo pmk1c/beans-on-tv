@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import {SocketMessage, SocketMessagePayload} from './types';
+import app from '../../../app.json';
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;
@@ -12,15 +13,24 @@ class RBTVSocket {
     });
   }
 
-  emit<
-    M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
-  >(message: M, payload: P) {
-    console.debug('Socket message sent', message, payload);
-    this.socket.emit(message, payload);
+  onAuthenticationResult(callback: (success: boolean) => void) {
+    this.on('AC_AUTHENTICATION_RESULT', ({result}) => {
+      callback(result);
+    });
   }
 
-  on<
+  onAuthenticationRenewRequest(callback: () => void) {
+    this.on('AC_AUTHENTICATION_RENEW_TOKEN_REQ', callback);
+  }
+
+  emitAuthentication(token: string) {
+    this.emit('CA_AUTHENTICATION', {
+      appName: `${app.displayName}/${app.version}`,
+      token,
+    });
+  }
+
+  private on<
     M extends SocketMessage = SocketMessage,
     P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
   >(message: M, callback: (payload: SocketMessagePayload<M>) => void) {
@@ -28,6 +38,14 @@ class RBTVSocket {
       console.debug('Socket message received', message, payload);
       callback(payload);
     });
+  }
+
+  private emit<
+    M extends SocketMessage = SocketMessage,
+    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
+  >(message: M, payload: P) {
+    console.debug('Socket message sent', message, payload);
+    this.socket.emit(message, payload);
   }
 }
 

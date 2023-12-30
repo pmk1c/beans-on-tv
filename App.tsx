@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import {store, useAppDispatch} from './src/app/redux/store';
 import {
@@ -33,8 +33,15 @@ function App(): JSX.Element {
     React.useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
 
   const dispatch = useAppDispatch();
-  capture(dispatch(initializeAuthToken()));
-  capture(dispatch(initializeSocket()));
+
+  useEffect(() => {
+    capture(
+      (async () => {
+        await dispatch(initializeSocket());
+        await dispatch(initializeAuthToken());
+      })(),
+    );
+  }, [dispatch]);
 
   return (
     <NavigationContainer
