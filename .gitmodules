@@ -1,0 +1,3 @@
+[submodule "doc/rbtv-apidoc"]
+	path = doc/rbtv-api/official
+	url = https://github.com/rocketbeans/rbtv-apidoc

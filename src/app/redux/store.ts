@@ -1,4 +1,9 @@
-import {StoreEnhancer, combineSlices, configureStore} from '@reduxjs/toolkit';
+import {
+  StoreEnhancer,
+  combineSlices,
+  configureStore,
+  isAction,
+} from '@reduxjs/toolkit';
 import authApi from '../../features/auth/authApi';
 import {setupListeners} from '@reduxjs/toolkit/query/react';
 import {authTokenSlice} from '../../features/auth/authTokenSlice';
@@ -51,9 +56,14 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
       .concat(() => next => action => {
-        if (__DEV__) {
-          console.debug(JSON.stringify(action));
+        if (__DEV__ && isAction(action)) {
+          if ('payload' in action) {
+            console.debug('Redux action', action.type, action.payload);
+          } else {
+            console.debug('Redux action', action.type);
+          }
         }
+
         next(action);
       }),
   enhancers: getDefaultEnhancers =>

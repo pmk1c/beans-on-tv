@@ -1,9 +1,19 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {selectAuthToken} from '../../features/auth/authTokenSlice';
-import {RootState} from '../store';
+import {RootState} from '../redux/store';
 import toPage from './mappings/toPage';
 import Page from '../types/Page';
 import Episode from '../types/Episode';
+
+type GetFrontendInitApiResponse = {
+  success: boolean;
+  data: {
+    websocket: {
+      url: string;
+      path: string;
+    };
+  };
+};
 
 export type GetMediaEpisodePreviewNewestApiResponse = {
   success: boolean;
@@ -68,6 +78,9 @@ export const rbtvApi = createApi({
     },
   }),
   endpoints: build => ({
+    getFrontendInit: build.query<GetFrontendInitApiResponse, void>({
+      query: () => ({url: '/frontend/init'}),
+    }),
     getMediaEpisodePreviewNewest: build.query<
       Page<Episode>,
       GetMediaEpisodePreviewNewestApiArg

@@ -30,7 +30,8 @@
     "react-native-screens": "^3.29.0",
     "react-native-vector-icons": "^10.0.3",
     "react-native-video": "6.0.0-beta.3",
-    "react-redux": "^9.0.4"
+    "react-redux": "^9.0.4",
+    "socket.io-client": "<3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
@@ -45,6 +46,7 @@
     "@types/react": "^18.2.45",
     "@types/react-native-vector-icons": "^6.4.18",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/socket.io-client": "<3",
     "babel-jest": "^29.6.3",
     "eslint": "^8.56.0",
     "expo": "^49.0.21",

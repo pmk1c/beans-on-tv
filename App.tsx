@@ -11,6 +11,7 @@ import capture from './src/app/capture';
 import {initializeAuthToken} from './src/features/auth/authTokenSlice';
 import {setDefaultOptions} from 'date-fns';
 import {de} from 'date-fns/locale';
+import {initializeSocket} from './src/app/rbtvApi/rbtvSocketApiSlice';
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -33,6 +34,7 @@ function App(): JSX.Element {
 
   const dispatch = useAppDispatch();
   capture(dispatch(initializeAuthToken()));
+  capture(dispatch(initializeSocket()));
 
   return (
     <NavigationContainer
