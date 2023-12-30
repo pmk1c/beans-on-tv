@@ -3,6 +3,7 @@ import {
   AC_AUTHENTICATION_REQ,
   AC_AUTHENTICATION_RESULT,
   CA_AUTHENTICATION,
+  CA_MEDIA_EPISODEPROGRESS_UPDATE,
   socketMessageTypes,
 } from '../../../doc/rbtv-api/official';
 
@@ -15,6 +16,7 @@ type SocketMessagePayloads = {
   AC_PING: {id: number; tick: number};
   CA_AUTHENTICATION: CA_AUTHENTICATION;
   CA_PING: {id: number; tick: number};
+  CA_MEDIA_EPISODEPROGRESS_UPDATE: CA_MEDIA_EPISODEPROGRESS_UPDATE;
 } & {
   [key in SocketMessage]: unknown;
 };

@@ -8,7 +8,7 @@ import authApi from '../../features/auth/authApi';
 import {setupListeners} from '@reduxjs/toolkit/query/react';
 import {authTokenSlice} from '../../features/auth/authTokenSlice';
 import * as Sentry from '@sentry/react-native';
-import {useDispatch} from 'react-redux';
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {rbtvApi} from '.././rbtvApi';
 import {rbtvSocketApiSlice} from '../rbtvApi/rbtvSocketApiSlice';
 
@@ -81,3 +81,4 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

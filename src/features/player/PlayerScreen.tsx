@@ -12,6 +12,8 @@ import spacing from '../../app/styles/tokens/spacing';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import fontPresets from '../../app/styles/tokens/fontPresets';
 import {useLazyGetRbscVideoTokenByVideoTokenQuery} from '../../app/rbtvApi';
+import {useAppSelector} from '../../app/redux/store';
+import {selectSocket} from '../../app/rbtvApi/rbtvSocketApiSlice';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -63,6 +65,8 @@ function PlayerScreen(): JSX.Element {
     );
   }, [getRbscVideoToken, navigation, episode]);
 
+  const socket = useAppSelector(selectSocket);
+
   if (!signedToken) {
     return (
       <ImageBackground
@@ -108,6 +112,10 @@ function PlayerScreen(): JSX.Element {
       controls
       resizeMode={ResizeMode.CONTAIN}
       useTextureView={false}
+      progressUpdateInterval={1000}
+      onProgress={e => {
+        socket.emitEpisodeProgress(episode, e.currentTime);
+      }}
     />
   );
 }

@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import {SocketMessage, SocketMessagePayload} from './types';
 import app from '../../../app.json';
+import Episode from '../types/Episode';
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;
@@ -27,6 +28,18 @@ class RBTVSocket {
     this.emit('CA_AUTHENTICATION', {
       appName: `${app.displayName}/${app.version}`,
       token,
+    });
+  }
+
+  emitEpisodeProgress(episode: Episode, progress: number) {
+    if (!episode.videoTokens.rbsc?.id) {
+      return;
+    }
+
+    this.emit('CA_MEDIA_EPISODEPROGRESS_UPDATE', {
+      episodeId: episode.id,
+      tokenId: episode.videoTokens.rbsc?.id,
+      progress,
     });
   }
 
