@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {store, useAppDispatch} from './src/app/store';
+import {store, useAppDispatch} from './src/app/redux/store';
 import {
   NavigationContainer,
   NavigationContainerRef,

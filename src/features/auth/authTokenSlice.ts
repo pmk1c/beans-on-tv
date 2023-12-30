@@ -1,77 +1,73 @@
-import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import * as TokenStorage from './TokenStorage';
-import {RootState} from '../../app/store';
 import Token, {isValid} from './Token';
 import authApi from './authApi';
-import capture, {captureError} from '../../app/capture';
+import {createSliceWithThunks} from '../../app/redux/createSliceWithThunks';
 
-const authTokenSlice = createSlice({
+export const authTokenSlice = createSliceWithThunks({
   name: 'authToken',
   initialState: {
     initialized: false,
     token: undefined as Token | undefined,
   },
-  reducers: {
-    setAuthToken(state, action: PayloadAction<Token>) {
-      const token = action.payload;
-      return {
-        initialized: true,
-        token,
-      };
-    },
-    resetAuthToken() {
-      return {
-        initialized: true,
-        token: undefined,
-      };
-    },
+  reducers: create => ({
+    initializeAuthToken: create.asyncThunk<undefined, Token | undefined>(
+      async (_, {dispatch}) => {
+        const token = await TokenStorage.getToken();
+        if (!token || (!isValid(token) && !token.refreshToken)) {
+          return;
+        }
+
+        if (!isValid(token)) {
+          return await dispatch(
+            authApi.endpoints.refreshToken.initiate(token),
+          ).unwrap();
+        }
+
+        return token;
+      },
+      {
+        rejected: state => {
+          state.token = undefined;
+        },
+        fulfilled: (state, action) => {
+          state.token = action.payload;
+        },
+        settled: state => {
+          state.initialized = true;
+        },
+      },
+    ),
+    setAuthToken: create.asyncThunk(
+      async (token: Token) => {
+        await TokenStorage.setToken(token);
+      },
+      {
+        pending: (state, action) => {
+          state.token = action.meta.arg;
+        },
+        rejected: state => {
+          state.token = undefined;
+        },
+      },
+    ),
+    resetAuthToken: create.asyncThunk<undefined>(
+      async () => {
+        await TokenStorage.resetToken();
+      },
+      {
+        pending: state => {
+          state.token = undefined;
+        },
+      },
+    ),
+  }),
+  selectors: {
+    selectAuthToken: state => state.token,
+    selectAuthTokenInitialized: state => state.initialized,
   },
 });
 
-export const initializeAuthToken = createAsyncThunk(
-  'authToken/initializeAuthToken',
-  async (_, {dispatch}) => {
-    try {
-      const token = await TokenStorage.getToken();
-      if (!token || (!isValid(token) && !token.refreshToken)) {
-        capture(dispatch(resetAuthToken()));
-        return;
-      }
-
-      if (!isValid(token)) {
-        const newToken = await dispatch(
-          authApi.endpoints.refreshToken.initiate(token),
-        ).unwrap();
-        capture(dispatch(setAuthToken(newToken)));
-        return;
-      }
-
-      capture(dispatch(setAuthToken(token)));
-    } catch (error) {
-      captureError(error);
-      capture(dispatch(resetAuthToken()));
-    }
-  },
-);
-
-export const setAuthToken = createAsyncThunk(
-  'authToken/setAuthToken',
-  async (token: Token, {dispatch}) => {
-    await TokenStorage.setToken(token);
-    dispatch(authTokenSlice.actions.setAuthToken(token));
-  },
-);
-
-export const resetAuthToken = createAsyncThunk(
-  'authToken/resetAuthToken',
-  async (_, {dispatch}) => {
-    await TokenStorage.resetToken();
-    dispatch(authTokenSlice.actions.resetAuthToken());
-  },
-);
-
-export const selectAuthToken = (state: RootState) => state.authToken.token;
-export const selectAuthTokenInitialized = (state: RootState) =>
-  state.authToken.initialized;
-
-export default authTokenSlice.reducer;
+export const {initializeAuthToken, setAuthToken, resetAuthToken} =
+  authTokenSlice.actions;
+export const {selectAuthToken, selectAuthTokenInitialized} =
+  authTokenSlice.selectors;

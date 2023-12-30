@@ -7,7 +7,7 @@ import {
   setAuthToken,
 } from './authTokenSlice';
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {AppDispatch} from '../../app/store';
+import {AppDispatch} from '../../app/redux/store';
 import capture from '../../app/capture';
 
 type AuthScreenState =
