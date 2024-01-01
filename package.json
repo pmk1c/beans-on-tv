@@ -31,7 +31,7 @@
     "react-native-vector-icons": "^10.0.3",
     "react-native-video": "6.0.0-beta.3",
     "react-redux": "^9.0.4",
-    "socket.io-client": "<3"
+    "socket.io-client": "<5"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
