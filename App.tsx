@@ -1,17 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux';
-import {store, useAppDispatch} from './src/app/redux/store';
+import {store} from './src/app/redux/store';
 import {
   NavigationContainer,
   NavigationContainerRef,
 } from '@react-navigation/native';
 import StackNavigator from './src/app/navigation/StackNavigator';
 import * as Sentry from '@sentry/react-native';
-import capture from './src/app/capture';
-import {initializeAuthToken} from './src/features/auth/authTokenSlice';
 import {setDefaultOptions} from 'date-fns';
 import {de} from 'date-fns/locale';
-import {initializeSocket} from './src/app/rbtvApi/rbtvSocketApiSlice';
+import InitializeAppGate from './src/features/initializeApp/InitializeAppGate';
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -28,38 +26,23 @@ Sentry.init({
 
 setDefaultOptions({locale: de});
 
-function App(): JSX.Element {
+function App() {
   const navigation =
     React.useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    capture(
-      (async () => {
-        await dispatch(initializeSocket());
-        await dispatch(initializeAuthToken());
-      })(),
-    );
-  }, [dispatch]);
-
-  return (
-    <NavigationContainer
-      ref={navigation}
-      onReady={() => {
-        routingInstrumentation.registerNavigationContainer(navigation);
-      }}>
-      <StackNavigator />
-    </NavigationContainer>
-  );
-}
-
-function AppWithProvider(): JSX.Element {
   return (
     <Provider store={store}>
-      <App />
+      <InitializeAppGate>
+        <NavigationContainer
+          ref={navigation}
+          onReady={() => {
+            routingInstrumentation.registerNavigationContainer(navigation);
+          }}>
+          <StackNavigator />
+        </NavigationContainer>
+      </InitializeAppGate>
     </Provider>
   );
 }
 
-export default Sentry.wrap(AppWithProvider);
+export default Sentry.wrap(App);

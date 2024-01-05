@@ -21,7 +21,7 @@ function isToken(token: unknown): token is Token {
 }
 
 export function fromJSON(json: string) {
-  const token = {
+  const token: unknown = {
     appReview: false,
     ...JSON.parse(json),
   };

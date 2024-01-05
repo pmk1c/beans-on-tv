@@ -11,6 +11,6 @@ module.exports = {
   randomize: true,
   setupFilesAfterEnv: ['<rootDir>/jest/setup/failOnConsole.ts'],
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!@react-native|react-native|react-native-pixel-perfect)',
+    '<rootDir>/node_modules/(?!@react-native|react-native|react-native-pixel-perfect|react-redux)',
   ],
 };

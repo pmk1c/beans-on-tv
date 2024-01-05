@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "clean": "pnpm dlx react-native-clean-project",
     "check-all": "pnpm tsc; pnpm lint; pnpm format:check; pnpm test"
   },

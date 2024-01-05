@@ -14,13 +14,13 @@ export const authTokenSlice = createSliceWithThunks({
   reducers: create => ({
     initializeAuthToken: create.asyncThunk<undefined, Token | undefined>(
       async (_, {dispatch, getState}) => {
-        const token = await TokenStorage.getToken();
+        let token = await TokenStorage.getToken();
         if (!token || (!isValid(token) && !token.refreshToken)) {
           return;
         }
 
         if (!isValid(token)) {
-          return await dispatch(
+          token = await dispatch(
             authApi.endpoints.refreshToken.initiate(token),
           ).unwrap();
         }
@@ -28,7 +28,14 @@ export const authTokenSlice = createSliceWithThunks({
         // TODO move this into its own slice, since it does not belong here
         const socket = selectSocket(getState() as RootState);
         socket.emitAuthentication(token.accessToken);
-        socket.onAuthenticationResult(() => {});
+        socket.on('AC_AUTHENTICATION_RESULT', () => {});
+        socket.on('AC_AUTHENTICATION_REQ', () => {
+          if (!token) {
+            return;
+          }
+
+          socket.emitAuthentication(token.accessToken);
+        });
 
         return token;
       },

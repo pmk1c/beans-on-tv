@@ -1,10 +1,7 @@
-interface VideoToken {
-  id: number;
-  token: string;
-}
+import VideoToken from './VideoToken';
 
 interface Episode {
-  id: number;
+  id: string;
   title: string;
   showName?: string;
   thumbnailUrls: {
@@ -14,6 +11,11 @@ interface Episode {
   };
   distributionPublishingDate: string;
   videoTokens: {rbsc?: VideoToken; youtube?: VideoToken};
+  progress?: {
+    progress: number;
+    total: number;
+  };
+  watched?: boolean;
 }
 
 export default Episode;

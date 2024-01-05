@@ -1,3 +1,4 @@
 .eslintrc.js
 *.generated.ts
+doc/rbtv-api/
 vendor/

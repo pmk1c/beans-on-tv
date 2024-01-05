@@ -33,10 +33,7 @@ const height = width * (9 / 16);
 //   return thumbnail;
 // }
 
-function EpisodeCard({
-  episode,
-  thumbnailPriority,
-}: EpisodeCardProps): JSX.Element {
+function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
   const navigation = useNavigation<StackNavigationProp>();
   const fastImagePriority =
     thumbnailPriority === 'high'
@@ -57,24 +54,45 @@ function EpisodeCard({
       onPress={() => navigation.push('Player', {episode})}
       children={({focused}) => (
         <>
-          <FastImage
+          <View
             style={{
-              borderRadius: borderRadius.large,
-              height,
-              width,
+              overflow: 'hidden',
               transform: [{scale: focused ? 1.1 : 1}],
+              borderRadius: borderRadius.large,
               borderWidth: focused ? 2 : 0,
               borderColor: color.textHighlight,
-            }}
-            source={{
-              uri: episode.thumbnailUrls.small,
-              priority: fastImagePriority,
-            }}
-            defaultSource={
-              // eslint-disable-next-line @typescript-eslint/no-var-requires
-              require('../../app/assets/images/placeholder_16x9-420.png') as number
-            }
-          />
+            }}>
+            <View
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                height,
+                width: `${
+                  episode.progress
+                    ? (episode.progress.progress / episode.progress.total) * 100
+                    : 0
+                }%`,
+                borderColor: color.yellow500,
+                borderBottomWidth: spacing.xs,
+              }}
+            />
+            <FastImage
+              style={{
+                height,
+                width,
+                borderBottomWidth: episode.progress ? spacing.xs : 0,
+                borderColor: color.grey700,
+              }}
+              source={{
+                uri: episode.thumbnailUrls.small,
+                priority: fastImagePriority,
+              }}
+              defaultSource={
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
+                require('../../app/assets/images/placeholder_16x9-420.png') as number
+              }
+            />
+          </View>
           <View style={{gap: spacing['2xs']}}>
             <Text
               numberOfLines={2}

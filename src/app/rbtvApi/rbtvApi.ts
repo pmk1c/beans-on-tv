@@ -1,82 +1,32 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {selectAuthToken} from '../../features/auth/authTokenSlice';
-import {RootState} from '../redux/store';
+import {createApi} from '@reduxjs/toolkit/query/react';
 import toPage from './mappings/toPage';
 import Page from '../types/Page';
 import Episode from '../types/Episode';
-
-type GetFrontendInitApiResponse = {
-  success: boolean;
-  data: {
-    websocket: {
-      url: string;
-      path: string;
-    };
-  };
-};
-
-export type GetMediaEpisodePreviewNewestApiResponse = {
-  success: boolean;
-  pagination: {
-    offset: number;
-    limit: number;
-    total: number;
-  };
-  data: {
-    episodes: {
-      id: number;
-      title: string;
-      showName?: string;
-      thumbnail: {
-        name: 'small' | 'medium' | 'large' | 'source' | 'ytsmall' | 'ytbig';
-        url: string;
-        height?: number;
-        width?: number;
-      }[];
-      tokens: {
-        id: number;
-        mediaEpisodeId: number;
-        token: string;
-        type: 'youtube' | 'rbsc';
-        length: number;
-      }[];
-      distributionPublishingDate: string;
-    }[];
-  };
-};
+import {
+  GetFrontendInitApiResponse,
+  GetMediaEpisodePreviewNewestApiResponse,
+  GetRbscVideoTokenApiResponse,
+} from './types';
+import rbtvBaseQuery from './rbtvBaseQuery';
 
 type GetMediaEpisodePreviewNewestApiArg = {
   offset?: number;
   limit?: number;
 };
 
-type GetRbscVideoTokenByVideoTokenApiResponse = {
-  success?: boolean;
-  data?: {
-    signedToken?: string;
-    validUntil?: string;
-  };
+type GetRbscVideoTokenApiArg = {
+  videoToken?: string;
 };
 
-type GetRbscVideoTokenByVideoTokenApiArg = {
-  videoToken?: string;
+type SocketEmitMediaEpisodeProgressUpdateApiArg = {
+  episode: Episode;
+  progress: number;
 };
 
 export const rbtvApi = createApi({
   reducerPath: 'rbtvApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.rocketbeans.tv/v1/',
-    prepareHeaders: (headers, {getState}) => {
-      headers.set('Content-Type', 'application/json');
-
-      const authToken = selectAuthToken(getState() as RootState);
-      if (authToken) {
-        headers.set('Authorization', `Bearer ${authToken.accessToken}`);
-      }
-
-      return headers;
-    },
-  }),
+  tagTypes: ['Episode'],
+  baseQuery: rbtvBaseQuery,
   endpoints: build => ({
     getFrontendInit: build.query<GetFrontendInitApiResponse, void>({
       query: () => ({url: '/frontend/init'}),
@@ -85,26 +35,55 @@ export const rbtvApi = createApi({
       Page<Episode>,
       GetMediaEpisodePreviewNewestApiArg
     >({
-      query: queryArg => ({
+      query: arg => ({
         url: '/media/episode/preview/newest',
-        params: {offset: queryArg.offset, limit: queryArg.limit},
+        params: {offset: arg.offset, limit: arg.limit},
       }),
+      providesTags: result =>
+        result?.data.map(episode => ({
+          type: 'Episode',
+          id: episode.id,
+        })) ?? [],
       transformResponse: (
         response: GetMediaEpisodePreviewNewestApiResponse,
       ) => {
         return toPage(response);
       },
     }),
-    getRbscVideoTokenByVideoToken: build.query<
-      GetRbscVideoTokenByVideoTokenApiResponse,
-      GetRbscVideoTokenByVideoTokenApiArg
+    getRbscVideoToken: build.query<
+      GetRbscVideoTokenApiResponse,
+      GetRbscVideoTokenApiArg
     >({
-      query: queryArg => ({url: `/rbsc/video/token/${queryArg.videoToken}`}),
+      query: arg => ({url: `/rbsc/video/token/${arg.videoToken}`}),
+    }),
+    socketEmitMediaEpisodeProgressUpdate: build.mutation<
+      void,
+      SocketEmitMediaEpisodeProgressUpdateApiArg
+    >({
+      query: arg => ({
+        message: 'CA_MEDIA_EPISODEPROGRESS_UPDATE' as const,
+        payload: {
+          episodeId: Number.parseInt(arg.episode.id, 10),
+          tokenId: Number.parseInt(arg.episode.videoTokens.rbsc!.id, 10),
+          progress: Math.round(arg.progress),
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        {
+          type: 'Episode',
+          id: arg.episode.id,
+        },
+      ],
     }),
   }),
 });
 
 export const {
-  useLazyGetMediaEpisodePreviewNewestQuery,
-  useLazyGetRbscVideoTokenByVideoTokenQuery,
+  useLazyGetRbscVideoTokenQuery,
+  useSocketEmitMediaEpisodeProgressUpdateMutation,
+} = rbtvApi;
+export const {
+  endpoints: {
+    getMediaEpisodePreviewNewest: {initiate: getMediaEpisodePreviewNewest},
+  },
 } = rbtvApi;

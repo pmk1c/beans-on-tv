@@ -11,13 +11,14 @@ import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import fontPresets from '../../app/styles/tokens/fontPresets';
-import {useLazyGetRbscVideoTokenByVideoTokenQuery} from '../../app/rbtvApi';
-import {useAppSelector} from '../../app/redux/store';
-import {selectSocket} from '../../app/rbtvApi/rbtvSocketApiSlice';
+import {
+  useLazyGetRbscVideoTokenQuery,
+  useSocketEmitMediaEpisodeProgressUpdateMutation,
+} from '../../app/rbtvApi';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
-function PlayerScreen(): JSX.Element {
+function PlayerScreen() {
   const episode = useRoute<PlayerScreenRouteProp>().params?.episode;
 
   // const rbscVideoToken = episode.tokens.find(t => t.type === 'rbsc');
@@ -26,7 +27,7 @@ function PlayerScreen(): JSX.Element {
   const [signedToken, setSignedToken] = useState<string | undefined>(undefined);
   const [error, setError] = useState<'rbsc' | 'yt'>();
 
-  const [getRbscVideoToken] = useLazyGetRbscVideoTokenByVideoTokenQuery();
+  const [getRbscVideoToken] = useLazyGetRbscVideoTokenQuery();
   const navigation = useNavigation<StackNavigationProp>();
   useEffect(() => {
     capture(
@@ -65,7 +66,8 @@ function PlayerScreen(): JSX.Element {
     );
   }, [getRbscVideoToken, navigation, episode]);
 
-  const socket = useAppSelector(selectSocket);
+  const [emitMediaEpisodeProgressUpdate] =
+    useSocketEmitMediaEpisodeProgressUpdateMutation();
 
   if (!signedToken) {
     return (
@@ -107,6 +109,9 @@ function PlayerScreen(): JSX.Element {
       }}
       source={{
         uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
+        startPosition: episode.progress
+          ? episode.progress.progress * 1000
+          : undefined,
       }}
       poster={episode.thumbnailUrls.large}
       controls
@@ -114,7 +119,12 @@ function PlayerScreen(): JSX.Element {
       useTextureView={false}
       progressUpdateInterval={1000}
       onProgress={e => {
-        socket.emitEpisodeProgress(episode, e.currentTime);
+        capture(
+          emitMediaEpisodeProgressUpdate({
+            episode,
+            progress: e.currentTime,
+          }),
+        );
       }}
     />
   );

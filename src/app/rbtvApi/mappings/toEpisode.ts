@@ -1,30 +1,44 @@
 import Episode from '../../types/Episode';
-import {GetMediaEpisodePreviewNewestApiResponse} from '../rbtvApi';
+import {
+  GetMediaEpisodePreviewNewestApiResponse,
+  MediaEpisodePreview,
+} from '../types';
+import toVideoToken from './toVideoToken';
 
-type EpisodeResponse =
-  GetMediaEpisodePreviewNewestApiResponse['data']['episodes'][0];
+const findThumbnailUrl = (episodeResponse: MediaEpisodePreview, name: string) =>
+  episodeResponse.thumbnail.find(t => t.name === name)?.url ?? '';
 
-const findThumbnailUrl = (response: EpisodeResponse, name: string) =>
-  response.thumbnail.find(t => t.name === name)?.url ?? '';
+const findVideoToken = (episodeResponse: MediaEpisodePreview, type: string) =>
+  toVideoToken(episodeResponse.tokens.find(t => t.type === type));
 
-const findVideoToken = (response: EpisodeResponse, type: string) =>
-  response.tokens.find(t => t.type === type);
+const toEpisode = (
+  episodeResponse: MediaEpisodePreview,
+  progressResponse: GetMediaEpisodePreviewNewestApiResponse['data']['progress'],
+): Episode => {
+  const progress =
+    progressResponse?.[episodeResponse.id.toString()].tokenProgress[0];
 
-const toEpisode = (response: EpisodeResponse): Episode => {
   return {
-    id: response.id,
-    title: response.title,
-    showName: response.showName,
+    id: episodeResponse.id.toString(),
+    title: episodeResponse.title,
+    showName: episodeResponse.showName,
     thumbnailUrls: {
-      small: findThumbnailUrl(response, 'small'),
-      medium: findThumbnailUrl(response, 'medium'),
-      large: findThumbnailUrl(response, 'large'),
+      small: findThumbnailUrl(episodeResponse, 'small'),
+      medium: findThumbnailUrl(episodeResponse, 'medium'),
+      large: findThumbnailUrl(episodeResponse, 'large'),
     },
     videoTokens: {
-      rbsc: findVideoToken(response, 'rbsc'),
-      youtube: findVideoToken(response, 'youtube'),
+      rbsc: findVideoToken(episodeResponse, 'rbsc'),
+      youtube: findVideoToken(episodeResponse, 'youtube'),
     },
-    distributionPublishingDate: response.distributionPublishingDate,
+    distributionPublishingDate: episodeResponse.distributionPublishingDate,
+    progress: progress
+      ? {
+          progress: progress.progress,
+          total: progress.total,
+        }
+      : undefined,
+    watched: progressResponse?.[episodeResponse.id.toString()].watched,
   };
 };
 
