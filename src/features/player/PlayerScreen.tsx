@@ -112,6 +112,9 @@ function PlayerScreen() {
         startPosition: episode.progress
           ? episode.progress.progress * 1000
           : undefined,
+        title: episode.title,
+        subtitle: episode.showName,
+        customImageUri: episode.thumbnailUrls.small,
       }}
       poster={episode.thumbnailUrls.large}
       controls
