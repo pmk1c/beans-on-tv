@@ -129,6 +129,7 @@ function PlayerScreen() {
           }),
         );
       }}
+      onEnd={() => navigation.pop()}
     />
   );
 }
