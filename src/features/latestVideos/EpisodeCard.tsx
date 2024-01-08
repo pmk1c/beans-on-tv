@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {Pressable, Text, View} from 'react-native';
+import {Image, ImageSourcePropType, Pressable, Text, View} from 'react-native';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
@@ -10,6 +11,8 @@ import {formatDistanceToNowStrict} from 'date-fns';
 import perfectSize from '../../app/styles/perfectSize';
 import fontPresets from '../../app/styles/tokens/fontPresets';
 import Episode from '../../app/types/Episode';
+import {useAppSelector} from '../../app/redux/store';
+import {selectAuthToken} from '../auth/authTokenSlice';
 
 interface EpisodeCardProps {
   episode: Episode;
@@ -19,21 +22,9 @@ interface EpisodeCardProps {
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
-// function findThumbnail(thumbnails: Episode['thumbnail']) {
-//   const thumbnail =
-//     thumbnails.find(t => t.name === 'medium') ??
-//     thumbnails.find(t => t.name === 'ytbig') ??
-//     thumbnails.find(t => t.name === 'large') ??
-//     thumbnails.find(t => t.name === 'source');
-
-//   if (!thumbnail) {
-//     capture(new Error('No thumbnail found'));
-//   }
-
-//   return thumbnail;
-// }
-
 function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
+  const isLoggedIn = !!useAppSelector(selectAuthToken);
+  const isYouTubeOnly = !isLoggedIn || !episode.videoTokens.rbsc;
   const navigation = useNavigation<StackNavigationProp>();
   const fastImagePriority =
     thumbnailPriority === 'high'
@@ -59,9 +50,25 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
               overflow: 'hidden',
               transform: [{scale: focused ? 1.1 : 1}],
               borderRadius: borderRadius.large,
-              borderWidth: focused ? 2 : 0,
-              borderColor: color.textHighlight,
+              borderWidth: perfectSize(2),
+              borderColor: focused ? color.textHighlight : 'transparent',
             }}>
+            {isYouTubeOnly && (
+              <Image
+                source={
+                  require('../../app/assets/icons/yt_icon_rgb.png') as ImageSourcePropType
+                }
+                style={{
+                  position: 'absolute',
+                  zIndex: 1,
+                  top: spacing.xs,
+                  left: spacing.xs,
+                  height: perfectSize(48),
+                  width: (734 / 518) * perfectSize(48),
+                  resizeMode: 'contain',
+                }}
+              />
+            )}
             <View
               style={{
                 position: 'absolute',
@@ -88,7 +95,6 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
                 priority: fastImagePriority,
               }}
               defaultSource={
-                // eslint-disable-next-line @typescript-eslint/no-var-requires
                 require('../../app/assets/images/placeholder_16x9-420.png') as number
               }
             />
