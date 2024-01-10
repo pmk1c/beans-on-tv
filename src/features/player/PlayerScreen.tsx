@@ -11,10 +11,9 @@ import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import fontPresets from '../../app/styles/tokens/fontPresets';
-import {
-  useLazyGetRbscVideoTokenQuery,
-  useSocketEmitMediaEpisodeProgressUpdateMutation,
-} from '../../app/rbtvApi';
+import {useLazyGetRbscVideoTokenQuery} from '../../app/rbtvApi';
+import {useAppSelector} from '../../app/redux/store';
+import {selectSocket} from '../../app/rbtvApi/rbtvSocketApiSlice';
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
 
@@ -66,8 +65,7 @@ function PlayerScreen() {
     );
   }, [getRbscVideoToken, navigation, episode]);
 
-  const [emitMediaEpisodeProgressUpdate] =
-    useSocketEmitMediaEpisodeProgressUpdateMutation();
+  const rbtvSocket = useAppSelector(selectSocket);
 
   if (!signedToken) {
     return (
@@ -122,12 +120,7 @@ function PlayerScreen() {
       useTextureView={false}
       progressUpdateInterval={1000}
       onProgress={e => {
-        capture(
-          emitMediaEpisodeProgressUpdate({
-            episode,
-            progress: e.currentTime,
-          }),
-        );
+        rbtvSocket.emitMediaEpisodeProgressUpdate(episode, e.currentTime);
       }}
       onEnd={() => navigation.pop()}
     />

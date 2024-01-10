@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import {SocketMessage, SocketMessagePayload} from './types';
 import app from '../../../app.json';
+import Episode from '../types/Episode';
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;
@@ -10,16 +11,6 @@ class RBTVSocket {
 
     this.on('AC_PING', payload => {
       this.emit('CA_PONG', payload);
-    });
-  }
-
-  on<
-    M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
-  >(message: M, callback: (payload: SocketMessagePayload<M>) => void) {
-    this.socket.on(message, (payload: P) => {
-      console.debug('Socket message received', message, payload);
-      callback(payload);
     });
   }
 
@@ -35,6 +26,24 @@ class RBTVSocket {
     this.emit('CA_AUTHENTICATION', {
       appName: `${app.displayName}/${app.version}`,
       token,
+    });
+  }
+
+  emitMediaEpisodeProgressUpdate(episode: Episode, progress: number) {
+    this.emit('CA_MEDIA_EPISODEPROGRESS_UPDATE', {
+      episodeId: Number.parseInt(episode.id, 10),
+      tokenId: Number.parseInt(episode.videoTokens.rbsc!.id, 10),
+      progress: Math.round(progress),
+    });
+  }
+
+  on<
+    M extends SocketMessage = SocketMessage,
+    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
+  >(message: M, callback: (payload: SocketMessagePayload<M>) => void) {
+    this.socket.on(message, (payload: P) => {
+      console.debug('Socket message received', message, payload);
+      callback(payload);
     });
   }
 }
