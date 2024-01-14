@@ -1,57 +1,67 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {getMediaEpisodePreviewNewest} from '../../app/rbtvApi';
-import Page from '../../app/types/Page';
-import Episode from '../../app/types/Episode';
 import {useSelector} from 'react-redux';
 import {selectAuthToken} from '../auth/authTokenSlice';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {useAppDispatch} from '../../app/redux/store';
+import {RootState, useAppDispatch, useAppSelector} from '../../app/redux/store';
 import capture from '../../app/capture';
-import {AppState} from 'react-native';
+import {createSelector} from '@reduxjs/toolkit';
 
-const limit = 48;
+const limit = 12;
+const getOffset = (pageNumber: number) => pageNumber * limit;
+
+const createSelectEpisodes = (pageNumbers: number[]) =>
+  createSelector(
+    pageNumbers.map(pageNumber =>
+      getMediaEpisodePreviewNewest.select({
+        offset: getOffset(pageNumber),
+        limit,
+      }),
+    ),
+    (...pages) => pages.flatMap(page => page.data?.data ?? []),
+  );
+
+const selectTotal = (state: RootState) =>
+  getMediaEpisodePreviewNewest.select({offset: 0, limit})(state).data?.meta
+    .total;
 
 function useLatestVideosScreen() {
   const dispatch = useAppDispatch();
-  const total = useRef<number>();
-  const [pages, setPages] = useState<Record<string, Page<Episode> | undefined>>(
-    {},
-  );
+  const [pageNumbers, setPageNumbers] = useState<number[]>([0]);
+  const subscriptions = useRef<
+    ReturnType<ReturnType<typeof getMediaEpisodePreviewNewest.initiate>>[]
+  >([]);
 
-  const loadPage = useCallback(
-    async (pageNumber: number) => {
-      const offset = pageNumber * limit;
-      if (total.current && total.current < offset) {
-        return;
-      }
+  useEffect(() => {
+    subscriptions.current = pageNumbers.map(pageNumber => {
+      const offset = getOffset(pageNumber);
 
-      const page = await dispatch(
-        getMediaEpisodePreviewNewest(
+      return dispatch(
+        getMediaEpisodePreviewNewest.initiate(
+          {offset, limit},
           {
-            offset,
-            limit,
+            subscriptionOptions: {
+              refetchOnFocus: true,
+            },
           },
-          {subscribe: false},
         ),
-      ).unwrap();
+      );
+    });
 
-      setPages(stalePages => {
-        return {...stalePages, [pageNumber]: page};
-      });
-      total.current = page.meta.total;
-    },
-    [dispatch],
-  );
+    return () => {
+      subscriptions.current.forEach(subscription => subscription.unsubscribe());
+      subscriptions.current = [];
+    };
+  }, [dispatch, pageNumbers]);
 
   const navigation = useNavigation();
   const route = useRoute();
 
-  const reloadAllPages = useCallback(() => {
-    const pageNumbers = Object.keys(pages).map(Number);
-    for (const pageNumber of pageNumbers) {
-      capture(loadPage(pageNumber));
+  const reloadAllPages = useCallback(async () => {
+    for (const subscription of subscriptions.current) {
+      await subscription.refetch();
     }
-  }, [loadPage, pages]);
+  }, []);
 
   useEffect(() => {
     const unsubscribeFocusListener = navigation.addListener('focus', event => {
@@ -59,30 +69,30 @@ function useLatestVideosScreen() {
         return;
       }
 
-      reloadAllPages();
-    });
-
-    const appStateSubscription = AppState.addEventListener('change', status => {
-      if (status === 'active') {
-        reloadAllPages();
-      }
+      capture(reloadAllPages());
     });
 
     return () => {
       unsubscribeFocusListener();
-      appStateSubscription.remove();
     };
-  }, [loadPage, navigation, pages, reloadAllPages, route.key]);
+  }, [navigation, reloadAllPages, route.key]);
 
   const authToken = useSelector(selectAuthToken);
-  const episodes = Object.values(pages)
-    .flatMap(page => page?.data ?? [])
-    .filter(episode => !authToken?.appReview || episode.videoTokens.rbsc);
 
+  const episodes = useAppSelector(createSelectEpisodes(pageNumbers)).filter(
+    episode => !authToken?.appReview || episode.videoTokens.rbsc,
+  );
+
+  const total = useAppSelector(selectTotal);
   const loadNextPage = useCallback(() => {
-    const pageNumber = Math.max(...Object.keys(pages).map(Number), 0);
-    capture(loadPage(pageNumber));
-  }, [loadPage, pages]);
+    const nextPageNumber = Math.max(...pageNumbers) + 1;
+
+    if (total && getOffset(nextPageNumber) >= total) {
+      return;
+    }
+
+    setPageNumbers(pageNumbers.concat(nextPageNumber));
+  }, [pageNumbers, total]);
 
   return {
     episodes,

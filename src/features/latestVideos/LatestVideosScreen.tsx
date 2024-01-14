@@ -33,7 +33,7 @@ function LatestVideosScreen(): JSX.Element {
         />
       )}
       onEndReached={loadNextPage}
-      onEndReachedThreshold={0.5}
+      onEndReachedThreshold={1}
     />
   );
 }

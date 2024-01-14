@@ -11,6 +11,7 @@ import * as Sentry from '@sentry/react-native';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {rbtvApi} from '.././rbtvApi';
 import {rbtvSocketApiSlice} from '../rbtvApi/rbtvSocketApiSlice';
+import {AppState, AppStateStatus, NativeEventSubscription} from 'react-native';
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: action => {
@@ -75,7 +76,32 @@ export const store = configureStore({
   enhancers: getDefaultEnhancers =>
     getDefaultEnhancers().concat(sentryReduxEnhancer),
 });
-setupListeners(store.dispatch);
+
+let initialized = false;
+setupListeners(store.dispatch, (dispatch, {onFocus, onFocusLost}) => {
+  let subscription: NativeEventSubscription;
+
+  if (!initialized) {
+    subscription = AppState.addEventListener(
+      'change',
+      (nextAppState: AppStateStatus) => {
+        if (nextAppState === 'active') {
+          dispatch(onFocus());
+        } else {
+          dispatch(onFocusLost());
+        }
+      },
+    );
+    initialized = true;
+  }
+
+  const unsubscribe = () => {
+    subscription?.remove();
+    initialized = false;
+  };
+
+  return unsubscribe;
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
