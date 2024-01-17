@@ -1,11 +1,5 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const {getSentryExpoConfig} = require('@sentry/react-native/metro');
 
-/**
- * Metro configuration
- * https://facebook.github.io/metro/docs/configuration
- *
- * @type {import('metro-config').MetroConfig}
- */
-const config = {};
+const config = getSentryExpoConfig(__dirname);
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = config;

@@ -72,3 +72,5 @@ ios/sentry.properties
 *.app.dSYM.zip
 
 .expo
+android
+ios
