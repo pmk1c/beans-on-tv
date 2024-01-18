@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@expo/vector-icons':
+    specifier: ^14.0.0
+    version: 14.0.0
   '@react-native-tvos/config-tv':
     specifier: ^0.0.4
     version: 0.0.4(expo@50.0.0-preview.11)
@@ -26,6 +29,9 @@ dependencies:
   expo:
     specifier: ^50.0.0-preview.11
     version: 50.0.0-preview.11(@babel/core@7.23.7)(@react-native/babel-preset@0.74.0)
+  expo-application:
+    specifier: ~5.8.2
+    version: 5.8.2(expo@50.0.0-preview.11)
   expo-av:
     specifier: ^13.10.2
     version: 13.10.2(expo@50.0.0-preview.11)
@@ -59,9 +65,6 @@ dependencies:
   react-native-screens:
     specifier: ^3.29.0
     version: 3.29.0(react-native-tvos@0.73.1-3)(react@18.2.0)
-  react-native-vector-icons:
-    specifier: ^10.0.3
-    version: 10.0.3
   react-redux:
     specifier: ^9.0.4
     version: 9.0.4(@types/react@18.2.47)(react-native-tvos@0.73.1-3)(react@18.2.0)(redux@5.0.1)
@@ -100,9 +103,6 @@ devDependencies:
   '@types/react':
     specifier: ^18.2.47
     version: 18.2.47
-  '@types/react-native-vector-icons':
-    specifier: ^6.4.18
-    version: 6.4.18
   '@types/react-test-renderer':
     specifier: ^18.0.0
     version: 18.0.7
@@ -3327,19 +3327,6 @@ packages:
   /@types/prop-types@15.7.11:
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
 
-  /@types/react-native-vector-icons@6.4.18:
-    resolution: {integrity: sha512-YGlNWb+k5laTBHd7+uZowB9DpIK3SXUneZqAiKQaj1jnJCZM0x71GDim5JCTMi4IFkhc9m8H/Gm28T5BjyivUw==}
-    dependencies:
-      '@types/react': 18.2.47
-      '@types/react-native': 0.70.19
-    dev: true
-
-  /@types/react-native@0.70.19:
-    resolution: {integrity: sha512-c6WbyCgWTBgKKMESj/8b4w+zWcZSsCforson7UdXtXMecG3MxCinYi6ihhrHVPyUrVzORsvEzK8zg32z4pK6Sg==}
-    dependencies:
-      '@types/react': 18.2.47
-    dev: true
-
   /@types/react-test-renderer@18.0.7:
     resolution: {integrity: sha512-1+ANPOWc6rB3IkSnElhjv6VLlKg2dSv/OWClUyZimbLsQyBn8Js9Vtdsi3UICJ2rIQ3k2la06dkB+C92QfhKmg==}
     dependencies:
@@ -4331,14 +4318,6 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 6.2.0
 
-  /cliui@7.0.4:
-    resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
-    dependencies:
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
-      wrap-ansi: 7.0.0
-    dev: false
-
   /cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
@@ -5263,6 +5242,14 @@ packages:
       jest-message-util: 29.7.0
       jest-util: 29.7.0
     dev: true
+
+  /expo-application@5.8.2(expo@50.0.0-preview.11):
+    resolution: {integrity: sha512-ySc5MzZFRnK7XxBho7kZoQcazz97y4j0Wj+p9n4UDlgQLGrp1IHFBgyZIq2y/qoED0RnFUCKUDeegvXXTiBENA==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 50.0.0-preview.11(@babel/core@7.23.7)(@react-native/babel-preset@0.74.0)
+    dev: false
 
   /expo-asset@9.0.2(expo@50.0.0-preview.11):
     resolution: {integrity: sha512-PzYKME1MgUOoUvwtdzhAyXkjXOXGiSYqGKG/MsXwWr0Ef5wlBaBm2DCO9V6KYbng5tBPFu6hTjoRNil1tBOSow==}
@@ -8273,14 +8260,6 @@ packages:
       - supports-color
       - utf-8-validate
 
-  /react-native-vector-icons@10.0.3:
-    resolution: {integrity: sha512-ZgVlV5AdQgnPHHvBEihGf2xwyziT1acpXV1U+WfCgCv3lcEeCRsmwAsBU+kUSNsU+8TcWVsX04kdI6qUaS8D7w==}
-    hasBin: true
-    dependencies:
-      prop-types: 15.8.1
-      yargs: 16.2.0
-    dev: false
-
   /react-redux@9.0.4(@types/react@18.2.47)(react-native-tvos@0.73.1-3)(react@18.2.0)(redux@5.0.1):
     resolution: {integrity: sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==}
     peerDependencies:
@@ -9789,11 +9768,6 @@ packages:
       camelcase: 5.3.1
       decamelize: 1.2.0
 
-  /yargs-parser@20.2.9:
-    resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
-    engines: {node: '>=10'}
-    dev: false
-
   /yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -9813,19 +9787,6 @@ packages:
       which-module: 2.0.1
       y18n: 4.0.3
       yargs-parser: 18.1.3
-
-  /yargs@16.2.0:
-    resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
-    engines: {node: '>=10'}
-    dependencies:
-      cliui: 7.0.4
-      escalade: 3.1.1
-      get-caller-file: 2.0.5
-      require-directory: 2.1.1
-      string-width: 4.2.3
-      y18n: 5.0.8
-      yargs-parser: 20.2.9
-    dev: false
 
   /yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}

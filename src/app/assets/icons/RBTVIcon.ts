@@ -1,4 +1,4 @@
-import {createIconSet} from 'react-native-vector-icons';
+import {createIconSet} from '@expo/vector-icons';
 
 const glyphMap = {
   external: 0xe913,
@@ -105,7 +105,7 @@ const glyphMap = {
   pin_empty: 0xe965,
 };
 
-const RBTVIcon = createIconSet(glyphMap, 'rbtvIcons');
+const RBTVIcon = createIconSet(glyphMap, 'rbtvIcons', 'rbtvIcons.ttf');
 
 export default RBTVIcon;
 export type RBTVIconName = keyof typeof glyphMap;

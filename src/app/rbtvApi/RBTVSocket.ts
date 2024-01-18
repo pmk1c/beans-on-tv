@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import {SocketMessage, SocketMessagePayload} from './types';
-import app from '../../../app.json';
 import Episode from '../types/Episode';
+import * as Application from 'expo-application';
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;
@@ -24,7 +24,7 @@ class RBTVSocket {
 
   emitAuthentication(token: string) {
     this.emit('CA_AUTHENTICATION', {
-      appName: `${app.displayName}/${app.version}`,
+      appName: `${Application.applicationName}/${Application.nativeApplicationVersion}`,
       token,
     });
   }
