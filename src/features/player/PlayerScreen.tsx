@@ -4,7 +4,7 @@ import {
   StackNavigationProp,
   StackParamList,
 } from '../../app/navigation/StackNavigator';
-import Video, {ResizeMode} from 'react-native-video';
+import {Video, ResizeMode} from 'expo-av';
 import {ImageBackground, Linking, Platform, Text, View} from 'react-native';
 import capture from '../../app/capture';
 import color from '../../app/styles/tokens/color';
@@ -107,22 +107,31 @@ function PlayerScreen() {
       }}
       source={{
         uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
-        startPosition: episode.progress
-          ? episode.progress.progress * 1000
-          : undefined,
-        title: episode.title,
-        subtitle: episode.showName,
-        customImageUri: episode.thumbnailUrls.small,
       }}
-      poster={episode.thumbnailUrls.large}
-      controls
+      status={{
+        shouldPlay: true,
+        positionMillis: episode.progress?.progress ?? 0 * 1000,
+      }}
+      posterSource={{uri: episode.thumbnailUrls.large}}
+      useNativeControls
+      usePoster
       resizeMode={ResizeMode.CONTAIN}
-      useTextureView={false}
-      progressUpdateInterval={1000}
-      onProgress={e => {
-        rbtvSocket.emitMediaEpisodeProgressUpdate(episode, e.currentTime);
+      progressUpdateIntervalMillis={1000}
+      onPlaybackStatusUpdate={status => {
+        if (!status.isLoaded) {
+          return;
+        }
+
+        if (status.didJustFinish) {
+          () => navigation.pop();
+          return;
+        }
+
+        rbtvSocket.emitMediaEpisodeProgressUpdate(
+          episode,
+          status.positionMillis / 1000,
+        );
       }}
-      onEnd={() => navigation.pop()}
     />
   );
 }
