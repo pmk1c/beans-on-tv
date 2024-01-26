@@ -1,0 +1,12 @@
+{
+  "cli": {
+    "version": ">= 7.1.1",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}

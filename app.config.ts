@@ -6,9 +6,10 @@ import {withBrandassets} from './config/withBrandassets';
 const config: ExpoConfig = {
   name: 'Beans on TV',
   description: 'Watch Rocket Beans TV on your Android or Apple TV',
-  slug: 'rbscvca',
+  slug: 'beans-on-tv',
   privacy: 'hidden',
   version: '1.0.0',
+  runtimeVersion: {policy: 'nativeVersion'},
   githubUrl: 'https://github.com/pmk1c/rbscvca-app',
   backgroundColor: '#000000',
   primaryColor: '#ED0000',
@@ -47,6 +48,11 @@ const config: ExpoConfig = {
   ios: {
     bundleIdentifier: 'de.bmind.rbscvca',
     buildNumber: '1',
+  },
+  extra: {
+    eas: {
+      projectId: 'cd14a3c2-29e3-4d1b-a125-1ead1060a130',
+    },
   },
 };
 
