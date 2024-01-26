@@ -1,0 +1,55 @@
+import 'ts-node/register';
+import {ExpoConfig} from 'expo/config';
+
+import {withBrandassets} from './config/withBrandassets';
+
+const config: ExpoConfig = {
+  name: 'Beans on TV',
+  description: 'Watch Rocket Beans TV on your Android or Apple TV',
+  slug: 'rbscvca',
+  privacy: 'hidden',
+  version: '1.0.0',
+  githubUrl: 'https://github.com/pmk1c/rbscvca-app',
+  backgroundColor: '#000000',
+  primaryColor: '#ED0000',
+  plugins: [
+    [
+      '@react-native-tvos/config-tv',
+      {
+        isTv: true,
+        showVerboseWarnings: true,
+      },
+    ],
+    [
+      'expo-font',
+      {
+        fonts: ['./assets/fonts/rbtvIcons.ttf', './assets/fonts/Rubik.ttf'],
+      },
+    ],
+    [
+      '@sentry/react-native/expo',
+      {
+        url: 'https://sentry.io/',
+        authToken:
+          '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',
+        project: 'rbscvca-app',
+        organization: 'ruben-grimm',
+      },
+    ],
+  ],
+  splash: {
+    backgroundColor: '#000000',
+  },
+  android: {
+    package: 'de.bmind.rbscvca',
+    versionCode: 1,
+  },
+  ios: {
+    bundleIdentifier: 'de.bmind.rbscvca',
+    buildNumber: '1',
+  },
+};
+
+export default withBrandassets(config, {
+  brandassets: 'assets/tvos.brandassets',
+});
