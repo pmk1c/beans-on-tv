@@ -4,7 +4,11 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_TV": "1"
+      }
+    }
   },
   "submit": {
     "production": {}
