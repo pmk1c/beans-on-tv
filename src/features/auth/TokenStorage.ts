@@ -1,33 +1,19 @@
-import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
+
 import Token, {fromJSON} from './Token';
 
-const username = 'unknown';
-const service = 'api.rocketbeans.tv/v1';
+const key = 'token-1';
 
 export async function setToken(token: Token) {
-  const result = await Keychain.setGenericPassword(
-    username,
-    JSON.stringify(token),
-    {
-      service,
-    },
-  );
-
-  if (!result) {
-    throw new Error('Failed to store token');
-  }
+  await SecureStore.setItemAsync(key, JSON.stringify(token));
 }
 
 export async function getToken() {
-  const result = await Keychain.getGenericPassword({service});
+  const result = await SecureStore.getItemAsync(key);
 
-  return result ? fromJSON(result.password) : null;
+  return result ? fromJSON(result) : null;
 }
 
 export async function resetToken() {
-  const result = await Keychain.resetGenericPassword({service});
-
-  if (!result) {
-    throw new Error('Failed to reset token');
-  }
+  await SecureStore.deleteItemAsync(key);
 }

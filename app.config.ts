@@ -48,6 +48,9 @@ const config: ExpoConfig = {
   ios: {
     bundleIdentifier: 'de.bmind.rbscvca',
     buildNumber: '1',
+    config: {
+      usesNonExemptEncryption: false,
+    },
   },
   extra: {
     eas: {
