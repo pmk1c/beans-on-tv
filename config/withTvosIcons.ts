@@ -85,7 +85,9 @@ async function removeIosAppIcon(projectRoot: string) {
     'AppIcon.appiconset',
   );
 
-  await fs.rm(appIconPath, {recursive: true});
+  try {
+    await fs.rm(appIconPath, {recursive: true});
+  } catch {}
 }
 
 export default withTvosIcons;

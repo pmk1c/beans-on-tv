@@ -1,7 +1,7 @@
 import 'ts-node/register';
 import {ExpoConfig} from 'expo/config';
 
-import withTvosIcons from './config/iwthTvosIcons';
+import withTvosIcons from './config/withTvosIcons';
 
 const config: ExpoConfig = {
   name: 'Beans on TV',
