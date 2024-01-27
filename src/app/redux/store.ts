@@ -3,6 +3,7 @@ import {
   combineSlices,
   configureStore,
   isAction,
+  isRejected,
 } from "@reduxjs/toolkit";
 import authApi from "../../features/auth/authApi";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
@@ -73,6 +74,10 @@ export const store = configureStore({
           } else {
             console.debug("Redux action", action.type);
           }
+        }
+
+        if (isRejected(action)) {
+          console.error("Redux action rejected", action.type, action.error);
         }
 
         next(action);
