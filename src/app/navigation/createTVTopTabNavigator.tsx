@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {View, StyleSheet, TVFocusGuideView} from 'react-native';
+import * as React from "react";
+import { View, StyleSheet, TVFocusGuideView } from "react-native";
 import {
   useNavigationBuilder,
   TabRouter,
@@ -11,12 +11,12 @@ import {
   TabActionHelpers,
   createNavigatorFactory,
   EventMapBase,
-} from '@react-navigation/native';
-import spacing from '../styles/tokens/spacing';
-import borderRadius from '../styles/tokens/borderRadius';
-import color from '../styles/tokens/color';
-import Button from '../components/Button';
-import {RBTVIconName} from '../assets/icons/RBTVIcon';
+} from "@react-navigation/native";
+import spacing from "../styles/tokens/spacing";
+import borderRadius from "../styles/tokens/borderRadius";
+import color from "../styles/tokens/color";
+import Button from "../components/Button";
+import { RBTVIconName } from "../assets/icons/RBTVIcon";
 
 type TVTopTabNavigationOptions = {
   icon?: RBTVIconName;
@@ -36,7 +36,7 @@ function TVTopTabNavigator({
   children,
   screenOptions,
 }: TVTopTabNavigatorProps) {
-  const {state, navigation, descriptors, NavigationContent} =
+  const { state, navigation, descriptors, NavigationContent } =
     useNavigationBuilder<
       TabNavigationState<ParamListBase>,
       TabRouterOptions,
@@ -55,20 +55,22 @@ function TVTopTabNavigator({
         autoFocus
         trapFocusLeft
         trapFocusRight
-        style={{alignItems: 'center'}}>
+        style={{ alignItems: "center" }}
+      >
         <View
           style={{
-            flexDirection: 'row',
+            flexDirection: "row",
             marginTop: spacing.m,
             borderRadius: borderRadius.large,
             backgroundColor: color.bodyBg,
-          }}>
+          }}
+        >
           {state.routes.map((route, i) => (
             <Button
               key={route.key}
               icon={descriptors[route.key].options.icon}
               title={descriptors[route.key].options.title}
-              buttonType={i === state.index ? 'active' : undefined}
+              buttonType={i === state.index ? "active" : undefined}
               onFocus={() => {
                 navigation.dispatch({
                   ...TabActions.jumpTo(route.name),
@@ -79,15 +81,16 @@ function TVTopTabNavigator({
           ))}
         </View>
       </TVFocusGuideView>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         {state.routes.map((route, i) => {
           return (
             <View
               key={route.key}
               style={[
                 StyleSheet.absoluteFill,
-                {display: i === state.index ? 'flex' : 'none'},
-              ]}>
+                { display: i === state.index ? "flex" : "none" },
+              ]}
+            >
               {descriptors[route.key].render()}
             </View>
           );

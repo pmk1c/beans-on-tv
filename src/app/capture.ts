@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/react-native';
+import * as Sentry from "@sentry/react-native";
 
 export function captureError(error: unknown) {
   console.error(error);

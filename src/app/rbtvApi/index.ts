@@ -1,1 +1,1 @@
-export * from './rbtvApi';
+export * from "./rbtvApi";

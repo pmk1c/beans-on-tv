@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import React, { useEffect, useState } from "react";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import {
   StackNavigationProp,
   StackParamList,
-} from '../../app/navigation/StackNavigator';
-import {Video, ResizeMode} from 'expo-av';
-import {ImageBackground, Linking, Platform, Text, View} from 'react-native';
-import capture from '../../app/capture';
-import color from '../../app/styles/tokens/color';
-import spacing from '../../app/styles/tokens/spacing';
-import borderRadius from '../../app/styles/tokens/borderRadius';
-import fontPresets from '../../app/styles/tokens/fontPresets';
-import {useLazyGetRbscVideoTokenQuery} from '../../app/rbtvApi';
-import {useAppSelector} from '../../app/redux/store';
-import {selectSocket} from '../../app/rbtvApi/rbtvSocketApiSlice';
+} from "../../app/navigation/StackNavigator";
+import { Video, ResizeMode } from "expo-av";
+import { ImageBackground, Linking, Platform, Text, View } from "react-native";
+import capture from "../../app/capture";
+import color from "../../app/styles/tokens/color";
+import spacing from "../../app/styles/tokens/spacing";
+import borderRadius from "../../app/styles/tokens/borderRadius";
+import fontPresets from "../../app/styles/tokens/fontPresets";
+import { useLazyGetRbscVideoTokenQuery } from "../../app/rbtvApi";
+import { useAppSelector } from "../../app/redux/store";
+import { selectSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
 
-type PlayerScreenRouteProp = RouteProp<StackParamList, 'Player'>;
+type PlayerScreenRouteProp = RouteProp<StackParamList, "Player">;
 
 function PlayerScreen() {
   const episode = useRoute<PlayerScreenRouteProp>().params?.episode;
@@ -24,7 +24,7 @@ function PlayerScreen() {
   // const youtubeVideoToken = episode.tokens.find(t => t.type === 'youtube');
   // const poster = episode.thumbnail.find(t => t.name === 'ytbig');
   const [signedToken, setSignedToken] = useState<string | undefined>(undefined);
-  const [error, setError] = useState<'rbsc' | 'yt'>();
+  const [error, setError] = useState<"rbsc" | "yt">();
 
   const [getRbscVideoToken] = useLazyGetRbscVideoTokenQuery();
   const navigation = useNavigation<StackNavigationProp>();
@@ -33,7 +33,7 @@ function PlayerScreen() {
       (async () => {
         if (episode.videoTokens.rbsc) {
           try {
-            const {data} = await getRbscVideoToken({
+            const { data } = await getRbscVideoToken({
               videoToken: episode.videoTokens.rbsc.token,
             }).unwrap();
             setSignedToken(data?.signedToken);
@@ -43,7 +43,7 @@ function PlayerScreen() {
 
         if (episode.videoTokens.youtube) {
           try {
-            const {token} = episode.videoTokens.youtube;
+            const { token } = episode.videoTokens.youtube;
             const url = Platform.select({
               ios: `youtube://watch/${token}`,
               android: `https://www.youtube.com/watch?v=${token}`,
@@ -52,16 +52,16 @@ function PlayerScreen() {
             navigation.pop();
           } catch {
             if (episode.videoTokens.rbsc) {
-              setError('rbsc');
+              setError("rbsc");
             } else {
-              setError('yt');
+              setError("yt");
             }
           }
           return;
         }
 
-        throw new Error('No video token found!');
-      })(),
+        throw new Error("No video token found!");
+      })()
     );
   }, [getRbscVideoToken, navigation, episode]);
 
@@ -72,27 +72,30 @@ function PlayerScreen() {
       <ImageBackground
         style={{
           flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignItems: "center",
         }}
-        source={{uri: episode.thumbnailUrls.large}}>
+        source={{ uri: episode.thumbnailUrls.large }}
+      >
         {error ? (
           <View
             style={{
               backgroundColor: color.darkTransparentBg,
               padding: spacing.l,
               borderRadius: borderRadius.large,
-            }}>
+            }}
+          >
             <Text
               style={{
                 ...fontPresets.xl,
                 color: color.text,
-                textAlign: 'center',
-              }}>
-              Das Video konnte nicht geladen werden.{' '}
-              {error === 'rbsc'
-                ? 'Melde dich mit deinem RBSC-Account an oder installiere die YouTube-App, um es zu sehen.'
-                : ' Installiere die YouTube-App, um es zu sehen.'}
+                textAlign: "center",
+              }}
+            >
+              Das Video konnte nicht geladen werden.{" "}
+              {error === "rbsc"
+                ? "Melde dich mit deinem RBSC-Account an oder installiere die YouTube-App, um es zu sehen."
+                : " Installiere die YouTube-App, um es zu sehen."}
             </Text>
           </View>
         ) : null}
@@ -112,12 +115,12 @@ function PlayerScreen() {
         shouldPlay: true,
         positionMillis: episode.progress?.progress ?? 0 * 1000,
       }}
-      posterSource={{uri: episode.thumbnailUrls.large}}
+      posterSource={{ uri: episode.thumbnailUrls.large }}
       useNativeControls
       usePoster
       resizeMode={ResizeMode.CONTAIN}
       progressUpdateIntervalMillis={1000}
-      onPlaybackStatusUpdate={status => {
+      onPlaybackStatusUpdate={(status) => {
         if (!status.isLoaded) {
           return;
         }
@@ -129,7 +132,7 @@ function PlayerScreen() {
 
         rbtvSocket.emitMediaEpisodeProgressUpdate(
           episode,
-          status.positionMillis / 1000,
+          status.positionMillis / 1000
         );
       }}
     />

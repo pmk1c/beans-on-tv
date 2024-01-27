@@ -1,20 +1,20 @@
-import React from 'react';
-import {StyleSheet, TVFocusGuideView, Text, View} from 'react-native';
-import {useAuthScreen} from './useAuthScreen';
-import color from '../../app/styles/tokens/color';
-import spacing from '../../app/styles/tokens/spacing';
-import Button from '../../app/components/Button';
-import borderRadius from '../../app/styles/tokens/borderRadius';
-import fontPresets from '../../app/styles/tokens/fontPresets';
+import React from "react";
+import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
+import { useAuthScreen } from "./useAuthScreen";
+import color from "../../app/styles/tokens/color";
+import spacing from "../../app/styles/tokens/spacing";
+import Button from "../../app/components/Button";
+import borderRadius from "../../app/styles/tokens/borderRadius";
+import fontPresets from "../../app/styles/tokens/fontPresets";
 
-const codeSeperator = '–';
+const codeSeperator = "–";
 
 function formatCode(code: string): string {
   return code.slice(0, 4) + codeSeperator + code.slice(4);
 }
 
 function AuthScreen(): JSX.Element | null {
-  const {state, logout} = useAuthScreen();
+  const { state, logout } = useAuthScreen();
 
   return (
     <TVFocusGuideView
@@ -22,23 +22,24 @@ function AuthScreen(): JSX.Element | null {
       trapFocusLeft
       trapFocusRight
       trapFocusDown
-      style={styles.wrapper}>
-      {state.step === 'creatingCode' || state.step === 'pollingToken' ? (
+      style={styles.wrapper}
+    >
+      {state.step === "creatingCode" || state.step === "pollingToken" ? (
         <View style={styles.textWrapper}>
           <Text style={styles.text}>
-            Besuche{' '}
+            Besuche{" "}
             <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
             melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
             Code ein:
-            {'\n'}
+            {"\n"}
             <Text style={styles.textHighlight}>
-              {state.step === 'pollingToken'
+              {state.step === "pollingToken"
                 ? formatCode(state.code)
                 : codeSeperator}
             </Text>
           </Text>
         </View>
-      ) : state.step === 'done' ? (
+      ) : state.step === "done" ? (
         <Button buttonType="destructive" title="Abmelden" onPress={logout} />
       ) : null}
     </TVFocusGuideView>
@@ -48,8 +49,8 @@ function AuthScreen(): JSX.Element | null {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   textWrapper: {
     backgroundColor: color.darkTransparentBg,
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   text: {
     ...fontPresets.xl,
     color: color.text,
-    textAlign: 'center',
+    textAlign: "center",
   },
   textHighlight: {
     color: color.textHighlight,

@@ -2,35 +2,35 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'monthly'
+      interval: "monthly"
     labels:
-      - 'github-actions'
-  - package-ecosystem: 'npm'
-    directory: '/'
+      - "github-actions"
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'monthly'
+      interval: "monthly"
     groups:
       dev-dependencies:
-        dependency-type: 'development'
+        dependency-type: "development"
         update-types:
           - minor
           - patch
       prod-js-dependencies:
-        dependency-type: 'production'
+        dependency-type: "production"
         update-types:
           - minor
           - patch
         exclude-patterns:
-          - '*native*'
+          - "*native*"
       prod-native-dependencies:
-        dependency-type: 'production'
+        dependency-type: "production"
         update-types:
           - minor
           - patch
         patterns:
-          - '*native*'
+          - "*native*"
         exclude-patterns:
-          - 'react-native'
+          - "react-native"

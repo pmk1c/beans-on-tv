@@ -1,4 +1,4 @@
-import VideoToken from './VideoToken';
+import VideoToken from "./VideoToken";
 
 interface Episode {
   id: string;
@@ -10,7 +10,7 @@ interface Episode {
     large: string;
   };
   distributionPublishingDate: string;
-  videoTokens: {rbsc?: VideoToken; youtube?: VideoToken};
+  videoTokens: { rbsc?: VideoToken; youtube?: VideoToken };
   progress?: {
     progress: number;
     total: number;

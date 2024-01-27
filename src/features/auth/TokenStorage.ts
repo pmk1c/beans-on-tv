@@ -1,8 +1,8 @@
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
 
-import Token, {fromJSON} from './Token';
+import Token, { fromJSON } from "./Token";
 
-const key = 'token-1';
+const key = "token-1";
 
 export async function setToken(token: Token) {
   await SecureStore.setItemAsync(key, JSON.stringify(token));

@@ -7,16 +7,16 @@ type Token = {
 
 function isToken(token: unknown): token is Token {
   return (
-    typeof token === 'object' &&
+    typeof token === "object" &&
     token !== null &&
-    'accessToken' in token &&
-    typeof token.accessToken === 'string' &&
-    'validUntil' in token &&
-    typeof token.validUntil === 'string' &&
-    'refreshToken' in token &&
-    (typeof token.refreshToken === 'string' || token.refreshToken === null) &&
-    'appReview' in token &&
-    typeof token.appReview === 'boolean'
+    "accessToken" in token &&
+    typeof token.accessToken === "string" &&
+    "validUntil" in token &&
+    typeof token.validUntil === "string" &&
+    "refreshToken" in token &&
+    (typeof token.refreshToken === "string" || token.refreshToken === null) &&
+    "appReview" in token &&
+    typeof token.appReview === "boolean"
   );
 }
 
@@ -26,7 +26,7 @@ export function fromJSON(json: string) {
     ...JSON.parse(json),
   };
   if (!isToken(token)) {
-    throw new Error('Invalid token: ' + JSON.stringify(token));
+    throw new Error("Invalid token: " + JSON.stringify(token));
   }
 
   return token;
