@@ -1,7 +1,7 @@
 import 'ts-node/register';
 import {ExpoConfig} from 'expo/config';
 
-import {withBrandassets} from './config/withBrandassets';
+import withTvosIcons from './config/iwthTvosIcons';
 
 const config: ExpoConfig = {
   name: 'Beans on TV',
@@ -56,6 +56,11 @@ const config: ExpoConfig = {
   },
 };
 
-export default withBrandassets(config, {
-  brandassets: 'assets/tvos.brandassets',
+export default withTvosIcons(config, {
+  android: {
+    banner: 'assets/android-banner.png',
+  },
+  ios: {
+    brandassets: 'assets/tvos.brandassets',
+  },
 });
