@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import FastImage from 'react-native-fast-image';
-import {Image, ImageSourcePropType, Pressable, Text, View} from 'react-native';
+import {Image} from 'expo-image';
+import {ImageSourcePropType, Pressable, Text, View} from 'react-native';
 import borderRadius from '../../app/styles/tokens/borderRadius';
 import color from '../../app/styles/tokens/color';
 import spacing from '../../app/styles/tokens/spacing';
@@ -26,12 +26,6 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
   const isLoggedIn = !!useAppSelector(selectAuthToken);
   const isYouTubeOnly = !isLoggedIn || !episode.videoTokens.rbsc;
   const navigation = useNavigation<StackNavigationProp>();
-  const fastImagePriority =
-    thumbnailPriority === 'high'
-      ? FastImage.priority.high
-      : thumbnailPriority === 'normal'
-      ? FastImage.priority.normal
-      : FastImage.priority.low;
 
   return (
     <Pressable
@@ -55,9 +49,7 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
             }}>
             {isYouTubeOnly && (
               <Image
-                source={
-                  require('../../app/assets/icons/yt_icon_rgb.png') as ImageSourcePropType
-                }
+                source={require('../../app/assets/icons/yt_icon_rgb.png')}
                 style={{
                   position: 'absolute',
                   zIndex: 1,
@@ -83,7 +75,7 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
                 borderBottomWidth: spacing.xs,
               }}
             />
-            <FastImage
+            <Image
               style={{
                 height,
                 width,
@@ -92,11 +84,9 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
               }}
               source={{
                 uri: episode.thumbnailUrls.small,
-                priority: fastImagePriority,
               }}
-              defaultSource={
-                require('../../app/assets/images/placeholder_16x9-420.png') as number
-              }
+              priority={thumbnailPriority}
+              placeholder={require('../../app/assets/images/placeholder_16x9-420.png')}
             />
           </View>
           <View style={{gap: spacing['2xs']}}>
@@ -129,9 +119,7 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
                 }}
                 numberOfLines={1}>
                 {formatDistanceToNowStrict(
-                  Date.parse(
-                    episode.distributionPublishingDate as unknown as string,
-                  ),
+                  Date.parse(episode.distributionPublishingDate),
                   {
                     addSuffix: true,
                   },

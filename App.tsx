@@ -27,9 +27,7 @@ Sentry.init({
 
 setDefaultOptions({locale: de});
 
-const backgroundImage =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('./src/app/assets/images/body_bg2021-127.jpg') as ImageSourcePropType;
+const backgroundImage = require('./src/app/assets/images/body_bg2021-127.jpg');
 
 function App() {
   const navigation =
