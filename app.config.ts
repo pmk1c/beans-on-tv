@@ -8,8 +8,8 @@ const config: ExpoConfig = {
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
   privacy: "hidden",
-  version: "1.0.0",
-  runtimeVersion: { policy: "nativeVersion" },
+  // x.y.z | x = Expo update, y = Native dependency update, z = JS-only update
+  version: "2.0.0",
   githubUrl: "https://github.com/pmk1c/rbscvca-app",
   backgroundColor: "#000000",
   primaryColor: "#ED0000",
@@ -43,11 +43,9 @@ const config: ExpoConfig = {
   },
   android: {
     package: "de.bmind.rbscvca",
-    versionCode: 1,
   },
   ios: {
     bundleIdentifier: "de.bmind.rbscvca",
-    buildNumber: "1",
     config: {
       usesNonExemptEncryption: false,
     },
