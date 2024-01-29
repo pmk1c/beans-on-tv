@@ -58,8 +58,8 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                   left: spacing.xs,
                   height: perfectSize(48),
                   width: (734 / 518) * perfectSize(48),
-                  resizeMode: "contain",
                 }}
+                contentFit="contain"
               />
             )}
             <View
