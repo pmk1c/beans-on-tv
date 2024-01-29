@@ -1,4 +1,1 @@
-.eslintrc.js
-*.generated.ts
-doc/rbtv-api/
-vendor/
+doc/rbtv-api/official

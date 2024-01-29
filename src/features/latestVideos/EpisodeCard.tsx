@@ -1,77 +1,70 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React from 'react';
-import FastImage from 'react-native-fast-image';
-import {Image, ImageSourcePropType, Pressable, Text, View} from 'react-native';
-import borderRadius from '../../app/styles/tokens/borderRadius';
-import color from '../../app/styles/tokens/color';
-import spacing from '../../app/styles/tokens/spacing';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '../../app/navigation/StackNavigator';
-import {formatDistanceToNowStrict} from 'date-fns';
-import perfectSize from '../../app/styles/perfectSize';
-import fontPresets from '../../app/styles/tokens/fontPresets';
-import Episode from '../../app/types/Episode';
-import {useAppSelector} from '../../app/redux/store';
-import {selectAuthToken} from '../auth/authTokenSlice';
+import React from "react";
+import { Image } from "expo-image";
+import { ImageSourcePropType, Pressable, Text, View } from "react-native";
+import borderRadius from "../../app/styles/tokens/borderRadius";
+import color from "../../app/styles/tokens/color";
+import spacing from "../../app/styles/tokens/spacing";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "../../app/navigation/StackNavigator";
+import { formatDistanceToNowStrict } from "date-fns";
+import perfectSize from "../../app/styles/perfectSize";
+import fontPresets from "../../app/styles/tokens/fontPresets";
+import Episode from "../../app/types/Episode";
+import { useAppSelector } from "../../app/redux/store";
+import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
   episode: Episode;
-  thumbnailPriority: 'high' | 'normal' | 'low';
+  thumbnailPriority: "high" | "normal" | "low";
 }
 
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
-function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
+function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
   const isLoggedIn = !!useAppSelector(selectAuthToken);
   const isYouTubeOnly = !isLoggedIn || !episode.videoTokens.rbsc;
   const navigation = useNavigation<StackNavigationProp>();
-  const fastImagePriority =
-    thumbnailPriority === 'high'
-      ? FastImage.priority.high
-      : thumbnailPriority === 'normal'
-      ? FastImage.priority.normal
-      : FastImage.priority.low;
 
   return (
     <Pressable
       style={{
         width: width,
         height: height + spacing.m + fontPresets.xl.fontSize * 1.35 * 3,
-        flexDirection: 'column',
+        flexDirection: "column",
         gap: spacing.m,
-        alignItems: 'center',
+        alignItems: "center",
       }}
-      onPress={() => navigation.push('Player', {episode})}
-      children={({focused}) => (
+      onPress={() => navigation.push("Player", { episode })}
+      children={({ focused }) => (
         <>
           <View
             style={{
-              overflow: 'hidden',
-              transform: [{scale: focused ? 1.1 : 1}],
+              overflow: "hidden",
+              transform: [{ scale: focused ? 1.1 : 1 }],
               borderRadius: borderRadius.large,
               borderWidth: perfectSize(2),
-              borderColor: focused ? color.textHighlight : 'transparent',
-            }}>
+              borderColor: focused ? color.textHighlight : "transparent",
+            }}
+          >
             {isYouTubeOnly && (
               <Image
-                source={
-                  require('../../app/assets/icons/yt_icon_rgb.png') as ImageSourcePropType
-                }
+                source={require("../../app/assets/icons/yt_icon_rgb.png")}
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   zIndex: 1,
                   top: spacing.xs,
                   left: spacing.xs,
                   height: perfectSize(48),
                   width: (734 / 518) * perfectSize(48),
-                  resizeMode: 'contain',
                 }}
+                contentFit="contain"
               />
             )}
             <View
               style={{
-                position: 'absolute',
+                position: "absolute",
                 zIndex: 1,
                 height,
                 width: `${
@@ -83,7 +76,7 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
                 borderBottomWidth: spacing.xs,
               }}
             />
-            <FastImage
+            <Image
               style={{
                 height,
                 width,
@@ -92,34 +85,35 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
               }}
               source={{
                 uri: episode.thumbnailUrls.small,
-                priority: fastImagePriority,
               }}
-              defaultSource={
-                require('../../app/assets/images/placeholder_16x9-420.png') as number
-              }
+              priority={thumbnailPriority}
+              placeholder={require("../../app/assets/images/placeholder_16x9-420.png")}
             />
           </View>
-          <View style={{gap: spacing['2xs']}}>
+          <View style={{ gap: spacing["2xs"] }}>
             <Text
               numberOfLines={2}
               style={{
                 color: color.textHighlight,
                 ...fontPresets.xl,
-              }}>
+              }}
+            >
               {episode.title}
             </Text>
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
+                flexDirection: "row",
+                justifyContent: "space-between",
                 flex: 1,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   color: color.textHighlight,
                   ...fontPresets.l,
                 }}
-                numberOfLines={1}>
+                numberOfLines={1}
+              >
                 {episode.showName}
               </Text>
               <Text
@@ -127,14 +121,13 @@ function EpisodeCard({episode, thumbnailPriority}: EpisodeCardProps) {
                   color: color.textHighlight,
                   ...fontPresets.l,
                 }}
-                numberOfLines={1}>
+                numberOfLines={1}
+              >
                 {formatDistanceToNowStrict(
-                  Date.parse(
-                    episode.distributionPublishingDate as unknown as string,
-                  ),
+                  Date.parse(episode.distributionPublishingDate),
                   {
                     addSuffix: true,
-                  },
+                  }
                 )}
               </Text>
             </View>

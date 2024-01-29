@@ -1,4 +1,4 @@
-import React, {PropsWithRef, Ref, forwardRef} from 'react';
+import React, { PropsWithRef, Ref, forwardRef } from "react";
 import {
   Pressable,
   StyleProp,
@@ -6,16 +6,16 @@ import {
   Text,
   View,
   ViewStyle,
-} from 'react-native';
-import spacing from '../styles/tokens/spacing';
-import color from '../styles/tokens/color';
-import borderRadius from '../styles/tokens/borderRadius';
-import RBTVIcon from '../assets/icons/RBTVIcon';
-import {RBTVIconName} from '../assets/icons/RBTVIcon';
-import fontPresets from '../styles/tokens/fontPresets';
+} from "react-native";
+import spacing from "../styles/tokens/spacing";
+import color from "../styles/tokens/color";
+import borderRadius from "../styles/tokens/borderRadius";
+import RBTVIcon from "../assets/icons/RBTVIcon";
+import { RBTVIconName } from "../assets/icons/RBTVIcon";
+import fontPresets from "../styles/tokens/fontPresets";
 
 type ButtonProps = PropsWithRef<{
-  buttonType?: 'destructive' | 'active';
+  buttonType?: "destructive" | "active";
   icon?: RBTVIconName;
   title?: string;
   style?: StyleProp<ViewStyle>;
@@ -26,41 +26,41 @@ type ButtonProps = PropsWithRef<{
 function getStyles<T = unknown>(
   styles: Record<string, StyleProp<T>>,
   defaultStyleName: string,
-  buttonType: ButtonProps['buttonType'],
-  focused: boolean,
+  buttonType: ButtonProps["buttonType"],
+  focused: boolean
 ) {
   const styleNames = [defaultStyleName];
-  if (buttonType === 'active') {
+  if (buttonType === "active") {
     styleNames.push(`${defaultStyleName}Active`);
   }
-  if (buttonType === 'destructive') {
+  if (buttonType === "destructive") {
     styleNames.push(`${defaultStyleName}Destructive`);
   }
   if (focused) {
     styleNames.push(`${defaultStyleName}Focused`);
   }
-  if (buttonType === 'destructive' && focused) {
+  if (buttonType === "destructive" && focused) {
     styleNames.push(`${defaultStyleName}DestructiveFocused`);
   }
 
-  return styleNames.map(styleName => styles[styleName]).filter(Boolean);
+  return styleNames.map((styleName) => styles[styleName]).filter(Boolean);
 }
 
 function Button(
-  {buttonType, icon, title, onFocus, onPress}: ButtonProps,
-  ref: Ref<View>,
+  { buttonType, icon, title, onFocus, onPress }: ButtonProps,
+  ref: Ref<View>
 ): JSX.Element {
   return (
     <Pressable
       ref={ref}
       onFocus={onFocus}
       onPress={onPress}
-      children={({focused}) => (
-        <View style={getStyles(viewStyles, 'wrapper', buttonType, focused)}>
-          <Text style={getStyles(textStyles, 'text', buttonType, focused)}>
+      children={({ focused }) => (
+        <View style={getStyles(viewStyles, "wrapper", buttonType, focused)}>
+          <Text style={getStyles(textStyles, "text", buttonType, focused)}>
             {icon ? (
               <RBTVIcon
-                style={getStyles(textStyles, 'text', buttonType, focused)}
+                style={getStyles(textStyles, "text", buttonType, focused)}
                 name={icon}
               />
             ) : null}

@@ -1,4 +1,4 @@
-import {createIconSet} from 'react-native-vector-icons';
+import { createIconSet } from "@expo/vector-icons";
 
 const glyphMap = {
   external: 0xe913,
@@ -73,8 +73,8 @@ const glyphMap = {
   push: 0xe945,
   push_disabled: 0xe946,
   reset: 0xe947,
-  'arrow-left_first': 0xe948,
-  'arrow-right_last': 0xe949,
+  "arrow-left_first": 0xe948,
+  "arrow-right_last": 0xe949,
   crown_plus: 0xe94a,
   pause: 0xe94b,
   volume_none: 0xe94c,
@@ -94,18 +94,18 @@ const glyphMap = {
   grip: 0xe95a,
   home: 0xe95b,
   forbidden: 0xe95c,
-  'arrow-down_first': 0xe95d,
-  'arrow-up_first': 0xe95e,
+  "arrow-down_first": 0xe95d,
+  "arrow-up_first": 0xe95e,
   history: 0xe95f,
   subscription: 0xe960,
-  'subscription-empty': 0xe961,
+  "subscription-empty": 0xe961,
   brand_github: 0xe962,
   brand_mastodon: 0xe963,
   circle_empty: 0xe964,
   pin_empty: 0xe965,
 };
 
-const RBTVIcon = createIconSet(glyphMap, 'rbtvIcons');
+const RBTVIcon = createIconSet(glyphMap, "rbtvIcons", "rbtvIcons.ttf");
 
 export default RBTVIcon;
 export type RBTVIconName = keyof typeof glyphMap;

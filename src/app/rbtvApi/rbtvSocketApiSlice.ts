@@ -1,42 +1,42 @@
-import {nanoid} from '@reduxjs/toolkit';
-import {createSliceWithThunks} from '../redux/createSliceWithThunks';
-import RBTVSocket from './RBTVSocket';
-import {rbtvApi} from '.';
+import { nanoid } from "@reduxjs/toolkit";
+import { createSliceWithThunks } from "../redux/createSliceWithThunks";
+import RBTVSocket from "./RBTVSocket";
+import { rbtvApi } from ".";
 
 const sockets: Record<string, RBTVSocket> = {};
 
 export const rbtvSocketApiSlice = createSliceWithThunks({
-  name: 'rbtvSocketApi',
+  name: "rbtvSocketApi",
   initialState: {
     socketId: undefined as string | undefined,
   },
-  reducers: create => ({
+  reducers: (create) => ({
     initializeSocket: create.asyncThunk<undefined, string>(
-      async (_, {dispatch}) => {
+      async (_, { dispatch }) => {
         const socketId = nanoid();
         const {
-          data: {websocket},
+          data: { websocket },
         } = await dispatch(
-          rbtvApi.endpoints.getFrontendInit.initiate(),
+          rbtvApi.endpoints.getFrontendInit.initiate()
         ).unwrap();
         sockets[socketId] = new RBTVSocket(websocket.url, websocket.path);
 
         return socketId;
       },
       {
-        rejected: state => {
+        rejected: (state) => {
           state.socketId = undefined;
         },
         fulfilled: (state, action) => {
           state.socketId = action.payload;
         },
-      },
+      }
     ),
   }),
   selectors: {
-    selectSocket: state => {
+    selectSocket: (state) => {
       if (!state.socketId) {
-        throw new Error('Socket has not been initialized');
+        throw new Error("Socket has not been initialized");
       }
 
       return sockets[state.socketId];
@@ -44,5 +44,5 @@ export const rbtvSocketApiSlice = createSliceWithThunks({
   },
 });
 
-export const {initializeSocket} = rbtvSocketApiSlice.actions;
-export const {selectSocket} = rbtvSocketApiSlice.selectors;
+export const { initializeSocket } = rbtvSocketApiSlice.actions;
+export const { selectSocket } = rbtvSocketApiSlice.selectors;

@@ -1,7 +1,7 @@
-import React from 'react';
-import createTVTopTabNavigator from './createTVTopTabNavigator';
-import LatestVideosScreen from '../../features/latestVideos/LatestVideosScreen';
-import AuthScreen from '../../features/auth/AuthScreen';
+import React from "react";
+import createTVTopTabNavigator from "./createTVTopTabNavigator";
+import LatestVideosScreen from "../../features/latestVideos/LatestVideosScreen";
+import AuthScreen from "../../features/auth/AuthScreen";
 
 export type TabParamList = {
   LatestVideos: undefined;
@@ -16,12 +16,12 @@ function TabNavigator() {
       <Tab.Screen
         name="LatestVideos"
         component={LatestVideosScreen}
-        options={{title: 'Neueste Videos'}}
+        options={{ title: "Neueste Videos" }}
       />
       <Tab.Screen
         name="Auth"
         component={AuthScreen}
-        options={{icon: 'user_circle'}}
+        options={{ icon: "user_circle" }}
       />
     </Tab.Navigator>
   );

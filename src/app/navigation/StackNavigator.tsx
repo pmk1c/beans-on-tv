@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
   NativeStackNavigationProp,
   createNativeStackNavigator,
-} from '@react-navigation/native-stack';
-import PlayerScreen from '../../features/player/PlayerScreen';
-import Episode from '../types/Episode';
-import {StackNavigationState} from '@react-navigation/native';
-import {TVEventControl} from 'react-native';
-import AuthScreen from '../../features/auth/AuthScreen';
-import {useAppSelector} from '../redux/store';
-import {selectAuthToken} from '../../features/auth/authTokenSlice';
-import TabNavigator from './TabNavigator';
+} from "@react-navigation/native-stack";
+import PlayerScreen from "../../features/player/PlayerScreen";
+import Episode from "../types/Episode";
+import { StackNavigationState } from "@react-navigation/native";
+import { TVEventControl } from "react-native";
+import AuthScreen from "../../features/auth/AuthScreen";
+import { useAppSelector } from "../redux/store";
+import { selectAuthToken } from "../../features/auth/authTokenSlice";
+import TabNavigator from "./TabNavigator";
 
 export type StackParamList = {
   Auth: undefined;
   Main: undefined;
-  Player: {episode: Episode};
+  Player: { episode: Episode };
 };
 
 export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;
@@ -28,7 +28,7 @@ function StackNavigator() {
   return (
     <Stack.Navigator
       screenListeners={{
-        state: e => {
+        state: (e) => {
           const data = e.data as {
             state: StackNavigationState<StackParamList> | undefined;
           };
@@ -43,10 +43,11 @@ function StackNavigator() {
       }}
       screenOptions={{
         contentStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
         },
         headerShown: false,
-      }}>
+      }}
+    >
       {isLoggedIn ? (
         <>
           <Stack.Screen name="Main" component={TabNavigator} />

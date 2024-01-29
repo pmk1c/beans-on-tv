@@ -1,21 +1,21 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {useCreateCodeMutation, useGetTokenMutation} from './authApi';
+import { useDispatch, useSelector } from "react-redux";
+import { useCreateCodeMutation, useGetTokenMutation } from "./authApi";
 import {
   resetAuthToken,
   selectAuthToken,
   selectAuthTokenInitialized,
   setAuthToken,
-} from './authTokenSlice';
-import {useCallback, useEffect, useRef, useState} from 'react';
-import {AppDispatch} from '../../app/redux/store';
-import capture from '../../app/capture';
+} from "./authTokenSlice";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AppDispatch } from "../../app/redux/store";
+import capture from "../../app/capture";
 
 type AuthScreenState =
   | {
-      step: 'creatingCode' | 'done';
+      step: "creatingCode" | "done";
     }
   | {
-      step: 'pollingToken';
+      step: "pollingToken";
       code: string;
     };
 
@@ -42,7 +42,7 @@ function usePollAuthTokenStep() {
   }, []);
   return useCallback(
     (code: string) => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         const pollToken = async () => {
           const token = await getToken(code).unwrap();
           if (token) {
@@ -52,14 +52,14 @@ function usePollAuthTokenStep() {
           } else {
             tokenPollingTimeout.current = setTimeout(
               () => capture(pollToken()),
-              1000,
+              1000
             );
           }
         };
         capture(pollToken());
       });
     },
-    [dispatch, getToken],
+    [dispatch, getToken]
   );
 }
 
@@ -71,7 +71,7 @@ function useLogout() {
 
 export function useAuthScreen() {
   const [state, setState] = useState<AuthScreenState>({
-    step: 'creatingCode',
+    step: "creatingCode",
   });
   const authTokenInitialized = useSelector(selectAuthTokenInitialized);
   const authToken = useSelector(selectAuthToken);
@@ -84,28 +84,28 @@ export function useAuthScreen() {
     }
 
     if (authToken) {
-      setState({step: 'done'});
+      setState({ step: "done" });
       return;
     }
 
-    if (state.step !== 'creatingCode') {
+    if (state.step !== "creatingCode") {
       return;
     }
 
     capture(
       (async () => {
         const code = await createCode();
-        setState({step: 'pollingToken', code});
+        setState({ step: "pollingToken", code });
         await pollAuthToken(code);
-      })(),
+      })()
     );
   }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);
 
   const logoutAction = useLogout();
   const logout = useCallback(() => {
     capture(logoutAction());
-    setState({step: 'creatingCode'});
+    setState({ step: "creatingCode" });
   }, [logoutAction]);
 
-  return {state, logout};
+  return { state, logout };
 }

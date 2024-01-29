@@ -1,7 +1,6 @@
-.*
-android/
-doc/rbtv-api
-fastlane/
-ios/
-vendor/
+.expo
+.ruby-lsp
+android
+doc/rbtv-api/official
+ios
 pnpm-lock.yaml

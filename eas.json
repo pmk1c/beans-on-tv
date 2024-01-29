@@ -1,0 +1,21 @@
+{
+  "cli": {
+    "appVersionSource": "remote",
+    "version": ">= 7.1.1",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "production": {
+      "env": {
+        "EXPO_TV": "1"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "1671815295"
+      }
+    }
+  }
+}

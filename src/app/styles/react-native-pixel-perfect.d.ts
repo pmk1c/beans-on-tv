@@ -1,4 +1,4 @@
-declare module 'react-native-pixel-perfect' {
+declare module "react-native-pixel-perfect" {
   export function create(displayProps: {
     width: number;
     height: number;

@@ -12,7 +12,7 @@ import type {
   RBSCVideoToken,
   socketMessageTypes,
   videoToken,
-} from '../../../doc/rbtv-api/official';
+} from "../../../doc/rbtv-api/official";
 
 // Fixes
 interface MediaEpisodePreviewCombinedResponse {
@@ -62,13 +62,13 @@ type SocketMessagePayloads = {
 } & {
   [key in Exclude<
     SocketMessage,
-    | 'AC_AUTHENTICATION_RENEW_TOKEN_REQ'
-    | 'AC_AUTHENTICATION_REQ'
-    | 'AC_AUTHENTICATION_RESULT'
-    | 'AC_PING'
-    | 'CA_AUTHENTICATION'
-    | 'CA_PONG'
-    | 'CA_MEDIA_EPISODEPROGRESS_UPDATE'
+    | "AC_AUTHENTICATION_RENEW_TOKEN_REQ"
+    | "AC_AUTHENTICATION_REQ"
+    | "AC_AUTHENTICATION_RESULT"
+    | "AC_PING"
+    | "CA_AUTHENTICATION"
+    | "CA_PONG"
+    | "CA_MEDIA_EPISODEPROGRESS_UPDATE"
   >]: never;
 };
 

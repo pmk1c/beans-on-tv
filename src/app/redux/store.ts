@@ -3,26 +3,31 @@ import {
   combineSlices,
   configureStore,
   isAction,
-} from '@reduxjs/toolkit';
-import authApi from '../../features/auth/authApi';
-import {setupListeners} from '@reduxjs/toolkit/query/react';
-import {authTokenSlice} from '../../features/auth/authTokenSlice';
-import * as Sentry from '@sentry/react-native';
-import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {rbtvApi} from '.././rbtvApi';
-import {rbtvSocketApiSlice} from '../rbtvApi/rbtvSocketApiSlice';
-import {AppState, AppStateStatus, NativeEventSubscription} from 'react-native';
+  isRejected,
+} from "@reduxjs/toolkit";
+import authApi from "../../features/auth/authApi";
+import { setupListeners } from "@reduxjs/toolkit/query/react";
+import { authTokenSlice } from "../../features/auth/authTokenSlice";
+import * as Sentry from "@sentry/react-native";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { rbtvApi } from ".././rbtvApi";
+import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
+import {
+  AppState,
+  AppStateStatus,
+  NativeEventSubscription,
+} from "react-native";
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
-  actionTransformer: action => {
+  actionTransformer: (action) => {
     if (
       action.payload &&
-      typeof action.type === 'string' &&
-      action.type.toLowerCase().includes('token')
+      typeof action.type === "string" &&
+      action.type.toLowerCase().includes("token")
     ) {
       return {
         ...action,
-        payload: '[Filtered]',
+        payload: "[Filtered]",
       };
     }
 
@@ -31,15 +36,15 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   stateTransformer: (state: RootState) => {
     return {
       ...state,
-      authToken: '[Filtered]',
+      authToken: "[Filtered]",
       [authApi.reducerPath]: {
         ...state[authApi.reducerPath],
-        getToken: '[Filtered]',
-        refreshToken: '[Filtered]',
+        getToken: "[Filtered]",
+        refreshToken: "[Filtered]",
       },
       [rbtvApi.reducerPath]: {
         ...state[rbtvApi.reducerPath],
-        getRbscVideoToken: '[Filtered]',
+        getRbscVideoToken: "[Filtered]",
       },
     };
   },
@@ -49,12 +54,12 @@ const reducer = combineSlices(
   authApi,
   rbtvApi,
   authTokenSlice,
-  rbtvSocketApiSlice,
+  rbtvSocketApiSlice
 );
 
 export const store = configureStore({
   reducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         warnAfter: 64,
@@ -62,35 +67,39 @@ export const store = configureStore({
     })
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
-      .concat(() => next => action => {
+      .concat(() => (next) => (action) => {
         if (__DEV__ && isAction(action)) {
-          if ('payload' in action) {
-            console.debug('Redux action', action.type, action.payload);
+          if ("payload" in action) {
+            console.debug("Redux action", action.type, action.payload);
           } else {
-            console.debug('Redux action', action.type);
+            console.debug("Redux action", action.type);
           }
+        }
+
+        if (isRejected(action)) {
+          console.error("Redux action rejected", action.type, action.error);
         }
 
         next(action);
       }),
-  enhancers: getDefaultEnhancers =>
+  enhancers: (getDefaultEnhancers) =>
     getDefaultEnhancers().concat(sentryReduxEnhancer),
 });
 
 let initialized = false;
-setupListeners(store.dispatch, (dispatch, {onFocus, onFocusLost}) => {
+setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
   let subscription: NativeEventSubscription;
 
   if (!initialized) {
     subscription = AppState.addEventListener(
-      'change',
+      "change",
       (nextAppState: AppStateStatus) => {
-        if (nextAppState === 'active') {
+        if (nextAppState === "active") {
           dispatch(onFocus());
         } else {
           dispatch(onFocusLost());
         }
-      },
+      }
     );
     initialized = true;
   }
