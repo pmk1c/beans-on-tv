@@ -10,7 +10,7 @@ import * as Sentry from "@sentry/react-native";
 import { setDefaultOptions } from "date-fns";
 import { de } from "date-fns/locale";
 import InitializeAppGate from "./src/features/initializeApp/InitializeAppGate";
-import { ImageBackground, ImageSourcePropType } from "react-native";
+import { ImageBackground } from "react-native";
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -27,8 +27,6 @@ Sentry.init({
 
 setDefaultOptions({ locale: de });
 
-const backgroundImage = require("./src/app/assets/images/body_bg2021-127.jpg");
-
 function App() {
   const navigation =
     React.useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
@@ -41,7 +39,11 @@ function App() {
           routingInstrumentation.registerNavigationContainer(navigation);
         }}
       >
-        <ImageBackground source={backgroundImage} style={{ flex: 1 }}>
+        <ImageBackground
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          source={require("./src/app/assets/images/body_bg2021-127.jpg")}
+          style={{ flex: 1 }}
+        >
           <InitializeAppGate>
             <StackNavigator />
           </InitializeAppGate>
