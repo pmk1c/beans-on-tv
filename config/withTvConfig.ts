@@ -1,10 +1,9 @@
 import {
   ConfigPlugin,
-  AndroidConfig,
   IOSConfig,
   withDangerousMod,
+  withInfoPlist,
 } from "@expo/config-plugins";
-import { withAndroidManifest } from "expo/config-plugins";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -26,25 +25,29 @@ function getXCAssetsPath(projectRoot: string) {
   );
 }
 
-const withTvosIcons: ConfigPlugin<Props> = (config, props) => {
-  return withDangerousMod(config, [
-    "ios",
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    async (config) => {
-      await copyAndroidBanner(
-        config.modRequest.projectRoot,
-        props.android.banner
-      );
-      await copyIosBrandassets(
-        config.modRequest.projectRoot,
-        props.ios.brandassets
-      );
-      await removeIosAppIcon(config.modRequest.projectRoot);
+const withTvConfig: ConfigPlugin<Props> = (config, props) =>
+  withDangerousMod(
+    withInfoPlist(config, (conf) => {
+      conf.modResults.UIRequiredDeviceCapabilities = ["arm64"];
+      return conf;
+    }),
+    [
+      "ios",
+      async (conf) => {
+        await copyAndroidBanner(
+          conf.modRequest.projectRoot,
+          props.android.banner
+        );
+        await copyIosBrandassets(
+          conf.modRequest.projectRoot,
+          props.ios.brandassets
+        );
+        await removeIosAppIcon(conf.modRequest.projectRoot);
 
-      return config;
-    },
-  ]);
-};
+        return conf;
+      },
+    ]
+  );
 
 async function copyAndroidBanner(projectRoot: string, banner: string) {
   const sourcePath = path.join(projectRoot, banner);
@@ -90,4 +93,4 @@ async function removeIosAppIcon(projectRoot: string) {
   } catch {}
 }
 
-export default withTvosIcons;
+export default withTvConfig;
