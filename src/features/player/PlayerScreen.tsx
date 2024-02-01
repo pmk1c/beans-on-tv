@@ -113,7 +113,7 @@ function PlayerScreen() {
       }}
       status={{
         shouldPlay: true,
-        positionMillis: episode.progress?.progress ?? 0 * 1000,
+        positionMillis: (episode.progress?.progress ?? 0) * 1000,
       }}
       posterSource={{ uri: episode.thumbnailUrls.large }}
       useNativeControls
@@ -126,7 +126,7 @@ function PlayerScreen() {
         }
 
         if (status.didJustFinish) {
-          () => navigation.pop();
+          navigation.pop();
           return;
         }
 
