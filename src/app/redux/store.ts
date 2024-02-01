@@ -17,6 +17,7 @@ import {
   AppStateStatus,
   NativeEventSubscription,
 } from "react-native";
+import { captureError } from "../capture";
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: (action) => {
@@ -77,7 +78,9 @@ export const store = configureStore({
         }
 
         if (isRejected(action)) {
-          console.error("Redux action rejected", action.type, action.error);
+          if (action.error.name === "ConsitionError") return;
+
+          captureError(action.error);
         }
 
         next(action);
