@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { getMediaEpisodePreviewNewest } from "../../app/rbtvApi";
-import { useSelector } from "react-redux";
-import { selectAuthToken } from "../auth/authTokenSlice";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { createSelector } from "@reduxjs/toolkit";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+
+import capture from "../../app/capture";
+import { getMediaEpisodePreviewNewest } from "../../app/rbtvApi";
 import {
   RootState,
   useAppDispatch,
   useAppSelector,
 } from "../../app/redux/store";
-import capture from "../../app/capture";
-import { createSelector } from "@reduxjs/toolkit";
+import { selectAuthToken } from "../auth/authTokenSlice";
 
 const limit = 12;
 const getOffset = (pageNumber: number) => pageNumber * limit;
@@ -20,9 +21,9 @@ const createSelectEpisodes = (pageNumbers: number[]) =>
       getMediaEpisodePreviewNewest.select({
         offset: getOffset(pageNumber),
         limit,
-      })
+      }),
     ),
-    (...pages) => pages.flatMap((page) => page.data?.data ?? [])
+    (...pages) => pages.flatMap((page) => page.data?.data ?? []),
   );
 
 const selectTotal = (state: RootState) =>
@@ -47,14 +48,14 @@ function useLatestVideosScreen() {
             subscriptionOptions: {
               refetchOnFocus: true,
             },
-          }
-        )
+          },
+        ),
       );
     });
 
     return () => {
       subscriptions.current.forEach((subscription) =>
-        subscription.unsubscribe()
+        subscription.unsubscribe(),
       );
       subscriptions.current = [];
     };
@@ -78,7 +79,7 @@ function useLatestVideosScreen() {
         }
 
         capture(reloadAllPages());
-      }
+      },
     );
 
     return () => {
@@ -89,7 +90,7 @@ function useLatestVideosScreen() {
   const authToken = useSelector(selectAuthToken);
 
   const episodes = useAppSelector(createSelectEpisodes(pageNumbers)).filter(
-    (episode) => !authToken?.appReview || episode.videoTokens.rbsc
+    (episode) => !authToken?.appReview || episode.videoTokens.rbsc,
   );
 
   const total = useAppSelector(selectTotal);

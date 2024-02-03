@@ -1,13 +1,9 @@
 module.exports = {
   root: true,
-  extends: "@react-native",
-  rules: {
-    quotes: "off",
-  },
+  extends: ["universe/native", "universe/shared/typescript-analysis"],
   overrides: [
     {
-      files: ["*.ts", "*.tsx"],
-      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
+      files: ["*.ts", "*.tsx", "*.d.ts"],
       parserOptions: {
         project: "./tsconfig.json",
       },

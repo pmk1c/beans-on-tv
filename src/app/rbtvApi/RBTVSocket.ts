@@ -1,7 +1,8 @@
+import * as Application from "expo-application";
 import io from "socket.io-client";
+
 import { SocketMessage, SocketMessagePayload } from "./types";
 import Episode from "../types/Episode";
-import * as Application from "expo-application";
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;
@@ -16,7 +17,7 @@ class RBTVSocket {
 
   emit<
     M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>
+    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
   >(message: M, payload: P) {
     console.debug("Socket message sent", message, payload);
     this.socket.emit(message, payload);
@@ -39,7 +40,7 @@ class RBTVSocket {
 
   on<
     M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>
+    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
   >(message: M, callback: (payload: SocketMessagePayload<M>) => void) {
     this.socket.on(message, (payload: P) => {
       console.debug("Socket message received", message, payload);

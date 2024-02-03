@@ -1,7 +1,8 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { createSliceWithThunks } from "../redux/createSliceWithThunks";
-import RBTVSocket from "./RBTVSocket";
+
 import { rbtvApi } from ".";
+import RBTVSocket from "./RBTVSocket";
+import { createSliceWithThunks } from "../redux/createSliceWithThunks";
 
 const sockets: Record<string, RBTVSocket> = {};
 
@@ -17,7 +18,7 @@ export const rbtvSocketApiSlice = createSliceWithThunks({
         const {
           data: { websocket },
         } = await dispatch(
-          rbtvApi.endpoints.getFrontendInit.initiate()
+          rbtvApi.endpoints.getFrontendInit.initiate(),
         ).unwrap();
         sockets[socketId] = new RBTVSocket(websocket.url, websocket.path);
 
@@ -30,7 +31,7 @@ export const rbtvSocketApiSlice = createSliceWithThunks({
         fulfilled: (state, action) => {
           state.socketId = action.payload;
         },
-      }
+      },
     ),
   }),
   selectors: {

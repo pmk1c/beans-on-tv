@@ -1,7 +1,8 @@
 import { PropsWithChildren, useEffect, useState } from "react";
-import { useAppDispatch } from "../../app/redux/store";
+
 import capture from "../../app/capture";
 import { initializeSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
+import { useAppDispatch } from "../../app/redux/store";
 import { initializeAuthToken } from "../auth/authTokenSlice";
 
 function InitializeAppGate({ children }: PropsWithChildren) {
@@ -14,7 +15,7 @@ function InitializeAppGate({ children }: PropsWithChildren) {
         await dispatch(initializeSocket());
         await dispatch(initializeAuthToken());
         setIsInitialized(true);
-      })()
+      })(),
     );
   }, [dispatch]);
 

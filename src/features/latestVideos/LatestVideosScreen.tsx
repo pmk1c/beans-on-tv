@@ -1,8 +1,8 @@
-import React from "react";
 import { FlatList } from "react-native";
-import spacing from "../../app/styles/tokens/spacing";
+
 import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
+import spacing from "../../app/styles/tokens/spacing";
 
 const numColumns = 4;
 function LatestVideosScreen(): JSX.Element {
@@ -27,8 +27,8 @@ function LatestVideosScreen(): JSX.Element {
             index < numColumns
               ? "high"
               : index < numColumns * 2
-              ? "normal"
-              : "low"
+                ? "normal"
+                : "low"
           }
         />
       )}

@@ -1,9 +1,9 @@
+import toVideoToken from "./toVideoToken";
 import Episode from "../../types/Episode";
 import {
   GetMediaEpisodePreviewNewestApiResponse,
   MediaEpisodePreview,
 } from "../types";
-import toVideoToken from "./toVideoToken";
 
 const findThumbnailUrl = (episodeResponse: MediaEpisodePreview, name: string) =>
   episodeResponse.thumbnail.find((t) => t.name === name)?.url ?? "";
@@ -13,7 +13,7 @@ const findVideoToken = (episodeResponse: MediaEpisodePreview, type: string) =>
 
 const toEpisode = (
   episodeResponse: MediaEpisodePreview,
-  progressResponse: GetMediaEpisodePreviewNewestApiResponse["data"]["progress"]
+  progressResponse: GetMediaEpisodePreviewNewestApiResponse["data"]["progress"],
 ): Episode => {
   const progress =
     progressResponse?.[episodeResponse.id.toString()].tokenProgress[0];

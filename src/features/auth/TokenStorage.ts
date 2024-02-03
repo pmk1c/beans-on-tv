@@ -1,4 +1,5 @@
 import * as Keychain from "react-native-keychain";
+
 import Token, { fromJSON } from "./Token";
 
 const username = "unknown";
@@ -10,7 +11,7 @@ export async function setToken(token: Token) {
     JSON.stringify(token),
     {
       service,
-    }
+    },
   );
 
   if (!result) {

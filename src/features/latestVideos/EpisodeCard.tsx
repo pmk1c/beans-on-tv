@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { formatDistanceToNowStrict } from "date-fns";
 import { Image } from "expo-image";
-import { ImageSourcePropType, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
+
+import { StackNavigationProp } from "../../app/navigation/StackNavigator";
+import { useAppSelector } from "../../app/redux/store";
+import perfectSize from "../../app/styles/perfectSize";
 import borderRadius from "../../app/styles/tokens/borderRadius";
 import color from "../../app/styles/tokens/color";
-import spacing from "../../app/styles/tokens/spacing";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../../app/navigation/StackNavigator";
-import { formatDistanceToNowStrict } from "date-fns";
-import perfectSize from "../../app/styles/perfectSize";
 import fontPresets from "../../app/styles/tokens/fontPresets";
+import spacing from "../../app/styles/tokens/spacing";
 import Episode from "../../app/types/Episode";
-import { useAppSelector } from "../../app/redux/store";
 import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
@@ -30,7 +30,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
   return (
     <Pressable
       style={{
-        width: width,
+        width,
         height: height + spacing.m + fontPresets.xl.fontSize * 1.35 * 3,
         flexDirection: "column",
         gap: spacing.m,
@@ -127,7 +127,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                   Date.parse(episode.distributionPublishingDate),
                   {
                     addSuffix: true,
-                  }
+                  },
                 )}
               </Text>
             </View>

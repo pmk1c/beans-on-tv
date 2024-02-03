@@ -1,4 +1,4 @@
-import React, { PropsWithRef, Ref, forwardRef } from "react";
+import { PropsWithRef, Ref, forwardRef } from "react";
 import {
   Pressable,
   StyleProp,
@@ -7,12 +7,12 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import spacing from "../styles/tokens/spacing";
-import color from "../styles/tokens/color";
+
+import RBTVIcon, { RBTVIconName } from "../assets/icons/RBTVIcon";
 import borderRadius from "../styles/tokens/borderRadius";
-import RBTVIcon from "../assets/icons/RBTVIcon";
-import { RBTVIconName } from "../assets/icons/RBTVIcon";
+import color from "../styles/tokens/color";
 import fontPresets from "../styles/tokens/fontPresets";
+import spacing from "../styles/tokens/spacing";
 
 type ButtonProps = PropsWithRef<{
   buttonType?: "destructive" | "active";
@@ -27,7 +27,7 @@ function getStyles<T = unknown>(
   styles: Record<string, StyleProp<T>>,
   defaultStyleName: string,
   buttonType: ButtonProps["buttonType"],
-  focused: boolean
+  focused: boolean,
 ) {
   const styleNames = [defaultStyleName];
   if (buttonType === "active") {
@@ -48,7 +48,7 @@ function getStyles<T = unknown>(
 
 function Button(
   { buttonType, icon, title, onFocus, onPress }: ButtonProps,
-  ref: Ref<View>
+  ref: Ref<View>,
 ): JSX.Element {
   return (
     <Pressable

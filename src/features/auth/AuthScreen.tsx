@@ -1,11 +1,11 @@
-import React from "react";
 import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
+
 import { useAuthScreen } from "./useAuthScreen";
-import color from "../../app/styles/tokens/color";
-import spacing from "../../app/styles/tokens/spacing";
 import Button from "../../app/components/Button";
 import borderRadius from "../../app/styles/tokens/borderRadius";
+import color from "../../app/styles/tokens/color";
 import fontPresets from "../../app/styles/tokens/fontPresets";
+import spacing from "../../app/styles/tokens/spacing";
 
 const codeSeperator = "–";
 

@@ -21,7 +21,7 @@ function getXCAssetsPath(projectRoot: string) {
     projectRoot,
     "ios",
     IOSConfig.XcodeUtils.getProjectName(projectRoot),
-    "Images.xcassets"
+    "Images.xcassets",
   );
 }
 
@@ -36,17 +36,17 @@ const withTvConfig: ConfigPlugin<Props> = (config, props) =>
       async (conf) => {
         await copyAndroidBanner(
           conf.modRequest.projectRoot,
-          props.android.banner
+          props.android.banner,
         );
         await copyIosBrandassets(
           conf.modRequest.projectRoot,
-          props.ios.brandassets
+          props.ios.brandassets,
         );
         await removeIosAppIcon(conf.modRequest.projectRoot);
 
         return conf;
       },
-    ]
+    ],
   );
 
 async function copyAndroidBanner(projectRoot: string, banner: string) {
@@ -58,7 +58,7 @@ async function copyAndroidBanner(projectRoot: string, banner: string) {
     "src",
     "main",
     "res",
-    "mipmap-xhdpi"
+    "mipmap-xhdpi",
   );
   const destinationPath = path.join(destinationDir, "ic_banner.png");
 
@@ -69,12 +69,12 @@ async function copyAndroidBanner(projectRoot: string, banner: string) {
 
 async function copyIosBrandassets(
   projectRoot: string,
-  brandassetsSource: string
+  brandassetsSource: string,
 ) {
   const sourcePath = path.join(projectRoot, brandassetsSource);
   const destinationPath = path.join(
     getXCAssetsPath(projectRoot),
-    "AppIcon.brandassets"
+    "AppIcon.brandassets",
   );
 
   await fs.access(sourcePath);
@@ -85,7 +85,7 @@ async function copyIosBrandassets(
 async function removeIosAppIcon(projectRoot: string) {
   const appIconPath = path.join(
     getXCAssetsPath(projectRoot),
-    "AppIcon.appiconset"
+    "AppIcon.appiconset",
   );
 
   try {

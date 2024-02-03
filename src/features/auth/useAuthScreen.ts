@@ -1,4 +1,6 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useCreateCodeMutation, useGetTokenMutation } from "./authApi";
 import {
   resetAuthToken,
@@ -6,9 +8,8 @@ import {
   selectAuthTokenInitialized,
   setAuthToken,
 } from "./authTokenSlice";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AppDispatch } from "../../app/redux/store";
 import capture from "../../app/capture";
+import { AppDispatch } from "../../app/redux/store";
 
 type AuthScreenState =
   | {
@@ -52,14 +53,14 @@ function usePollAuthTokenStep() {
           } else {
             tokenPollingTimeout.current = setTimeout(
               () => capture(pollToken()),
-              1000
+              1000,
             );
           }
         };
         capture(pollToken());
       });
     },
-    [dispatch, getToken]
+    [dispatch, getToken],
   );
 }
 
@@ -97,7 +98,7 @@ export function useAuthScreen() {
         const code = await createCode();
         setState({ step: "pollingToken", code });
         await pollAuthToken(code);
-      })()
+      })(),
     );
   }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);
 

@@ -5,19 +5,20 @@ import {
   isAction,
   isRejected,
 } from "@reduxjs/toolkit";
-import authApi from "../../features/auth/authApi";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
-import { authTokenSlice } from "../../features/auth/authTokenSlice";
 import * as Sentry from "@sentry/react-native";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { rbtvApi } from ".././rbtvApi";
-import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
 import {
   AppState,
   AppStateStatus,
   NativeEventSubscription,
 } from "react-native";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+
+import { rbtvApi } from ".././rbtvApi";
+import authApi from "../../features/auth/authApi";
+import { authTokenSlice } from "../../features/auth/authTokenSlice";
 import { captureError } from "../capture";
+import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
 
 const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   actionTransformer: (action) => {
@@ -55,7 +56,7 @@ const reducer = combineSlices(
   authApi,
   rbtvApi,
   authTokenSlice,
-  rbtvSocketApiSlice
+  rbtvSocketApiSlice,
 );
 
 export const store = configureStore({
@@ -102,7 +103,7 @@ setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
         } else {
           dispatch(onFocusLost());
         }
-      }
+      },
     );
     initialized = true;
   }

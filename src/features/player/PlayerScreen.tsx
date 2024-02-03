@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { Video, ResizeMode } from "expo-av";
+import { useEffect, useState } from "react";
+import { ImageBackground, Linking, Platform, Text, View } from "react-native";
+
+import capture from "../../app/capture";
 import {
   StackNavigationProp,
   StackParamList,
 } from "../../app/navigation/StackNavigator";
-import { Video, ResizeMode } from "expo-av";
-import { ImageBackground, Linking, Platform, Text, View } from "react-native";
-import capture from "../../app/capture";
-import color from "../../app/styles/tokens/color";
-import spacing from "../../app/styles/tokens/spacing";
-import borderRadius from "../../app/styles/tokens/borderRadius";
-import fontPresets from "../../app/styles/tokens/fontPresets";
 import { useLazyGetRbscVideoTokenQuery } from "../../app/rbtvApi";
-import { useAppSelector } from "../../app/redux/store";
 import { selectSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
+import { useAppSelector } from "../../app/redux/store";
+import borderRadius from "../../app/styles/tokens/borderRadius";
+import color from "../../app/styles/tokens/color";
+import fontPresets from "../../app/styles/tokens/fontPresets";
+import spacing from "../../app/styles/tokens/spacing";
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, "Player">;
 
@@ -61,7 +62,7 @@ function PlayerScreen() {
         }
 
         throw new Error("No video token found!");
-      })()
+      })(),
     );
   }, [getRbscVideoToken, navigation, episode]);
 
@@ -132,7 +133,7 @@ function PlayerScreen() {
 
         rbtvSocket.emitMediaEpisodeProgressUpdate(
           episode,
-          status.positionMillis / 1000
+          status.positionMillis / 1000,
         );
       }}
     />

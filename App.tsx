@@ -1,16 +1,17 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { store } from "./src/app/redux/store";
 import {
   NavigationContainer,
   NavigationContainerRef,
 } from "@react-navigation/native";
-import StackNavigator from "./src/app/navigation/StackNavigator";
 import * as Sentry from "@sentry/react-native";
 import { setDefaultOptions } from "date-fns";
 import { de } from "date-fns/locale";
-import InitializeAppGate from "./src/features/initializeApp/InitializeAppGate";
+import { useRef } from "react";
 import { ImageBackground } from "react-native";
+import { Provider } from "react-redux";
+
+import StackNavigator from "./src/app/navigation/StackNavigator";
+import { store } from "./src/app/redux/store";
+import InitializeAppGate from "./src/features/initializeApp/InitializeAppGate";
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -29,7 +30,7 @@ setDefaultOptions({ locale: de });
 
 function App() {
   const navigation =
-    React.useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
+    useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
 
   return (
     <Provider store={store}>

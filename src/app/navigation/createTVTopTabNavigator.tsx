@@ -1,5 +1,3 @@
-import * as React from "react";
-import { View, StyleSheet, TVFocusGuideView } from "react-native";
 import {
   useNavigationBuilder,
   TabRouter,
@@ -12,11 +10,14 @@ import {
   createNavigatorFactory,
   EventMapBase,
 } from "@react-navigation/native";
-import spacing from "../styles/tokens/spacing";
+import * as React from "react";
+import { View, StyleSheet, TVFocusGuideView } from "react-native";
+
+import { RBTVIconName } from "../assets/icons/RBTVIcon";
+import Button from "../components/Button";
 import borderRadius from "../styles/tokens/borderRadius";
 import color from "../styles/tokens/color";
-import Button from "../components/Button";
-import { RBTVIconName } from "../assets/icons/RBTVIcon";
+import spacing from "../styles/tokens/spacing";
 
 type TVTopTabNavigationOptions = {
   icon?: RBTVIconName;

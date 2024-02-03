@@ -1,16 +1,16 @@
-import React from "react";
+import { StackNavigationState } from "@react-navigation/native";
 import {
   NativeStackNavigationProp,
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
-import PlayerScreen from "../../features/player/PlayerScreen";
-import Episode from "../types/Episode";
-import { StackNavigationState } from "@react-navigation/native";
 import { TVEventControl } from "react-native";
-import AuthScreen from "../../features/auth/AuthScreen";
-import { useAppSelector } from "../redux/store";
-import { selectAuthToken } from "../../features/auth/authTokenSlice";
+
 import TabNavigator from "./TabNavigator";
+import AuthScreen from "../../features/auth/AuthScreen";
+import { selectAuthToken } from "../../features/auth/authTokenSlice";
+import PlayerScreen from "../../features/player/PlayerScreen";
+import { useAppSelector } from "../redux/store";
+import Episode from "../types/Episode";
 
 export type StackParamList = {
   Auth: undefined;

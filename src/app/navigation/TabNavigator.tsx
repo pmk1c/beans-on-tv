@@ -1,7 +1,6 @@
-import React from "react";
 import createTVTopTabNavigator from "./createTVTopTabNavigator";
-import LatestVideosScreen from "../../features/latestVideos/LatestVideosScreen";
 import AuthScreen from "../../features/auth/AuthScreen";
+import LatestVideosScreen from "../../features/latestVideos/LatestVideosScreen";
 
 export type TabParamList = {
   LatestVideos: undefined;

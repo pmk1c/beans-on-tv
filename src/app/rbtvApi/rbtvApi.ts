@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 import toPage from "./mappings/toPage";
-import Page from "../types/Page";
-import Episode from "../types/Episode";
 import {
   GetFrontendInitApiResponse,
   GetMediaEpisodePreviewNewestApiResponse,
@@ -9,6 +8,8 @@ import {
 } from "./types";
 import { selectAuthToken } from "../../features/auth/authTokenSlice";
 import { RootState } from "../redux/store";
+import Episode from "../types/Episode";
+import Page from "../types/Page";
 
 type GetMediaEpisodePreviewNewestApiArg = {
   offset?: number;
@@ -47,7 +48,7 @@ export const rbtvApi = createApi({
         params: { offset: arg.offset, limit: arg.limit },
       }),
       transformResponse: (
-        response: GetMediaEpisodePreviewNewestApiResponse
+        response: GetMediaEpisodePreviewNewestApiResponse,
       ) => {
         return toPage(response);
       },
