@@ -2,7 +2,6 @@ import {
   StoreEnhancer,
   combineSlices,
   configureStore,
-  isAction,
   isRejected,
 } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
@@ -11,6 +10,7 @@ import {
   AppState,
   AppStateStatus,
   NativeEventSubscription,
+  Platform,
 } from "react-native";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
@@ -70,14 +70,6 @@ export const store = configureStore({
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
       .concat(() => (next) => (action) => {
-        if (__DEV__ && isAction(action)) {
-          if ("payload" in action) {
-            console.debug("Redux action", action.type, action.payload);
-          } else {
-            console.debug("Redux action", action.type);
-          }
-        }
-
         if (isRejected(action)) {
           if (action.error.name === "ConsitionError") return;
 
@@ -87,7 +79,25 @@ export const store = configureStore({
         next(action);
       }),
   enhancers: (getDefaultEnhancers) =>
-    getDefaultEnhancers().concat(sentryReduxEnhancer),
+    getDefaultEnhancers()
+      .concat(sentryReduxEnhancer)
+      .concat(
+        __DEV__
+          ? [
+              require("react-native-get-random-values") &&
+                require("@redux-devtools/remote").devToolsEnhancer({
+                  name: Platform.OS,
+                  hostname: Platform.select({
+                    ios: "localhost",
+                    android: "10.0.2.2",
+                  }),
+                  port: 8000,
+                  secure: false,
+                  realtime: true,
+                }),
+            ]
+          : [],
+      ),
 });
 
 let initialized = false;

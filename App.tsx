@@ -41,7 +41,6 @@ function App() {
         }}
       >
         <ImageBackground
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           source={require("./src/app/assets/images/body_bg2021-127.jpg")}
           style={{ flex: 1 }}
         >

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { useNavigation } from "@react-navigation/native";
 import { formatDistanceToNowStrict } from "date-fns";
 import { Image } from "expo-image";
