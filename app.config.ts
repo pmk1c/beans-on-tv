@@ -8,8 +8,13 @@ const config: ExpoConfig = {
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
   privacy: "hidden",
-  // x.y.z | x = Expo update, y = Native dependency update, z = JS-only update
   version: "2.0.0",
+  updates: {
+    url: "https://u.expo.dev/cd14a3c2-29e3-4d1b-a125-1ead1060a130",
+  },
+  runtimeVersion: {
+    policy: "appVersion",
+  },
   githubUrl: "https://github.com/pmk1c/rbscvca-app",
   backgroundColor: "#000000",
   primaryColor: "#ED0000",

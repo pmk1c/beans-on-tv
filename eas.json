@@ -5,8 +5,14 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
+    "preview": {
+      "extends": "production",
+      "channel": "preview",
+      "distribution": "internal"
+    },
     "production": {
       "autoIncrement": true,
+      "channel": "production",
       "env": {
         "EXPO_TV": "1"
       }
