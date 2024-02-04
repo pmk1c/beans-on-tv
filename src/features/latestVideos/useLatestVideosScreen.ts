@@ -5,11 +5,8 @@ import { useSelector } from "react-redux";
 
 import capture from "../../app/capture";
 import { getMediaEpisodePreviewNewest } from "../../app/rbtvApi";
-import {
-  RootState,
-  useAppDispatch,
-  useAppSelector,
-} from "../../app/redux/store";
+import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
+import { RootState } from "../../app/redux/store";
 import { selectAuthToken } from "../auth/authTokenSlice";
 
 const limit = 12;
