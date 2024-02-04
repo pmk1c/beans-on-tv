@@ -71,7 +71,7 @@ export const store = configureStore({
       .concat(rbtvApi.middleware)
       .concat(() => (next) => (action) => {
         if (isRejected(action)) {
-          if (action.error.name === "ConsitionError") return;
+          if (action.error.name === "ConditionError") return;
 
           captureError(action.error);
         }
