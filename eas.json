@@ -5,11 +5,19 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
+    "preview": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_TV": "1"
+      },
+      "channel": "preview"
+    },
     "production": {
       "autoIncrement": true,
       "env": {
         "EXPO_TV": "1"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {
