@@ -26,24 +26,26 @@ function AuthScreen(): JSX.Element | null {
       trapFocusDown
       style={styles.wrapper}
     >
-      {state.step === "creatingCode" || state.step === "pollingToken" ? (
-        <View style={styles.textWrapper}>
-          <Text style={styles.text}>
-            Besuche{" "}
-            <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
-            melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
-            Code ein:
-            {"\n"}
-            <Text style={styles.textHighlight}>
-              {state.step === "pollingToken"
-                ? formatCode(state.code)
-                : codeSeperator}
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        {state.step === "creatingCode" || state.step === "pollingToken" ? (
+          <View style={styles.textWrapper}>
+            <Text style={styles.text}>
+              Besuche{" "}
+              <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
+              melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
+              Code ein:
+              {"\n"}
+              <Text style={styles.textHighlight}>
+                {state.step === "pollingToken"
+                  ? formatCode(state.code)
+                  : codeSeperator}
+              </Text>
             </Text>
-          </Text>
-        </View>
-      ) : state.step === "done" ? (
-        <Button buttonType="destructive" title="Abmelden" onPress={logout} />
-      ) : null}
+          </View>
+        ) : state.step === "done" ? (
+          <Button buttonType="destructive" title="Abmelden" onPress={logout} />
+        ) : null}
+      </View>
       <Text style={styles.textVersion}>
         {nativeApplicationVersion} {updateId ? `(${updateId})` : ""}
       </Text>
@@ -54,7 +56,7 @@ function AuthScreen(): JSX.Element | null {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   textWrapper: {
