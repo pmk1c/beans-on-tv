@@ -6,14 +6,10 @@ import {
 import { TVEventControl } from "react-native";
 
 import TabNavigator from "./TabNavigator";
-import AuthScreen from "../../features/auth/AuthScreen";
-import { selectAuthToken } from "../../features/auth/authTokenSlice";
 import PlayerScreen from "../../features/player/PlayerScreen";
-import { useAppSelector } from "../redux/store";
 import Episode from "../types/Episode";
 
 export type StackParamList = {
-  Auth: undefined;
   Main: undefined;
   Player: { episode: Episode };
 };
@@ -23,8 +19,6 @@ export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;
 const Stack = createNativeStackNavigator<StackParamList>();
 
 function StackNavigator() {
-  const isLoggedIn = useAppSelector(selectAuthToken);
-
   return (
     <Stack.Navigator
       screenListeners={{
@@ -48,14 +42,8 @@ function StackNavigator() {
         headerShown: false,
       }}
     >
-      {isLoggedIn ? (
-        <>
-          <Stack.Screen name="Main" component={TabNavigator} />
-          <Stack.Screen name="Player" component={PlayerScreen} />
-        </>
-      ) : (
-        <Stack.Screen name="Auth" component={AuthScreen} />
-      )}
+      <Stack.Screen name="Main" component={TabNavigator} />
+      <Stack.Screen name="Player" component={PlayerScreen} />
     </Stack.Navigator>
   );
 }

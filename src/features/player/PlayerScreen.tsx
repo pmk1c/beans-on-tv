@@ -10,7 +10,7 @@ import {
 } from "../../app/navigation/StackNavigator";
 import { useLazyGetRbscVideoTokenQuery } from "../../app/rbtvApi";
 import { selectSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
-import { useAppSelector } from "../../app/redux/store";
+import { useAppSelector } from "../../app/redux/hooks";
 import borderRadius from "../../app/styles/tokens/borderRadius";
 import color from "../../app/styles/tokens/color";
 import fontPresets from "../../app/styles/tokens/fontPresets";

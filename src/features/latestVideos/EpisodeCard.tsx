@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { Pressable, Text, View } from "react-native";
 
 import { StackNavigationProp } from "../../app/navigation/StackNavigator";
-import { useAppSelector } from "../../app/redux/store";
+import { useAppSelector } from "../../app/redux/hooks";
 import perfectSize from "../../app/styles/perfectSize";
 import borderRadius from "../../app/styles/tokens/borderRadius";
 import color from "../../app/styles/tokens/color";
