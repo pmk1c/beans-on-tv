@@ -1,3 +1,5 @@
+import { nativeApplicationVersion } from "expo-application";
+import { updateId } from "expo-updates";
 import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
 
 import { useAuthScreen } from "./useAuthScreen";
@@ -42,6 +44,9 @@ function AuthScreen(): JSX.Element | null {
       ) : state.step === "done" ? (
         <Button buttonType="destructive" title="Abmelden" onPress={logout} />
       ) : null}
+      <Text style={styles.textVersion}>
+        {nativeApplicationVersion} {updateId ? `(${updateId})` : ""}
+      </Text>
     </TVFocusGuideView>
   );
 }
@@ -64,6 +69,10 @@ const styles = StyleSheet.create({
   },
   textHighlight: {
     color: color.textHighlight,
+  },
+  textVersion: {
+    ...fontPresets.l,
+    color: color.textMuted,
   },
   textActivityIndicator: {
     height: 2,
