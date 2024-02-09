@@ -1,7 +1,7 @@
 import {
   ConfigPlugin,
   IOSConfig,
-  withDangerousMod,
+  withAndroidManifest,
   withInfoPlist,
 } from "@expo/config-plugins";
 import fs from "node:fs/promises";
@@ -16,41 +16,45 @@ interface Props {
   };
 }
 
-function getXCAssetsPath(projectRoot: string) {
-  return path.join(
-    projectRoot,
-    "ios",
-    IOSConfig.XcodeUtils.getProjectName(projectRoot),
-    "Images.xcassets",
-  );
-}
-
 const withTvConfig: ConfigPlugin<Props> = (config, props) =>
-  withDangerousMod(
-    withInfoPlist(config, (conf) => {
-      conf.modResults.UIRequiredDeviceCapabilities = ["arm64"];
-      return conf;
-    }),
-    [
-      "ios",
-      async (conf) => {
-        await copyAndroidBanner(
-          conf.modRequest.projectRoot,
-          props.android.banner,
-        );
-        await copyIosBrandassets(
-          conf.modRequest.projectRoot,
-          props.ios.brandassets,
-        );
-        await removeIosAppIcon(conf.modRequest.projectRoot);
+  withAndroidBanner(withIosBrandassets(config, props), props);
 
-        return conf;
-      },
-    ],
-  );
+const withAndroidBanner: ConfigPlugin<Props> = (config, props) =>
+  withAndroidManifest(config, async (config) => {
+    await copyAndroidBanner(
+      config.modRequest.projectRoot,
+      props.android.banner,
+    );
 
-async function copyAndroidBanner(projectRoot: string, banner: string) {
-  const sourcePath = path.join(projectRoot, banner);
+    config.modResults.manifest.application =
+      config.modResults.manifest.application?.reduce(
+        (applications, application) => {
+          if (application.$["android:name"] === ".MainApplication") {
+            application.$["android:banner"] = "@mipmap/ic_banner";
+          }
+
+          return [...applications, application];
+        },
+        [] as typeof config.modResults.manifest.application,
+      );
+
+    return config;
+  });
+
+const withIosBrandassets: ConfigPlugin<Props> = (config, props) =>
+  withInfoPlist(config, async (config) => {
+    await copyIosBrandassets(
+      config.modRequest.projectRoot,
+      props.ios.brandassets,
+    );
+    await removeIosAppIcon(config.modRequest.projectRoot);
+
+    config.modResults.UIRequiredDeviceCapabilities = ["arm64"];
+    return config;
+  });
+
+async function copyAndroidBanner(projectRoot: string, bannerSource: string) {
+  const sourcePath = path.join(projectRoot, bannerSource);
   const destinationDir = path.join(
     projectRoot,
     "android",
@@ -80,6 +84,15 @@ async function copyIosBrandassets(
   await fs.access(sourcePath);
   await fs.mkdir(destinationPath, { recursive: true });
   await fs.cp(sourcePath, destinationPath, { recursive: true });
+}
+
+function getXCAssetsPath(projectRoot: string) {
+  return path.join(
+    projectRoot,
+    "ios",
+    IOSConfig.XcodeUtils.getProjectName(projectRoot),
+    "Images.xcassets",
+  );
 }
 
 async function removeIosAppIcon(projectRoot: string) {

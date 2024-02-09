@@ -7,7 +7,7 @@
     "start": "expo start",
     "android": "EXPO_TV=1 expo run:android --device",
     "ios": "EXPO_TV=1 expo run:ios",
-    "prebuild": "EXPO_TV=1 expo prebuild --clean",
+    "prebuild": "EXPO_TV=1 expo prebuild",
     "lint": "eslint .",
     "ts:check": "tsc",
     "test": "jest --passWithNoTests",
