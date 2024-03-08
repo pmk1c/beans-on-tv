@@ -14,16 +14,22 @@ import Episode from "../../app/types/Episode";
 import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
-  episode: Episode;
+  episode?: Episode;
   thumbnailPriority: "high" | "normal" | "low";
 }
 
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
+const isYouTubeOnly = (episode: Episode | undefined, isLoggedIn: boolean) => {
+  if (!episode) return false;
+  if (!isLoggedIn) return true;
+
+  return !episode.videoTokens.rbsc;
+};
+
 function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
   const isLoggedIn = !!useAppSelector(selectAuthToken);
-  const isYouTubeOnly = !isLoggedIn || !episode.videoTokens.rbsc;
   const navigation = useNavigation<StackNavigationProp>();
 
   return (
@@ -35,7 +41,9 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
         gap: spacing.m,
         alignItems: "center",
       }}
-      onPress={() => navigation.push("Player", { episode })}
+      onPress={
+        episode ? () => navigation.push("Player", { episode }) : undefined
+      }
       children={({ focused }) => (
         <>
           <View
@@ -47,7 +55,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
               borderColor: focused ? color.textHighlight : "transparent",
             }}
           >
-            {isYouTubeOnly && (
+            {isYouTubeOnly(episode, isLoggedIn) && (
               <Image
                 source={require("../../app/assets/icons/yt_icon_rgb.png")}
                 style={{
@@ -67,7 +75,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 zIndex: 1,
                 height,
                 width: `${
-                  episode.progress
+                  episode?.progress
                     ? (episode.progress.progress / episode.progress.total) * 100
                     : 0
                 }%`,
@@ -79,11 +87,11 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
               style={{
                 height,
                 width,
-                borderBottomWidth: episode.progress ? spacing.xs : 0,
+                borderBottomWidth: episode?.progress ? spacing.xs : 0,
                 borderColor: color.grey700,
               }}
               source={{
-                uri: episode.thumbnailUrls.small,
+                uri: episode?.thumbnailUrls.small,
               }}
               priority={thumbnailPriority}
               placeholder={require("../../app/assets/images/placeholder_16x9-420.png")}
@@ -97,7 +105,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 ...fontPresets.xl,
               }}
             >
-              {episode.title}
+              {episode?.title}
             </Text>
             <View
               style={{
@@ -113,7 +121,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 }}
                 numberOfLines={1}
               >
-                {episode.showName}
+                {episode?.showName}
               </Text>
               <Text
                 style={{
@@ -122,12 +130,13 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 }}
                 numberOfLines={1}
               >
-                {formatDistanceToNowStrict(
-                  Date.parse(episode.distributionPublishingDate),
-                  {
-                    addSuffix: true,
-                  },
-                )}
+                {episode &&
+                  formatDistanceToNowStrict(
+                    Date.parse(episode.distributionPublishingDate),
+                    {
+                      addSuffix: true,
+                    },
+                  )}
               </Text>
             </View>
           </View>

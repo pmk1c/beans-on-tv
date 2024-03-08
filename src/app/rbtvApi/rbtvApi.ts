@@ -62,7 +62,7 @@ export const rbtvApi = createApi({
   }),
 });
 
-export const { useLazyGetRbscVideoTokenQuery } = rbtvApi;
 export const {
-  endpoints: { getMediaEpisodePreviewNewest },
+  useLazyGetRbscVideoTokenQuery,
+  useGetMediaEpisodePreviewNewestQuery,
 } = rbtvApi;

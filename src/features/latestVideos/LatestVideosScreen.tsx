@@ -6,7 +6,7 @@ import spacing from "../../app/styles/tokens/spacing";
 
 const numColumns = 4;
 function LatestVideosScreen(): JSX.Element {
-  const { episodes, loadNextPage } = useLatestVideosScreen();
+  const { episodes, onViewableItemsChanged } = useLatestVideosScreen();
 
   return (
     <FlatList
@@ -18,7 +18,11 @@ function LatestVideosScreen(): JSX.Element {
         gap: spacing["2xl"],
       }}
       data={episodes}
-      keyExtractor={(episode) => episode.id.toString()}
+      // We need to use the index here as key to make sure
+      // the list stays stable when the data for an episode
+      // gets loaded and the data changes from undefined to
+      // be defined.
+      keyExtractor={(episode, index) => index.toString()}
       numColumns={numColumns}
       renderItem={({ index, item: episode }) => (
         <EpisodeCard
@@ -32,8 +36,7 @@ function LatestVideosScreen(): JSX.Element {
           }
         />
       )}
-      onEndReached={loadNextPage}
-      onEndReachedThreshold={1}
+      onViewableItemsChanged={onViewableItemsChanged}
     />
   );
 }

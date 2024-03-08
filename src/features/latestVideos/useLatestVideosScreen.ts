@@ -1,71 +1,70 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { createSelector } from "@reduxjs/toolkit";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { ViewToken } from "react-native";
 
-import capture from "../../app/capture";
-import { getMediaEpisodePreviewNewest } from "../../app/rbtvApi";
-import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
-import { RootState } from "../../app/redux/store";
-import { selectAuthToken } from "../auth/authTokenSlice";
+import { useGetMediaEpisodePreviewNewestQuery } from "../../app/rbtvApi";
+import Episode from "../../app/types/Episode";
 
-const limit = 12;
-const getOffset = (pageNumber: number) => pageNumber * limit;
-
-const createSelectEpisodes = (pageNumbers: number[]) =>
-  createSelector(
-    pageNumbers.map((pageNumber) =>
-      getMediaEpisodePreviewNewest.select({
-        offset: getOffset(pageNumber),
-        limit,
-      }),
-    ),
-    (...pages) => pages.flatMap((page) => page.data?.data ?? []),
-  );
-
-const selectTotal = (state: RootState) =>
-  getMediaEpisodePreviewNewest.select({ offset: 0, limit })(state).data?.meta
-    .total;
+const pageSize = 12;
+const getOffset = (pageNumber: number) => pageNumber * pageSize;
+const getItemPage = (index: number) => Math.floor(index / pageSize);
 
 function useLatestVideosScreen() {
-  const dispatch = useAppDispatch();
-  const [pageNumbers, setPageNumbers] = useState<number[]>([0]);
-  const subscriptions = useRef<
-    ReturnType<ReturnType<typeof getMediaEpisodePreviewNewest.initiate>>[]
-  >([]);
+  const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
-  useEffect(() => {
-    subscriptions.current = pageNumbers.map((pageNumber) => {
-      const offset = getOffset(pageNumber);
+  const { data: lastPage, refetch: refetchLastPage } =
+    useGetMediaEpisodePreviewNewestQuery(
+      {
+        offset: getOffset(currentPageNumber - 1),
+        limit: pageSize,
+      },
+      { refetchOnFocus: true, skip: currentPageNumber === 0 },
+    );
+  const { data: currentPage, refetch: refetchCurrentPage } =
+    useGetMediaEpisodePreviewNewestQuery(
+      {
+        offset: getOffset(currentPageNumber),
+        limit: pageSize,
+      },
+      { refetchOnFocus: true },
+    );
+  const { data: nextPage, refetch: refetchNextPage } =
+    useGetMediaEpisodePreviewNewestQuery(
+      {
+        offset: getOffset(currentPageNumber + 1),
+        limit: pageSize,
+      },
+      {
+        refetchOnFocus: true,
+        skip:
+          !currentPage ||
+          currentPage.meta.total < getOffset(currentPageNumber + 1),
+      },
+    );
 
-      return dispatch(
-        getMediaEpisodePreviewNewest.initiate(
-          { offset, limit },
-          {
-            subscriptionOptions: {
-              refetchOnFocus: true,
-            },
-          },
-        ),
-      );
-    });
+  const episodes = useMemo(() => {
+    if (!currentPage) return [];
 
-    return () => {
-      subscriptions.current.forEach((subscription) =>
-        subscription.unsubscribe(),
-      );
-      subscriptions.current = [];
-    };
-  }, [dispatch, pageNumbers]);
+    const items = new Array<Episode | undefined>(currentPage.meta.total);
+    for (const page of [lastPage, currentPage, nextPage]) {
+      if (!page) continue;
+
+      items.splice(page.meta.offset, page.meta.limit, ...page.data);
+    }
+
+    return items;
+  }, [lastPage, currentPage, nextPage]);
 
   const navigation = useNavigation();
   const route = useRoute();
 
-  const reloadAllPages = useCallback(async () => {
-    for (const subscription of subscriptions.current) {
-      await subscription.refetch();
-    }
-  }, []);
+  const refetchAllPages = useCallback(async () => {
+    if (!currentPage) return;
+
+    await refetchCurrentPage();
+    await refetchLastPage();
+    await refetchNextPage();
+  }, [refetchCurrentPage, refetchLastPage, refetchNextPage]);
 
   useEffect(() => {
     const unsubscribeFocusListener = navigation.addListener(
@@ -75,35 +74,47 @@ function useLatestVideosScreen() {
           return;
         }
 
-        capture(reloadAllPages());
+        refetchAllPages();
       },
     );
 
     return () => {
       unsubscribeFocusListener();
     };
-  }, [navigation, reloadAllPages, route.key]);
+  }, [navigation, refetchAllPages, route.key]);
 
-  const authToken = useSelector(selectAuthToken);
+  const onViewableItemsChanged = useCallback(
+    ({
+      changed,
+      viewableItems,
+    }: {
+      changed: ViewToken[];
+      viewableItems: ViewToken[];
+    }) => {
+      const viewableItemIndexes = viewableItems.map((item) => item.index!);
+      const firstViewableItemIndex = viewableItemIndexes[0];
+      const lastViewableItemIndex =
+        viewableItemIndexes[viewableItemIndexes.length - 1];
+      const isScrollingUp = changed.some(({ isViewable, index }) =>
+        isViewable
+          ? // when scrolling up, the first visible item has to have been changed to be visible
+            index! === firstViewableItemIndex
+          : // or an item after the currently visible items has to have been changed to be invisible
+            index! > lastViewableItemIndex,
+      );
 
-  const episodes = useAppSelector(createSelectEpisodes(pageNumbers)).filter(
-    (episode) => !authToken?.appReview || episode.videoTokens.rbsc,
+      if (isScrollingUp) {
+        setCurrentPageNumber(getItemPage(firstViewableItemIndex));
+      } else {
+        setCurrentPageNumber(getItemPage(lastViewableItemIndex));
+      }
+    },
+    [setCurrentPageNumber],
   );
-
-  const total = useAppSelector(selectTotal);
-  const loadNextPage = useCallback(() => {
-    const nextPageNumber = Math.max(...pageNumbers) + 1;
-
-    if (total && getOffset(nextPageNumber) >= total) {
-      return;
-    }
-
-    setPageNumbers(pageNumbers.concat(nextPageNumber));
-  }, [pageNumbers, total]);
 
   return {
     episodes,
-    loadNextPage,
+    onViewableItemsChanged,
   };
 }
 
