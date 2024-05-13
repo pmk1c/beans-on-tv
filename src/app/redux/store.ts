@@ -12,7 +12,6 @@ import {
   NativeEventSubscription,
   Platform,
 } from "react-native";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import { rbtvApi } from ".././rbtvApi";
 import authApi from "../../features/auth/authApi";

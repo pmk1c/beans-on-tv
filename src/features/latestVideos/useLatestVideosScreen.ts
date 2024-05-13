@@ -64,7 +64,7 @@ function useLatestVideosScreen() {
     await refetchCurrentPage();
     await refetchLastPage();
     await refetchNextPage();
-  }, [refetchCurrentPage, refetchLastPage, refetchNextPage]);
+  }, [currentPage, refetchCurrentPage, refetchLastPage, refetchNextPage]);
 
   useEffect(() => {
     const unsubscribeFocusListener = navigation.addListener(

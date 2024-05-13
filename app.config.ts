@@ -13,7 +13,7 @@ const config: ExpoConfig = {
     url: "https://u.expo.dev/cd14a3c2-29e3-4d1b-a125-1ead1060a130",
   },
   runtimeVersion: {
-    policy: "appVersion",
+    policy: "fingerprint",
   },
   githubUrl: "https://github.com/pmk1c/rbscvca-app",
   backgroundColor: "#000000",
@@ -24,6 +24,17 @@ const config: ExpoConfig = {
       {
         isTv: true,
         showVerboseWarnings: true,
+      },
+    ],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          newArchEnabled: true,
+        },
+        android: {
+          newArchEnabled: true,
+        },
       },
     ],
     [
