@@ -2,8 +2,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ViewToken } from "react-native";
 
-import { useGetMediaEpisodePreviewNewestQuery } from "../../app/rbtvApi";
-import Episode from "../../app/types/Episode";
+import { useGetMediaEpisodePreviewNewestQuery } from "../../core/rbtvApi";
+import Episode from "../../core/types/Episode";
 
 const pageSize = 12;
 const getOffset = (pageNumber: number) => pageNumber * pageSize;

@@ -8,8 +8,8 @@ import {
   selectAuthTokenInitialized,
   setAuthToken,
 } from "./authTokenSlice";
-import capture from "../../app/capture";
-import { AppDispatch } from "../../app/redux/store";
+import capture from "../../core/capture";
+import { AppDispatch } from "../../core/redux/store";
 
 type AuthScreenState =
   | {

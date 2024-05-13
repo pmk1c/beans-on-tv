@@ -1,5 +1,4 @@
 import {
-  useNavigationBuilder,
   TabRouter,
   TabActions,
   DefaultNavigatorOptions,
@@ -9,9 +8,11 @@ import {
   TabActionHelpers,
   createNavigatorFactory,
   EventMapBase,
+  useNavigationBuilder,
 } from "@react-navigation/native";
 import * as React from "react";
 import { View, StyleSheet, TVFocusGuideView } from "react-native";
+import { withLayoutContext } from "expo-router";
 
 import { RBTVIconName } from "../assets/icons/RBTVIcon";
 import Button from "../components/Button";
@@ -101,9 +102,13 @@ function TVTopTabNavigator({
   );
 }
 
-export default createNavigatorFactory<
+const createTVTopTabNavigator = createNavigatorFactory<
   TabNavigationState<ParamListBase>,
   TVTopTabNavigationOptions,
   EventMapBase,
   typeof TVTopTabNavigator
 >(TVTopTabNavigator);
+
+const TVTopTab = withLayoutContext(createTVTopTabNavigator().Navigator);
+
+export default TVTopTab;

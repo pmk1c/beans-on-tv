@@ -3,18 +3,18 @@ import { Video, ResizeMode } from "expo-av";
 import { useEffect, useState } from "react";
 import { ImageBackground, Linking, Platform, Text, View } from "react-native";
 
-import capture from "../../app/capture";
+import capture from "../../core/capture";
 import {
   StackNavigationProp,
   StackParamList,
-} from "../../app/navigation/StackNavigator";
-import { useLazyGetRbscVideoTokenQuery } from "../../app/rbtvApi";
-import { selectSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
-import { useAppSelector } from "../../app/redux/hooks";
-import borderRadius from "../../app/styles/tokens/borderRadius";
-import color from "../../app/styles/tokens/color";
-import fontPresets from "../../app/styles/tokens/fontPresets";
-import spacing from "../../app/styles/tokens/spacing";
+} from "../../core/navigation/StackNavigator";
+import { useLazyGetRbscVideoTokenQuery } from "../../core/rbtvApi";
+import { selectSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
+import { useAppSelector } from "../../core/redux/hooks";
+import borderRadius from "../../core/styles/tokens/borderRadius";
+import color from "../../core/styles/tokens/color";
+import fontPresets from "../../core/styles/tokens/fontPresets";
+import spacing from "../../core/styles/tokens/spacing";
 
 type PlayerScreenRouteProp = RouteProp<StackParamList, "Player">;
 

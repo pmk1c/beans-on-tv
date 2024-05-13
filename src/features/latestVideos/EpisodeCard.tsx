@@ -3,14 +3,14 @@ import { formatDistanceToNowStrict } from "date-fns";
 import { Image } from "expo-image";
 import { Pressable, Text, View } from "react-native";
 
-import { StackNavigationProp } from "../../app/navigation/StackNavigator";
-import { useAppSelector } from "../../app/redux/hooks";
-import perfectSize from "../../app/styles/perfectSize";
-import borderRadius from "../../app/styles/tokens/borderRadius";
-import color from "../../app/styles/tokens/color";
-import fontPresets from "../../app/styles/tokens/fontPresets";
-import spacing from "../../app/styles/tokens/spacing";
-import Episode from "../../app/types/Episode";
+import { StackNavigationProp } from "../../core/navigation/StackNavigator";
+import { useAppSelector } from "../../core/redux/hooks";
+import perfectSize from "../../core/styles/perfectSize";
+import borderRadius from "../../core/styles/tokens/borderRadius";
+import color from "../../core/styles/tokens/color";
+import fontPresets from "../../core/styles/tokens/fontPresets";
+import spacing from "../../core/styles/tokens/spacing";
+import Episode from "../../core/types/Episode";
 import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
@@ -57,7 +57,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
           >
             {isYouTubeOnly(episode, isLoggedIn) && (
               <Image
-                source={require("../../app/assets/icons/yt_icon_rgb.png")}
+                source={require("../../core/assets/icons/yt_icon_rgb.png")}
                 style={{
                   position: "absolute",
                   zIndex: 1,
@@ -94,7 +94,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 uri: episode?.thumbnailUrls.small,
               }}
               priority={thumbnailPriority}
-              placeholder={require("../../app/assets/images/placeholder_16x9-420.png")}
+              placeholder={require("../../core/assets/images/placeholder_16x9-420.png")}
             />
           </View>
           <View style={{ gap: spacing["2xs"] }}>

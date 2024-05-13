@@ -1,8 +1,8 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 
-import capture from "../../app/capture";
-import { initializeSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
-import { useAppDispatch } from "../../app/redux/hooks";
+import capture from "../../core/capture";
+import { initializeSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
+import { useAppDispatch } from "../../core/redux/hooks";
 import { initializeAuthToken } from "../auth/authTokenSlice";
 
 function InitializeAppGate({ children }: PropsWithChildren) {
