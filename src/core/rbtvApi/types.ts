@@ -7,6 +7,7 @@ import type {
   CA_MEDIA_EPISODEPROGRESS_UPDATE,
   frontendInitResponse,
   genericApiResponse,
+  mediaEpisode,
   mediaEpisodePreview,
   mediaEpisodeProgress,
   RBSCVideoToken,
@@ -15,13 +16,17 @@ import type {
 } from "../../../doc/rbtv-api/official";
 
 // Fixes
-interface MediaEpisodePreviewCombinedResponse {
+interface MediaEpisodeCombinedResponse<E = MediaEpisode> {
   bohnen: Record<string, bohnePortrait>;
-  episodes: MediaEpisodePreview[];
+  episodes: E[];
   progress?: Record<string, mediaEpisodeProgress>;
 }
 
 // Resource Objects
+export type MediaEpisode = mediaEpisode & {
+  distributionPublishingDate: string;
+};
+
 export type MediaEpisodePreview = mediaEpisodePreview & {
   distributionPublishingDate: string;
 };
@@ -39,8 +44,13 @@ interface ApiResponseWithPagination<T> extends genericApiResponse<T> {
 export interface GetFrontendInitApiResponse
   extends genericApiResponse<frontendInitResponse> {}
 
+export interface GetMediaEpisodeApiResponse
+  extends genericApiResponse<MediaEpisodeCombinedResponse> {}
+
 export interface GetMediaEpisodePreviewNewestApiResponse
-  extends ApiResponseWithPagination<MediaEpisodePreviewCombinedResponse> {}
+  extends ApiResponseWithPagination<
+    MediaEpisodeCombinedResponse<MediaEpisodePreview>
+  > {}
 
 export interface GetRbscVideoTokenApiResponse
   extends genericApiResponse<RBSCVideoToken> {}

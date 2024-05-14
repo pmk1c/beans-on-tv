@@ -1,9 +1,9 @@
 import Token, { isValid } from "./Token";
 import * as TokenStorage from "./TokenStorage";
 import authApi from "./authApi";
-import { selectSocket } from "../../app/rbtvApi/rbtvSocketApiSlice";
-import { createSliceWithThunks } from "../../app/redux/createSliceWithThunks";
-import { RootState } from "../../app/redux/store";
+import { selectSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
+import { createSliceWithThunks } from "../../core/redux/createSliceWithThunks";
+import { RootState } from "../../core/redux/store";
 
 export const authTokenSlice = createSliceWithThunks({
   name: "authToken",

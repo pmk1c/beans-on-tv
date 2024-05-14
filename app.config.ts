@@ -18,6 +18,7 @@ const config: ExpoConfig = {
   githubUrl: "https://github.com/pmk1c/rbscvca-app",
   backgroundColor: "#000000",
   primaryColor: "#ED0000",
+  scheme: "beansontv",
   plugins: [
     [
       "@react-native-tvos/config-tv",
@@ -43,6 +44,7 @@ const config: ExpoConfig = {
         fonts: ["./assets/fonts/rbtvIcons.ttf", "./assets/fonts/Rubik.ttf"],
       },
     ],
+    "expo-router",
     [
       "@sentry/react-native/expo",
       {
@@ -70,6 +72,9 @@ const config: ExpoConfig = {
     eas: {
       projectId: "cd14a3c2-29e3-4d1b-a125-1ead1060a130",
     },
+  },
+  experiments: {
+    typedRoutes: true,
   },
 };
 
