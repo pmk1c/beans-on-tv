@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import toPage from "./mappings/toPage";
 import {
   GetFrontendInitApiResponse,
+  GetMediaEpisodeApiResponse,
   GetMediaEpisodePreviewNewestApiResponse,
   GetRbscVideoTokenApiResponse,
 } from "./types";
@@ -10,6 +11,7 @@ import { selectAuthToken } from "../../features/auth/authTokenSlice";
 import { RootState } from "../redux/store";
 import Episode from "../types/Episode";
 import Page from "../types/Page";
+import toEpisode from "./mappings/toEpisode";
 
 type GetMediaEpisodePreviewNewestApiArg = {
   offset?: number;
@@ -39,6 +41,11 @@ export const rbtvApi = createApi({
     getFrontendInit: build.query<GetFrontendInitApiResponse, void>({
       query: () => ({ url: "/frontend/init" }),
     }),
+    getMediaEpisode: build.query<Episode, string>({
+      query: (episodeId) => ({ url: `/media/episode/${episodeId}` }),
+      transformResponse: (response: GetMediaEpisodeApiResponse) =>
+        toEpisode(response.data.episodes[0], response.data.progress),
+    }),
     getMediaEpisodePreviewNewest: build.query<
       Page<Episode>,
       GetMediaEpisodePreviewNewestApiArg
@@ -64,5 +71,6 @@ export const rbtvApi = createApi({
 
 export const {
   useLazyGetRbscVideoTokenQuery,
+  useGetMediaEpisodeQuery,
   useGetMediaEpisodePreviewNewestQuery,
 } = rbtvApi;

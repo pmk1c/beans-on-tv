@@ -1,7 +1,7 @@
 meta {
   name: media-episode-preview-newest
   type: http
-  seq: 2
+  seq: 3
 }
 
 get {
@@ -25,4 +25,9 @@ script:post-response {
   const randomRbscToken = rbscTokens[Math.floor(Math.random() * rbscTokens.length)];
   
   bru.setEnvVar(`randomRbscToken`, randomRbscToken.token);
+  
+  const episode = res.body.data.episodes[0];
+  bru.setEnvVar(`episodeId`, episode.id);
+  
+  
 }

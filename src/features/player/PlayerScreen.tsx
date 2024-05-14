@@ -1,14 +1,13 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { router, useLocalSearchParams } from "expo-router";
 import { Video, ResizeMode } from "expo-av";
 import { useEffect, useState } from "react";
 import { ImageBackground, Linking, Platform, Text, View } from "react-native";
 
 import capture from "../../core/capture";
 import {
-  StackNavigationProp,
-  StackParamList,
-} from "../../core/navigation/StackNavigator";
-import { useLazyGetRbscVideoTokenQuery } from "../../core/rbtvApi";
+  useGetMediaEpisodeQuery,
+  useLazyGetRbscVideoTokenQuery,
+} from "../../core/rbtvApi";
 import { selectSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
 import { useAppSelector } from "../../core/redux/hooks";
 import borderRadius from "../../core/styles/tokens/borderRadius";
@@ -16,10 +15,11 @@ import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
 import spacing from "../../core/styles/tokens/spacing";
 
-type PlayerScreenRouteProp = RouteProp<StackParamList, "Player">;
-
 function PlayerScreen() {
-  const episode = useRoute<PlayerScreenRouteProp>().params?.episode;
+  const { episodeId } = useLocalSearchParams<{ episodeId: string }>();
+  const { data: episode } = useGetMediaEpisodeQuery(episodeId ?? "", {
+    skip: !episodeId,
+  });
 
   // const rbscVideoToken = episode.tokens.find(t => t.type === 'rbsc');
   // const youtubeVideoToken = episode.tokens.find(t => t.type === 'youtube');
@@ -28,11 +28,10 @@ function PlayerScreen() {
   const [error, setError] = useState<"rbsc" | "yt">();
 
   const [getRbscVideoToken] = useLazyGetRbscVideoTokenQuery();
-  const navigation = useNavigation<StackNavigationProp>();
   useEffect(() => {
     capture(
       (async () => {
-        if (episode.videoTokens.rbsc) {
+        if (episode?.videoTokens.rbsc) {
           try {
             const { data } = await getRbscVideoToken({
               videoToken: episode.videoTokens.rbsc.token,
@@ -42,7 +41,7 @@ function PlayerScreen() {
           } catch {}
         }
 
-        if (episode.videoTokens.youtube) {
+        if (episode?.videoTokens.youtube) {
           try {
             const { token } = episode.videoTokens.youtube;
             const url = Platform.select({
@@ -50,7 +49,7 @@ function PlayerScreen() {
               android: `https://www.youtube.com/watch?v=${token}`,
             }) as string;
             await Linking.openURL(url);
-            navigation.pop();
+            router.back();
           } catch {
             if (episode.videoTokens.rbsc) {
               setError("rbsc");
@@ -60,11 +59,9 @@ function PlayerScreen() {
           }
           return;
         }
-
-        throw new Error("No video token found!");
       })(),
     );
-  }, [getRbscVideoToken, navigation, episode]);
+  }, [getRbscVideoToken, episode]);
 
   const rbtvSocket = useAppSelector(selectSocket);
 
@@ -76,7 +73,7 @@ function PlayerScreen() {
           justifyContent: "center",
           alignItems: "center",
         }}
-        source={{ uri: episode.thumbnailUrls.large }}
+        source={{ uri: episode?.thumbnailUrls.large }}
       >
         {error ? (
           <View
@@ -114,20 +111,20 @@ function PlayerScreen() {
       }}
       status={{
         shouldPlay: true,
-        positionMillis: (episode.progress?.progress ?? 0) * 1000,
+        positionMillis: (episode?.progress?.progress ?? 0) * 1000,
       }}
-      posterSource={{ uri: episode.thumbnailUrls.large }}
+      posterSource={{ uri: episode?.thumbnailUrls.large }}
       useNativeControls
       usePoster
       resizeMode={ResizeMode.CONTAIN}
       progressUpdateIntervalMillis={1000}
       onPlaybackStatusUpdate={(status) => {
-        if (!status.isLoaded) {
+        if (!status.isLoaded || !episode) {
           return;
         }
 
         if (status.didJustFinish) {
-          navigation.pop();
+          router.back();
           return;
         }
 
