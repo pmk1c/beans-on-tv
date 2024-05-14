@@ -16,6 +16,12 @@
       "channel": "production",
       "env": {
         "EXPO_TV": "1"
+      },
+      "android": {
+        "image": "latest"
+      },
+      "ios": {
+        "image": "latest"
       }
     }
   },
