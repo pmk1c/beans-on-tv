@@ -17,7 +17,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.1.9",
-    "@redux-devtools/remote": "^0.9.1",
+    "@redux-devtools/remote": "^0.9.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@sentry/react-native": "^5.22.2",
     "date-fns": "^3.1.0",
@@ -70,11 +70,6 @@
       "exclude": [
         "react-native"
       ]
-    }
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@redux-devtools/remote@0.9.1": "patches/@redux-devtools__remote@0.9.1.patch"
     }
   }
 }
