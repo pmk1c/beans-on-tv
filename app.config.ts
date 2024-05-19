@@ -7,6 +7,7 @@ const config: ExpoConfig = {
   name: "Beans on TV",
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
+  owner: "pmk1c",
   privacy: "hidden",
   version: "2.0.0",
   updates: {
