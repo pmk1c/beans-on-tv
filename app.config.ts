@@ -25,7 +25,17 @@ const config: ExpoConfig = {
       "@react-native-tvos/config-tv",
       {
         isTv: true,
-        showVerboseWarnings: true,
+        androidTvRequired: true,
+        androidTVBanner: "assets/android-banner.png",
+        appleTVImages: {
+          icon: "./assets/ios-icon.png",
+          iconSmall: "./assets/ios-icon-small.png",
+          iconSmall2x: "./assets/ios-icon-small-2x.png",
+          topShelf: "./assets/ios-top-shelf.png",
+          topShelf2x: "./assets/ios-top-shelf-2x.png",
+          topShelfWide: "./assets/ios-top-shelf-wide.png",
+          topShelfWide2x: "./assets/ios-top-shelf-wide-2x.png",
+        },
       },
     ],
     [
