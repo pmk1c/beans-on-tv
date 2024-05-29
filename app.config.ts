@@ -58,8 +58,6 @@ const config: ExpoConfig = {
       "@sentry/react-native/expo",
       {
         url: "https://sentry.io/",
-        authToken:
-          "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",
         project: "rbscvca-app",
         organization: "ruben-grimm",
       },
