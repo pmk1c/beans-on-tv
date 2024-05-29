@@ -44,6 +44,9 @@ dependencies:
   expo-image:
     specifier: ~1.12.9
     version: 1.12.9(expo@51.0.9)
+  expo-insights:
+    specifier: ~0.7.0
+    version: 0.7.0(expo@51.0.9)
   expo-linking:
     specifier: ~6.3.1
     version: 6.3.1(expo@51.0.9)
@@ -4905,6 +4908,15 @@ packages:
     dependencies:
       '@react-native/assets-registry': 0.74.83
       expo: 51.0.9(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
+    dev: false
+
+  /expo-insights@0.7.0(expo@51.0.9):
+    resolution: {integrity: sha512-GC8WpaynF8QB+GoOfq1kBNeD1UICHvN2ek3KMmIIs1Iho1y3fwwwgLDeGCpOsVKQsNaX6viDVPCedj4V2SD4lA==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.9(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
+      expo-eas-client: 0.12.0
     dev: false
 
   /expo-json-utils@0.13.1:
