@@ -45,6 +45,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
           flexDirection: "column",
           gap: spacing.m,
           alignItems: "center",
+          marginBottom: spacing["2xl"],
         }}
         children={({ focused }) => (
           <>

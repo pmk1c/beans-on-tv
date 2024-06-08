@@ -10,10 +10,6 @@ function LatestVideosScreen(): JSX.Element {
 
   return (
     <FlatList
-      contentContainerStyle={{
-        gap: spacing["2xl"],
-        padding: spacing.xl,
-      }}
       columnWrapperStyle={{
         gap: spacing["2xl"],
       }}
@@ -31,8 +27,8 @@ function LatestVideosScreen(): JSX.Element {
             index < numColumns
               ? "high"
               : index < numColumns * 2
-                ? "normal"
-                : "low"
+              ? "normal"
+              : "low"
           }
         />
       )}

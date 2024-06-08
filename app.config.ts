@@ -36,17 +36,19 @@ const config: ExpoConfig = {
         },
       },
     ],
-    [
-      "expo-build-properties",
-      {
-        ios: {
-          newArchEnabled: true,
-        },
-        android: {
-          newArchEnabled: true,
-        },
-      },
-    ],
+    // New Arch disabled because of issues with TVFocusGuideView
+    // see: https://github.com/react-native-tvos/react-native-tvos/issues/718
+    // [
+    //   "expo-build-properties",
+    //   {
+    //     ios: {
+    //       newArchEnabled: true,
+    //     },
+    //     android: {
+    //       newArchEnabled: true,
+    //     },
+    //   },
+    // ],
     [
       "expo-font",
       {

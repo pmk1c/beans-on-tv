@@ -11,7 +11,7 @@ import {
   useNavigationBuilder,
 } from "@react-navigation/native";
 import * as React from "react";
-import { View, StyleSheet, TVFocusGuideView } from "react-native";
+import { View, TVFocusGuideView, FlatList } from "react-native";
 import { withLayoutContext } from "expo-router";
 
 import { RBTVIconName } from "../assets/icons/RBTVIcon";
@@ -53,51 +53,59 @@ function TVTopTabNavigator({
 
   return (
     <NavigationContent>
-      <TVFocusGuideView
-        autoFocus
-        trapFocusLeft
-        trapFocusRight
-        style={{ alignItems: "center" }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            marginTop: spacing.m,
-            borderRadius: borderRadius.large,
-            backgroundColor: color.bodyBg,
-          }}
-        >
-          {state.routes.map((route, i) => (
-            <Button
-              key={route.key}
-              icon={descriptors[route.key].options.icon}
-              title={descriptors[route.key].options.title}
-              buttonType={i === state.index ? "active" : undefined}
-              onFocus={() => {
-                navigation.dispatch({
-                  ...TabActions.jumpTo(route.name),
-                  target: state.key,
-                });
-              }}
-            />
-          ))}
-        </View>
-      </TVFocusGuideView>
-      <View style={{ flex: 1 }}>
-        {state.routes.map((route, i) => {
-          return (
-            <View
-              key={route.key}
-              style={[
-                StyleSheet.absoluteFill,
-                { display: i === state.index ? "flex" : "none" },
-              ]}
+      {/* Use static FlatList instead of ScrollView, since FlatLists can't be nested in ScrollViews but in other FlatLists. */}
+      <FlatList
+        contentContainerStyle={{
+          paddingHorizontal: spacing.xl,
+        }}
+        data={["navigation", "screen"]}
+        renderItem={({ item }) =>
+          item === "navigation" ? (
+            <TVFocusGuideView
+              autoFocus
+              trapFocusLeft
+              trapFocusRight
+              style={{ alignItems: "center", paddingVertical: spacing.xl }}
             >
-              {descriptors[route.key].render()}
-            </View>
-          );
-        })}
-      </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  borderRadius: borderRadius.large,
+                  backgroundColor: color.bodyBg,
+                }}
+              >
+                {state.routes.map((route, i) => (
+                  <Button
+                    key={route.key}
+                    icon={descriptors[route.key].options.icon}
+                    title={descriptors[route.key].options.title}
+                    buttonType={i === state.index ? "active" : undefined}
+                    onFocus={() => {
+                      navigation.dispatch({
+                        ...TabActions.jumpTo(route.name),
+                        target: state.key,
+                      });
+                    }}
+                  />
+                ))}
+              </View>
+            </TVFocusGuideView>
+          ) : (
+            <>
+              {state.routes.map((route, i) => {
+                return (
+                  <View
+                    key={route.key}
+                    style={{ display: i === state.index ? "flex" : "none" }}
+                  >
+                    {descriptors[route.key].render()}
+                  </View>
+                );
+              })}
+            </>
+          )
+        }
+      />
     </NavigationContent>
   );
 }
