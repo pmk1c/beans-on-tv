@@ -1,5 +1,5 @@
 import { nativeApplicationVersion } from "expo-application";
-import { updateId } from "expo-updates";
+import { updateId, useUpdates } from "expo-updates";
 import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
 
 import { useAuthScreen } from "./useAuthScreen";
@@ -17,6 +17,23 @@ function formatCode(code: string): string {
 
 function AuthScreen(): JSX.Element | null {
   const { state, logout } = useAuthScreen();
+  const { currentlyRunning, isChecking, isDownloading, isUpdatePending } =
+    useUpdates();
+
+  const versionInfo = [
+    nativeApplicationVersion,
+    currentlyRunning.channel,
+    currentlyRunning.createdAt?.toISOString().slice(0, 10),
+    isChecking
+      ? "Prüfe auf Update"
+      : isDownloading
+      ? "Lade Update"
+      : isUpdatePending
+      ? "Update verfügbar (Neustart erforderlich)"
+      : null,
+  ]
+    .filter(Boolean)
+    .join(" | ");
 
   return (
     <TVFocusGuideView
@@ -46,9 +63,7 @@ function AuthScreen(): JSX.Element | null {
           <Button buttonType="destructive" title="Abmelden" onPress={logout} />
         ) : null}
       </View>
-      <Text style={styles.textVersion}>
-        {nativeApplicationVersion} {updateId ? `(${updateId})` : ""}
-      </Text>
+      <Text style={styles.textVersion}>{versionInfo}</Text>
     </TVFocusGuideView>
   );
 }
