@@ -19,6 +19,7 @@ import Button from "../components/Button";
 import borderRadius from "../styles/tokens/borderRadius";
 import color from "../styles/tokens/color";
 import spacing from "../styles/tokens/spacing";
+import perfectSize from "../styles/perfectSize";
 
 type TVTopTabNavigationOptions = {
   icon?: RBTVIconName;
@@ -70,16 +71,26 @@ function TVTopTabNavigator({
               <View
                 style={{
                   flexDirection: "row",
-                  borderRadius: borderRadius.large,
-                  backgroundColor: color.bodyBg,
                 }}
               >
+                <View
+                  style={{
+                    position: "absolute",
+                    width: perfectSize(354),
+                    height: perfectSize(90),
+                    borderRadius: borderRadius.full,
+                    borderColor: color.grey800,
+                    borderWidth: perfectSize(4),
+                  }}
+                />
                 {state.routes.map((route, i) => (
                   <Button
+                    style={{
+                      marginLeft: i === 0 ? 0 : -spacing.s,
+                    }}
                     key={route.key}
                     icon={descriptors[route.key].options.icon}
                     title={descriptors[route.key].options.title}
-                    buttonType={i === state.index ? "active" : undefined}
                     onFocus={() => {
                       navigation.dispatch({
                         ...TabActions.jumpTo(route.name),

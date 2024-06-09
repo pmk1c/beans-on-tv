@@ -39,39 +39,42 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
       asChild
     >
       <Pressable
-        style={{
-          width,
-          height: height + spacing.m + fontPresets.xl.fontSize * 1.35 * 3,
-          flexDirection: "column",
-          gap: spacing.m,
-          alignItems: "center",
-          marginBottom: spacing["2xl"],
-        }}
         children={({ focused }) => (
-          <>
+          <View
+            style={{
+              padding: spacing.m,
+              overflow: "hidden",
+              width,
+              height: perfectSize(400),
+              flexDirection: "column",
+              gap: spacing.m,
+              alignItems: "center",
+              marginBottom: spacing["2xl"],
+              borderRadius: borderRadius.large,
+              borderWidth: perfectSize(4),
+              borderColor: focused ? color.red500 : "transparent",
+            }}
+          >
+            {isYouTubeOnly(episode, isLoggedIn) && (
+              <Image
+                source={require("../../core/assets/icons/yt_icon_rgb.png")}
+                style={{
+                  position: "absolute",
+                  zIndex: 1,
+                  top: spacing.xs,
+                  left: spacing.xs,
+                  height: perfectSize(48),
+                  width: (734 / 518) * perfectSize(48),
+                }}
+                contentFit="contain"
+              />
+            )}
             <View
               style={{
                 overflow: "hidden",
                 transform: [{ scale: focused ? 1.1 : 1 }],
-                borderRadius: borderRadius.large,
-                borderWidth: perfectSize(2),
-                borderColor: focused ? color.textHighlight : "transparent",
               }}
             >
-              {isYouTubeOnly(episode, isLoggedIn) && (
-                <Image
-                  source={require("../../core/assets/icons/yt_icon_rgb.png")}
-                  style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    top: spacing.xs,
-                    left: spacing.xs,
-                    height: perfectSize(48),
-                    width: (734 / 518) * perfectSize(48),
-                  }}
-                  contentFit="contain"
-                />
-              )}
               <View
                 style={{
                   position: "absolute",
@@ -144,7 +147,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 </Text>
               </View>
             </View>
-          </>
+          </View>
         )}
       />
     </Link>

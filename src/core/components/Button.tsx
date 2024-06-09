@@ -13,9 +13,10 @@ import borderRadius from "../styles/tokens/borderRadius";
 import color from "../styles/tokens/color";
 import fontPresets from "../styles/tokens/fontPresets";
 import spacing from "../styles/tokens/spacing";
+import perfectSize from "../styles/perfectSize";
 
 type ButtonProps = PropsWithRef<{
-  buttonType?: "destructive" | "active";
+  buttonType?: "destructive";
   icon?: RBTVIconName;
   title?: string;
   style?: StyleProp<ViewStyle>;
@@ -30,9 +31,6 @@ function getStyles<T = unknown>(
   focused: boolean,
 ) {
   const styleNames = [defaultStyleName];
-  if (buttonType === "active") {
-    styleNames.push(`${defaultStyleName}Active`);
-  }
   if (buttonType === "destructive") {
     styleNames.push(`${defaultStyleName}Destructive`);
   }
@@ -47,7 +45,7 @@ function getStyles<T = unknown>(
 }
 
 function Button(
-  { buttonType, icon, title, onFocus, onPress }: ButtonProps,
+  { buttonType, icon, style, title, onFocus, onPress }: ButtonProps,
   ref: Ref<View>,
 ): JSX.Element {
   return (
@@ -56,7 +54,9 @@ function Button(
       onFocus={onFocus}
       onPress={onPress}
       children={({ focused }) => (
-        <View style={getStyles(viewStyles, "wrapper", buttonType, focused)}>
+        <View
+          style={[getStyles(viewStyles, "wrapper", buttonType, focused), style]}
+        >
           <Text style={getStyles(textStyles, "text", buttonType, focused)}>
             {icon ? (
               <RBTVIcon
@@ -76,18 +76,18 @@ const viewStyles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: spacing.l,
     paddingVertical: spacing.m,
-    backgroundColor: color.bodyBg,
-    color: color.textLight,
-    borderRadius: borderRadius.large,
-  },
-  wrapperActive: {
-    backgroundColor: color.lightTransparentBg,
+    color: color.grey850,
+    borderRadius: borderRadius.full,
+    borderWidth: perfectSize(4),
+    borderColor: "transparent",
+    minWidth: perfectSize(120),
+    alignItems: "center",
   },
   wrapperDestructive: {
     backgroundColor: color.red700,
   },
   wrapperFocused: {
-    backgroundColor: color.grey600,
+    borderColor: color.red500,
   },
   wrapperDestructiveFocused: {
     backgroundColor: color.red800,

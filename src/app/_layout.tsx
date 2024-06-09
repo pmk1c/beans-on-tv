@@ -4,10 +4,10 @@ import { TVEventControl } from "react-native";
 import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
 import { Provider } from "react-redux";
-import { ImageBackground } from "expo-image";
 
 import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
+import color from "../core/styles/tokens/color";
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
@@ -27,31 +27,26 @@ setDefaultOptions({ locale: de });
 function Layout() {
   return (
     <Provider store={store}>
-      <ImageBackground
-        source={require("../core/assets/images/body_bg2021-127.jpg")}
-        style={{ flex: 1 }}
-      >
-        <InitializeAppGate>
-          <Stack
-            screenListeners={{
-              state: (event) => {
-                // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
-                if (event.data.state?.routes.length === 1) {
-                  TVEventControl.disableTVMenuKey();
-                } else {
-                  TVEventControl.enableTVMenuKey();
-                }
-              },
-            }}
-            screenOptions={{
-              contentStyle: {
-                backgroundColor: "transparent",
-              },
-              headerShown: false,
-            }}
-          />
-        </InitializeAppGate>
-      </ImageBackground>
+      <InitializeAppGate>
+        <Stack
+          screenListeners={{
+            state: (event) => {
+              // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
+              if (event.data.state?.routes.length === 1) {
+                TVEventControl.disableTVMenuKey();
+              } else {
+                TVEventControl.enableTVMenuKey();
+              }
+            },
+          }}
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: color.black,
+            },
+            headerShown: false,
+          }}
+        />
+      </InitializeAppGate>
     </Provider>
   );
 }
