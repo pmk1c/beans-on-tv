@@ -71,22 +71,20 @@ function TVTopTabNavigator({
               <View
                 style={{
                   flexDirection: "row",
+                  width: perfectSize(354),
+                  height: perfectSize(90),
+                  borderRadius: borderRadius.full,
+                  borderColor: color.grey800,
+                  borderWidth: perfectSize(4),
                 }}
               >
-                <View
-                  style={{
-                    position: "absolute",
-                    width: perfectSize(354),
-                    height: perfectSize(90),
-                    borderRadius: borderRadius.full,
-                    borderColor: color.grey800,
-                    borderWidth: perfectSize(4),
-                  }}
-                />
                 {state.routes.map((route, i) => (
                   <Button
                     style={{
-                      marginLeft: i === 0 ? 0 : -spacing.s,
+                      marginLeft:
+                        -perfectSize(4) - (i === 0 ? 0 : perfectSize(8)),
+                      marginTop: -perfectSize(4),
+                      marginBottom: -perfectSize(4),
                     }}
                     key={route.key}
                     icon={descriptors[route.key].options.icon}

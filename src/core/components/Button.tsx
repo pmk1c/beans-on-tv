@@ -28,7 +28,7 @@ function getStyles<T = unknown>(
   styles: Record<string, StyleProp<T>>,
   defaultStyleName: string,
   buttonType: ButtonProps["buttonType"],
-  focused: boolean,
+  focused: boolean
 ) {
   const styleNames = [defaultStyleName];
   if (buttonType === "destructive") {
@@ -46,7 +46,7 @@ function getStyles<T = unknown>(
 
 function Button(
   { buttonType, icon, style, title, onFocus, onPress }: ButtonProps,
-  ref: Ref<View>,
+  ref: Ref<View>
 ): JSX.Element {
   return (
     <Pressable
@@ -88,6 +88,7 @@ const viewStyles = StyleSheet.create({
   },
   wrapperFocused: {
     borderColor: color.red500,
+    backgroundColor: color.black,
   },
   wrapperDestructiveFocused: {
     backgroundColor: color.red800,
