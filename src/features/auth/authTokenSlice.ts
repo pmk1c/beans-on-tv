@@ -28,7 +28,7 @@ export const authTokenSlice = createSliceWithThunks({
         // TODO move this into its own slice, since it does not belong here
         const socket = selectSocket(getState() as RootState);
         socket.emitAuthentication(token.accessToken);
-        socket.on("AC_AUTHENTICATION_RESULT", () => {});
+        socket.on("AC_AUTHENTICATION_RESULT", () => null);
         socket.on("AC_AUTHENTICATION_REQ", () => {
           if (!token) {
             return;

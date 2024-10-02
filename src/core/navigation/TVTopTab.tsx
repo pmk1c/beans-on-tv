@@ -21,10 +21,10 @@ import color from "../styles/tokens/color";
 import spacing from "../styles/tokens/spacing";
 import perfectSize from "../styles/perfectSize";
 
-type TVTopTabNavigationOptions = {
+interface TVTopTabNavigationOptions {
   icon?: RBTVIconName;
   title?: string;
-};
+}
 
 type TVTopTabNavigatorProps = DefaultNavigatorOptions<
   ParamListBase,

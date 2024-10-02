@@ -31,7 +31,7 @@ export type MediaEpisodePreview = mediaEpisodePreview & {
   distributionPublishingDate: string;
 };
 
-export interface VideoToken extends videoToken {}
+export type VideoToken = videoToken;
 
 // Api Responses
 interface ApiResponseWithPagination<T> extends genericApiResponse<T> {
@@ -41,19 +41,17 @@ interface ApiResponseWithPagination<T> extends genericApiResponse<T> {
     total: number;
   };
 }
-export interface GetFrontendInitApiResponse
-  extends genericApiResponse<frontendInitResponse> {}
+export type GetFrontendInitApiResponse =
+  genericApiResponse<frontendInitResponse>;
 
-export interface GetMediaEpisodeApiResponse
-  extends genericApiResponse<MediaEpisodeCombinedResponse> {}
+export type GetMediaEpisodeApiResponse =
+  genericApiResponse<MediaEpisodeCombinedResponse>;
 
-export interface GetMediaEpisodePreviewNewestApiResponse
-  extends ApiResponseWithPagination<
-    MediaEpisodeCombinedResponse<MediaEpisodePreview>
-  > {}
+export type GetMediaEpisodePreviewNewestApiResponse = ApiResponseWithPagination<
+  MediaEpisodeCombinedResponse<MediaEpisodePreview>
+>;
 
-export interface GetRbscVideoTokenApiResponse
-  extends genericApiResponse<RBSCVideoToken> {}
+export type GetRbscVideoTokenApiResponse = genericApiResponse<RBSCVideoToken>;
 
 // Socket Messages
 interface AC_PING_CA_PONG {

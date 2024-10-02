@@ -1,9 +1,9 @@
-type Token = {
+interface Token {
   accessToken: string;
   validUntil: string;
   refreshToken: string | null;
   appReview: boolean;
-};
+}
 
 function isToken(token: unknown): token is Token {
   return (

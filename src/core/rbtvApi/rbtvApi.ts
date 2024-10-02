@@ -13,14 +13,14 @@ import Episode from "../types/Episode";
 import Page from "../types/Page";
 import toEpisode from "./mappings/toEpisode";
 
-type GetMediaEpisodePreviewNewestApiArg = {
+interface GetMediaEpisodePreviewNewestApiArg {
   offset?: number;
   limit?: number;
-};
+}
 
-type GetRbscVideoTokenApiArg = {
+interface GetRbscVideoTokenApiArg {
   videoToken?: string;
-};
+}
 
 export const rbtvApi = createApi({
   reducerPath: "rbtvApi",

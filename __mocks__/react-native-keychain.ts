@@ -1,1 +1,1 @@
-export const getGenericPassword = () => {};
+export const getGenericPassword = () => null;
