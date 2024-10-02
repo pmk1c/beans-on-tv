@@ -1,5 +1,5 @@
 import { nativeApplicationVersion } from "expo-application";
-import { updateId, useUpdates } from "expo-updates";
+import { useUpdates } from "expo-updates";
 import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
 
 import { useAuthScreen } from "./useAuthScreen";
