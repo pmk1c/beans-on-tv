@@ -12,6 +12,7 @@ import {
   NativeEventSubscription,
   Platform,
 } from "react-native";
+import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
 import { rbtvApi } from ".././rbtvApi";
 import authApi from "../../features/auth/authApi";
@@ -83,7 +84,7 @@ export const store = configureStore({
       .concat(
         __DEV__
           ? [
-              require("redux-devtools-expo-dev-plugin").default({
+              devToolsEnhancer({
                 name: Platform.OS,
               }),
             ]

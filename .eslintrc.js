@@ -1,4 +1,8 @@
 // https://docs.expo.dev/guides/using-eslint/
 module.exports = {
-  extends: ["eslint:recommended", "expo"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "expo",
+  ],
 };
