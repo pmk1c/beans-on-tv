@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import { Video, ResizeMode } from "expo-av";
 import { useEffect, useState } from "react";
 import { ImageBackground, Linking, Platform, Text, View } from "react-native";
@@ -15,8 +15,11 @@ import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
 import spacing from "../../core/styles/tokens/spacing";
 
-function PlayerScreen() {
-  const { episodeId } = useLocalSearchParams<{ episodeId: string }>();
+interface Props {
+  episodeId: string;
+}
+
+function PlayerScreen({ episodeId }: Props) {
   const { data: episode } = useGetMediaEpisodeQuery(episodeId ?? "", {
     skip: !episodeId,
     refetchOnMountOrArgChange: true,

@@ -27,8 +27,8 @@ function LatestVideosScreen(): JSX.Element {
             index < numColumns
               ? "high"
               : index < numColumns * 2
-              ? "normal"
-              : "low"
+                ? "normal"
+                : "low"
           }
         />
       )}

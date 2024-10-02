@@ -12,8 +12,8 @@ export const authTokenSlice = createSliceWithThunks({
     token: undefined as Token | undefined,
   },
   reducers: (create) => ({
-    initializeAuthToken: create.asyncThunk<undefined, Token | undefined>(
-      async (_, { dispatch, getState }) => {
+    initializeAuthToken: create.asyncThunk<Token | undefined>(
+      async (arg, { dispatch, getState }) => {
         let token = await TokenStorage.getToken();
         if (!token || (!isValid(token) && !token.refreshToken)) {
           return;
@@ -21,7 +21,7 @@ export const authTokenSlice = createSliceWithThunks({
 
         if (!isValid(token)) {
           token = await dispatch(
-            authApi.endpoints.refreshToken.initiate(token),
+            authApi.endpoints.refreshToken.initiate(token)
           ).unwrap();
         }
 
@@ -49,7 +49,7 @@ export const authTokenSlice = createSliceWithThunks({
         settled: (state) => {
           state.initialized = true;
         },
-      },
+      }
     ),
     setAuthToken: create.asyncThunk(
       async (token: Token, { getState }) => {
@@ -66,9 +66,9 @@ export const authTokenSlice = createSliceWithThunks({
         rejected: (state) => {
           state.token = undefined;
         },
-      },
+      }
     ),
-    resetAuthToken: create.asyncThunk<undefined>(
+    resetAuthToken: create.asyncThunk(
       async () => {
         await TokenStorage.resetToken();
       },
@@ -76,7 +76,7 @@ export const authTokenSlice = createSliceWithThunks({
         pending: (state) => {
           state.token = undefined;
         },
-      },
+      }
     ),
   }),
   selectors: {

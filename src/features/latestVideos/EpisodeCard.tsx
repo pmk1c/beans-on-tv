@@ -34,7 +34,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
     <Link
       href={{
         pathname: "/player/[episodeId]",
-        params: { episodeId: episode?.id },
+        params: { episodeId: episode!.id },
       }}
       asChild
     >
@@ -142,7 +142,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                       Date.parse(episode.distributionPublishingDate),
                       {
                         addSuffix: true,
-                      },
+                      }
                     )}
                 </Text>
               </View>
