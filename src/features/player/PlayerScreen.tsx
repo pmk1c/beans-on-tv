@@ -42,7 +42,9 @@ function PlayerScreen({ episodeId }: Props) {
             }).unwrap();
             setSignedToken(data?.signedToken);
             return;
-          } catch {}
+          } catch {
+            /* empty */
+          }
         }
 
         if (episode?.videoTokens.youtube) {
