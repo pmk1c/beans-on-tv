@@ -19,7 +19,7 @@ const authApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    createCode: build.mutation<string, void>({
+    createCode: build.mutation<string, undefined>({
       query: () => ({
         method: "POST",
         url: "/code-token-exchange-create",

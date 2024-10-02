@@ -5,9 +5,6 @@ export function captureError(error: unknown) {
   Sentry.captureException(error);
 }
 
-function capture(error: Error): void;
-function capture(promise: Promise<unknown>): void;
-
 function capture(errorOrPromise: Error | Promise<unknown>) {
   if (errorOrPromise instanceof Error) {
     captureError(errorOrPromise);

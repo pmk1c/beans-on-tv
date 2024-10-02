@@ -38,7 +38,7 @@ export const rbtvApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getFrontendInit: build.query<GetFrontendInitApiResponse, void>({
+    getFrontendInit: build.query<GetFrontendInitApiResponse, undefined>({
       query: () => ({ url: "/frontend/init" }),
     }),
     getMediaEpisode: build.query<Episode, string>({
@@ -55,7 +55,7 @@ export const rbtvApi = createApi({
         params: { offset: arg.offset, limit: arg.limit },
       }),
       transformResponse: (
-        response: GetMediaEpisodePreviewNewestApiResponse,
+        response: GetMediaEpisodePreviewNewestApiResponse
       ) => {
         return toPage(response);
       },

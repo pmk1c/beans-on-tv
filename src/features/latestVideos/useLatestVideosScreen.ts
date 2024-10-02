@@ -21,7 +21,7 @@ function useLatestVideosScreen() {
       offset: getOffset(currentPageNumber - 1),
       limit: pageSize,
     },
-    { refetchOnFocus: true, skip: currentPageNumber === 0 },
+    { refetchOnFocus: true, skip: currentPageNumber === 0 }
   );
   const {
     data: currentPage,
@@ -32,7 +32,7 @@ function useLatestVideosScreen() {
       offset: getOffset(currentPageNumber),
       limit: pageSize,
     },
-    { refetchOnFocus: true },
+    { refetchOnFocus: true }
   );
   const {
     data: nextPage,
@@ -48,7 +48,7 @@ function useLatestVideosScreen() {
       skip:
         !currentPage ||
         currentPage.meta.total < getOffset(currentPageNumber + 1),
-    },
+    }
   );
 
   const episodes = useMemo(() => {
@@ -80,7 +80,7 @@ function useLatestVideosScreen() {
   useFocusEffect(
     useCallback(() => {
       refetchAllPages();
-    }, [refetchAllPages]),
+    }, [refetchAllPages])
   );
 
   const onViewableItemsChanged = useCallback(
@@ -91,16 +91,18 @@ function useLatestVideosScreen() {
       changed: ViewToken[];
       viewableItems: ViewToken[];
     }) => {
-      const viewableItemIndexes = viewableItems.map((item) => item.index!);
+      const viewableItemIndexes = viewableItems
+        .map((item) => item.index)
+        .filter(Boolean) as number[];
       const firstViewableItemIndex = viewableItemIndexes[0];
       const lastViewableItemIndex =
         viewableItemIndexes[viewableItemIndexes.length - 1];
       const isScrollingUp = changed.some(({ isViewable, index }) =>
         isViewable
           ? // when scrolling up, the first visible item has to have been changed to be visible
-            index! === firstViewableItemIndex
+            index === firstViewableItemIndex
           : // or an item after the currently visible items has to have been changed to be invisible
-            index! > lastViewableItemIndex,
+            index != null && index > lastViewableItemIndex
       );
 
       if (isScrollingUp) {
@@ -109,7 +111,7 @@ function useLatestVideosScreen() {
         setCurrentPageNumber(getItemPage(lastViewableItemIndex));
       }
     },
-    [setCurrentPageNumber],
+    [setCurrentPageNumber]
   );
 
   return {

@@ -31,9 +31,11 @@ class RBTVSocket {
   }
 
   emitMediaEpisodeProgressUpdate(episode: Episode, progress: number) {
+    if (!episode.videoTokens.rbsc) return;
+
     this.emit("CA_MEDIA_EPISODEPROGRESS_UPDATE", {
       episodeId: Number.parseInt(episode.id, 10),
-      tokenId: Number.parseInt(episode.videoTokens.rbsc!.id, 10),
+      tokenId: Number.parseInt(episode.videoTokens.rbsc.id, 10),
       progress: Math.round(progress),
     });
   }
