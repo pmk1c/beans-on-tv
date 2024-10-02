@@ -52,8 +52,8 @@ function PlayerScreen({ episodeId }: Props) {
             const { token } = episode.videoTokens.youtube;
             const url = Platform.select({
               ios: `youtube://watch/${token}`,
-              android: `https://www.youtube.com/watch?v=${token}`,
-            }) as string;
+              default: `https://www.youtube.com/watch?v=${token}`,
+            });
             await Linking.openURL(url);
             router.back();
           } catch {
