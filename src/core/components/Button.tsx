@@ -53,6 +53,7 @@ function Button(
       ref={ref}
       onFocus={onFocus}
       onPress={onPress}
+      // eslint-disable-next-line react/no-children-prop
       children={({ focused }) => (
         <View
           style={[getStyles(viewStyles, "wrapper", buttonType, focused), style]}

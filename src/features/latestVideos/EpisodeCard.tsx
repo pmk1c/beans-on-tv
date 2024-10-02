@@ -40,6 +40,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
           params: { episodeId: episode.id },
         });
       }}
+      // eslint-disable-next-line react/no-children-prop
       children={({ focused }) => (
         <View
           style={{
