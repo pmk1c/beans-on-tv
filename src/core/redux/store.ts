@@ -55,7 +55,7 @@ const reducer = combineSlices(
   authApi,
   rbtvApi,
   authTokenSlice,
-  rbtvSocketApiSlice,
+  rbtvSocketApiSlice
 );
 
 export const store = configureStore({
@@ -83,19 +83,11 @@ export const store = configureStore({
       .concat(
         __DEV__
           ? [
-              require("react-native-get-random-values") &&
-                require("@redux-devtools/remote").devToolsEnhancer({
-                  name: Platform.OS,
-                  hostname: Platform.select({
-                    ios: "localhost",
-                    android: "10.0.2.2",
-                  }),
-                  port: 8000,
-                  secure: false,
-                  realtime: true,
-                }),
+              require("redux-devtools-expo-dev-plugin").default({
+                name: Platform.OS,
+              }),
             ]
-          : [],
+          : []
       ),
 });
 
@@ -112,7 +104,7 @@ setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
         } else {
           dispatch(onFocusLost());
         }
-      },
+      }
     );
     initialized = true;
   }
