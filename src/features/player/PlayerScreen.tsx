@@ -19,6 +19,7 @@ function PlayerScreen() {
   const { episodeId } = useLocalSearchParams<{ episodeId: string }>();
   const { data: episode } = useGetMediaEpisodeQuery(episodeId ?? "", {
     skip: !episodeId,
+    refetchOnMountOrArgChange: true,
   });
 
   // const rbscVideoToken = episode.tokens.find(t => t.type === 'rbsc');
@@ -59,7 +60,7 @@ function PlayerScreen() {
           }
           return;
         }
-      })(),
+      })()
     );
   }, [getRbscVideoToken, episode]);
 
@@ -101,6 +102,8 @@ function PlayerScreen() {
     );
   }
 
+  const positionMillis = (episode?.progress?.progress ?? 0) * 1000;
+
   return (
     <Video
       style={{
@@ -111,8 +114,9 @@ function PlayerScreen() {
       }}
       status={{
         shouldPlay: true,
-        positionMillis: (episode?.progress?.progress ?? 0) * 1000,
+        positionMillis,
       }}
+      positionMillis={positionMillis}
       posterSource={{ uri: episode?.thumbnailUrls.large }}
       useNativeControls
       usePoster
@@ -130,7 +134,7 @@ function PlayerScreen() {
 
         rbtvSocket.emitMediaEpisodeProgressUpdate(
           episode,
-          status.positionMillis / 1000,
+          status.positionMillis / 1000
         );
       }}
     />
