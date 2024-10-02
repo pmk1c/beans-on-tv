@@ -19,7 +19,7 @@ interface GetMediaEpisodePreviewNewestApiArg {
 }
 
 interface GetRbscVideoTokenApiArg {
-  videoToken?: string;
+  videoToken: string;
 }
 
 export const rbtvApi = createApi({

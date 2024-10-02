@@ -59,9 +59,9 @@ function AuthScreen(): JSX.Element | null {
               </Text>
             </Text>
           </View>
-        ) : state.step === "done" ? (
+        ) : (
           <Button buttonType="destructive" title="Abmelden" onPress={logout} />
-        ) : null}
+        )}
       </View>
       <Text style={styles.textVersion}>{versionInfo}</Text>
     </TVFocusGuideView>

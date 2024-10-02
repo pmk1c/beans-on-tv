@@ -32,7 +32,7 @@ function Layout() {
           screenListeners={{
             state: (event) => {
               // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
-              if (event.data.state?.routes.length === 1) {
+              if (event.data.state.routes.length === 1) {
                 TVEventControl.disableTVMenuKey();
               } else {
                 TVEventControl.enableTVMenuKey();

@@ -94,7 +94,7 @@ export const store = configureStore({
 
 let initialized = false;
 setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
-  let subscription: NativeEventSubscription;
+  let subscription: NativeEventSubscription | undefined;
 
   if (!initialized) {
     subscription = AppState.addEventListener(

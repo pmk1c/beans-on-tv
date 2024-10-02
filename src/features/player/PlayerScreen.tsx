@@ -20,7 +20,7 @@ interface Props {
 }
 
 function PlayerScreen({ episodeId }: Props) {
-  const { data: episode } = useGetMediaEpisodeQuery(episodeId ?? "", {
+  const { data: episode } = useGetMediaEpisodeQuery(episodeId, {
     skip: !episodeId,
     refetchOnMountOrArgChange: true,
   });
@@ -40,7 +40,7 @@ function PlayerScreen({ episodeId }: Props) {
             const { data } = await getRbscVideoToken({
               videoToken: episode.videoTokens.rbsc.token,
             }).unwrap();
-            setSignedToken(data?.signedToken);
+            setSignedToken(data.signedToken);
             return;
           } catch {
             /* empty */

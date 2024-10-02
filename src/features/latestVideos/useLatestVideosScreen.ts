@@ -4,6 +4,7 @@ import { ViewToken } from "react-native";
 
 import { useGetMediaEpisodePreviewNewestQuery } from "../../core/rbtvApi";
 import Episode from "../../core/types/Episode";
+import capture from "@/src/core/capture";
 
 const pageSize = 12;
 const getOffset = (pageNumber: number) => pageNumber * pageSize;
@@ -79,7 +80,7 @@ function useLatestVideosScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      refetchAllPages();
+      capture(refetchAllPages());
     }, [refetchAllPages])
   );
 
