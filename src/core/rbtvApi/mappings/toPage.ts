@@ -1,7 +1,8 @@
-import toEpisode from "./toEpisode";
 import Episode from "../../types/Episode";
 import Page from "../../types/Page";
 import { GetMediaEpisodePreviewNewestApiResponse } from "../types";
+
+import toEpisode from "./toEpisode";
 
 const toPage = (
   response: GetMediaEpisodePreviewNewestApiResponse

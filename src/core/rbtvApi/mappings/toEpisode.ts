@@ -1,9 +1,10 @@
-import toVideoToken from "./toVideoToken";
 import Episode from "../../types/Episode";
 import {
   GetMediaEpisodePreviewNewestApiResponse,
   MediaEpisodePreview,
 } from "../types";
+
+import toVideoToken from "./toVideoToken";
 
 const findThumbnailUrl = (episodeResponse: MediaEpisodePreview, name: string) =>
   episodeResponse.thumbnail.find((t) => t.name === name)?.url ?? "";

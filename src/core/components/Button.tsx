@@ -8,8 +8,8 @@ import {
   ViewStyle,
 } from "react-native";
 
-import RBTVIcon, { RBTVIconName } from "../assets/icons/RBTVIcon";
 import borderRadius from "../styles/tokens/borderRadius";
+import RBTVIcon, { RBTVIconName } from "../assets/icons/RBTVIcon";
 import color from "../styles/tokens/color";
 import fontPresets from "../styles/tokens/fontPresets";
 import spacing from "../styles/tokens/spacing";

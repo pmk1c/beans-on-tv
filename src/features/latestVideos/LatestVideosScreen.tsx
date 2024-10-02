@@ -1,8 +1,9 @@
 import { FlatList } from "react-native";
 
+import spacing from "../../core/styles/tokens/spacing";
+
 import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
-import spacing from "../../core/styles/tokens/spacing";
 
 const numColumns = 4;
 function LatestVideosScreen(): JSX.Element {

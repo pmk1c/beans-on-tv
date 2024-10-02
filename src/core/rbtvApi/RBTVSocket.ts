@@ -1,8 +1,9 @@
 import * as Application from "expo-application";
 import io from "socket.io-client";
 
-import { SocketMessage, SocketMessagePayload } from "./types";
 import Episode from "../types/Episode";
+
+import { SocketMessage, SocketMessagePayload } from "./types";
 
 class RBTVSocket {
   socket: SocketIOClient.Socket;

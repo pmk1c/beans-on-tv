@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import capture from "../../core/capture";
+import { AppDispatch } from "../../core/redux/store";
+
 import { useCreateCodeMutation, useGetTokenMutation } from "./authApi";
 import {
   resetAuthToken,
@@ -8,8 +11,6 @@ import {
   selectAuthTokenInitialized,
   setAuthToken,
 } from "./authTokenSlice";
-import capture from "../../core/capture";
-import { AppDispatch } from "../../core/redux/store";
 
 type AuthScreenState =
   | {

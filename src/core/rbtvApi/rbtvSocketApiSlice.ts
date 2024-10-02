@@ -1,8 +1,10 @@
 import { nanoid } from "@reduxjs/toolkit";
 
-import { rbtvApi } from ".";
-import RBTVSocket from "./RBTVSocket";
 import { createSliceWithThunks } from "../redux/createSliceWithThunks";
+
+import RBTVSocket from "./RBTVSocket";
+
+import { rbtvApi } from ".";
 
 const sockets: Record<string, RBTVSocket> = {};
 

@@ -4,6 +4,7 @@ import { ViewToken } from "react-native";
 
 import { useGetMediaEpisodePreviewNewestQuery } from "../../core/rbtvApi";
 import Episode from "../../core/types/Episode";
+
 import capture from "@/src/core/capture";
 
 const pageSize = 12;

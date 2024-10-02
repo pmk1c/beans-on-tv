@@ -1,16 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import toPage from "./mappings/toPage";
+import { selectAuthToken } from "../../features/auth/authTokenSlice";
+import { RootState } from "../redux/store";
+import Episode from "../types/Episode";
+import Page from "../types/Page";
+
 import {
   GetFrontendInitApiResponse,
   GetMediaEpisodeApiResponse,
   GetMediaEpisodePreviewNewestApiResponse,
   GetRbscVideoTokenApiResponse,
 } from "./types";
-import { selectAuthToken } from "../../features/auth/authTokenSlice";
-import { RootState } from "../redux/store";
-import Episode from "../types/Episode";
-import Page from "../types/Page";
+import toPage from "./mappings/toPage";
 import toEpisode from "./mappings/toEpisode";
 
 interface GetMediaEpisodePreviewNewestApiArg {
