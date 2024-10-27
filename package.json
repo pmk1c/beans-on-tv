@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.26.0",
-    "@react-native-tvos/config-tv": "^0.0.9",
+    "@react-native-tvos/config-tv": "^0.0.13",
     "@types/react": "~18.3.12",
     "@types/socket.io-client": "1.4.36",
     "eslint": "^8.57.0",
