@@ -6,7 +6,6 @@ const config: ExpoConfig = {
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
   owner: "pmk1c",
-  privacy: "hidden",
   version: "2.0.0",
   updates: {
     url: "https://u.expo.dev/cd14a3c2-29e3-4d1b-a125-1ead1060a130",
@@ -18,6 +17,7 @@ const config: ExpoConfig = {
   backgroundColor: "#000000",
   primaryColor: "#ED0000",
   scheme: "beansontv",
+  newArchEnabled: true,
   plugins: [
     [
       "@react-native-tvos/config-tv",
@@ -36,19 +36,6 @@ const config: ExpoConfig = {
         },
       },
     ],
-    // New Arch disabled because of issues with TVFocusGuideView
-    // see: https://github.com/react-native-tvos/react-native-tvos/issues/718
-    // [
-    //   "expo-build-properties",
-    //   {
-    //     ios: {
-    //       newArchEnabled: true,
-    //     },
-    //     android: {
-    //       newArchEnabled: true,
-    //     },
-    //   },
-    // ],
     [
       "expo-font",
       {
