@@ -52,6 +52,7 @@ const config: ExpoConfig = {
         organization: "ruben-grimm",
       },
     ],
+    ["expo-secure-store"],
   ],
   splash: {
     backgroundColor: "#000000",
