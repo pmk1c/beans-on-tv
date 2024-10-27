@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "EXPO_TV=1 expo start",
+    "start": "EXPO_TV=1 expo start --dev-client",
     "android": "EXPO_TV=1 expo run:android --device",
     "ios": "EXPO_TV=1 expo run:ios",
     "lint": "expo lint",
@@ -44,7 +44,6 @@
     "socket.io-client": "v2-latest"
   },
   "devDependencies": {
-    "@babel/core": "~7.26.0",
     "@react-native-tvos/config-tv": "^0.0.13",
     "@types/react": "~18.3.12",
     "@types/socket.io-client": "1.4.36",
