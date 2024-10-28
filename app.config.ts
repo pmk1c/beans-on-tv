@@ -40,7 +40,10 @@ const config: ExpoConfig = {
     [
       "expo-font",
       {
-        fonts: ["./assets/fonts/rbtvIcons.ttf", "./assets/fonts/Rubik.ttf"],
+        fonts: [
+          "./assets/fonts/rbtvIcons.ttf",
+          "./assets/fonts/Archivo-VariableFont_wdth,wght.ttf",
+        ],
       },
     ],
     "expo-router",

@@ -71,7 +71,7 @@ function TVTopTabNavigator({
               <View
                 style={{
                   flexDirection: "row",
-                  width: perfectSize(354),
+                  width: perfectSize(376),
                   height: perfectSize(90),
                   borderRadius: borderRadius.full,
                   borderColor: color.grey800,

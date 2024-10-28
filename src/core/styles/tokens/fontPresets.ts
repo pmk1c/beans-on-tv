@@ -3,8 +3,7 @@ import { Platform } from "react-native";
 import perfectSize from "../perfectSize";
 
 const fontFamily = {
-  primary: Platform.select({ ios: "Rubik-Light_Medium", android: "Rubik" }),
-  secondary: "Arvo-RBTV-v1",
+  primary: "ArchivoRoman-Black",
 };
 
 const rem = perfectSize(16);
