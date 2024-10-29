@@ -1,5 +1,3 @@
-import { Platform } from "react-native";
-
 import perfectSize from "../perfectSize";
 
 const fontFamily = {

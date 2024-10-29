@@ -9,15 +9,13 @@ import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import color from "../core/styles/tokens/color";
 
-const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
-
 Sentry.init({
   dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
   enabled: !__DEV__,
   tracesSampleRate: __DEV__ ? 1.0 : 0.2,
   integrations: [
-    new Sentry.ReactNativeTracing({
-      routingInstrumentation,
+    Sentry.reactNativeTracingIntegration({
+      routingInstrumentation: Sentry.reactNavigationIntegration(),
     }),
   ],
 });

@@ -16,10 +16,10 @@ class RBTVSocket {
     });
   }
 
-  emit<
-    M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
-  >(message: M, payload: P) {
+  emit<M extends SocketMessage = SocketMessage>(
+    message: M,
+    payload: SocketMessagePayload<M>
+  ) {
     console.debug("Socket message sent", message, payload);
     this.socket.emit(message, payload);
   }
@@ -41,11 +41,11 @@ class RBTVSocket {
     });
   }
 
-  on<
-    M extends SocketMessage = SocketMessage,
-    P extends SocketMessagePayload<M> = SocketMessagePayload<M>,
-  >(message: M, callback: (payload: SocketMessagePayload<M>) => void) {
-    this.socket.on(message, (payload: P) => {
+  on<M extends SocketMessage = SocketMessage>(
+    message: M,
+    callback: (payload: SocketMessagePayload<M>) => void
+  ) {
+    this.socket.on(message, (payload: SocketMessagePayload<M>) => {
       console.debug("Socket message received", message, payload);
       callback(payload);
     });

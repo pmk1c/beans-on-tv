@@ -59,7 +59,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
         >
           {isYouTubeOnly(episode, isLoggedIn) && (
             <Image
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
               source={require("../../core/assets/icons/yt_icon_rgb.png")}
               style={{
                 position: "absolute",
@@ -103,7 +103,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 uri: episode?.thumbnailUrls.small,
               }}
               priority={thumbnailPriority}
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
               placeholder={require("../../core/assets/images/placeholder_16x9-420.png")}
             />
           </View>

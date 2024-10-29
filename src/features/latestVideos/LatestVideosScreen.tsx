@@ -6,7 +6,7 @@ import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
 
 const numColumns = 4;
-function LatestVideosScreen(): JSX.Element {
+function LatestVideosScreen() {
   const { episodes, onViewableItemsChanged } = useLatestVideosScreen();
 
   return (

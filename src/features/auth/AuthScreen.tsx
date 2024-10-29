@@ -16,7 +16,7 @@ function formatCode(code: string): string {
   return code.slice(0, 4) + codeSeperator + code.slice(4);
 }
 
-function AuthScreen(): JSX.Element | null {
+function AuthScreen() {
   const { state, logout } = useAuthScreen();
   const { currentlyRunning, isChecking, isDownloading, isUpdatePending } =
     useUpdates();
@@ -28,10 +28,10 @@ function AuthScreen(): JSX.Element | null {
     isChecking
       ? "Prüfe auf Update"
       : isDownloading
-      ? "Lade Update"
-      : isUpdatePending
-      ? "Update verfügbar (Neustart erforderlich)"
-      : null,
+        ? "Lade Update"
+        : isUpdatePending
+          ? "Update verfügbar (Neustart erforderlich)"
+          : null,
   ]
     .filter(Boolean)
     .join(" | ");
