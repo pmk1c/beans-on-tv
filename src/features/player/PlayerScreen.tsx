@@ -1,7 +1,8 @@
 import { router } from "expo-router";
-import { Video, ResizeMode } from "expo-av";
+import { VideoView, useVideoPlayer } from "expo-video";
 import { useEffect, useState } from "react";
 import { ImageBackground, Linking, Platform, Text, View } from "react-native";
+import { useEventListener } from "expo";
 
 import capture from "../../core/capture";
 import {
@@ -70,6 +71,31 @@ function PlayerScreen({ episodeId }: Props) {
   }, [getRbscVideoToken, episode]);
 
   const rbtvSocket = useAppSelector(selectSocket);
+  const player = useVideoPlayer(
+    {
+      uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
+      metadata: {
+        title: episode?.title,
+        artist: episode?.showName,
+        artwork: episode?.thumbnailUrls.large,
+      },
+    },
+    (player) => {
+      player.currentTime = episode?.progress?.progress ?? 0;
+      player.timeUpdateEventInterval = 1;
+      player.play();
+    }
+  );
+
+  useEventListener(player, "timeUpdate", (event) => {
+    if (!episode) return;
+
+    rbtvSocket.emitMediaEpisodeProgressUpdate(episode, event.currentTime);
+  });
+
+  useEventListener(player, "playToEnd", () => {
+    router.back();
+  });
 
   if (!signedToken) {
     return (
@@ -107,41 +133,13 @@ function PlayerScreen({ episodeId }: Props) {
     );
   }
 
-  const positionMillis = (episode?.progress?.progress ?? 0) * 1000;
-
   return (
-    <Video
+    <VideoView
       style={{
         flex: 1,
       }}
-      source={{
-        uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
-      }}
-      status={{
-        shouldPlay: true,
-        positionMillis,
-      }}
-      positionMillis={positionMillis}
-      posterSource={{ uri: episode?.thumbnailUrls.large }}
-      useNativeControls
-      usePoster
-      resizeMode={ResizeMode.CONTAIN}
-      progressUpdateIntervalMillis={1000}
-      onPlaybackStatusUpdate={(status) => {
-        if (!status.isLoaded || !episode) {
-          return;
-        }
-
-        if (status.didJustFinish) {
-          router.back();
-          return;
-        }
-
-        rbtvSocket.emitMediaEpisodeProgressUpdate(
-          episode,
-          status.positionMillis / 1000
-        );
-      }}
+      player={player}
+      nativeControls
     />
   );
 }
