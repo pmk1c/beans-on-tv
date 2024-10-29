@@ -9,6 +9,10 @@ import {
   createNavigatorFactory,
   EventMapBase,
   useNavigationBuilder,
+  NavigatorTypeBagBase,
+  NavigationProp,
+  StaticConfig,
+  TypedNavigator,
 } from "@react-navigation/native";
 import * as React from "react";
 import { View, TVFocusGuideView, FlatList } from "react-native";
@@ -21,18 +25,27 @@ import color from "../styles/tokens/color";
 import spacing from "../styles/tokens/spacing";
 import perfectSize from "../styles/perfectSize";
 
+type TVTopTabNavigationConfig = void;
+
 interface TVTopTabNavigationOptions {
   icon?: RBTVIconName;
   title?: string;
 }
 
-type TVTopTabNavigatorProps = DefaultNavigatorOptions<
+type TVTopTabNavigationEventMap = EventMapBase;
+
+type TVTopTabNavigatorProps<
+  NavigatorID extends string | undefined = undefined,
+> = DefaultNavigatorOptions<
   ParamListBase,
+  NavigatorID,
   TabNavigationState<ParamListBase>,
   TVTopTabNavigationOptions,
-  EventMapBase
+  TVTopTabNavigationEventMap,
+  unknown
 > &
-  TabRouterOptions;
+  TabRouterOptions &
+  TVTopTabNavigationConfig;
 
 function TVTopTabNavigator({
   initialRouteName,
@@ -119,12 +132,32 @@ function TVTopTabNavigator({
   );
 }
 
-const createTVTopTabNavigator = createNavigatorFactory<
-  TabNavigationState<ParamListBase>,
-  TVTopTabNavigationOptions,
-  EventMapBase,
-  typeof TVTopTabNavigator
->(TVTopTabNavigator);
+const createTVTopTabNavigator = <
+  const ParamList extends ParamListBase,
+  const NavigatorID extends string | undefined = undefined,
+  const TypeBag extends NavigatorTypeBagBase = {
+    ParamList: ParamList;
+    NavigatorID: NavigatorID;
+    State: TabNavigationState<ParamList>;
+    ScreenOptions: TVTopTabNavigationOptions;
+    EventMap: EventMapBase;
+    NavigationList: {
+      [RouteName in keyof ParamList]: NavigationProp<
+        ParamList,
+        RouteName,
+        NavigatorID
+      >;
+    };
+    Navigator: typeof TVTopTabNavigator;
+  },
+  const Config extends StaticConfig<TypeBag> = StaticConfig<TypeBag>,
+>(
+  config?: Config
+) =>
+  createNavigatorFactory(TVTopTabNavigator)(config) as TypedNavigator<
+    TypeBag,
+    Config
+  >;
 
 const TVTopTab = withLayoutContext(createTVTopTabNavigator().Navigator);
 
