@@ -38,12 +38,14 @@
     "expo-system-ui": "~4.0.2",
     "expo-updates": "~0.26.5",
     "expo-video": "~2.0.0-preview.0",
+    "nativewind": "^4.1.21",
     "react": "18.3.1",
     "react-native": "npm:react-native-tvos@0.76.1-0",
     "react-native-pixel-perfect": "^1.0.2",
     "react-redux": "^9.0.4",
     "redux-devtools-expo-dev-plugin": "^0.2.1",
-    "socket.io-client": "v2-latest"
+    "socket.io-client": "v2-latest",
+    "tailwindcss": "^3.4.14"
   },
   "devDependencies": {
     "@react-native-tvos/config-tv": "^0.1.0",

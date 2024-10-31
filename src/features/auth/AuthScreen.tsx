@@ -1,12 +1,8 @@
 import { nativeApplicationVersion } from "expo-application";
 import { useUpdates } from "expo-updates";
-import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
+import { TVFocusGuideView, Text, View } from "react-native";
 
 import Button from "../../core/components/Button";
-import borderRadius from "../../core/styles/tokens/borderRadius";
-import color from "../../core/styles/tokens/color";
-import fontPresets from "../../core/styles/tokens/fontPresets";
-import spacing from "../../core/styles/tokens/spacing";
 
 import { useAuthScreen } from "./useAuthScreen";
 
@@ -42,18 +38,18 @@ function AuthScreen() {
       trapFocusLeft
       trapFocusRight
       trapFocusDown
-      style={styles.wrapper}
+      className="flex-1 justify-between items-center"
     >
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View className="flex-1 justify-center">
         {state.step === "creatingCode" || state.step === "pollingToken" ? (
-          <View style={styles.textWrapper}>
-            <Text style={styles.text}>
+          <View className="bg-darkTransparentBg p-4 rounded-lg">
+            <Text className="text-xl text-center text-text">
               Besuche{" "}
-              <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
+              <Text className="text-textHighlight">https://rbtv.bmind.de</Text>,
               melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
               Code ein:
               {"\n"}
-              <Text style={styles.textHighlight}>
+              <Text className="text-textHighlight">
                 {state.step === "pollingToken"
                   ? formatCode(state.code)
                   : codeSeperator}
@@ -64,46 +60,9 @@ function AuthScreen() {
           <Button buttonType="destructive" title="Abmelden" onPress={logout} />
         )}
       </View>
-      <Text style={styles.textVersion}>{versionInfo}</Text>
+      <Text className="text-lg text-textMuted">{versionInfo}</Text>
     </TVFocusGuideView>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  textWrapper: {
-    backgroundColor: color.darkTransparentBg,
-    padding: spacing.l,
-    borderRadius: borderRadius.large,
-  },
-  text: {
-    ...fontPresets.xl,
-    color: color.text,
-    textAlign: "center",
-  },
-  textHighlight: {
-    color: color.textHighlight,
-  },
-  textVersion: {
-    ...fontPresets.l,
-    color: color.textMuted,
-  },
-  textActivityIndicator: {
-    height: 2,
-  },
-  logoutButton: {
-    color: color.textHighlight,
-    backgroundColor: color.red700,
-    paddingHorizontal: spacing.l,
-    paddingVertical: spacing.m,
-  },
-  logoutButtonFocused: {
-    backgroundColor: color.red800,
-  },
-});
 
 export default AuthScreen;

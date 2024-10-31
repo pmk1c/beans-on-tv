@@ -3,7 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -13,6 +15,7 @@
     ".expo/types/**/*.ts",
     "babel.config.js",
     "expo-env.d.ts",
-    "metro.config.js"
+    "metro.config.js",
+    "nativewind-env.d.ts"
   ]
 }

@@ -5,6 +5,9 @@ import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
 import { Provider } from "react-redux";
 
+// Import your global CSS file
+import "../../global.css";
+
 import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import color from "../core/styles/tokens/color";
