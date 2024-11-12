@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: true
       - uses: ./.github/actions/setup-node
-      - run: pnpm lint
+      - run: npm run lint
 
   typescript:
     name: TypeScript
@@ -27,4 +27,4 @@ jobs:
         with:
           submodules: true
       - uses: ./.github/actions/setup-node
-      - run: pnpm tsc
+      - run: npm run tsc
