@@ -10,6 +10,7 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "expo",
   ],
+  ignorePatterns: ["/dist/*"],
   parserOptions: {
     project: "./tsconfig.json",
   },
