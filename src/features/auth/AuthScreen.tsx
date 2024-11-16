@@ -38,29 +38,26 @@ function AuthScreen() {
       trapFocusLeft
       trapFocusRight
       trapFocusDown
-      className="flex-1 justify-between items-center"
+      className="items-center gap-4"
     >
-      <View className="flex-1 justify-center">
-        {state.step === "creatingCode" || state.step === "pollingToken" ? (
-          <View className="bg-darkTransparentBg p-4 rounded-lg">
-            <Text className="text-xl text-center text-text">
-              Besuche{" "}
-              <Text className="text-textHighlight">https://rbtv.bmind.de</Text>,
-              melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
-              Code ein:
-              {"\n"}
-              <Text className="text-textHighlight">
-                {state.step === "pollingToken"
-                  ? formatCode(state.code)
-                  : codeSeperator}
-              </Text>
+      {state.step === "creatingCode" || state.step === "pollingToken" ? (
+        <View className="bg-grey850 p-12 rounded-sm">
+          <Text className="text-grey300 text-center text-3xl font-primary">
+            Besuche <Text className="text-white">https://rbtv.bmind.de</Text>,
+            melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
+            Code ein:
+            {"\n\n"}
+            <Text className="text-white text-4xl font-extrabold">
+              {state.step === "pollingToken"
+                ? formatCode(state.code)
+                : codeSeperator}
             </Text>
-          </View>
-        ) : (
-          <Button buttonType="destructive" title="Abmelden" onPress={logout} />
-        )}
-      </View>
-      <Text className="text-lg text-textMuted">{versionInfo}</Text>
+          </Text>
+        </View>
+      ) : (
+        <Button buttonType="destructive" title="Abmelden" onPress={logout} />
+      )}
+      <Text className="text-white text-xl font-primary">{versionInfo}</Text>
     </TVFocusGuideView>
   );
 }

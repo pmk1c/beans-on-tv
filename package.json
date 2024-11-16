@@ -8,7 +8,7 @@
     "ios": "EXPO_TV=1 expo run:ios",
     "lint": "expo lint",
     "tsc": "tsc",
-    "prebuild": "EXPO_TV=1 expo prebuild --clean",
+    "prebuild": "EXPO_TV=1 expo prebuild",
     "check-all": "npm run lint && tsc",
     "eas-build-post-install": "check-all"
   },

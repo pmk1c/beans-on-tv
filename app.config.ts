@@ -42,7 +42,8 @@ const config: ExpoConfig = {
       {
         fonts: [
           "./assets/fonts/rbtvIcons.ttf",
-          "./assets/fonts/Archivo-VariableFont_wdth,wght.ttf",
+          "./assets/fonts/Archivo-400-100.ttf",
+          "./assets/fonts/Archivo-800-100.ttf",
         ],
       },
     ],
