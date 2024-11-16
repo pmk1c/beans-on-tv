@@ -1,12 +1,5 @@
 import { PropsWithRef, Ref, forwardRef } from "react";
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text, View } from "react-native";
 
 import borderRadius from "../styles/tokens/borderRadius";
 import RBTVIcon, { RBTVIconName } from "../assets/icons/RBTVIcon";
@@ -19,7 +12,7 @@ type ButtonProps = PropsWithRef<{
   buttonType?: "destructive";
   icon?: RBTVIconName;
   title?: string;
-  style?: StyleProp<ViewStyle>;
+  className?: string;
   onFocus?: () => void;
   onPress?: () => void;
 }>;
@@ -45,7 +38,7 @@ function getStyles<T = unknown>(
 }
 
 function Button(
-  { buttonType, icon, style, title, onFocus, onPress }: ButtonProps,
+  { buttonType, icon, className, title, onFocus, onPress }: ButtonProps,
   ref: Ref<View>
 ) {
   return (
@@ -56,7 +49,8 @@ function Button(
       // eslint-disable-next-line react/no-children-prop
       children={({ focused }) => (
         <View
-          style={[getStyles(viewStyles, "wrapper", buttonType, focused), style]}
+          className={className}
+          style={[getStyles(viewStyles, "wrapper", buttonType, focused)]}
         >
           <Text style={getStyles(textStyles, "text", buttonType, focused)}>
             {icon ? (

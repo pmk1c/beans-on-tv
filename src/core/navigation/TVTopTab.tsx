@@ -20,10 +20,6 @@ import { withLayoutContext } from "expo-router";
 
 import { RBTVIconName } from "../assets/icons/RBTVIcon";
 import Button from "../components/Button";
-import borderRadius from "../styles/tokens/borderRadius";
-import color from "../styles/tokens/color";
-import spacing from "../styles/tokens/spacing";
-import perfectSize from "../styles/perfectSize";
 
 type TVTopTabNavigationConfig = void;
 
@@ -69,9 +65,7 @@ function TVTopTabNavigator({
     <NavigationContent>
       {/* Use static FlatList instead of ScrollView, since FlatLists can't be nested in ScrollViews but in other FlatLists. */}
       <FlatList
-        contentContainerStyle={{
-          paddingHorizontal: spacing.xl,
-        }}
+        contentContainerClassName="p-4"
         data={["navigation", "screen"]}
         renderItem={({ item }) =>
           item === "navigation" ? (
@@ -79,38 +73,22 @@ function TVTopTabNavigator({
               autoFocus
               trapFocusLeft
               trapFocusRight
-              style={{ alignItems: "center", paddingVertical: spacing.xl }}
+              className="self-center flex-row justify-center border-gray-800 border-4 rounded-full mb-4"
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  width: perfectSize(376),
-                  height: perfectSize(90),
-                  borderRadius: borderRadius.full,
-                  borderColor: color.grey800,
-                  borderWidth: perfectSize(4),
-                }}
-              >
-                {state.routes.map((route, i) => (
-                  <Button
-                    style={{
-                      marginLeft:
-                        -perfectSize(4) - (i === 0 ? 0 : perfectSize(8)),
-                      marginTop: -perfectSize(4),
-                      marginBottom: -perfectSize(4),
-                    }}
-                    key={route.key}
-                    icon={descriptors[route.key].options.icon}
-                    title={descriptors[route.key].options.title}
-                    onFocus={() => {
-                      navigation.dispatch({
-                        ...TabActions.jumpTo(route.name),
-                        target: state.key,
-                      });
-                    }}
-                  />
-                ))}
-              </View>
+              {state.routes.map((route, i) => (
+                <Button
+                  className={`m-[-4px] ${i === 0 ? "" : "ml-[-10px]"}`}
+                  key={route.key}
+                  icon={descriptors[route.key].options.icon}
+                  title={descriptors[route.key].options.title}
+                  onFocus={() => {
+                    navigation.dispatch({
+                      ...TabActions.jumpTo(route.name),
+                      target: state.key,
+                    });
+                  }}
+                />
+              ))}
             </TVFocusGuideView>
           ) : (
             <>
@@ -118,7 +96,7 @@ function TVTopTabNavigator({
                 return (
                   <View
                     key={route.key}
-                    style={{ display: i === state.index ? "flex" : "none" }}
+                    className={i === state.index ? "flex-auto" : "hidden"}
                   >
                     {descriptors[route.key].render()}
                   </View>
