@@ -57,10 +57,14 @@ const config: ExpoConfig = {
       },
     ],
     ["expo-secure-store"],
+    [
+      "expo-splash-screen",
+      {
+        backgroundColor: "#000000",
+        image: "./assets/icons/ios-app-icon.png",
+      },
+    ],
   ],
-  splash: {
-    backgroundColor: "#000000",
-  },
   android: {
     package: "de.bmind.rbscvca",
   },
