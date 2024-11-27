@@ -1,7 +1,5 @@
 import { FlatList } from "react-native";
 
-import spacing from "../../core/styles/tokens/spacing";
-
 import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
 
@@ -11,9 +9,7 @@ function LatestVideosScreen() {
 
   return (
     <FlatList
-      columnWrapperStyle={{
-        gap: spacing["2xl"],
-      }}
+      columnWrapperClassName="gap-20"
       data={episodes}
       // We need to use the index here as key to make sure
       // the list stays stable when the data for an episode
