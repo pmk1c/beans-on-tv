@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch: {}
 
+defaults:
+  tools:
+    node: 24.15.0
+
 jobs:
   check:
     name: Run vp check
