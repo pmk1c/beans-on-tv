@@ -1,4 +1,10 @@
-import { StoreEnhancer, combineSlices, configureStore, isRejected } from "@reduxjs/toolkit";
+import {
+  Middleware,
+  StoreEnhancer,
+  combineSlices,
+  configureStore,
+  isRejected,
+} from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 import * as Sentry from "@sentry/react-native";
 import { AppState, AppStateStatus, NativeEventSubscription, Platform } from "react-native";
@@ -42,6 +48,16 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   },
 }) as StoreEnhancer;
 
+const captureRejectedMiddleware: Middleware = () => (next) => (action: unknown) => {
+  if (isRejected(action)) {
+    if (action.error.name === "ConditionError") return;
+
+    captureError(action.error);
+  }
+
+  return next(action);
+};
+
 const reducer = combineSlices(authApi, rbtvApi, authTokenSlice, rbtvSocketApiSlice);
 
 export const store = configureStore({
@@ -54,15 +70,7 @@ export const store = configureStore({
     })
       .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
-      .concat(() => (next) => (action) => {
-        if (isRejected(action)) {
-          if (action.error.name === "ConditionError") return;
-
-          captureError(action.error);
-        }
-
-        next(action);
-      }),
+      .concat(captureRejectedMiddleware),
   enhancers: (getDefaultEnhancers) =>
     getDefaultEnhancers()
       .concat(sentryReduxEnhancer)

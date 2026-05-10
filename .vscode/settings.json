@@ -18,7 +18,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.oxc": "explicit"
   },
+  "files.readonlyInclude": {
+    "doc/rbtv-api/official/**": true
+  },
   "chat.tools.terminal.autoApprove": {
-    "npm install": true
+    "npm install": true,
+    "git submodule": true
   }
 }

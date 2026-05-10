@@ -5,5 +5,8 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   fmt: {},
-  lint: { options: { typeAware: true, typeCheck: true } },
+  lint: {
+    ignorePatterns: ["doc/rbtv-api/official/**"],
+    options: { typeAware: true, typeCheck: true },
+  },
 });

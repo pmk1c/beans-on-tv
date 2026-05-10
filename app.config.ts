@@ -17,7 +17,6 @@ const config: ExpoConfig = {
   backgroundColor: "#000000",
   primaryColor: "#ED0000",
   scheme: "beansontv",
-  newArchEnabled: true,
   plugins: [
     [
       "@react-native-tvos/config-tv",

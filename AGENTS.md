@@ -12,4 +12,9 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 
+## Submodule Guardrail
+
+- Treat `doc/rbtv-api/official/**` as read-only.
+- Never edit type definitions under `doc/rbtv-api/official`.
+
 <!--VITE PLUS END-->

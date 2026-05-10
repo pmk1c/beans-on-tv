@@ -54,7 +54,7 @@ function useLatestVideosScreen() {
   const episodes = useMemo(() => {
     if (!currentPage) return [];
 
-    const items = new Array<Episode | undefined>(currentPage.meta.total);
+    const items = Array.from<Episode | undefined>({ length: currentPage.meta.total });
     for (const page of [lastPage, currentPage, nextPage]) {
       if (!page) continue;
 

@@ -13,11 +13,7 @@ Sentry.init({
   dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
   enabled: !__DEV__,
   tracesSampleRate: __DEV__ ? 1.0 : 0.2,
-  integrations: [
-    Sentry.reactNativeTracingIntegration({
-      routingInstrumentation: Sentry.reactNavigationIntegration(),
-    }),
-  ],
+  integrations: [Sentry.reactNativeTracingIntegration(), Sentry.reactNavigationIntegration()],
 });
 
 setDefaultOptions({ locale: de });
