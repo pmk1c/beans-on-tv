@@ -15,27 +15,27 @@
     "prepare": "vp config"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.0.4",
+    "@expo/vector-icons": "^15.0.2",
     "@react-navigation/native": "^7.0.0",
     "@redux-devtools/remote": "^0.9.3",
     "@reduxjs/toolkit": "^2.0.1",
-    "@sentry/react-native": "^6.1.0",
+    "@sentry/react-native": "~7.11.0",
     "date-fns": "^3.1.0",
-    "expo": "52.0.3",
-    "expo-application": "~6.0.1",
-    "expo-constants": "~17.0.2",
-    "expo-font": "~13.0.1",
-    "expo-image": "2.0.0-preview.0",
-    "expo-insights": "~0.8.1",
-    "expo-linking": "~7.0.2",
-    "expo-router": "4.0.2",
-    "expo-secure-store": "~14.0.0",
-    "expo-splash-screen": "~0.29.7",
-    "expo-status-bar": "~2.0.0",
-    "expo-system-ui": "~4.0.2",
-    "expo-updates": "~0.26.5",
-    "expo-video": "~2.0.0-preview.0",
-    "react": "18.3.1",
+    "expo": "^55.0.23",
+    "expo-application": "~55.0.14",
+    "expo-constants": "~55.0.16",
+    "expo-font": "~55.0.7",
+    "expo-image": "~55.0.10",
+    "expo-insights": "~55.0.16",
+    "expo-linking": "~55.0.15",
+    "expo-router": "~55.0.14",
+    "expo-secure-store": "~55.0.13",
+    "expo-splash-screen": "~55.0.20",
+    "expo-status-bar": "~55.0.6",
+    "expo-system-ui": "~55.0.17",
+    "expo-updates": "~55.0.21",
+    "expo-video": "~55.0.16",
+    "react": "19.2.0",
     "react-native": "npm:react-native-tvos@0.76.1-0",
     "react-native-pixel-perfect": "^1.0.2",
     "react-redux": "^9.0.4",
@@ -43,12 +43,12 @@
     "socket.io-client": "v2-latest"
   },
   "devDependencies": {
-    "@react-native-tvos/config-tv": "^0.1.0",
+    "@react-native-tvos/config-tv": "^0.1.6",
     "@types/react": "~18.3.12",
     "@types/socket.io-client": "1.4.36",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3",
+    "typescript": "^6.0.3",
     "vite-plus": "latest"
   },
   "overrides": {
@@ -58,7 +58,7 @@
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   },
-  "packageManager": "npm@11.14.1",
+  "packageManager": "pnpm@11.0.0",
   "expo": {
     "install": {
       "exclude": [
