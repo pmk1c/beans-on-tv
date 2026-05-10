@@ -33,10 +33,10 @@ function usePollAuthTokenStep() {
   const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch<AppDispatch>();
 
-  const tokenPollingTimeout = useRef<NodeJS.Timeout>(null);
+  const tokenPollingTimeout = useRef<number>(null);
   const stopPolling = () => {
     if (tokenPollingTimeout.current) {
-      clearTimeout(tokenPollingTimeout.current);
+      window.clearTimeout(tokenPollingTimeout.current);
     }
   };
   useEffect(() => {
@@ -52,7 +52,7 @@ function usePollAuthTokenStep() {
             await dispatch(setAuthToken(token));
             resolve(undefined);
           } else {
-            tokenPollingTimeout.current = setTimeout(() => {
+            tokenPollingTimeout.current = window.setTimeout(() => {
               capture(pollToken());
             }, 1000);
           }
