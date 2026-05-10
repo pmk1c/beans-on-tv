@@ -5,23 +5,22 @@
     "promptToConfigurePushNotifications": false
   },
   "build": {
+    "base": {
+      "node": "24.15.0",
+      "autoIncrement": true,
+      "env": {
+        "EXPO_TV": "1"
+      }
+    },
     "preview": {
-      "extends": "production",
+      "extends": "base",
       "channel": "preview",
+      "developmentClient": true,
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true,
-      "channel": "production",
-      "env": {
-        "EXPO_TV": "1"
-      },
-      "android": {
-        "image": "latest"
-      },
-      "ios": {
-        "image": "latest"
-      }
+      "extends": "base",
+      "channel": "production"
     }
   },
   "submit": {

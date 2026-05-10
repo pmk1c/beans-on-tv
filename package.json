@@ -24,6 +24,7 @@
     "expo": "^55.0.23",
     "expo-application": "~55.0.14",
     "expo-constants": "~55.0.16",
+    "expo-dev-client": "~55.0.32",
     "expo-font": "~55.0.7",
     "expo-image": "~55.0.10",
     "expo-insights": "~55.0.16",

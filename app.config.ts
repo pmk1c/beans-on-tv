@@ -50,7 +50,7 @@ const config: ExpoConfig = {
       "@sentry/react-native/expo",
       {
         url: "https://sentry.io/",
-        project: "rbscvca-app",
+        project: "beans-on-tv",
         organization: "ruben-grimm",
       },
     ],
