@@ -30,33 +30,33 @@ jobs:
     params:
       branch: production
 
-  development_fingerprint:
-    name: Calculate development fingerprint
-    needs: [check]
-    type: fingerprint
-    environment: development
+  # development_fingerprint:
+  #   name: Calculate development fingerprint
+  #   needs: [check]
+  #   type: fingerprint
+  #   environment: development
 
-  development_ios_get_build:
-    name: Find matching iOS development build
-    needs: [development_fingerprint]
-    type: get-build
-    params:
-      platform: ios
-      profile: development
-      channel: development
-      distribution: internal
-      wait_for_in_progress: true
-      fingerprint_hash: ${{ needs.development_fingerprint.outputs.ios_fingerprint_hash }}
+  # development_ios_get_build:
+  #   name: Find matching iOS development build
+  #   needs: [development_fingerprint]
+  #   type: get-build
+  #   params:
+  #     platform: ios
+  #     profile: development
+  #     channel: development
+  #     distribution: internal
+  #     wait_for_in_progress: true
+  #     fingerprint_hash: ${{ needs.development_fingerprint.outputs.ios_fingerprint_hash }}
 
-  development_ios_build:
-    name: Build iOS development client if fingerprint changed
-    needs: [development_ios_get_build]
-    if: ${{ !needs.development_ios_get_build.outputs.build_id }}
-    type: build
-    params:
-      platform: ios
-      profile: development
-      message: No matching iOS development build for current fingerprint
+  # development_ios_build:
+  #   name: Build iOS development client if fingerprint changed
+  #   needs: [development_ios_get_build]
+  #   if: ${{ !needs.development_ios_get_build.outputs.build_id }}
+  #   type: build
+  #   params:
+  #     platform: ios
+  #     profile: development
+  #     message: No matching iOS development build for current fingerprint
 
   production_fingerprint:
     name: Calculate production fingerprint
@@ -65,27 +65,27 @@ jobs:
     type: fingerprint
     environment: production
 
-  production_android_get_build:
-    name: Find matching Android production build
-    needs: [production_fingerprint]
-    type: get-build
-    params:
-      platform: android
-      profile: production
-      channel: production
-      distribution: store
-      wait_for_in_progress: true
-      fingerprint_hash: ${{ needs.production_fingerprint.outputs.android_fingerprint_hash }}
+  # production_android_get_build:
+  #   name: Find matching Android production build
+  #   needs: [production_fingerprint]
+  #   type: get-build
+  #   params:
+  #     platform: android
+  #     profile: production
+  #     channel: production
+  #     distribution: store
+  #     wait_for_in_progress: true
+  #     fingerprint_hash: ${{ needs.production_fingerprint.outputs.android_fingerprint_hash }}
 
-  production_android_build:
-    name: Build Android production if fingerprint changed
-    needs: [production_android_get_build]
-    if: ${{ !needs.production_android_get_build.outputs.build_id }}
-    type: build
-    params:
-      platform: android
-      profile: production
-      message: No matching Android production build for current fingerprint
+  # production_android_build:
+  #   name: Build Android production if fingerprint changed
+  #   needs: [production_android_get_build]
+  #   if: ${{ !needs.production_android_get_build.outputs.build_id }}
+  #   type: build
+  #   params:
+  #     platform: android
+  #     profile: production
+  #     message: No matching Android production build for current fingerprint
 
   production_ios_get_build:
     name: Find matching iOS production build
