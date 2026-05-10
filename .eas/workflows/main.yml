@@ -24,8 +24,7 @@ jobs:
     type: update
     environment: production
     params:
-      channel: production
-      message: ${{ github.commit_message || 'Automated update from EAS workflow' }}
+      branch: production
 
   development_fingerprint:
     name: Calculate development fingerprint

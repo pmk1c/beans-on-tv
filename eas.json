@@ -7,11 +7,7 @@
   "build": {
     "base": {
       "node": "24.15.0",
-      "autoIncrement": true,
-      "env": {
-        "EXPO_TV": "1",
-        "EXPO_USE_PRECOMPILED_MODULES": "0"
-      }
+      "autoIncrement": true
     },
     "development": {
       "extends": "base",
