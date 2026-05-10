@@ -25,11 +25,7 @@ function LatestVideosScreen() {
         <EpisodeCard
           episode={episode}
           thumbnailPriority={
-            index < numColumns
-              ? "high"
-              : index < numColumns * 2
-                ? "normal"
-                : "low"
+            index < numColumns ? "high" : index < numColumns * 2 ? "normal" : "low"
           }
         />
       )}

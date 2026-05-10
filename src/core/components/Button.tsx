@@ -1,12 +1,5 @@
 import { PropsWithRef, Ref, forwardRef } from "react";
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 
 import borderRadius from "../styles/tokens/borderRadius";
 import RBTVIcon, { RBTVIconName } from "../assets/icons/RBTVIcon";
@@ -28,7 +21,7 @@ function getStyles<T = unknown>(
   styles: Record<string, StyleProp<T>>,
   defaultStyleName: string,
   buttonType: ButtonProps["buttonType"],
-  focused: boolean
+  focused: boolean,
 ) {
   const styleNames = [defaultStyleName];
   if (buttonType === "destructive") {
@@ -44,10 +37,7 @@ function getStyles<T = unknown>(
   return styleNames.map((styleName) => styles[styleName]).filter(Boolean);
 }
 
-function Button(
-  { buttonType, icon, style, title, onFocus, onPress }: ButtonProps,
-  ref: Ref<View>
-) {
+function Button({ buttonType, icon, style, title, onFocus, onPress }: ButtonProps, ref: Ref<View>) {
   return (
     <Pressable
       ref={ref}
@@ -55,15 +45,10 @@ function Button(
       onPress={onPress}
       // eslint-disable-next-line react/no-children-prop
       children={({ focused }) => (
-        <View
-          style={[getStyles(viewStyles, "wrapper", buttonType, focused), style]}
-        >
+        <View style={[getStyles(viewStyles, "wrapper", buttonType, focused), style]}>
           <Text style={getStyles(textStyles, "text", buttonType, focused)}>
             {icon ? (
-              <RBTVIcon
-                style={getStyles(textStyles, "text", buttonType, focused)}
-                name={icon}
-              />
+              <RBTVIcon style={getStyles(textStyles, "text", buttonType, focused)} name={icon} />
             ) : null}
             {title}
           </Text>

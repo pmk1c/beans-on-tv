@@ -47,24 +47,16 @@ export const rbtvApi = createApi({
       transformResponse: (response: GetMediaEpisodeApiResponse) =>
         toEpisode(response.data.episodes[0], response.data.progress),
     }),
-    getMediaEpisodePreviewNewest: build.query<
-      Page<Episode>,
-      GetMediaEpisodePreviewNewestApiArg
-    >({
+    getMediaEpisodePreviewNewest: build.query<Page<Episode>, GetMediaEpisodePreviewNewestApiArg>({
       query: (arg) => ({
         url: "/media/episode/preview/newest",
         params: { offset: arg.offset, limit: arg.limit },
       }),
-      transformResponse: (
-        response: GetMediaEpisodePreviewNewestApiResponse
-      ) => {
+      transformResponse: (response: GetMediaEpisodePreviewNewestApiResponse) => {
         return toPage(response);
       },
     }),
-    getRbscVideoToken: build.query<
-      GetRbscVideoTokenApiResponse,
-      GetRbscVideoTokenApiArg
-    >({
+    getRbscVideoToken: build.query<GetRbscVideoTokenApiResponse, GetRbscVideoTokenApiArg>({
       query: (arg) => ({ url: `/rbsc/video/token/${arg.videoToken}` }),
     }),
   }),

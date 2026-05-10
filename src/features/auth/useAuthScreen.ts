@@ -60,7 +60,7 @@ function usePollAuthTokenStep() {
         capture(pollToken());
       });
     },
-    [dispatch, getToken]
+    [dispatch, getToken],
   );
 }
 
@@ -98,7 +98,7 @@ export function useAuthScreen() {
         const code = await createCode();
         setState({ step: "pollingToken", code });
         await pollAuthToken(code);
-      })()
+      })(),
     );
   }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);
 

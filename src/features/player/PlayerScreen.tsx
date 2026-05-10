@@ -5,10 +5,7 @@ import { ImageBackground, Linking, Platform, Text, View } from "react-native";
 import { useEventListener } from "expo";
 
 import capture from "../../core/capture";
-import {
-  useGetMediaEpisodeQuery,
-  useLazyGetRbscVideoTokenQuery,
-} from "../../core/rbtvApi";
+import { useGetMediaEpisodeQuery, useLazyGetRbscVideoTokenQuery } from "../../core/rbtvApi";
 import { selectSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
 import { useAppSelector } from "../../core/redux/hooks";
 import borderRadius from "../../core/styles/tokens/borderRadius";
@@ -66,7 +63,7 @@ function PlayerScreen({ episodeId }: Props) {
           }
           return;
         }
-      })()
+      })(),
     );
   }, [getRbscVideoToken, episode]);
 
@@ -84,7 +81,7 @@ function PlayerScreen({ episodeId }: Props) {
       player.currentTime = episode?.progress?.progress ?? 0;
       player.timeUpdateEventInterval = 1;
       player.play();
-    }
+    },
   );
 
   useEventListener(player, "timeUpdate", (event) => {

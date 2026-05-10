@@ -41,11 +41,9 @@ interface ApiResponseWithPagination<T> extends genericApiResponse<T> {
     total: number;
   };
 }
-export type GetFrontendInitApiResponse =
-  genericApiResponse<frontendInitResponse>;
+export type GetFrontendInitApiResponse = genericApiResponse<frontendInitResponse>;
 
-export type GetMediaEpisodeApiResponse =
-  genericApiResponse<MediaEpisodeCombinedResponse>;
+export type GetMediaEpisodeApiResponse = genericApiResponse<MediaEpisodeCombinedResponse>;
 
 export type GetMediaEpisodePreviewNewestApiResponse = ApiResponseWithPagination<
   MediaEpisodeCombinedResponse<MediaEpisodePreview>

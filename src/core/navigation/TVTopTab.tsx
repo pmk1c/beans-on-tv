@@ -34,36 +34,30 @@ interface TVTopTabNavigationOptions {
 
 type TVTopTabNavigationEventMap = EventMapBase;
 
-type TVTopTabNavigatorProps<
-  NavigatorID extends string | undefined = undefined,
-> = DefaultNavigatorOptions<
-  ParamListBase,
-  NavigatorID,
-  TabNavigationState<ParamListBase>,
-  TVTopTabNavigationOptions,
-  TVTopTabNavigationEventMap,
-  unknown
-> &
-  TabRouterOptions &
-  TVTopTabNavigationConfig;
+type TVTopTabNavigatorProps<NavigatorID extends string | undefined = undefined> =
+  DefaultNavigatorOptions<
+    ParamListBase,
+    NavigatorID,
+    TabNavigationState<ParamListBase>,
+    TVTopTabNavigationOptions,
+    TVTopTabNavigationEventMap,
+    unknown
+  > &
+    TabRouterOptions &
+    TVTopTabNavigationConfig;
 
-function TVTopTabNavigator({
-  initialRouteName,
-  children,
-  screenOptions,
-}: TVTopTabNavigatorProps) {
-  const { state, navigation, descriptors, NavigationContent } =
-    useNavigationBuilder<
-      TabNavigationState<ParamListBase>,
-      TabRouterOptions,
-      TabActionHelpers<ParamListBase>,
-      TVTopTabNavigationOptions,
-      Record<string, unknown>
-    >(TabRouter, {
-      children,
-      screenOptions,
-      initialRouteName,
-    });
+function TVTopTabNavigator({ initialRouteName, children, screenOptions }: TVTopTabNavigatorProps) {
+  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder<
+    TabNavigationState<ParamListBase>,
+    TabRouterOptions,
+    TabActionHelpers<ParamListBase>,
+    TVTopTabNavigationOptions,
+    Record<string, unknown>
+  >(TabRouter, {
+    children,
+    screenOptions,
+    initialRouteName,
+  });
 
   return (
     <NavigationContent>
@@ -94,8 +88,7 @@ function TVTopTabNavigator({
                 {state.routes.map((route, i) => (
                   <Button
                     style={{
-                      marginLeft:
-                        -perfectSize(4) - (i === 0 ? 0 : perfectSize(8)),
+                      marginLeft: -perfectSize(4) - (i === 0 ? 0 : perfectSize(8)),
                       marginTop: -perfectSize(4),
                       marginBottom: -perfectSize(4),
                     }}
@@ -116,10 +109,7 @@ function TVTopTabNavigator({
             <>
               {state.routes.map((route, i) => {
                 return (
-                  <View
-                    key={route.key}
-                    style={{ display: i === state.index ? "flex" : "none" }}
-                  >
+                  <View key={route.key} style={{ display: i === state.index ? "flex" : "none" }}>
                     {descriptors[route.key].render()}
                   </View>
                 );
@@ -142,22 +132,14 @@ const createTVTopTabNavigator = <
     ScreenOptions: TVTopTabNavigationOptions;
     EventMap: EventMapBase;
     NavigationList: {
-      [RouteName in keyof ParamList]: NavigationProp<
-        ParamList,
-        RouteName,
-        NavigatorID
-      >;
+      [RouteName in keyof ParamList]: NavigationProp<ParamList, RouteName, NavigatorID>;
     };
     Navigator: typeof TVTopTabNavigator;
   },
   const Config extends StaticConfig<TypeBag> = StaticConfig<TypeBag>,
 >(
-  config?: Config
-) =>
-  createNavigatorFactory(TVTopTabNavigator)(config) as TypedNavigator<
-    TypeBag,
-    Config
-  >;
+  config?: Config,
+) => createNavigatorFactory(TVTopTabNavigator)(config) as TypedNavigator<TypeBag, Config>;
 
 const TVTopTab = withLayoutContext(createTVTopTabNavigator().Navigator);
 

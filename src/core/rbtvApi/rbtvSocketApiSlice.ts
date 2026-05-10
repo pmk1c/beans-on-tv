@@ -19,9 +19,7 @@ export const rbtvSocketApiSlice = createSliceWithThunks({
         const socketId = nanoid();
         const {
           data: { websocket },
-        } = await dispatch(
-          rbtvApi.endpoints.getFrontendInit.initiate()
-        ).unwrap();
+        } = await dispatch(rbtvApi.endpoints.getFrontendInit.initiate()).unwrap();
         sockets[socketId] = new RBTVSocket(websocket.url, websocket.path);
 
         return socketId;
@@ -33,7 +31,7 @@ export const rbtvSocketApiSlice = createSliceWithThunks({
         fulfilled: (state, action) => {
           state.socketId = action.payload;
         },
-      }
+      },
     ),
   }),
   selectors: {

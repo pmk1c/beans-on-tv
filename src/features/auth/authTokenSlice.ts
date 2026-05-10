@@ -21,9 +21,7 @@ export const authTokenSlice = createSliceWithThunks({
         }
 
         if (!isValid(token)) {
-          token = await dispatch(
-            authApi.endpoints.refreshToken.initiate(token)
-          ).unwrap();
+          token = await dispatch(authApi.endpoints.refreshToken.initiate(token)).unwrap();
         }
 
         // TODO move this into its own slice, since it does not belong here
@@ -50,7 +48,7 @@ export const authTokenSlice = createSliceWithThunks({
         settled: (state) => {
           state.initialized = true;
         },
-      }
+      },
     ),
     setAuthToken: create.asyncThunk(
       async (token: Token, { getState }) => {
@@ -67,7 +65,7 @@ export const authTokenSlice = createSliceWithThunks({
         rejected: (state) => {
           state.token = undefined;
         },
-      }
+      },
     ),
     resetAuthToken: create.asyncThunk(
       async () => {
@@ -77,7 +75,7 @@ export const authTokenSlice = createSliceWithThunks({
         pending: (state) => {
           state.token = undefined;
         },
-      }
+      },
     ),
   }),
   selectors: {
@@ -86,7 +84,5 @@ export const authTokenSlice = createSliceWithThunks({
   },
 });
 
-export const { initializeAuthToken, setAuthToken, resetAuthToken } =
-  authTokenSlice.actions;
-export const { selectAuthToken, selectAuthTokenInitialized } =
-  authTokenSlice.selectors;
+export const { initializeAuthToken, setAuthToken, resetAuthToken } = authTokenSlice.actions;
+export const { selectAuthToken, selectAuthTokenInitialized } = authTokenSlice.selectors;

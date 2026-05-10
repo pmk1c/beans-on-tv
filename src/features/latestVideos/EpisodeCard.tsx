@@ -84,9 +84,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 zIndex: 1,
                 height,
                 width: `${
-                  episode?.progress
-                    ? (episode.progress.progress / episode.progress.total) * 100
-                    : 0
+                  episode?.progress ? (episode.progress.progress / episode.progress.total) * 100 : 0
                 }%`,
                 borderColor: color.yellow500,
                 borderBottomWidth: spacing.xs,
@@ -141,12 +139,9 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 numberOfLines={1}
               >
                 {episode &&
-                  formatDistanceToNowStrict(
-                    Date.parse(episode.distributionPublishingDate),
-                    {
-                      addSuffix: true,
-                    }
-                  )}
+                  formatDistanceToNowStrict(Date.parse(episode.distributionPublishingDate), {
+                    addSuffix: true,
+                  })}
               </Text>
             </View>
           </View>

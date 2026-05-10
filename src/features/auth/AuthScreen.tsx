@@ -18,8 +18,7 @@ function formatCode(code: string): string {
 
 function AuthScreen() {
   const { state, logout } = useAuthScreen();
-  const { currentlyRunning, isChecking, isDownloading, isUpdatePending } =
-    useUpdates();
+  const { currentlyRunning, isChecking, isDownloading, isUpdatePending } = useUpdates();
 
   const versionInfo = [
     nativeApplicationVersion,
@@ -37,26 +36,16 @@ function AuthScreen() {
     .join(" | ");
 
   return (
-    <TVFocusGuideView
-      autoFocus
-      trapFocusLeft
-      trapFocusRight
-      trapFocusDown
-      style={styles.wrapper}
-    >
+    <TVFocusGuideView autoFocus trapFocusLeft trapFocusRight trapFocusDown style={styles.wrapper}>
       <View style={{ flex: 1, justifyContent: "center" }}>
         {state.step === "creatingCode" || state.step === "pollingToken" ? (
           <View style={styles.textWrapper}>
             <Text style={styles.text}>
-              Besuche{" "}
-              <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>,
-              melde dich mit deinem Rocket Beans TV-Account an und gib folgenden
-              Code ein:
+              Besuche <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>, melde dich
+              mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
               {"\n"}
               <Text style={styles.textHighlight}>
-                {state.step === "pollingToken"
-                  ? formatCode(state.code)
-                  : codeSeperator}
+                {state.step === "pollingToken" ? formatCode(state.code) : codeSeperator}
               </Text>
             </Text>
           </View>

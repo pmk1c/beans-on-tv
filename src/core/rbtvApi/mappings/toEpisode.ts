@@ -1,8 +1,5 @@
 import Episode from "../../types/Episode";
-import {
-  GetMediaEpisodePreviewNewestApiResponse,
-  MediaEpisodePreview,
-} from "../types";
+import { GetMediaEpisodePreviewNewestApiResponse, MediaEpisodePreview } from "../types";
 
 import toVideoToken from "./toVideoToken";
 
@@ -16,8 +13,7 @@ const toEpisode = (
   episodeResponse: MediaEpisodePreview,
   progressResponse: GetMediaEpisodePreviewNewestApiResponse["data"]["progress"],
 ): Episode => {
-  const progress =
-    progressResponse?.[episodeResponse.id.toString()].tokenProgress[0];
+  const progress = progressResponse?.[episodeResponse.id.toString()].tokenProgress[0];
 
   return {
     id: episodeResponse.id.toString(),

@@ -1,17 +1,7 @@
-import {
-  StoreEnhancer,
-  combineSlices,
-  configureStore,
-  isRejected,
-} from "@reduxjs/toolkit";
+import { StoreEnhancer, combineSlices, configureStore, isRejected } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 import * as Sentry from "@sentry/react-native";
-import {
-  AppState,
-  AppStateStatus,
-  NativeEventSubscription,
-  Platform,
-} from "react-native";
+import { AppState, AppStateStatus, NativeEventSubscription, Platform } from "react-native";
 import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
 import { rbtvApi } from ".././rbtvApi";
@@ -52,12 +42,7 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
   },
 }) as StoreEnhancer;
 
-const reducer = combineSlices(
-  authApi,
-  rbtvApi,
-  authTokenSlice,
-  rbtvSocketApiSlice
-);
+const reducer = combineSlices(authApi, rbtvApi, authTokenSlice, rbtvSocketApiSlice);
 
 export const store = configureStore({
   reducer,
@@ -88,7 +73,7 @@ export const store = configureStore({
                 name: Platform.OS,
               }),
             ]
-          : []
+          : [],
       ),
 });
 
@@ -97,16 +82,13 @@ setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
   let subscription: NativeEventSubscription | undefined;
 
   if (!initialized) {
-    subscription = AppState.addEventListener(
-      "change",
-      (nextAppState: AppStateStatus) => {
-        if (nextAppState === "active") {
-          dispatch(onFocus());
-        } else {
-          dispatch(onFocusLost());
-        }
+    subscription = AppState.addEventListener("change", (nextAppState: AppStateStatus) => {
+      if (nextAppState === "active") {
+        dispatch(onFocus());
+      } else {
+        dispatch(onFocusLost());
       }
-    );
+    });
     initialized = true;
   }
 

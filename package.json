@@ -1,7 +1,8 @@
 {
   "name": "beans-on-tv",
-  "main": "expo-router/entry",
   "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
   "scripts": {
     "start": "EXPO_TV=1 expo start",
     "android": "EXPO_TV=1 expo run:android --device",
@@ -10,12 +11,8 @@
     "tsc": "tsc",
     "prebuild": "EXPO_TV=1 expo prebuild --clean",
     "check-all": "npm run lint && tsc",
-    "eas-build-post-install": "check-all"
-  },
-  "overrides": {
-    "@sentry/react-native": {
-      "react-native": "$react-native"
-    }
+    "eas-build-post-install": "check-all",
+    "prepare": "vp config"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
@@ -49,20 +46,24 @@
     "@react-native-tvos/config-tv": "^0.1.0",
     "@types/react": "~18.3.12",
     "@types/socket.io-client": "1.4.36",
-    "eslint": "^8.57.0",
-    "eslint-config-expo": "^8.0.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "vite-plus": "latest"
   },
+  "overrides": {
+    "@sentry/react-native": {
+      "react-native": "$react-native"
+    },
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+  },
+  "packageManager": "npm@11.14.1",
   "expo": {
     "install": {
       "exclude": [
         "react-native"
       ]
     }
-  },
-  "private": true
+  }
 }
