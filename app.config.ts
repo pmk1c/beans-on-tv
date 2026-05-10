@@ -13,7 +13,7 @@ const config: ExpoConfig = {
   runtimeVersion: {
     policy: "fingerprint",
   },
-  githubUrl: "https://github.com/pmk1c/rbscvca-app",
+  githubUrl: "https://github.com/pmk1c/beans-on-tv",
   backgroundColor: "#000000",
   primaryColor: "#ED0000",
   scheme: "beansontv",

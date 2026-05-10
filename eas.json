@@ -7,9 +7,8 @@
   "build": {
     "preview": {
       "extends": "production",
-      "channel": "preview"
-      // This does currently not work for Apple TV devices.
-      // "distribution": "internal"
+      "channel": "preview",
+      "distribution": "internal"
     },
     "production": {
       "autoIncrement": true,
@@ -31,6 +30,7 @@
     },
     "production": {
       "ios": {
+        "appleTeamId": "8G26T3SC9P",
         "ascAppId": "1671815295"
       }
     }

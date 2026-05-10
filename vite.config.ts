@@ -4,7 +4,9 @@ export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
-  fmt: {},
+  fmt: {
+    ignorePatterns: ["doc/rbtv-api/official/**"],
+  },
   lint: {
     ignorePatterns: ["doc/rbtv-api/official/**"],
     options: { typeAware: true, typeCheck: true },

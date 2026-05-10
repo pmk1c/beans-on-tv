@@ -15,12 +15,12 @@
     "prepare": "vp config"
   },
   "dependencies": {
-    "@expo/vector-icons": "^15.0.2",
-    "@react-navigation/native": "^7.0.0",
-    "@redux-devtools/remote": "^0.9.3",
-    "@reduxjs/toolkit": "^2.0.1",
+    "@expo/vector-icons": "^15.1.1",
+    "@react-navigation/native": "^7.1.33",
+    "@redux-devtools/remote": "^0.9.5",
+    "@reduxjs/toolkit": "^2.11.2",
     "@sentry/react-native": "~7.11.0",
-    "date-fns": "^3.1.0",
+    "date-fns": "^3.6.0",
     "expo": "^55.0.23",
     "expo-application": "~55.0.14",
     "expo-constants": "~55.0.16",
@@ -38,17 +38,17 @@
     "react": "19.2.0",
     "react-native": "npm:react-native-tvos@0.76.1-0",
     "react-native-pixel-perfect": "^1.0.2",
-    "react-redux": "^9.0.4",
+    "react-redux": "^9.2.0",
     "redux-devtools-expo-dev-plugin": "^0.2.1",
     "socket.io-client": "v2-latest"
   },
   "devDependencies": {
     "@react-native-tvos/config-tv": "^0.1.6",
-    "@types/react": "~18.3.12",
+    "@types/react": "~19.2.14",
     "@types/socket.io-client": "1.4.36",
-    "prettier": "^3.3.3",
+    "prettier": "^3.8.3",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3",
+    "typescript": "^5.9.3",
     "vite-plus": "latest"
   },
   "overrides": {
@@ -58,7 +58,7 @@
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   },
-  "packageManager": "pnpm@11.0.0",
+  "packageManager": "pnpm@11.0.9",
   "expo": {
     "install": {
       "exclude": [

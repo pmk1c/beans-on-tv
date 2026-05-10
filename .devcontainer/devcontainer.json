@@ -6,7 +6,7 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
   "features": {
     "ghcr.io/helpers4/devcontainer/vite-plus:1": {}
-  }
+  },
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
@@ -15,7 +15,15 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "yarn install",
+  "postCreateCommand": {
+    "install packages": "vp install",
+    "install eas-cli": "vp install -g eas-cli"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["VoidZero.vite-plus-extension-pack"]
+    }
+  }
 
   // Configure tool-specific properties.
   // "customizations": {},
