@@ -75,6 +75,7 @@ const config: ExpoConfig = {
   },
   experiments: {
     typedRoutes: true,
+    supportsTVOnly: true,
   },
 };
 

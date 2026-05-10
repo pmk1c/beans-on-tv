@@ -9,12 +9,13 @@
       "node": "24.15.0",
       "autoIncrement": true,
       "env": {
-        "EXPO_TV": "1"
+        "EXPO_TV": "1",
+        "EXPO_USE_PRECOMPILED_MODULES": "0"
       }
     },
-    "preview": {
+    "development": {
       "extends": "base",
-      "channel": "preview",
+      "channel": "development",
       "developmentClient": true,
       "distribution": "internal"
     },
@@ -24,9 +25,6 @@
     }
   },
   "submit": {
-    "preview": {
-      "extends": "production"
-    },
     "production": {
       "ios": {
         "appleTeamId": "8G26T3SC9P",

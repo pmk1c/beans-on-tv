@@ -5,13 +5,6 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "EXPO_TV=1 expo start",
-    "android": "EXPO_TV=1 expo run:android --device",
-    "ios": "EXPO_TV=1 expo run:ios",
-    "lint": "expo lint",
-    "tsc": "tsc",
-    "prebuild": "EXPO_TV=1 expo prebuild --clean",
-    "check-all": "npm run lint && tsc",
-    "eas-build-post-install": "check-all",
     "prepare": "vp config"
   },
   "dependencies": {
@@ -37,8 +30,10 @@
     "expo-updates": "~55.0.21",
     "expo-video": "~55.0.16",
     "react": "19.2.0",
-    "react-native": "npm:react-native-tvos@0.76.1-0",
+    "react-native": "npm:react-native-tvos@0.83.6-0",
     "react-native-pixel-perfect": "^1.0.2",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
     "react-redux": "^9.2.0",
     "redux-devtools-expo-dev-plugin": "^0.2.1",
     "socket.io-client": "v2-latest"
