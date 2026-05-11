@@ -2,7 +2,7 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   staged: {
-    "*": "vp check --fix",
+    "*": ["./bin/ensure-version-consistency", "vp check --fix"],
   },
   fmt: {
     ignorePatterns: ["doc/rbtv-api/official/**"],

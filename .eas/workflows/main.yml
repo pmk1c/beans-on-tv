@@ -56,7 +56,6 @@ jobs:
   #   params:
   #     platform: ios
   #     profile: development
-  #     message: No matching iOS development build for current fingerprint
 
   production_fingerprint:
     name: Calculate production fingerprint
@@ -85,7 +84,6 @@ jobs:
   #   params:
   #     platform: android
   #     profile: production
-  #     message: No matching Android production build for current fingerprint
 
   production_ios_get_build:
     name: Find matching iOS production build
@@ -107,4 +105,28 @@ jobs:
     params:
       platform: ios
       profile: production
-      message: No matching iOS production build for current fingerprint
+
+  production_ios_testflight_internal:
+    name: Submit iOS production to TestFlight (internal)
+    after: [production_ios_get_build, production_ios_build]
+    if: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
+    type: testflight
+    environment: production
+    params:
+      build_id: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
+      profile: production
+
+  production_ios_external_approval:
+    name: Approve external TestFlight distribution
+    needs: [production_ios_testflight_internal]
+    type: require-approval
+
+  production_ios_testflight_external:
+    name: Submit iOS production to TestFlight (external)
+    needs: [production_ios_external_approval]
+    type: testflight
+    environment: production
+    params:
+      build_id: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
+      profile: production
+      external_groups: ["Rocket Beans", "Rocket Beans Community"]
