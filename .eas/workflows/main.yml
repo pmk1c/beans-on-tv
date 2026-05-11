@@ -30,15 +30,6 @@ jobs:
     params:
       branch: production
 
-  production_web_deploy:
-    name: Deploy web production
-    needs: [check]
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-    type: deploy
-    environment: production
-    params:
-      prod: true
-
   # development_fingerprint:
   #   name: Calculate development fingerprint
   #   needs: [check]

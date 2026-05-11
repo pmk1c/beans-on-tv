@@ -22,6 +22,7 @@
     "doc/rbtv-api/official/**": true
   },
   "chat.tools.terminal.autoApprove": {
+    "vp i": true,
     "vp install": true
   }
 }

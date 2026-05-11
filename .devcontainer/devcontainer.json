@@ -8,6 +8,10 @@
     "ghcr.io/helpers4/devcontainer/vite-plus:1": {}
   },
 
+  // Mount the parent directory so sibling projects are available in the container.
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspaces,type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
 
@@ -16,8 +20,8 @@
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
-    "install packages": "vp install",
-    "install eas-cli": "vp install -g eas-cli"
+    "install packages": "vp i",
+    "install eas-cli": "vp i -g eas-cli"
   },
   "customizations": {
     "vscode": {
