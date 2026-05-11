@@ -59,6 +59,7 @@ const config: ExpoConfig = {
   splash: {
     backgroundColor: "#000000",
   },
+  platforms: ["ios", "android", "web"],
   android: {
     package: "de.bmind.rbscvca",
   },
@@ -75,7 +76,6 @@ const config: ExpoConfig = {
   },
   experiments: {
     typedRoutes: true,
-    supportsTVOnly: true,
   },
 };
 

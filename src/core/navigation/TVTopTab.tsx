@@ -15,7 +15,7 @@ import {
   TypedNavigator,
 } from "@react-navigation/native";
 import * as React from "react";
-import { View, TVFocusGuideView, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { withLayoutContext } from "expo-router";
 
 import { RBTVIconName } from "../assets/icons/RBTVIcon";
@@ -24,6 +24,7 @@ import borderRadius from "../styles/tokens/borderRadius";
 import color from "../styles/tokens/color";
 import spacing from "../styles/tokens/spacing";
 import perfectSize from "../styles/perfectSize";
+import { TVFocusGuideView } from "../react-native-tvos-shim";
 
 type TVTopTabNavigationConfig = void;
 

@@ -22,7 +22,6 @@
     "doc/rbtv-api/official/**": true
   },
   "chat.tools.terminal.autoApprove": {
-    "npm install": true,
-    "git submodule": true
+    "vp install": true
   }
 }

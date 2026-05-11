@@ -1,6 +1,6 @@
 import { nativeApplicationVersion } from "expo-application";
 import { useUpdates } from "expo-updates";
-import { StyleSheet, TVFocusGuideView, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import Button from "../../core/components/Button";
 import borderRadius from "../../core/styles/tokens/borderRadius";
@@ -9,6 +9,7 @@ import fontPresets from "../../core/styles/tokens/fontPresets";
 import spacing from "../../core/styles/tokens/spacing";
 
 import { useAuthScreen } from "./useAuthScreen";
+import { TVFocusGuideView } from "@/src/core/react-native-tvos-shim";
 
 const codeSeperator = "–";
 

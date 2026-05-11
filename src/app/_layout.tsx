@@ -1,6 +1,5 @@
 import { setDefaultOptions } from "date-fns";
 import { Stack } from "expo-router/stack";
-import { TVEventControl } from "react-native";
 import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
 import { Provider } from "react-redux";
@@ -8,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import color from "../core/styles/tokens/color";
+import { TVEventControl } from "../core/react-native-tvos-shim";
 
 Sentry.init({
   dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
@@ -27,9 +27,9 @@ function Layout() {
             state: (event) => {
               // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
               if (event.data.state.routes.length === 1) {
-                TVEventControl.disableTVMenuKey();
+                TVEventControl?.disableTVMenuKey();
               } else {
-                TVEventControl.enableTVMenuKey();
+                TVEventControl?.enableTVMenuKey();
               }
             },
           }}
