@@ -1,15 +1,17 @@
 import { setDefaultOptions } from "date-fns";
 import { useFonts } from "expo-font";
+import { ImageBackground } from "expo-image";
+import { DefaultTheme, ThemeProvider } from "expo-router";
 import { Stack } from "expo-router/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { StyleSheet } from "react-native";
 import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
 import { Provider } from "react-redux";
 
 import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
-import color from "../core/styles/tokens/color";
 import { TVEventControl } from "../core/react-native-tvos-shim";
 import { useAppSelector } from "../core/redux/hooks";
 import { selectAuthToken } from "../features/auth/authTokenSlice";
@@ -24,6 +26,15 @@ Sentry.init({
 });
 
 setDefaultOptions({ locale: de });
+
+const transparentBackgroundTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "transparent",
+    card: "transparent",
+  },
+};
 
 function Layout() {
   const [fontsLoaded] = useFonts({
@@ -43,9 +54,17 @@ function Layout() {
 
   return (
     <Provider store={store}>
-      <InitializeAppGate>
-        <RootNavigator />
-      </InitializeAppGate>
+      <ImageBackground
+        source={require("../core/assets/images/bg-2023.png")}
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+      >
+        <ThemeProvider value={transparentBackgroundTheme}>
+          <InitializeAppGate>
+            <RootNavigator />
+          </InitializeAppGate>
+        </ThemeProvider>
+      </ImageBackground>
     </Provider>
   );
 }
@@ -66,9 +85,6 @@ function RootNavigator() {
         },
       }}
       screenOptions={{
-        contentStyle: {
-          backgroundColor: color.black,
-        },
         headerShown: false,
       }}
     >
