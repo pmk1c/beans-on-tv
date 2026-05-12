@@ -1,6 +1,5 @@
-import { nativeApplicationVersion } from "expo-application";
-import { useUpdates } from "expo-updates";
-import { StyleSheet, Text, View } from "react-native";
+import { Column, Host, Spacer, Text } from "@expo/ui";
+import { StyleSheet } from "react-native";
 
 import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
@@ -18,40 +17,27 @@ function formatCode(code: string): string {
 
 function AuthScreen() {
   const { state } = useAuthScreen();
-  const { currentlyRunning, isChecking, isDownloading, isUpdatePending } = useUpdates();
-
-  const versionInfo = [
-    nativeApplicationVersion,
-    currentlyRunning.channel,
-    currentlyRunning.createdAt?.toISOString().slice(0, 10),
-    isChecking
-      ? "Prüfe auf Update"
-      : isDownloading
-        ? "Lade Update"
-        : isUpdatePending
-          ? "Update verfügbar (Neustart erforderlich)"
-          : null,
-  ]
-    .filter(Boolean)
-    .join(" | ");
 
   return (
     <TVFocusGuideView autoFocus trapFocusLeft trapFocusRight trapFocusDown style={styles.wrapper}>
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        {(state.step === "creatingCode" || state.step === "pollingToken") && (
-          <View style={styles.textWrapper}>
-            <Text style={styles.text}>
-              Besuche <Text style={styles.textHighlight}>https://rbtv.bmind.de/device</Text>, melde
-              dich mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
-              {"\n"}
-              <Text style={styles.textHighlight}>
+      <Host style={styles.host}>
+        <Column style={styles.content} alignment="center">
+          <Spacer flexible />
+          {(state.step === "creatingCode" || state.step === "pollingToken") && (
+            <Column style={styles.textWrapper} alignment="center" spacing={spacing.m}>
+              <Text textStyle={styles.text}>Besuche</Text>
+              <Text textStyle={styles.textHighlight}>https://rbtv.bmind.de/device</Text>
+              <Text textStyle={styles.text}>
+                und melde dich mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
+              </Text>
+              <Text textStyle={styles.textHighlight}>
                 {state.step === "pollingToken" ? formatCode(state.code) : codeSeperator}
               </Text>
-            </Text>
-          </View>
-        )}
-      </View>
-      <Text style={styles.textVersion}>{versionInfo}</Text>
+            </Column>
+          )}
+          <Spacer flexible />
+        </Column>
+      </Host>
     </TVFocusGuideView>
   );
 }
@@ -59,8 +45,15 @@ function AuthScreen() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+  },
+  host: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+    paddingVertical: spacing.l,
   },
   textWrapper: {
     backgroundColor: color.darkTransparentBg,
@@ -74,10 +67,6 @@ const styles = StyleSheet.create({
   },
   textHighlight: {
     color: color.textHighlight,
-  },
-  textVersion: {
-    ...fontPresets.l,
-    color: color.textMuted,
   },
   textActivityIndicator: {
     height: 2,

@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { Button, Column, Host, Text, TextInput, useNativeState } from "@expo/ui";
 
 function normalizeCode(rawCode: string) {
   return rawCode.toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -18,6 +19,7 @@ function formatCode(code: string) {
 export default function DeviceAuthorizationPage() {
   const [code, setCode] = useState("");
   const formattedCode = useMemo(() => formatCode(code), [code]);
+  const value = useNativeState(formattedCode);
 
   const continueToApproval = () => {
     const userCode = normalizeCode(formattedCode);
@@ -29,23 +31,27 @@ export default function DeviceAuthorizationPage() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Rocket Beans TV Geräteanmeldung</Text>
-      <Text style={styles.description}>Gib den Code ein, der auf deinem TV angezeigt wird.</Text>
+    <Host style={styles.container}>
+      <Column alignment="center" spacing={12}>
+        <Text textStyle={styles.title}>Rocket Beans TV Geräteanmeldung</Text>
+        <Text textStyle={styles.description}>
+          Gib den Code ein, der auf deinem TV angezeigt wird.
+        </Text>
 
-      <TextInput
-        value={formattedCode}
-        onChangeText={setCode}
-        placeholder="ABCD-1234"
-        autoCapitalize="characters"
-        autoCorrect={false}
-        style={styles.input}
-      />
+        <TextInput
+          value={value}
+          onChangeText={setCode}
+          placeholder="ABCD-1234"
+          autoCapitalize="characters"
+          autoCorrect={false}
+          style={styles.input}
+        />
 
-      <Pressable style={styles.button} onPress={continueToApproval}>
-        <Text style={styles.buttonText}>Weiter</Text>
-      </Pressable>
-    </View>
+        <Button style={styles.button} onPress={continueToApproval}>
+          <Text textStyle={styles.buttonText}>Weiter</Text>
+        </Button>
+      </Column>
+    </Host>
   );
 }
 

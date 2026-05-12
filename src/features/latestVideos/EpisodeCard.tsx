@@ -1,7 +1,8 @@
 import { formatDistanceToNowStrict } from "date-fns";
 import { Image } from "expo-image";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { router } from "expo-router";
+import { Column, Host, Row, Text } from "@expo/ui";
 
 import { useAppSelector } from "../../core/redux/hooks";
 import perfectSize from "../../core/styles/perfectSize";
@@ -42,7 +43,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
       }}
       // eslint-disable-next-line react/no-children-prop
       children={({ focused }) => (
-        <View
+        <Host
           style={{
             padding: spacing.m,
             overflow: "hidden",
@@ -72,7 +73,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
               contentFit="contain"
             />
           )}
-          <View
+          <Host
             style={{
               overflow: "hidden",
               transform: [{ scale: focused ? 1.1 : 1 }],
@@ -104,26 +105,20 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
               placeholder={require("../../core/assets/images/placeholder_16x9-420.png")}
             />
-          </View>
-          <View style={{ gap: spacing["2xs"] }}>
+          </Host>
+          <Column spacing={spacing["2xs"]}>
             <Text
               numberOfLines={2}
-              style={{
+              textStyle={{
                 color: color.textHighlight,
                 ...fontPresets.xl,
               }}
             >
               {episode?.title}
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                flex: 1,
-              }}
-            >
+            <Row spacing={spacing.s}>
               <Text
-                style={{
+                textStyle={{
                   color: color.textHighlight,
                   ...fontPresets.l,
                 }}
@@ -132,7 +127,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 {episode?.showName}
               </Text>
               <Text
-                style={{
+                textStyle={{
                   color: color.textHighlight,
                   ...fontPresets.l,
                 }}
@@ -143,9 +138,9 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                     addSuffix: true,
                   })}
               </Text>
-            </View>
-          </View>
-        </View>
+            </Row>
+          </Column>
+        </Host>
       )}
     />
   );

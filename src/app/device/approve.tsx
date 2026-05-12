@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { Button, Column, Host, Row, Text } from "@expo/ui";
 
 import { authClient } from "@/src/lib/auth-client";
 
@@ -62,55 +63,61 @@ export default function DeviceApprovePage() {
 
   if (!userCode) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Ungültiger Code</Text>
-      </View>
+      <Host style={styles.container}>
+        <Column alignment="center" spacing={12}>
+          <Text textStyle={styles.title}>Ungültiger Code</Text>
+        </Column>
+      </Host>
     );
   }
 
   if (done) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Fertig</Text>
-        <Text style={styles.description}>Du kannst dieses Fenster jetzt schließen.</Text>
-      </View>
+      <Host style={styles.container}>
+        <Column alignment="center" spacing={12}>
+          <Text textStyle={styles.title}>Fertig</Text>
+          <Text textStyle={styles.description}>Du kannst dieses Fenster jetzt schließen.</Text>
+        </Column>
+      </Host>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Gerät freigeben</Text>
-      <Text style={styles.description}>
-        Code: {userCode.slice(0, 4)}-{userCode.slice(4)}
-      </Text>
+    <Host style={styles.container}>
+      <Column alignment="center" spacing={12}>
+        <Text textStyle={styles.title}>Gerät freigeben</Text>
+        <Text
+          textStyle={styles.description}
+        >{`Code: ${userCode.slice(0, 4)}-${userCode.slice(4)}`}</Text>
 
-      {isSessionPending ? (
-        <Text style={styles.description}>Lade Sitzung...</Text>
-      ) : !session ? (
-        <Pressable style={styles.button} onPress={signIn}>
-          <Text style={styles.buttonText}>Mit Rocket Beans TV anmelden</Text>
-        </Pressable>
-      ) : (
-        <View style={styles.actions}>
-          <Pressable
-            style={[styles.button, isSubmitting && styles.buttonDisabled]}
-            onPress={approve}
-            disabled={isSubmitting}
-          >
-            <Text style={styles.buttonText}>Freigeben</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.button, styles.buttonSecondary, isSubmitting && styles.buttonDisabled]}
-            onPress={deny}
-            disabled={isSubmitting}
-          >
-            <Text style={styles.buttonText}>Ablehnen</Text>
-          </Pressable>
-        </View>
-      )}
+        {isSessionPending ? (
+          <Text textStyle={styles.description}>Lade Sitzung...</Text>
+        ) : !session ? (
+          <Button style={styles.button} onPress={signIn}>
+            <Text textStyle={styles.buttonText}>Mit Rocket Beans TV anmelden</Text>
+          </Button>
+        ) : (
+          <Row spacing={8}>
+            <Button
+              style={isSubmitting ? styles.buttonDisabled : styles.button}
+              onPress={approve}
+              disabled={isSubmitting}
+            >
+              <Text textStyle={styles.buttonText}>Freigeben</Text>
+            </Button>
+            <Button
+              style={isSubmitting ? styles.buttonSecondaryDisabled : styles.buttonSecondary}
+              onPress={deny}
+              disabled={isSubmitting}
+            >
+              <Text textStyle={styles.buttonText}>Ablehnen</Text>
+            </Button>
+          </Row>
+        )}
 
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-    </View>
+        {error ? <Text textStyle={styles.error}>{error}</Text> : null}
+      </Column>
+    </Host>
   );
 }
 
@@ -122,10 +129,6 @@ const styles = StyleSheet.create({
     gap: 12,
     padding: 16,
     backgroundColor: "#0f1115",
-  },
-  actions: {
-    flexDirection: "row",
-    gap: 8,
   },
   title: {
     color: "#ffffff",
@@ -144,9 +147,23 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   buttonSecondary: {
+    borderRadius: 8,
     backgroundColor: "#37445f",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
   buttonDisabled: {
+    borderRadius: 8,
+    backgroundColor: "#cc2a36",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    opacity: 0.6,
+  },
+  buttonSecondaryDisabled: {
+    borderRadius: 8,
+    backgroundColor: "#37445f",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     opacity: 0.6,
   },
   buttonText: {
