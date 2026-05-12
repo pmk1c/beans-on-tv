@@ -11,7 +11,6 @@ import { AppState, AppStateStatus, NativeEventSubscription, Platform } from "rea
 import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
 import { rbtvApi } from ".././rbtvApi";
-import authApi from "../../features/auth/authApi";
 import { authTokenSlice } from "../../features/auth/authTokenSlice";
 import { captureError } from "../capture";
 import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
@@ -35,11 +34,6 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
     return {
       ...state,
       authToken: "[Filtered]",
-      [authApi.reducerPath]: {
-        ...state[authApi.reducerPath],
-        getToken: "[Filtered]",
-        refreshToken: "[Filtered]",
-      },
       [rbtvApi.reducerPath]: {
         ...state[rbtvApi.reducerPath],
         getRbscVideoToken: "[Filtered]",
@@ -58,7 +52,7 @@ const captureRejectedMiddleware: Middleware = () => (next) => (action: unknown) 
   return next(action);
 };
 
-const reducer = combineSlices(authApi, rbtvApi, authTokenSlice, rbtvSocketApiSlice);
+const reducer = combineSlices(rbtvApi, authTokenSlice, rbtvSocketApiSlice);
 
 export const store = configureStore({
   reducer,
@@ -68,7 +62,6 @@ export const store = configureStore({
         warnAfter: 64,
       },
     })
-      .concat(authApi.middleware)
       .concat(rbtvApi.middleware)
       .concat(captureRejectedMiddleware),
   enhancers: (getDefaultEnhancers) =>

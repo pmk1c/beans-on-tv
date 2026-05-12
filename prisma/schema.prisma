@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                  String    @id
+  name                String
+  email               String
+  emailVerified       Boolean
+  image               String?
+  createdAt           DateTime
+  updatedAt           DateTime
+  twoFactorEnabled    Boolean?
+  anonymous           Boolean?
+  username            String?
+  phoneNumber         String?
+  phoneNumberVerified Boolean?
+  displayUsername     String?
+  isCredential        Boolean?
+  stripeCustomerId    String?
+  banned              Boolean?
+  banReason           String?
+  banExpires          DateTime?
+  role                String?
+  lastLoginMethod     String?
+  backupCodes         String?
+  passkeyUserId       String?
+  twoFactorSecret     String?
+
+  accounts Account[]
+  sessions Session[]
+
+  @@map("user")
+}
+
+model Session {
+  id                   String   @id
+  expiresAt            DateTime
+  token                String
+  createdAt            DateTime
+  updatedAt            DateTime
+  ipAddress            String?
+  userAgent            String?
+  userId               String
+  impersonatedBy       String?
+  activeOrganizationId String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+model DeviceCode {
+  id              String    @id
+  deviceCode      String
+  userCode        String
+  userId          String?
+  clientId        String?
+  scope           String?
+  status          String
+  expiresAt       DateTime
+  lastPolledAt    DateTime?
+  pollingInterval Int?
+
+  @@map("deviceCode")
+}

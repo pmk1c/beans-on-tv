@@ -42,8 +42,8 @@ function AuthScreen() {
         {state.step === "creatingCode" || state.step === "pollingToken" ? (
           <View style={styles.textWrapper}>
             <Text style={styles.text}>
-              Besuche <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>, melde dich
-              mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
+              Besuche <Text style={styles.textHighlight}>https://rbtv.bmind.de/device</Text>, melde
+              dich mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
               {"\n"}
               <Text style={styles.textHighlight}>
                 {state.step === "pollingToken" ? formatCode(state.code) : codeSeperator}

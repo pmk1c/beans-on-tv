@@ -69,6 +69,9 @@ const config: ExpoConfig = {
       usesNonExemptEncryption: false,
     },
   },
+  web: {
+    output: "server",
+  },
   extra: {
     eas: {
       projectId: "cd14a3c2-29e3-4d1b-a125-1ead1060a130",

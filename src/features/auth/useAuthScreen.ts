@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import capture from "../../core/capture";
 import { AppDispatch } from "../../core/redux/store";
 
-import { useCreateCodeMutation, useGetTokenMutation } from "./authApi";
+import { authClient } from "../../lib/auth-client";
+import { getRbtvToken } from "./betterAuthToken";
 import {
   resetAuthToken,
   selectAuthToken,
@@ -12,25 +13,30 @@ import {
   setAuthToken,
 } from "./authTokenSlice";
 
+const DEVICE_CLIENT_ID = process.env.EXPO_PUBLIC_BETTER_AUTH_DEVICE_CLIENT_ID!;
+const DEVICE_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:device_code";
+
 type AuthScreenState =
   | {
       step: "creatingCode" | "done";
     }
   | {
       step: "pollingToken";
+      deviceCode: string;
+      intervalMs: number;
       code: string;
     };
 
 function useCreateCodeStep() {
-  const [createCode] = useCreateCodeMutation();
-
   return useCallback(() => {
-    return createCode().unwrap();
-  }, [createCode]);
+    return authClient.device.code({
+      client_id: DEVICE_CLIENT_ID,
+      scope: "user.email.read user.info rbsc.video.token",
+    });
+  }, []);
 }
 
 function usePollAuthTokenStep() {
-  const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch<AppDispatch>();
 
   const tokenPollingTimeout = useRef<number>(null);
@@ -42,25 +48,44 @@ function usePollAuthTokenStep() {
   useEffect(() => {
     return stopPolling;
   }, []);
+
   return useCallback(
-    (code: string) => {
+    ({ deviceCode, intervalMs }: { deviceCode: string; intervalMs: number }) => {
       return new Promise((resolve) => {
         const pollToken = async () => {
-          const token = await getToken(code).unwrap();
-          if (token) {
-            stopPolling();
-            await dispatch(setAuthToken(token));
-            resolve(undefined);
-          } else {
+          const { data, error } = await authClient.device.token({
+            grant_type: DEVICE_GRANT_TYPE,
+            device_code: deviceCode,
+            client_id: DEVICE_CLIENT_ID,
+          });
+
+          if (data?.access_token) {
+            const token = await getRbtvToken({
+              authorization: `Bearer ${data.access_token}`,
+            });
+            if (token) {
+              stopPolling();
+              await dispatch(setAuthToken(token));
+              resolve(undefined);
+              return;
+            }
+          }
+
+          if (!error || error.error === "authorization_pending" || error.error === "slow_down") {
             tokenPollingTimeout.current = window.setTimeout(() => {
               capture(pollToken());
-            }, 1000);
+            }, intervalMs);
+            return;
           }
+
+          stopPolling();
+          resolve(undefined);
         };
+
         capture(pollToken());
       });
     },
-    [dispatch, getToken],
+    [dispatch],
   );
 }
 
@@ -80,6 +105,7 @@ export function useAuthScreen() {
   const pollAuthToken = usePollAuthTokenStep();
 
   useEffect(() => {
+    console.log("useAuthScreen effect", { authToken, authTokenInitialized, step: state.step });
     if (!authTokenInitialized) {
       return;
     }
@@ -95,9 +121,23 @@ export function useAuthScreen() {
 
     capture(
       (async () => {
-        const code = await createCode();
-        setState({ step: "pollingToken", code });
-        await pollAuthToken(code);
+        const { data } = await createCode();
+        console.log("createCode result", { data });
+        if (!data?.user_code || !data.device_code) {
+          return;
+        }
+
+        const intervalMs = Math.max(1000, (data.interval ?? 5) * 1000);
+        setState({
+          step: "pollingToken",
+          code: data.user_code,
+          deviceCode: data.device_code,
+          intervalMs,
+        });
+        await pollAuthToken({
+          deviceCode: data.device_code,
+          intervalMs,
+        });
       })(),
     );
   }, [authToken, authTokenInitialized, createCode, pollAuthToken, state.step]);

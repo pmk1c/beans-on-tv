@@ -1,2 +1,6 @@
 allowBuilds:
+  "@prisma/client": true
+  "@prisma/engines": true
   "@sentry/cli": false
+  better-sqlite3: false
+  prisma: true
