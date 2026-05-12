@@ -8,6 +8,8 @@ import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import color from "../core/styles/tokens/color";
 import { TVEventControl } from "../core/react-native-tvos-shim";
+import { useAppSelector } from "../core/redux/hooks";
+import { selectAuthToken } from "../features/auth/authTokenSlice";
 
 Sentry.init({
   dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
@@ -22,26 +24,42 @@ function Layout() {
   return (
     <Provider store={store}>
       <InitializeAppGate>
-        <Stack
-          screenListeners={{
-            state: (event) => {
-              // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
-              if (event.data.state.routes.length === 1) {
-                TVEventControl?.disableTVMenuKey();
-              } else {
-                TVEventControl?.enableTVMenuKey();
-              }
-            },
-          }}
-          screenOptions={{
-            contentStyle: {
-              backgroundColor: color.black,
-            },
-            headerShown: false,
-          }}
-        />
+        <RootNavigator />
       </InitializeAppGate>
     </Provider>
+  );
+}
+
+function RootNavigator() {
+  const token = useAppSelector(selectAuthToken);
+
+  return (
+    <Stack
+      screenListeners={{
+        state: (event) => {
+          // Disable TV menu key handling of React Native on home screen, so that the app closes on press.
+          if (event.data.state.routes.length === 1) {
+            TVEventControl?.disableTVMenuKey();
+          } else {
+            TVEventControl?.enableTVMenuKey();
+          }
+        },
+      }}
+      screenOptions={{
+        contentStyle: {
+          backgroundColor: color.black,
+        },
+        headerShown: false,
+      }}
+    >
+      <Stack.Protected guard={!!token}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="player/[episodeId]" />
+      </Stack.Protected>
+      <Stack.Protected guard={!token}>
+        <Stack.Screen name="sign-in" />
+      </Stack.Protected>
+    </Stack>
   );
 }
 

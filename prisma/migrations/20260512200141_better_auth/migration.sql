@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -24,11 +24,11 @@ CREATE TABLE "User" (
     "passkeyUserId" TEXT,
     "twoFactorSecret" TEXT,
 
-    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Session" (
+CREATE TABLE "session" (
     "id" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "token" TEXT NOT NULL,
@@ -40,11 +40,11 @@ CREATE TABLE "Session" (
     "impersonatedBy" TEXT,
     "activeOrganizationId" TEXT,
 
-    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Account" (
+CREATE TABLE "account" (
     "id" TEXT NOT NULL,
     "accountId" TEXT NOT NULL,
     "providerId" TEXT NOT NULL,
@@ -59,11 +59,11 @@ CREATE TABLE "Account" (
     "createdAt" TIMESTAMP(3) NOT NULL,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Verification" (
+CREATE TABLE "verification" (
     "id" TEXT NOT NULL,
     "identifier" TEXT NOT NULL,
     "value" TEXT NOT NULL,
@@ -71,11 +71,11 @@ CREATE TABLE "Verification" (
     "createdAt" TIMESTAMP(3),
     "updatedAt" TIMESTAMP(3),
 
-    CONSTRAINT "Verification_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "verification_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "DeviceCode" (
+CREATE TABLE "deviceCode" (
     "id" TEXT NOT NULL,
     "deviceCode" TEXT NOT NULL,
     "userCode" TEXT NOT NULL,
@@ -87,11 +87,20 @@ CREATE TABLE "DeviceCode" (
     "lastPolledAt" TIMESTAMP(3),
     "pollingInterval" INTEGER,
 
-    CONSTRAINT "DeviceCode_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "deviceCode_pkey" PRIMARY KEY ("id")
 );
 
--- AddForeignKey
-ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- CreateIndex
+CREATE INDEX "session_userId_idx" ON "session"("userId");
+
+-- CreateIndex
+CREATE INDEX "account_userId_idx" ON "account"("userId");
+
+-- CreateIndex
+CREATE INDEX "verification_identifier_idx" ON "verification"("identifier");
 
 -- AddForeignKey
-ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
