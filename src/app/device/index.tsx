@@ -3,6 +3,8 @@ import { useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Column, Host, Text, TextInput, useNativeState } from "@expo/ui";
 
+import fontPresets from "@/src/core/styles/tokens/fontPresets";
+
 function normalizeCode(rawCode: string) {
   return rawCode.toUpperCase().replace(/[^A-Z0-9]/g, "");
 }
@@ -33,8 +35,21 @@ export default function DeviceAuthorizationPage() {
   return (
     <Host style={styles.container}>
       <Column alignment="center" spacing={12}>
-        <Text textStyle={styles.title}>Rocket Beans TV Geräteanmeldung</Text>
-        <Text textStyle={styles.description}>
+        <Text
+          textStyle={{
+            ...fontPresets.xl,
+            color: "#ffffff",
+          }}
+        >
+          Rocket Beans TV Geräteanmeldung
+        </Text>
+        <Text
+          textStyle={{
+            ...fontPresets.l,
+            color: "#c7ced9",
+            textAlign: "center",
+          }}
+        >
           Gib den Code ein, der auf deinem TV angezeigt wird.
         </Text>
 
@@ -48,7 +63,15 @@ export default function DeviceAuthorizationPage() {
         />
 
         <Button style={styles.button} onPress={continueToApproval}>
-          <Text textStyle={styles.buttonText}>Weiter</Text>
+          <Text
+            textStyle={{
+              ...fontPresets.l,
+              color: "#ffffff",
+              fontWeight: "700",
+            }}
+          >
+            Weiter
+          </Text>
         </Button>
       </Column>
     </Host>
@@ -63,16 +86,6 @@ const styles = StyleSheet.create({
     gap: 12,
     padding: 16,
     backgroundColor: "#0f1115",
-  },
-  title: {
-    color: "#ffffff",
-    fontSize: 28,
-    fontWeight: "700",
-  },
-  description: {
-    color: "#c7ced9",
-    fontSize: 16,
-    textAlign: "center",
   },
   input: {
     minWidth: 260,
@@ -90,10 +103,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#cc2a36",
     paddingHorizontal: 20,
     paddingVertical: 12,
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "700",
   },
 });

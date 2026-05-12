@@ -25,12 +25,38 @@ function AuthScreen() {
           <Spacer flexible />
           {(state.step === "creatingCode" || state.step === "pollingToken") && (
             <Column style={styles.textWrapper} alignment="center" spacing={spacing.m}>
-              <Text textStyle={styles.text}>Besuche</Text>
-              <Text textStyle={styles.textHighlight}>https://rbtv.bmind.de/device</Text>
-              <Text textStyle={styles.text}>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.text,
+                  textAlign: "center",
+                }}
+              >
+                Besuche
+              </Text>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.textHighlight,
+                }}
+              >
+                https://rbtv.bmind.de/device
+              </Text>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.text,
+                  textAlign: "center",
+                }}
+              >
                 und melde dich mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
               </Text>
-              <Text textStyle={styles.textHighlight}>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.textHighlight,
+                }}
+              >
                 {state.step === "pollingToken" ? formatCode(state.code) : codeSeperator}
               </Text>
             </Column>
@@ -59,17 +85,6 @@ const styles = StyleSheet.create({
     backgroundColor: color.darkTransparentBg,
     padding: spacing.l,
     borderRadius: borderRadius.large,
-  },
-  text: {
-    ...fontPresets.xl,
-    color: color.text,
-    textAlign: "center",
-  },
-  textHighlight: {
-    color: color.textHighlight,
-  },
-  textActivityIndicator: {
-    height: 2,
   },
 });
 

@@ -1,5 +1,8 @@
 import { setDefaultOptions } from "date-fns";
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router/stack";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
 import { Provider } from "react-redux";
@@ -11,6 +14,8 @@ import { TVEventControl } from "../core/react-native-tvos-shim";
 import { useAppSelector } from "../core/redux/hooks";
 import { selectAuthToken } from "../features/auth/authTokenSlice";
 
+void SplashScreen.preventAutoHideAsync();
+
 Sentry.init({
   dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
   enabled: !__DEV__,
@@ -21,6 +26,21 @@ Sentry.init({
 setDefaultOptions({ locale: de });
 
 function Layout() {
+  const [fontsLoaded] = useFonts({
+    rbtvIcons: require("../../assets/fonts/rbtvIcons.ttf"),
+    "ArchivoRoman-Black": require("../../assets/fonts/Archivo-VariableFont_wdth,wght.ttf"),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      void SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <Provider store={store}>
       <InitializeAppGate>
