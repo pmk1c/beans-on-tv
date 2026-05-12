@@ -24,7 +24,8 @@
     "production": {
       "ios": {
         "appleTeamId": "8G26T3SC9P",
-        "ascAppId": "1671815295"
+        "ascAppId": "1671815295",
+        "groups": ["Rocket Beans", "Rocket Beans Community"]
       }
     }
   }

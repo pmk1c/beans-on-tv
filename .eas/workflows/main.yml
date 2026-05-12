@@ -106,27 +106,12 @@ jobs:
       platform: ios
       profile: production
 
-  production_ios_testflight_internal:
-    name: Submit iOS production to TestFlight (internal)
+  production_ios_submit:
+    name: Submit iOS production
     after: [production_ios_get_build, production_ios_build]
     if: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
-    type: testflight
+    type: submit
     environment: production
     params:
       build_id: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
       profile: production
-
-  production_ios_external_approval:
-    name: Approve external TestFlight distribution
-    needs: [production_ios_testflight_internal]
-    type: require-approval
-
-  production_ios_testflight_external:
-    name: Submit iOS production to TestFlight (external)
-    needs: [production_ios_external_approval]
-    type: testflight
-    environment: production
-    params:
-      build_id: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
-      profile: production
-      external_groups: ["Rocket Beans", "Rocket Beans Community"]
