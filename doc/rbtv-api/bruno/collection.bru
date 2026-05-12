@@ -22,7 +22,7 @@ script:pre-request {
         grant_type: 'authorization_code',
         code: authorizationCode,
         redirect_uri: redirectUri,
-        scope: "user.info rbsc.video.token",
+        scope: "user.email.read user.info rbsc.video.token",
         client_id: clientId,
         client_secret: clientSecret,
       }, {
@@ -75,7 +75,7 @@ script:pre-request {
       }
   
       const authorizationCode = bru.getEnvVar(authorizationCodeVarName);
-      const authorizationCodeUrl = `${envVariables[authorizeEndpointVarName]}?client_id=${envVariables[clientIdVarName]}&response_type=code&redirect_uri=${envVariables[redirectUriVarName]}&scope=user.info%20rbsc.video.token`;
+      const authorizationCodeUrl = `${envVariables[authorizeEndpointVarName]}?client_id=${envVariables[clientIdVarName]}&response_type=code&redirect_uri=${envVariables[redirectUriVarName]}&scope=user.email.read%20user.info%20rbsc.video.token`;
   
       if (!authorizationCode) {
           throw new Error(`No authorization code provided. Navigate to the url ${authorizationCodeUrl} and grab the code from the URL.`);

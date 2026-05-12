@@ -1,8 +1,6 @@
-import { nativeApplicationVersion } from "expo-application";
-import { useUpdates } from "expo-updates";
-import { StyleSheet, Text, View } from "react-native";
+import { Column, Host, Spacer, Text } from "@expo/ui";
+import { StyleSheet } from "react-native";
 
-import Button from "../../core/components/Button";
 import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
@@ -18,43 +16,54 @@ function formatCode(code: string): string {
 }
 
 function AuthScreen() {
-  const { state, logout } = useAuthScreen();
-  const { currentlyRunning, isChecking, isDownloading, isUpdatePending } = useUpdates();
-
-  const versionInfo = [
-    nativeApplicationVersion,
-    currentlyRunning.channel,
-    currentlyRunning.createdAt?.toISOString().slice(0, 10),
-    isChecking
-      ? "Prüfe auf Update"
-      : isDownloading
-        ? "Lade Update"
-        : isUpdatePending
-          ? "Update verfügbar (Neustart erforderlich)"
-          : null,
-  ]
-    .filter(Boolean)
-    .join(" | ");
+  const { state } = useAuthScreen();
 
   return (
     <TVFocusGuideView autoFocus trapFocusLeft trapFocusRight trapFocusDown style={styles.wrapper}>
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        {state.step === "creatingCode" || state.step === "pollingToken" ? (
-          <View style={styles.textWrapper}>
-            <Text style={styles.text}>
-              Besuche <Text style={styles.textHighlight}>https://rbtv.bmind.de</Text>, melde dich
-              mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
-              {"\n"}
-              <Text style={styles.textHighlight}>
+      <Host style={styles.host}>
+        <Column style={styles.content} alignment="center">
+          <Spacer flexible />
+          {(state.step === "creatingCode" || state.step === "pollingToken") && (
+            <Column style={styles.textWrapper} alignment="center" spacing={spacing.m}>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.text,
+                  textAlign: "center",
+                }}
+              >
+                Besuche
+              </Text>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.textHighlight,
+                }}
+              >
+                https://rbtv.bmind.de/device
+              </Text>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.text,
+                  textAlign: "center",
+                }}
+              >
+                und melde dich mit deinem Rocket Beans TV-Account an und gib folgenden Code ein:
+              </Text>
+              <Text
+                textStyle={{
+                  ...fontPresets.xl,
+                  color: color.textHighlight,
+                }}
+              >
                 {state.step === "pollingToken" ? formatCode(state.code) : codeSeperator}
               </Text>
-            </Text>
-          </View>
-        ) : (
-          <Button buttonType="destructive" title="Abmelden" onPress={logout} />
-        )}
-      </View>
-      <Text style={styles.textVersion}>{versionInfo}</Text>
+            </Column>
+          )}
+          <Spacer flexible />
+        </Column>
+      </Host>
     </TVFocusGuideView>
   );
 }
@@ -62,37 +71,20 @@ function AuthScreen() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+  },
+  host: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
+    paddingVertical: spacing.l,
   },
   textWrapper: {
     backgroundColor: color.darkTransparentBg,
     padding: spacing.l,
     borderRadius: borderRadius.large,
-  },
-  text: {
-    ...fontPresets.xl,
-    color: color.text,
-    textAlign: "center",
-  },
-  textHighlight: {
-    color: color.textHighlight,
-  },
-  textVersion: {
-    ...fontPresets.l,
-    color: color.textMuted,
-  },
-  textActivityIndicator: {
-    height: 2,
-  },
-  logoutButton: {
-    color: color.textHighlight,
-    backgroundColor: color.red700,
-    paddingHorizontal: spacing.l,
-    paddingVertical: spacing.m,
-  },
-  logoutButtonFocused: {
-    backgroundColor: color.red800,
   },
 });
 

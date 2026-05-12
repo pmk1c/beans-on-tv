@@ -1,7 +1,6 @@
 import "ts-node/register";
-import { ExpoConfig } from "expo/config";
 
-const config: ExpoConfig = {
+const config = {
   name: "Beans on TV",
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
@@ -45,6 +44,9 @@ const config: ExpoConfig = {
         ],
       },
     ],
+    "expo-image",
+    "expo-splash-screen",
+    "expo-video",
     "expo-router",
     [
       "@sentry/react-native/expo",
@@ -68,6 +70,9 @@ const config: ExpoConfig = {
     config: {
       usesNonExemptEncryption: false,
     },
+  },
+  web: {
+    output: "server",
   },
   extra: {
     eas: {

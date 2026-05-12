@@ -1,4 +1,4 @@
-import { createIconSet } from "@expo/vector-icons";
+import { createIconSet } from "@react-native-vector-icons/common";
 
 const glyphMap = {
   external: 0xe913,

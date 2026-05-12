@@ -4,7 +4,7 @@ import { RootState } from "../../core/redux/store";
 
 import Token, { isValid } from "./Token";
 import * as TokenStorage from "./TokenStorage";
-import authApi from "./authApi";
+import { getRbtvToken } from "./betterAuthToken";
 
 export const authTokenSlice = createSliceWithThunks({
   name: "authToken",
@@ -14,14 +14,19 @@ export const authTokenSlice = createSliceWithThunks({
   },
   reducers: (create) => ({
     initializeAuthToken: create.asyncThunk<Token | undefined>(
-      async (arg, { dispatch, getState }) => {
+      async (arg, { getState }) => {
         let token = await TokenStorage.getToken();
         if (!token || (!isValid(token) && !token.refreshToken)) {
           return;
         }
 
         if (!isValid(token)) {
-          token = await dispatch(authApi.endpoints.refreshToken.initiate(token)).unwrap();
+          token = await getRbtvToken();
+          if (!token) {
+            return;
+          }
+
+          await TokenStorage.setToken(token);
         }
 
         // TODO move this into its own slice, since it does not belong here

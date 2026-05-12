@@ -1,0 +1,235 @@
+import { useLocalSearchParams } from "expo-router";
+import { useState } from "react";
+import { StyleSheet } from "react-native";
+import { Button, Column, Host, Row, Text } from "@expo/ui";
+
+import { authClient } from "@/src/lib/auth-client";
+import fontPresets from "@/src/core/styles/tokens/fontPresets";
+
+function getUserCode(param: string | string[] | undefined) {
+  if (typeof param === "string") {
+    return param.replace(/[^0-9A-Z]/g, "").toUpperCase();
+  }
+
+  return "";
+}
+
+export default function DeviceApprovePage() {
+  const params = useLocalSearchParams<{ user_code?: string }>();
+  const userCode = getUserCode(params.user_code);
+  const { data: session, isPending: isSessionPending } = authClient.useSession();
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const signIn = async () => {
+    setError(null);
+    const { error: signInError } = await authClient.signIn.oauth2({
+      providerId: "rbtv",
+      callbackURL: `/device/approve?user_code=${userCode}`,
+    });
+
+    if (signInError) {
+      setError(signInError.message ?? "Anmeldung fehlgeschlagen.");
+    }
+  };
+
+  const approve = async () => {
+    setIsSubmitting(true);
+    setError(null);
+    const { error: approveError } = await authClient.device.approve({ userCode });
+    setIsSubmitting(false);
+
+    if (approveError) {
+      setError(approveError.error_description ?? "Freigabe fehlgeschlagen.");
+      return;
+    }
+
+    setDone(true);
+  };
+
+  const deny = async () => {
+    setIsSubmitting(true);
+    setError(null);
+    const { error: denyError } = await authClient.device.deny({ userCode });
+    setIsSubmitting(false);
+
+    if (denyError) {
+      setError(denyError.error_description ?? "Ablehnung fehlgeschlagen.");
+      return;
+    }
+
+    setDone(true);
+  };
+
+  if (!userCode) {
+    return (
+      <Host style={styles.container}>
+        <Column alignment="center" spacing={12}>
+          <Text
+            textStyle={{
+              ...fontPresets.xl,
+              color: "#ffffff",
+            }}
+          >
+            Ungültiger Code
+          </Text>
+        </Column>
+      </Host>
+    );
+  }
+
+  if (done) {
+    return (
+      <Host style={styles.container}>
+        <Column alignment="center" spacing={12}>
+          <Text
+            textStyle={{
+              ...fontPresets.xl,
+              color: "#ffffff",
+            }}
+          >
+            Fertig
+          </Text>
+          <Text
+            textStyle={{
+              ...fontPresets.l,
+              color: "#c7ced9",
+              textAlign: "center",
+            }}
+          >
+            Du kannst dieses Fenster jetzt schließen.
+          </Text>
+        </Column>
+      </Host>
+    );
+  }
+
+  return (
+    <Host style={styles.container}>
+      <Column alignment="center" spacing={12}>
+        <Text
+          textStyle={{
+            ...fontPresets.xl,
+            color: "#ffffff",
+          }}
+        >
+          Gerät freigeben
+        </Text>
+        <Text
+          textStyle={{
+            ...fontPresets.l,
+            color: "#c7ced9",
+            textAlign: "center",
+          }}
+        >{`Code: ${userCode.slice(0, 4)}-${userCode.slice(4)}`}</Text>
+
+        {isSessionPending ? (
+          <Text
+            textStyle={{
+              ...fontPresets.l,
+              color: "#c7ced9",
+              textAlign: "center",
+            }}
+          >
+            Lade Sitzung...
+          </Text>
+        ) : !session ? (
+          <Button style={styles.button} onPress={signIn}>
+            <Text
+              textStyle={{
+                ...fontPresets.l,
+                color: "#ffffff",
+                fontWeight: "700",
+              }}
+            >
+              Mit Rocket Beans TV anmelden
+            </Text>
+          </Button>
+        ) : (
+          <Row spacing={8}>
+            <Button
+              style={isSubmitting ? styles.buttonDisabled : styles.button}
+              onPress={approve}
+              disabled={isSubmitting}
+            >
+              <Text
+                textStyle={{
+                  ...fontPresets.l,
+                  color: "#ffffff",
+                  fontWeight: "700",
+                }}
+              >
+                Freigeben
+              </Text>
+            </Button>
+            <Button
+              style={isSubmitting ? styles.buttonSecondaryDisabled : styles.buttonSecondary}
+              onPress={deny}
+              disabled={isSubmitting}
+            >
+              <Text
+                textStyle={{
+                  ...fontPresets.l,
+                  color: "#ffffff",
+                  fontWeight: "700",
+                }}
+              >
+                Ablehnen
+              </Text>
+            </Button>
+          </Row>
+        )}
+
+        {error ? (
+          <Text
+            textStyle={{
+              ...fontPresets.l,
+              color: "#ff7d7d",
+              textAlign: "center",
+            }}
+          >
+            {error}
+          </Text>
+        ) : null}
+      </Column>
+    </Host>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 12,
+    padding: 16,
+    backgroundColor: "#0f1115",
+  },
+  button: {
+    borderRadius: 8,
+    backgroundColor: "#cc2a36",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+  buttonSecondary: {
+    borderRadius: 8,
+    backgroundColor: "#37445f",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+  buttonDisabled: {
+    borderRadius: 8,
+    backgroundColor: "#cc2a36",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    opacity: 0.6,
+  },
+  buttonSecondaryDisabled: {
+    borderRadius: 8,
+    backgroundColor: "#37445f",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    opacity: 0.6,
+  },
+});

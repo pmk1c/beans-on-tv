@@ -1,3 +1,12 @@
+# DO'S and DONT'S
+
+**DO** Use `vp` for everything. Here are the most important commands. Check the docs at `node_modules/vite-plus/docs` for everything else:
+
+- `vp check`
+- `vp dlx`
+- `vp exec`
+- `vp i` or `vp install`
+
 <!--VITE PLUS START-->
 
 # Using Vite+, the Unified Toolchain for the Web

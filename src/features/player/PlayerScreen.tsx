@@ -1,7 +1,8 @@
 import { router } from "expo-router";
+import { Host, Text } from "@expo/ui";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { useEffect, useState } from "react";
-import { ImageBackground, Linking, Platform, Text, View } from "react-native";
+import { ImageBackground, Linking, Platform } from "react-native";
 import { useEventListener } from "expo";
 
 import capture from "../../core/capture";
@@ -105,7 +106,7 @@ function PlayerScreen({ episodeId }: Props) {
         source={{ uri: episode?.thumbnailUrls.large }}
       >
         {error ? (
-          <View
+          <Host
             style={{
               backgroundColor: color.darkTransparentBg,
               padding: spacing.l,
@@ -113,18 +114,19 @@ function PlayerScreen({ episodeId }: Props) {
             }}
           >
             <Text
-              style={{
+              textStyle={{
                 ...fontPresets.xl,
                 color: color.text,
                 textAlign: "center",
               }}
             >
-              Das Video konnte nicht geladen werden.{" "}
-              {error === "rbsc"
-                ? "Melde dich mit deinem RBSC-Account an oder installiere die YouTube-App, um es zu sehen."
-                : " Installiere die YouTube-App, um es zu sehen."}
+              {`Das Video konnte nicht geladen werden. ${
+                error === "rbsc"
+                  ? "Melde dich mit deinem RBSC-Account an oder installiere die YouTube-App, um es zu sehen."
+                  : "Installiere die YouTube-App, um es zu sehen."
+              }`}
             </Text>
-          </View>
+          </Host>
         ) : null}
       </ImageBackground>
     );

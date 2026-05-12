@@ -1,4 +1,4 @@
-import AuthScreen from "../../features/auth/AuthScreen";
+import AuthScreen from "../features/auth/AuthScreen";
 
 export default function Page() {
   return <AuthScreen />;

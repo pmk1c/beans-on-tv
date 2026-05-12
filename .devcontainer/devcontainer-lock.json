@@ -1,5 +1,10 @@
 {
   "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "version": "2.5.7",
+      "resolved": "ghcr.io/devcontainers/features/common-utils@sha256:dbf431d6b42d55cde50fa1df75c7f7c3999a90cde6d73f7a7071174b3c3d0cc4",
+      "integrity": "sha256:dbf431d6b42d55cde50fa1df75c7f7c3999a90cde6d73f7a7071174b3c3d0cc4"
+    },
     "ghcr.io/helpers4/devcontainer/vite-plus:1": {
       "version": "1.0.3",
       "resolved": "ghcr.io/helpers4/devcontainer/vite-plus@sha256:7a28985c86e4252cf6106186e6bc5aca73fb1e4ad9d3fcdf0d5eec42728af61b",

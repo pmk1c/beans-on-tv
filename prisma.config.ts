@@ -1,0 +1,14 @@
+import { defineConfig, env } from "prisma/config";
+import { loadProjectEnv } from "@expo/env";
+
+loadProjectEnv(process.cwd());
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+  },
+  datasource: {
+    url: env("DATABASE_URL"),
+  },
+});
