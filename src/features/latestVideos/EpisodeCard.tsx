@@ -17,9 +17,6 @@ interface EpisodeCardProps {
   thumbnailPriority: "high" | "normal" | "low";
 }
 
-const width = perfectSize(420);
-const height = width * (9 / 16);
-
 const isYouTubeOnly = (episode: MediaEpisodePreview | undefined) => {
   if (!episode) return false;
 
@@ -29,6 +26,7 @@ const isYouTubeOnly = (episode: MediaEpisodePreview | undefined) => {
 function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps) {
   return (
     <Pressable
+      style={{ flex: 1 }}
       onPress={() => {
         if (!episode) return;
 
@@ -43,8 +41,7 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
           style={{
             padding: spacing.m,
             overflow: "hidden",
-            width,
-            height: perfectSize(400),
+            width: "100%",
             flexDirection: "column",
             gap: spacing.m,
             alignItems: "center",
@@ -63,8 +60,8 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
                 zIndex: 1,
                 top: spacing.xs,
                 left: spacing.xs,
-                height: perfectSize(48),
-                width: (734 / 518) * perfectSize(48),
+                width: "22%",
+                aspectRatio: 734 / 518,
               }}
               contentFit="contain"
             />
@@ -72,6 +69,7 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
           <Host
             style={{
               overflow: "hidden",
+              width: "100%",
               transform: [{ scale: focused ? 1.1 : 1 }],
             }}
           >
@@ -79,7 +77,7 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
               style={{
                 position: "absolute",
                 zIndex: 1,
-                height,
+                inset: 0,
                 width: `${progress ? (progress.progress / progress.total) * 100 : 0}%`,
                 borderColor: color.yellow500,
                 borderBottomWidth: spacing.xs,
@@ -87,8 +85,8 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
             />
             <Image
               style={{
-                height,
-                width,
+                width: "100%",
+                aspectRatio: 16 / 9,
                 borderBottomWidth: progress ? spacing.xs : 0,
                 borderColor: color.grey700,
               }}

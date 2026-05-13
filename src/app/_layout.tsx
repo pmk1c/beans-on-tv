@@ -97,9 +97,9 @@ function RootNavigator() {
       </Stack.Protected>
       <Stack.Protected guard={!session}>
         <Stack.Screen name="sign-in" />
-        <Stack.Screen name="device" />
-        <Stack.Screen name="device/approve" />
       </Stack.Protected>
+      <Stack.Screen name="device" />
+      <Stack.Screen name="device/approve" />
     </Stack>
   );
 }
