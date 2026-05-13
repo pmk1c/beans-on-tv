@@ -5,6 +5,7 @@ import LazyScrollView from "@/src/core/components/LazyScrollView/index.web";
 
 import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
+import spacing from "@/src/core/styles/tokens/spacing";
 
 const numColumns = 4;
 
@@ -54,7 +55,7 @@ function LatestVideosScreen() {
     );
   });
 
-  return <LazyScrollView>{rowsContent}</LazyScrollView>;
+  return <LazyScrollView style={{ paddingTop: 2 * spacing["2xl"] }}>{rowsContent}</LazyScrollView>;
 }
 
 export default LatestVideosScreen;
