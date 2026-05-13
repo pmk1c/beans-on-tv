@@ -31,6 +31,8 @@ export type MediaEpisodePreview = mediaEpisodePreview & {
   distributionPublishingDate: string;
 };
 
+export type MediaEpisodeProgress = mediaEpisodeProgress;
+
 export type VideoToken = videoToken;
 
 // Api Responses
@@ -48,6 +50,10 @@ export type GetMediaEpisodeApiResponse = genericApiResponse<MediaEpisodeCombined
 export type GetMediaEpisodePreviewNewestApiResponse = ApiResponseWithPagination<
   MediaEpisodeCombinedResponse<MediaEpisodePreview>
 >;
+
+export type MediaEpisodeTokenProgress = NonNullable<
+  NonNullable<GetMediaEpisodePreviewNewestApiResponse["data"]["progress"]>[string]["tokenProgress"]
+>[number];
 
 export type GetRbscVideoTokenApiResponse = genericApiResponse<RBSCVideoToken>;
 

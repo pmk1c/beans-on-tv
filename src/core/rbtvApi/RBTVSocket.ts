@@ -1,8 +1,6 @@
 import * as Application from "expo-application";
 import io from "socket.io-client";
 
-import Episode from "../types/Episode";
-
 import { SocketMessage, SocketMessagePayload } from "./types";
 
 class RBTVSocket {
@@ -28,12 +26,10 @@ class RBTVSocket {
     });
   }
 
-  emitMediaEpisodeProgressUpdate(episode: Episode, progress: number) {
-    if (!episode.videoTokens.rbsc) return;
-
+  emitMediaEpisodeProgressUpdate(episodeId: number, tokenId: number, progress: number) {
     this.emit("CA_MEDIA_EPISODEPROGRESS_UPDATE", {
-      episodeId: Number.parseInt(episode.id, 10),
-      tokenId: Number.parseInt(episode.videoTokens.rbsc.id, 10),
+      episodeId,
+      tokenId,
       progress: Math.round(progress),
     });
   }

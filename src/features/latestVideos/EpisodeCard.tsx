@@ -10,25 +10,26 @@ import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
 import spacing from "../../core/styles/tokens/spacing";
-import Episode from "../../core/types/Episode";
+import { MediaEpisodePreview, MediaEpisodeTokenProgress } from "../../core/rbtvApi/types";
 import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
-  episode?: Episode;
+  episode?: MediaEpisodePreview;
+  progress?: MediaEpisodeTokenProgress;
   thumbnailPriority: "high" | "normal" | "low";
 }
 
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
-const isYouTubeOnly = (episode: Episode | undefined, isLoggedIn: boolean) => {
+const isYouTubeOnly = (episode: MediaEpisodePreview | undefined, isLoggedIn: boolean) => {
   if (!episode) return false;
   if (!isLoggedIn) return true;
 
-  return !episode.videoTokens.rbsc;
+  return !episode.tokens.some((token) => token.type === "rbsc");
 };
 
-function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
+function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps) {
   const isLoggedIn = !!useAppSelector(selectAuthToken);
 
   return (
@@ -38,7 +39,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
 
         router.navigate({
           pathname: "/player/[episodeId]",
-          params: { episodeId: episode.id },
+          params: { episodeId: episode.id.toString() },
         });
       }}
       // eslint-disable-next-line react/no-children-prop
@@ -84,9 +85,7 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
                 position: "absolute",
                 zIndex: 1,
                 height,
-                width: `${
-                  episode?.progress ? (episode.progress.progress / episode.progress.total) * 100 : 0
-                }%`,
+                width: `${progress ? (progress.progress / progress.total) * 100 : 0}%`,
                 borderColor: color.yellow500,
                 borderBottomWidth: spacing.xs,
               }}
@@ -95,11 +94,11 @@ function EpisodeCard({ episode, thumbnailPriority }: EpisodeCardProps) {
               style={{
                 height,
                 width,
-                borderBottomWidth: episode?.progress ? spacing.xs : 0,
+                borderBottomWidth: progress ? spacing.xs : 0,
                 borderColor: color.grey700,
               }}
               source={{
-                uri: episode?.thumbnailUrls.small,
+                uri: episode?.thumbnail.find((thumbnail) => thumbnail.name === "small")?.url,
               }}
               priority={thumbnailPriority}
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports

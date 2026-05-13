@@ -5,12 +5,10 @@ import {
   configureStore,
   isRejected,
 } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query/react";
 import * as Sentry from "@sentry/react-native";
-import { AppState, AppStateStatus, NativeEventSubscription, Platform } from "react-native";
+import { Platform } from "react-native";
 import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
-import { rbtvApi } from ".././rbtvApi";
 import { authTokenSlice } from "../../features/auth/authTokenSlice";
 import { captureError } from "../capture";
 import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
@@ -34,10 +32,6 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
     return {
       ...state,
       authToken: "[Filtered]",
-      [rbtvApi.reducerPath]: {
-        ...state[rbtvApi.reducerPath],
-        getRbscVideoToken: "[Filtered]",
-      },
     };
   },
 }) as StoreEnhancer;
@@ -52,7 +46,7 @@ const captureRejectedMiddleware: Middleware = () => (next) => (action: unknown) 
   return next(action);
 };
 
-const reducer = combineSlices(rbtvApi, authTokenSlice, rbtvSocketApiSlice);
+const reducer = combineSlices(authTokenSlice, rbtvSocketApiSlice);
 
 export const store = configureStore({
   reducer,
@@ -61,9 +55,7 @@ export const store = configureStore({
       serializableCheck: {
         warnAfter: 64,
       },
-    })
-      .concat(rbtvApi.middleware)
-      .concat(captureRejectedMiddleware),
+    }).concat(captureRejectedMiddleware),
   enhancers: (getDefaultEnhancers) =>
     getDefaultEnhancers()
       .concat(sentryReduxEnhancer)
@@ -76,29 +68,6 @@ export const store = configureStore({
             ]
           : [],
       ),
-});
-
-let initialized = false;
-setupListeners(store.dispatch, (dispatch, { onFocus, onFocusLost }) => {
-  let subscription: NativeEventSubscription | undefined;
-
-  if (!initialized) {
-    subscription = AppState.addEventListener("change", (nextAppState: AppStateStatus) => {
-      if (nextAppState === "active") {
-        dispatch(onFocus());
-      } else {
-        dispatch(onFocusLost());
-      }
-    });
-    initialized = true;
-  }
-
-  const unsubscribe = () => {
-    subscription?.remove();
-    initialized = false;
-  };
-
-  return unsubscribe;
 });
 
 export type RootState = ReturnType<typeof store.getState>;

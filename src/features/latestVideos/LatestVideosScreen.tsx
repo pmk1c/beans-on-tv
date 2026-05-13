@@ -7,7 +7,7 @@ import useLatestVideosScreen from "./useLatestVideosScreen";
 
 const numColumns = 4;
 function LatestVideosScreen() {
-  const { episodes, onViewableItemsChanged } = useLatestVideosScreen();
+  const { episodes, progressByEpisodeId, onViewableItemsChanged } = useLatestVideosScreen();
 
   return (
     <FlatList
@@ -24,6 +24,7 @@ function LatestVideosScreen() {
       renderItem={({ index, item: episode }) => (
         <EpisodeCard
           episode={episode}
+          progress={episode ? progressByEpisodeId.get(episode.id) : undefined}
           thumbnailPriority={
             index < numColumns ? "high" : index < numColumns * 2 ? "normal" : "low"
           }

@@ -1,9 +1,13 @@
 import { useFocusEffect } from "expo-router";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ViewToken } from "react-native";
 
-import { useGetMediaEpisodePreviewNewestQuery } from "../../core/rbtvApi";
-import Episode from "../../core/types/Episode";
+import { getMediaEpisodePreviewNewest } from "../../core/rbtvApi/client";
+import {
+  GetMediaEpisodePreviewNewestApiResponse,
+  MediaEpisodePreview,
+  MediaEpisodeTokenProgress,
+} from "../../core/rbtvApi/types";
 
 import capture from "@/src/core/capture";
 
@@ -13,75 +17,89 @@ const getItemPage = (index: number) => Math.floor(index / pageSize);
 
 function useLatestVideosScreen() {
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
-
-  const {
-    data: lastPage,
-    refetch: refetchLastPage,
-    isSuccess: isSuccessLastPage,
-  } = useGetMediaEpisodePreviewNewestQuery(
-    {
-      offset: getOffset(currentPageNumber - 1),
-      limit: pageSize,
-    },
-    { refetchOnFocus: true, skip: currentPageNumber === 0 },
+  const [lastPage, setLastPage] = useState<GetMediaEpisodePreviewNewestApiResponse | undefined>(
+    undefined,
   );
-  const {
-    data: currentPage,
-    refetch: refetchCurrentPage,
-    isSuccess: isSuccessCurrentPage,
-  } = useGetMediaEpisodePreviewNewestQuery(
-    {
-      offset: getOffset(currentPageNumber),
-      limit: pageSize,
-    },
-    { refetchOnFocus: true },
-  );
-  const {
-    data: nextPage,
-    refetch: refetchNextPage,
-    isSuccess: isSuccessNextPage,
-  } = useGetMediaEpisodePreviewNewestQuery(
-    {
-      offset: getOffset(currentPageNumber + 1),
-      limit: pageSize,
-    },
-    {
-      refetchOnFocus: true,
-      skip: !currentPage || currentPage.meta.total < getOffset(currentPageNumber + 1),
-    },
+  const [currentPage, setCurrentPage] = useState<
+    GetMediaEpisodePreviewNewestApiResponse | undefined
+  >(undefined);
+  const [nextPage, setNextPage] = useState<GetMediaEpisodePreviewNewestApiResponse | undefined>(
+    undefined,
   );
 
-  const episodes = useMemo(() => {
-    if (!currentPage) return [];
+  const loadPages = useCallback(async (pageNumber: number) => {
+    const current = await getMediaEpisodePreviewNewest({
+      offset: getOffset(pageNumber),
+      limit: pageSize,
+    });
 
-    const items = Array.from<Episode | undefined>({ length: currentPage.meta.total });
-    for (const page of [lastPage, currentPage, nextPage]) {
-      if (!page) continue;
+    const [last, next] = await Promise.all([
+      pageNumber > 0
+        ? getMediaEpisodePreviewNewest({
+            offset: getOffset(pageNumber - 1),
+            limit: pageSize,
+          })
+        : Promise.resolve(undefined),
+      current.pagination.total >= getOffset(pageNumber + 1)
+        ? getMediaEpisodePreviewNewest({
+            offset: getOffset(pageNumber + 1),
+            limit: pageSize,
+          })
+        : Promise.resolve(undefined),
+    ]);
 
-      items.splice(page.meta.offset, page.meta.limit, ...page.data);
-    }
-
-    return items;
-  }, [lastPage, currentPage, nextPage]);
+    setCurrentPage(current);
+    setLastPage(last);
+    setNextPage(next);
+  }, []);
 
   const refetchAllPages = useCallback(async () => {
-    if (isSuccessCurrentPage) await refetchCurrentPage();
-    if (isSuccessLastPage) await refetchLastPage();
-    if (isSuccessNextPage) await refetchNextPage();
-  }, [
-    isSuccessCurrentPage,
-    isSuccessLastPage,
-    isSuccessNextPage,
-    refetchCurrentPage,
-    refetchLastPage,
-    refetchNextPage,
-  ]);
+    await loadPages(currentPageNumber);
+  }, [currentPageNumber, loadPages]);
 
   useFocusEffect(
     useCallback(() => {
       capture(refetchAllPages());
     }, [refetchAllPages]),
   );
+
+  useEffect(() => {
+    capture(loadPages(currentPageNumber));
+  }, [currentPageNumber, loadPages]);
+
+  const episodes = useMemo(() => {
+    if (!currentPage) return [];
+
+    const items = Array.from<MediaEpisodePreview | undefined>({
+      length: currentPage.pagination.total,
+    });
+    for (const page of [lastPage, currentPage, nextPage]) {
+      if (!page) continue;
+
+      items.splice(page.pagination.offset, page.pagination.limit, ...page.data.episodes);
+    }
+
+    return items;
+  }, [lastPage, currentPage, nextPage]);
+
+  const progressByEpisodeId = useMemo(() => {
+    const merged = new Map<number, MediaEpisodeTokenProgress>();
+
+    for (const page of [lastPage, currentPage, nextPage]) {
+      if (!page?.data.progress) {
+        continue;
+      }
+
+      for (const [episodeId, progress] of Object.entries(page.data.progress)) {
+        const tokenProgress = progress.tokenProgress[0];
+        if (tokenProgress) {
+          merged.set(Number(episodeId), tokenProgress);
+        }
+      }
+    }
+
+    return merged;
+  }, [lastPage, currentPage, nextPage]);
 
   const onViewableItemsChanged = useCallback(
     ({ changed, viewableItems }: { changed: ViewToken[]; viewableItems: ViewToken[] }) => {
@@ -109,6 +127,7 @@ function useLatestVideosScreen() {
 
   return {
     episodes,
+    progressByEpisodeId,
     onViewableItemsChanged,
   };
 }
