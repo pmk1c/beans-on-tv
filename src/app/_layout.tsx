@@ -13,8 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import { TVEventControl } from "../core/react-native-tvos-shim";
-import { useAppSelector } from "../core/redux/hooks";
-import { selectAuthToken } from "../features/auth/authTokenSlice";
+import { authClient } from "../lib/auth-client";
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -70,7 +69,11 @@ function Layout() {
 }
 
 function RootNavigator() {
-  const token = useAppSelector(selectAuthToken);
+  const { data: session, isPending: isSessionPending } = authClient.useSession();
+
+  if (isSessionPending) {
+    return null;
+  }
 
   return (
     <Stack
@@ -88,12 +91,14 @@ function RootNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Protected guard={!!token}>
+      <Stack.Protected guard={!!session}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="player/[episodeId]" />
       </Stack.Protected>
-      <Stack.Protected guard={!token}>
+      <Stack.Protected guard={!session}>
         <Stack.Screen name="sign-in" />
+        <Stack.Screen name="device" />
+        <Stack.Screen name="device/approve" />
       </Stack.Protected>
     </Stack>
   );

@@ -9,7 +9,6 @@ import * as Sentry from "@sentry/react-native";
 import { Platform } from "react-native";
 import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
-import { authTokenSlice } from "../../features/auth/authTokenSlice";
 import { captureError } from "../capture";
 import { rbtvSocketApiSlice } from "../rbtvApi/rbtvSocketApiSlice";
 
@@ -29,10 +28,7 @@ const sentryReduxEnhancer = Sentry.createReduxEnhancer({
     return action;
   },
   stateTransformer: (state: RootState) => {
-    return {
-      ...state,
-      authToken: "[Filtered]",
-    };
+    return state;
   },
 }) as StoreEnhancer;
 
@@ -46,7 +42,7 @@ const captureRejectedMiddleware: Middleware = () => (next) => (action: unknown) 
   return next(action);
 };
 
-const reducer = combineSlices(authTokenSlice, rbtvSocketApiSlice);
+const reducer = combineSlices(rbtvSocketApiSlice);
 
 export const store = configureStore({
   reducer,

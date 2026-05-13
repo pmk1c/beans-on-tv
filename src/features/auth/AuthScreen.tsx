@@ -25,13 +25,13 @@ function getQrCodeUrl(code: string): string {
 }
 
 function AuthScreen() {
-  const { state } = useAuthScreen();
+  const { code } = useAuthScreen();
 
-  if (state.step !== "pollingToken") {
+  if (!code) {
     return null;
   }
 
-  const formattedCode = formatCode(state.code);
+  const formattedCode = formatCode(code);
 
   return (
     <Host style={styles.host}>
@@ -40,7 +40,7 @@ function AuthScreen() {
           <Column style={styles.qrColumn} alignment="center">
             <View style={styles.qrCodeFrame}>
               <Image
-                source={{ uri: getQrCodeUrl(state.code) }}
+                source={{ uri: getQrCodeUrl(code) }}
                 style={styles.qrCode}
                 contentFit="contain"
               />

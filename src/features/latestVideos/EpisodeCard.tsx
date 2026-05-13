@@ -4,14 +4,12 @@ import { Pressable, View } from "react-native";
 import { router } from "expo-router";
 import { Column, Host, Row, Text } from "@expo/ui";
 
-import { useAppSelector } from "../../core/redux/hooks";
 import perfectSize from "../../core/styles/perfectSize";
 import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
 import spacing from "../../core/styles/tokens/spacing";
 import { MediaEpisodePreview, MediaEpisodeTokenProgress } from "../../core/rbtvApi/types";
-import { selectAuthToken } from "../auth/authTokenSlice";
 
 interface EpisodeCardProps {
   episode?: MediaEpisodePreview;
@@ -22,16 +20,13 @@ interface EpisodeCardProps {
 const width = perfectSize(420);
 const height = width * (9 / 16);
 
-const isYouTubeOnly = (episode: MediaEpisodePreview | undefined, isLoggedIn: boolean) => {
+const isYouTubeOnly = (episode: MediaEpisodePreview | undefined) => {
   if (!episode) return false;
-  if (!isLoggedIn) return true;
 
   return !episode.tokens.some((token) => token.type === "rbsc");
 };
 
 function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps) {
-  const isLoggedIn = !!useAppSelector(selectAuthToken);
-
   return (
     <Pressable
       onPress={() => {
@@ -59,7 +54,7 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
             borderColor: focused ? color.red500 : "transparent",
           }}
         >
-          {isYouTubeOnly(episode, isLoggedIn) && (
+          {isYouTubeOnly(episode) && (
             <Image
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
               source={require("../../core/assets/icons/yt_icon_rgb.png")}

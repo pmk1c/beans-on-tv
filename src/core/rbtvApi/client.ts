@@ -4,6 +4,7 @@ import {
   GetMediaEpisodePreviewNewestApiResponse,
   GetRbscVideoTokenApiResponse,
 } from "./types";
+import { authClient } from "@/src/lib/auth-client";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_BETTER_AUTH_URL ?? "http://localhost:8081";
 
@@ -28,10 +29,13 @@ async function fetchApi<T>(
   pathname: string,
   query: Record<string, string | number | undefined> = {},
 ) {
+  const cookies = authClient.getCookie();
   const response = await fetch(toApiUrl(pathname, query), {
     headers: {
       "Content-Type": "application/json",
+      ...(cookies ? { Cookie: cookies } : {}),
     },
+    credentials: cookies ? "omit" : "include",
   });
 
   if (!response.ok) {
@@ -42,18 +46,18 @@ async function fetchApi<T>(
 }
 
 export function getFrontendInit() {
-  return fetchApi<GetFrontendInitApiResponse>("/api/rbtv/frontend-init");
+  return fetchApi<GetFrontendInitApiResponse>("/api/rbtv/frontend/init");
 }
 
 export async function getMediaEpisode(episodeId: string) {
   return fetchApi<GetMediaEpisodeApiResponse>(
-    `/api/rbtv/media-episode/${encodeURIComponent(episodeId)}`,
+    `/api/rbtv/media/episode/${encodeURIComponent(episodeId)}`,
   );
 }
 
 export async function getMediaEpisodePreviewNewest(arg: GetMediaEpisodePreviewNewestArg) {
   return fetchApi<GetMediaEpisodePreviewNewestApiResponse>(
-    "/api/rbtv/media-episode-preview-newest",
+    "/api/rbtv/media/episode/preview/newest",
     {
       offset: arg.offset,
       limit: arg.limit,
@@ -63,7 +67,7 @@ export async function getMediaEpisodePreviewNewest(arg: GetMediaEpisodePreviewNe
 
 export function getRbscVideoToken(videoToken: string) {
   return fetchApi<GetRbscVideoTokenApiResponse>(
-    `/api/rbtv/rbsc-video-token/${encodeURIComponent(videoToken)}`,
+    `/api/rbtv/rbsc/video/token/${encodeURIComponent(videoToken)}`,
   );
 }
 
