@@ -34,9 +34,6 @@ async function getRbtvAccessToken(request: Request) {
 
 async function proxyRbtvRequest(request: Request, path: string) {
   const accessToken = await getRbtvAccessToken(request);
-  if (!accessToken) {
-    return jsonError("Unauthorized", 401);
-  }
 
   const headers = new Headers();
   headers.set("Authorization", `Bearer ${accessToken}`);
