@@ -19,6 +19,8 @@ jobs:
         run: curl -fsSL https://vite.plus | bash
       - name: Install dependencies
         run: ~/.vite-plus/bin/vp install
+      - name: Generate Prisma client
+        run: ~/.vite-plus/bin/vp exec prisma generate
       - name: Validate workspace
         run: ~/.vite-plus/bin/vp check
 
