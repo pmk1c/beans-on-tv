@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: ~/.vite-plus/bin/vp install
       - name: Generate Prisma client
-        run: ~/.vite-plus/bin/vp exec prisma generate
+        run: DATABASE_URL="dummy" ~/.vite-plus/bin/vp exec prisma generate
       - name: Validate workspace
         run: ~/.vite-plus/bin/vp check
 
