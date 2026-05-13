@@ -1,4 +1,7 @@
-import { FlatList } from "react-native";
+import { Row } from "@expo/ui";
+import { useMemo } from "react";
+
+import LazyScrollView from "@/src/core/components/LazyScrollView/index.web";
 
 import EpisodeCard from "./EpisodeCard";
 import useLatestVideosScreen from "./useLatestVideosScreen";
@@ -6,29 +9,52 @@ import useLatestVideosScreen from "./useLatestVideosScreen";
 const numColumns = 4;
 
 function LatestVideosScreen() {
-  const { episodes, progressByEpisodeId, onViewableItemsChanged } = useLatestVideosScreen();
+  const { episodes, progressByEpisodeId, onEpisodeAppear } = useLatestVideosScreen();
 
-  return (
-    <FlatList
-      data={episodes}
-      // We need to use the index here as key to make sure
-      // the list stays stable when the data for an episode
-      // gets loaded and the data changes from undefined to
-      // be defined.
-      keyExtractor={(episode, index) => index.toString()}
-      numColumns={numColumns}
-      renderItem={({ index, item: episode }) => (
-        <EpisodeCard
-          episode={episode}
-          progress={episode ? progressByEpisodeId.get(episode.id) : undefined}
-          thumbnailPriority={
-            index < numColumns ? "high" : index < numColumns * 2 ? "normal" : "low"
-          }
-        />
-      )}
-      onViewableItemsChanged={onViewableItemsChanged}
-    />
-  );
+  const rows = useMemo(() => {
+    const chunks: Array<Array<{ episode: (typeof episodes)[number]; index: number }>> = [];
+
+    for (let rowStartIndex = 0; rowStartIndex < episodes.length; rowStartIndex += numColumns) {
+      const rowItems: Array<{ episode: (typeof episodes)[number]; index: number }> = [];
+
+      for (let offset = 0; offset < numColumns; offset += 1) {
+        const index = rowStartIndex + offset;
+        if (index >= episodes.length) {
+          break;
+        }
+
+        rowItems.push({ episode: episodes[index], index });
+      }
+
+      chunks.push(rowItems);
+    }
+
+    return chunks;
+  }, [episodes]);
+
+  const rowsContent = rows.map((rowItems, rowIndex) => {
+    const firstIndex = rowItems[0]?.index;
+
+    return (
+      <Row
+        key={rowIndex.toString()}
+        onAppear={firstIndex != null ? () => onEpisodeAppear(firstIndex) : undefined}
+      >
+        {rowItems.map(({ index, episode }) => (
+          <EpisodeCard
+            key={index.toString()}
+            episode={episode}
+            progress={episode ? progressByEpisodeId.get(episode.id) : undefined}
+            thumbnailPriority={
+              index < numColumns ? "high" : index < numColumns * 2 ? "normal" : "low"
+            }
+          />
+        ))}
+      </Row>
+    );
+  });
+
+  return <LazyScrollView>{rowsContent}</LazyScrollView>;
 }
 
 export default LatestVideosScreen;
