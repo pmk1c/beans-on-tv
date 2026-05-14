@@ -13,20 +13,22 @@ defaults:
 jobs:
   check:
     name: Run vp check
+    env:
+      DATABASE_URL: dummy
     steps:
       - uses: eas/checkout
       - name: Install Vite+
         run: curl -fsSL https://vite.plus | bash
       - name: Install dependencies
         run: ~/.vite-plus/bin/vp install
-      - name: Generate Prisma client
-        run: DATABASE_URL="dummy" ~/.vite-plus/bin/vp exec prisma generate
       - name: Validate workspace
         run: ~/.vite-plus/bin/vp check
 
   publish_update:
     name: Publish production update
     needs: [check]
+    env:
+      DATABASE_URL: dummy
     type: update
     environment: production
     params:
@@ -62,6 +64,8 @@ jobs:
   production_fingerprint:
     name: Calculate production fingerprint
     needs: [check]
+    env:
+      DATABASE_URL: dummy
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     type: fingerprint
     environment: production

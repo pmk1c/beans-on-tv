@@ -5,7 +5,8 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "EXPO_TV=1 expo start",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@better-auth/expo": "^1.6.10",
