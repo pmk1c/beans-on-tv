@@ -6,13 +6,18 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 node_version="$(awk 'NF { print; exit }' "$ROOT_DIR/.node-version" | sed -E 's/^v//')"
 eas_version="$(grep -m1 -E '"node"\s*:\s*"[^"]+"' "$ROOT_DIR/eas.json" | sed -E 's/.*"node"\s*:\s*"([^"]+)".*/\1/' | sed -E 's/^v//')"
 workflow_version="$(grep -m1 -E '^[[:space:]]*node:[[:space:]]*' "$ROOT_DIR/.eas/workflows/main.yml" | sed -E 's/^[[:space:]]*node:[[:space:]]*//; s/["'"'"']//g; s/[[:space:]]*#.*$//; s/^v//')"
+package_json_node_version="$(grep -E '"node"\s*:\s*"[^"]+"' "$ROOT_DIR/package.json" | sed -E 's/.*"node"\s*:\s*"([^"]+)".*/\1/' | sed -E 's/^v//')"
+
+node_major="${node_version%%.*}"
+package_json_node_major="${package_json_node_version%%.*}"
 
 if [[ "$node_version" == "$eas_version" && "$eas_version" == "$workflow_version" ]]; then
   exit 0
 else
-  echo "Node version mismatch detected:" >&2
+  echo "Version mismatch detected:" >&2
   echo "- .node-version: $node_version" >&2
   echo "- eas.json (build.base.node): $eas_version" >&2
   echo "- .eas/workflows/main.yml (defaults.tools.node): $workflow_version" >&2
+  echo "- package.json (engines.node): $package_json_node_version" >&2
   exit 1
 fi
