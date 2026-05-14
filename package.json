@@ -13,6 +13,7 @@
     "@better-auth/prisma-adapter": "1.6.10",
     "@expo/env": "^2.1.2",
     "@expo/metro-runtime": "~56.0.7",
+    "@expo/server": "^0.7.5",
     "@expo/ui": "^56.0.6",
     "@opentelemetry/api": "^1.9.1",
     "@prisma/adapter-pg": "^7.8.0",

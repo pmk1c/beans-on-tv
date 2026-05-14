@@ -11,7 +11,7 @@ package_json_node_version="$(grep -E '"node"\s*:\s*"[^"]+"' "$ROOT_DIR/package.j
 node_major="${node_version%%.*}"
 package_json_node_major="${package_json_node_version%%.*}"
 
-if [[ "$node_version" == "$eas_version" && "$eas_version" == "$workflow_version" ]]; then
+if [[ "$node_version" == "$eas_version" && "$eas_version" == "$workflow_version" && "$node_major" == "$package_json_node_major" ]]; then
   exit 0
 else
   echo "Version mismatch detected:" >&2
