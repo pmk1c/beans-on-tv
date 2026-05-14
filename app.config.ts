@@ -1,6 +1,6 @@
-import "ts-node/register";
+import type { ExpoConfig } from "expo/config";
 
-const config = {
+const config: ExpoConfig = {
   name: "Beans on TV",
   description: "Watch Rocket Beans TV on your Android or Apple TV",
   slug: "beans-on-tv",
@@ -58,9 +58,6 @@ const config = {
     ],
     ["expo-secure-store"],
   ],
-  splash: {
-    backgroundColor: "#000000",
-  },
   platforms: ["ios", "android", "web"],
   android: {
     package: "de.bmind.rbscvca",
@@ -72,6 +69,7 @@ const config = {
     },
   },
   web: {
+    bundler: "metro",
     output: "server",
   },
   extra: {
