@@ -107,6 +107,8 @@ jobs:
     name: Build iOS production if fingerprint changed
     needs: [production_ios_get_build]
     if: ${{ !needs.production_ios_get_build.outputs.build_id }}
+    env:
+      DATABASE_URL: dummy
     type: build
     params:
       platform: ios
