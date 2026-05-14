@@ -8,11 +8,12 @@ import prisma from "./prisma";
 
 const DEVICE_CLIENT_ID = process.env.EXPO_PUBLIC_BETTER_AUTH_DEVICE_CLIENT_ID;
 
-const trustedOrigins = ["beansontv://", "beansontv://*"];
-
-if (process.env.NODE_ENV === "development") {
-  trustedOrigins.push("exp://", "exp://**", "http://localhost:8081");
-}
+const trustedOrigins = [
+  "beansontv://",
+  "beansontv://*",
+  process.env.EXPO_PUBLIC_BETTER_AUTH_URL!,
+  ...(process.env.NODE_ENV === "development" ? ["exp://", "exp://**"] : []),
+];
 
 export const auth = betterAuth({
   appName: "Beans on TV",
