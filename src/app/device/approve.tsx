@@ -2,9 +2,11 @@ import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Column, Host, Row, Text } from "@expo/ui";
+import { Image } from "expo-image";
 
 import { authClient } from "@/src/lib/auth-client";
 import fontPresets from "@/src/core/styles/tokens/fontPresets";
+import { rbtvCornerbugSvgUri } from "@/src/core/assets/images/rbtvCornerbugSvg";
 
 function getUserCode(param: string | string[] | undefined) {
   if (typeof param === "string") {
@@ -108,6 +110,7 @@ export default function DeviceApprovePage() {
   return (
     <Host style={styles.container}>
       <Column alignment="center" spacing={12}>
+        <Image source={rbtvCornerbugSvgUri} style={styles.logo} contentFit="contain" />
         <Text
           textStyle={{
             ...fontPresets.xl,
@@ -204,7 +207,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     padding: 16,
-    backgroundColor: "#0f1115",
+  },
+  logo: {
+    width: 80,
+    height: 80,
   },
   button: {
     borderRadius: 8,

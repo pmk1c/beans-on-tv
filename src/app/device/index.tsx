@@ -2,8 +2,11 @@ import { router } from "expo-router";
 import { useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Column, Host, Text, TextInput, useNativeState } from "@expo/ui";
+import { Image } from "expo-image";
 
 import fontPresets from "@/src/core/styles/tokens/fontPresets";
+import { rbtvCornerbugSvgUri } from "@/src/core/assets/images/rbtvCornerbugSvg";
+import color from "@/src/core/styles/tokens/color";
 
 function normalizeCode(rawCode: string) {
   return rawCode.toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -35,6 +38,7 @@ export default function DeviceAuthorizationPage() {
   return (
     <Host style={styles.container}>
       <Column alignment="center" spacing={12}>
+        <Image source={rbtvCornerbugSvgUri} style={styles.logo} contentFit="contain" />
         <Text
           textStyle={{
             ...fontPresets.xl,
@@ -56,7 +60,8 @@ export default function DeviceAuthorizationPage() {
         <TextInput
           value={value}
           onChangeText={setCode}
-          placeholder="ABCD-1234"
+          placeholder="XXXX-XXXX"
+          placeholderTextColor={color.grey600}
           autoCapitalize="characters"
           autoCorrect={false}
           style={styles.input}
@@ -85,7 +90,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 12,
     padding: 16,
-    backgroundColor: "#0f1115",
   },
   input: {
     minWidth: 260,
@@ -97,6 +101,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     letterSpacing: 1.5,
     textAlign: "center",
+  },
+  logo: {
+    width: 80,
+    height: 80,
   },
   button: {
     borderRadius: 8,
