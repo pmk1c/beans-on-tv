@@ -18,7 +18,7 @@
 
   // Mount host zsh history into the container so history persists across rebuilds.
   "mounts": [
-    "source=${localEnv:HOME}/.zsh_history,target=/home/node/.zsh_history,type=bind,consistency=cached"
+    "source=${localWorkspaceFolderBasename}-zsh-history,target=/home/node/.zsh_history,type=volume"
   ],
 
   // Use 'postCreateCommand' to run commands after the container is created.
