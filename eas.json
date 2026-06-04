@@ -9,7 +9,7 @@
       "node": "22.22.3",
       "autoIncrement": true,
       "env": {
-        "REACT_NATIVE_NODE_MODULES_DIR": "/Users/expo/workingdir/build/node_modules"
+        "REACT_NATIVE_NODE_MODULES_DIR": "/Users/expo/workingdir/build"
       }
     },
     "development": {
