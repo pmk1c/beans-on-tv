@@ -8,3 +8,4 @@ allowBuilds:
   prisma: false
 patchedDependencies:
   react-native-gesture-handler: patches/react-native-gesture-handler.patch
+  react-native-reanimated: patches/react-native-reanimated.patch

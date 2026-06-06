@@ -1,0 +1,19 @@
+diff --git a/scripts/reanimated_utils.rb b/scripts/reanimated_utils.rb
+index d00892fa124bd812a66e09aa788225517a3ed128..057ddc2014450324c9e055d8f6b5a743d2e72ed5 100644
+--- a/scripts/reanimated_utils.rb
++++ b/scripts/reanimated_utils.rb
+@@ -7,6 +7,14 @@ def try_to_parse_react_native_package_json(node_modules_dir)
+ end
+ 
+ def find_config()
++  return {
++    :is_reanimated_example_app => false,
++    :react_native_version => "0.85.2",
++    :react_native_minor_version => 85,
++    :is_tvos_target => true,
++    :react_native_node_modules_dir => nil,
++    :react_native_common_dir => "./node_modules/react-native/ReactCommon",
++  }
+   result = {
+     :is_reanimated_example_app => nil,
+     :react_native_version => nil,
