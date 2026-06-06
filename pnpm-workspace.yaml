@@ -9,3 +9,4 @@ allowBuilds:
 patchedDependencies:
   react-native-gesture-handler: patches/react-native-gesture-handler.patch
   react-native-reanimated: patches/react-native-reanimated.patch
+  react-native-worklets: patches/react-native-worklets.patch

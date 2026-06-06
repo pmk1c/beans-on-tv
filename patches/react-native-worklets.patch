@@ -1,0 +1,11 @@
+diff --git a/scripts/worklets_utils.rb b/scripts/worklets_utils.rb
+index ffc4b4a07218b45adbb8e8e9a4376bcf060e3f21..4c142a9eb1e77c1b6862b8b9616f0775872a9793 100644
+--- a/scripts/worklets_utils.rb
++++ b/scripts/worklets_utils.rb
+@@ -1,5 +1,5 @@
+ def worklets_try_to_parse_react_native_package_json(node_modules_dir)
+-  react_native_package_json_path = File.join(node_modules_dir, 'react-native/package.json')
++  react_native_package_json_path = File.join(node_modules_dir, 'react-native-tvos/package.json')
+   if !File.exist?(react_native_package_json_path)
+     return nil
+   end
