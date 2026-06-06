@@ -4,4 +4,7 @@ allowBuilds:
   "@prisma/engines": false
   "@sentry/cli": false
   better-sqlite3: false
+  msgpackr-extract: false
   prisma: false
+patchedDependencies:
+  react-native-gesture-handler: patches/react-native-gesture-handler.patch
