@@ -53,6 +53,7 @@ const config: ExpoConfig = {
         url: "https://sentry.io/",
         project: "beans-on-tv",
         organization: "ruben-grimm",
+        useNativeInit: true,
       },
     ],
     ["expo-secure-store"],

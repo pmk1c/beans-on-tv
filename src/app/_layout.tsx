@@ -1,6 +1,6 @@
 import { setDefaultOptions } from "date-fns";
 import { useFonts } from "expo-font";
-import { ImageBackground } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import { DefaultTheme, ThemeProvider } from "expo-router";
 import { Stack } from "expo-router/stack";
 import * as SplashScreen from "expo-splash-screen";
@@ -14,15 +14,26 @@ import { store } from "../core/redux/store";
 import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
 import { TVEventControl } from "../core/react-native-tvos-shim";
 import { authClient } from "../lib/auth-client";
+import { isRunningInExpoGo } from "expo";
 
 void SplashScreen.preventAutoHideAsync();
 
 Sentry.init({
-  dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.sentry.io/4505467350810624",
-  enabled: !__DEV__,
+  dsn: "https://60db18e3490142bdab575ef0b3727906@o4504708985847808.ingest.us.sentry.io/4505467350810624",
+  enableLogs: true,
+  enableNativeFramesTracking: !isRunningInExpoGo(),
+  enableUserInteractionTracing: true,
+  profilesSampleRate: 1.0,
+  sendDefaultPii: true,
   tracesSampleRate: __DEV__ ? 1.0 : 0.2,
-  integrations: [Sentry.reactNativeTracingIntegration(), Sentry.reactNavigationIntegration()],
+  integrations: [
+    Sentry.expoRouterIntegration({
+      enableTimeToInitialDisplay: !isRunningInExpoGo(),
+    }),
+  ],
 });
+
+Sentry.wrapExpoImage(Image);
 
 setDefaultOptions({ locale: de });
 
