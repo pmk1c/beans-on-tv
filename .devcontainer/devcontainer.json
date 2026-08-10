@@ -18,6 +18,7 @@
 
   // Mount host zsh history into the container so history persists across rebuilds.
   "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind,readonly,consistency=cached",
     "source=${localWorkspaceFolderBasename}-zsh-history,target=/home/node/.zsh_history,type=volume"
   ],
 
