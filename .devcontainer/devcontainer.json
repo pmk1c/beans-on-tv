@@ -14,7 +14,7 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [5432],
+  "forwardPorts": [8081, 5432],
 
   // Mount host zsh history into the container so history persists across rebuilds.
   "mounts": [
