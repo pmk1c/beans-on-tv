@@ -9,7 +9,8 @@ export const authClient = createAuthClient({
     expoClient({
       scheme: "beansontv",
       storagePrefix: "beansontv",
-      storage: typeof window?.localStorage === "undefined" ? SecureStore : window.localStorage,
+      storage:
+        typeof window === "undefined" || !window.localStorage ? SecureStore : window.localStorage,
     }),
     deviceAuthorizationClient(),
     genericOAuthClient(),
