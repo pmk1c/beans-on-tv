@@ -5,7 +5,7 @@ export default defineConfig({
     "*": ["./bin/ensure-version-consistency", "vp check --fix"],
   },
   fmt: {
-    ignorePatterns: ["doc/rbtv-api/official/**"],
+    ignorePatterns: ["doc/rbtv-api/official/**", ".agents/skills/**"],
   },
   lint: {
     ignorePatterns: ["doc/rbtv-api/official/**"],
