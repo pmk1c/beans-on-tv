@@ -8,10 +8,7 @@ import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import * as Sentry from "@sentry/react-native";
 import { de } from "date-fns/locale";
-import { Provider } from "react-redux";
-
-import { store } from "../core/redux/store";
-import InitializeAppGate from "../features/initializeApp/InitializeAppGate";
+import RBTVSocketProvider from "../core/rbtvApi/RBTVSocketProvider";
 import { TVEventControl } from "../core/react-native-tvos-shim";
 import { authClient } from "../lib/auth-client";
 import { isRunningInExpoGo } from "expo";
@@ -63,19 +60,17 @@ function Layout() {
   }
 
   return (
-    <Provider store={store}>
-      <ImageBackground
-        source={require("../core/assets/images/bg-2023.png")}
-        style={StyleSheet.absoluteFill}
-        contentFit="cover"
-      >
-        <ThemeProvider value={transparentBackgroundTheme}>
-          <InitializeAppGate>
-            <RootNavigator />
-          </InitializeAppGate>
-        </ThemeProvider>
-      </ImageBackground>
-    </Provider>
+    <ImageBackground
+      source={require("../core/assets/images/bg-2023.png")}
+      style={StyleSheet.absoluteFill}
+      contentFit="cover"
+    >
+      <ThemeProvider value={transparentBackgroundTheme}>
+        <RBTVSocketProvider>
+          <RootNavigator />
+        </RBTVSocketProvider>
+      </ThemeProvider>
+    </ImageBackground>
   );
 }
 

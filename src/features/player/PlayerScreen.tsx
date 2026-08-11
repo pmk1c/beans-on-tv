@@ -7,9 +7,8 @@ import { useEventListener } from "expo";
 
 import capture from "../../core/capture";
 import { getMediaEpisode, getRbscVideoToken } from "../../core/rbtvApi/client";
-import { selectSocket } from "../../core/rbtvApi/rbtvSocketApiSlice";
+import { useRBTVSocket } from "../../core/rbtvApi/RBTVSocketProvider";
 import { MediaEpisode } from "../../core/rbtvApi/types";
-import { useAppSelector } from "../../core/redux/hooks";
 import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
@@ -144,7 +143,7 @@ function PlayerScreen({ episodeId }: Props) {
     };
   }, [episode]);
 
-  const rbtvSocket = useAppSelector(selectSocket);
+  const rbtvSocket = useRBTVSocket();
   const player = useVideoPlayer(
     {
       uri: `https://cloudflarestream.com/${signedToken}/manifest/video.m3u8`,
@@ -169,7 +168,7 @@ function PlayerScreen({ episodeId }: Props) {
       return;
     }
 
-    rbtvSocket.emitMediaEpisodeProgressUpdate(episode.id, rbscToken.id, event.currentTime);
+    rbtvSocket?.emitMediaEpisodeProgressUpdate(episode.id, rbscToken.id, event.currentTime);
   });
 
   useEventListener(player, "playToEnd", () => {

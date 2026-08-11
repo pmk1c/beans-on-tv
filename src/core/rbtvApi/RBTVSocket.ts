@@ -14,6 +14,10 @@ class RBTVSocket {
     });
   }
 
+  disconnect() {
+    this.socket.disconnect();
+  }
+
   emit<M extends SocketMessage = SocketMessage>(message: M, payload: SocketMessagePayload<M>) {
     console.debug("Socket message sent", message, payload);
     this.socket.emit(message, payload);
