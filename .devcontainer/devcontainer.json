@@ -15,10 +15,8 @@
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [8081, 5432],
-
-  // Mount host zsh history into the container so history persists across rebuilds.
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind,readonly,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind",
     "source=${localWorkspaceFolderBasename}-zsh-history,target=/home/node/.zsh_history,type=volume"
   ],
 
@@ -30,6 +28,9 @@
   "customizations": {
     "vscode": {
       "extensions": ["VoidZero.vite-plus-extension-pack", "Prisma.prisma"]
+    },
+    "zed": {
+      "extensions": ["oxc", "prisma"]
     }
   },
   "containerEnv": {
