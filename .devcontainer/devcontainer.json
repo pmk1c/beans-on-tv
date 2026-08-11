@@ -5,22 +5,16 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
-  // Features to add to the dev container. More info: https://containers.dev/features.
-
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": { "configureZshAsDefaultShell": true },
-    "ghcr.io/helpers4/devcontainer/vite-plus:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/ripgrep:1": {}
   },
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [8081, 5432],
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind",
-    "source=${localWorkspaceFolderBasename}-zsh-history,target=/home/node/.zsh_history,type=volume"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.expo/state.json,target=/home/vp/.expo/state.json,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vp/.gitconfig,type=bind"
   ],
-
-  // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
     "install packages": "vp i",
     "install eas-cli": "vp i -g eas-cli"
@@ -36,7 +30,4 @@
   "containerEnv": {
     "NODE_ENV": "development"
   }
-
-  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-  // "remoteUser": "root"
 }

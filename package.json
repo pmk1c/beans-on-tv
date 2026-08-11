@@ -11,7 +11,7 @@
   "dependencies": {
     "@better-auth/expo": "^1.6.14",
     "@better-auth/prisma-adapter": "1.6.10",
-    "@expo/env": "^2.3.0",
+    "@expo/env": "^2.4.2",
     "@expo/metro-runtime": "~57.0.9",
     "@expo/ui": "^57.0.10",
     "@opentelemetry/api": "^1.9.1",
@@ -19,7 +19,7 @@
     "@prisma/client": "^7.8.0",
     "@react-native-vector-icons/common": "^13.0.1",
     "@sentry/react-native": "~8.22.0",
-    "better-auth": "^1.6.14",
+    "better-auth": "^1.6.26",
     "date-fns": "^3.6.0",
     "expo": "57.0.12",
     "expo-application": "~57.0.2",
@@ -68,16 +68,20 @@
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   },
   "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "download"
+    },
     "runtime": {
       "name": "node",
-      "version": "^22.22.3",
+      "version": "22.22.3",
       "onFail": "download"
     }
   },
   "engines": {
     "node": "22.x"
   },
-  "packageManager": "pnpm@11.5.2",
   "expo": {
     "install": {
       "exclude": [
