@@ -1,7 +1,5 @@
 import { PropsWithChildren, createContext, use, useEffect, useState } from "react";
 
-import capture from "../capture";
-
 import RBTVSocket from "./RBTVSocket";
 import { getFrontendInit } from "./client";
 
@@ -14,20 +12,18 @@ function RBTVSocketProvider({ children }: PropsWithChildren) {
     let isMounted = true;
     let socket: RBTVSocket | undefined;
 
-    capture(
-      (async () => {
-        const {
-          data: { websocket },
-        } = await getFrontendInit();
+    void (async () => {
+      const {
+        data: { websocket },
+      } = await getFrontendInit();
 
-        if (!isMounted) {
-          return;
-        }
+      if (!isMounted) {
+        return;
+      }
 
-        socket = new RBTVSocket(websocket.url, websocket.path);
-        setSocket(socket);
-      })(),
-    );
+      socket = new RBTVSocket(websocket.url, websocket.path);
+      setSocket(socket);
+    })();
 
     return () => {
       isMounted = false;

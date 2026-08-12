@@ -8,8 +8,6 @@ import {
   MediaEpisodeTokenProgress,
 } from "../../core/rbtvApi/types";
 
-import capture from "@/src/core/capture";
-
 const pageSize = 12;
 const getOffset = (pageNumber: number) => pageNumber * pageSize;
 const getItemPage = (index: number) => Math.floor(index / pageSize);
@@ -98,12 +96,12 @@ function useLatestVideosScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      capture(refetchLoadedPages());
+      void refetchLoadedPages();
     }, [refetchLoadedPages]),
   );
 
   useEffect(() => {
-    capture(loadPage(0));
+    void loadPage(0);
   }, [loadPage]);
 
   const episodes = useMemo(() => {
@@ -146,10 +144,10 @@ function useLatestVideosScreen() {
       const pageNumber = getItemPage(index);
       const indexInPage = index % pageSize;
 
-      capture(loadPage(pageNumber));
+      void loadPage(pageNumber);
 
       if (indexInPage >= pageSize - 4) {
-        capture(loadPage(pageNumber + 1));
+        void loadPage(pageNumber + 1);
       }
     },
     [loadPage],
