@@ -9,7 +9,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@better-auth/expo": "^1.6.14",
+    "@better-auth/expo": "^1.6.27",
     "@better-auth/prisma-adapter": "1.6.10",
     "@expo/env": "^2.4.2",
     "@expo/metro-runtime": "~57.0.9",
@@ -19,7 +19,7 @@
     "@prisma/client": "^7.8.0",
     "@react-native-vector-icons/common": "^13.0.1",
     "@sentry/react-native": "~8.22.0",
-    "better-auth": "^1.6.26",
+    "better-auth": "^1.6.27",
     "date-fns": "^3.6.0",
     "expo": "57.0.12",
     "expo-application": "~57.0.2",

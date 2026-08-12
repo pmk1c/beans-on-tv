@@ -29,5 +29,6 @@
   },
   "containerEnv": {
     "NODE_ENV": "development"
-  }
+  },
+  "remoteUser": "vp"
 }
