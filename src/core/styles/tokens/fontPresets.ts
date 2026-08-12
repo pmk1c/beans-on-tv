@@ -1,10 +1,8 @@
-import perfectSize from "../perfectSize";
-
 const fontFamily = {
   primary: "ArchivoRoman-Black",
 };
 
-const rem = perfectSize(16);
+const rem = 16;
 const fontSize = {
   "2xs": 0.579 * rem,
   xs: 0.694 * rem,

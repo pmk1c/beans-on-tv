@@ -4,7 +4,6 @@ import { Pressable, View } from "react-native";
 import { router } from "expo-router";
 import { Column, Host, Row, Text } from "@expo/ui";
 
-import perfectSize from "../../core/styles/perfectSize";
 import borderRadius from "../../core/styles/tokens/borderRadius";
 import color from "../../core/styles/tokens/color";
 import fontPresets from "../../core/styles/tokens/fontPresets";
@@ -47,7 +46,7 @@ function EpisodeCard({ episode, progress, thumbnailPriority }: EpisodeCardProps)
             alignItems: "center",
             marginBottom: spacing["2xl"],
             borderRadius: borderRadius.large,
-            borderWidth: perfectSize(4),
+            borderWidth: 4,
             borderColor: focused ? color.red500 : "transparent",
           }}
         >
