@@ -13,11 +13,13 @@
   "forwardPorts": [8081, 5432],
   "mounts": [
     "source=${localEnv:HOME}${localEnv:USERPROFILE}/.expo/state.json,target=/home/vp/.expo/state.json,type=bind",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vp/.gitconfig,type=bind"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vp/.gitconfig,type=bind",
+    "source=${localEnv:SSH_AUTH_SOCK},target=/home/vp/.ssh-agent,type=bind"
   ],
   "postCreateCommand": {
     "install packages": "vp i",
-    "install eas-cli": "vp i -g eas-cli"
+    "install eas-cli": "vp i -g eas-cli",
+    "fix permissions": "chown vp:vp /home/vp/.ssh-agent"
   },
   "customizations": {
     "vscode": {
@@ -28,7 +30,8 @@
     }
   },
   "containerEnv": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "SSH_AUTH_SOCK": "/home/vp/.ssh-agent"
   },
   "remoteUser": "vp"
 }
