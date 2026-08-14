@@ -4,7 +4,7 @@ import { deviceAuthorizationClient, genericOAuthClient } from "better-auth/clien
 import * as SecureStore from "expo-secure-store";
 
 export const authClient = createAuthClient({
-  baseUrl: process.env.EXPO_PUBLIC_BETTER_AUTH_URL ?? "http://localhost:8081",
+  baseURL: process.env.EXPO_PUBLIC_BETTER_AUTH_URL ?? "http://localhost:8081",
   plugins: [
     expoClient({
       scheme: "beansontv",
