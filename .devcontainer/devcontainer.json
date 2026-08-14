@@ -18,8 +18,10 @@
   ],
   "postCreateCommand": {
     "install packages": "vp i",
-    "install eas-cli": "vp i -g eas-cli",
-    "fix permissions": "chown vp:vp /home/vp/.ssh-agent"
+    "install eas-cli": "vp i -g eas-cli"
+  },
+  "postStartCommand": {
+    //"fix permissions": "sudo chown vp:vp /home/vp/.ssh-agent"
   },
   "customizations": {
     "vscode": {

@@ -107,9 +107,9 @@ jobs:
   production_ios_submit:
     name: Submit iOS production
     after: [production_ios_get_build, production_ios_build]
-    if: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
+    if: ${{ after.production_ios_build.outputs.build_id }}
     type: submit
     environment: production
     params:
-      build_id: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
+      build_id: ${{ after.production_ios_build.outputs.build_id }}
       profile: production
