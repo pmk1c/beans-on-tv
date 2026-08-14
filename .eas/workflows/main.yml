@@ -13,8 +13,6 @@ defaults:
 jobs:
   check:
     name: Run vp check
-    env:
-      DATABASE_URL: dummy
     steps:
       - uses: eas/checkout
       - name: Install Vite+
@@ -27,12 +25,8 @@ jobs:
   publish_update:
     name: Publish production update
     needs: [check]
-    env:
-      DATABASE_URL: dummy
     type: update
     environment: production
-    params:
-      branch: production
 
   # development_fingerprint:
   #   name: Calculate development fingerprint
@@ -64,8 +58,6 @@ jobs:
   production_fingerprint:
     name: Calculate production fingerprint
     needs: [check]
-    env:
-      DATABASE_URL: dummy
     if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     type: fingerprint
     environment: production
@@ -107,8 +99,6 @@ jobs:
     name: Build iOS production if fingerprint changed
     needs: [production_ios_get_build]
     if: ${{ !needs.production_ios_get_build.outputs.build_id }}
-    env:
-      DATABASE_URL: dummy
     type: build
     params:
       platform: ios
@@ -118,8 +108,6 @@ jobs:
     name: Submit iOS production
     after: [production_ios_get_build, production_ios_build]
     if: ${{ after.production_ios_get_build.outputs.build_id || after.production_ios_build.outputs.build_id }}
-    env:
-      DATABASE_URL: dummy
     type: submit
     environment: production
     params:
